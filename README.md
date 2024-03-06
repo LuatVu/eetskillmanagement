@@ -1,1 +1,3 @@
 The complete system, which contains front-end and back-end components, was developed using Angular and Java Spring Boot frameworks. The system manages employee infor, project infor, and so on...
+
+![image](https://github.com/LuatVu/eetskillmanagement/assets/18476879/fb5841ac-19d5-46e4-9e00-b68e093ccaa8)
