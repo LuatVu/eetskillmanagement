@@ -1,0 +1,24 @@
+{
+  "/api/*": {
+    "target": "https://sgpvmc0784.apac.bosch.com:8443/eet-core-net/net-api",
+    "secure": false,
+    "loglevel": "debug",
+    "headers": { "iv-user": "tka2hc", "X-Forwarded-For": "10.187.38.4" }
+  },
+  "/me": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "loglevel": "debug"
+  },
+  "/tree-data": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "loglevel": "debug"
+  }
+  ,
+  "/admin/*": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "loglevel": "debug"
+  }
+}

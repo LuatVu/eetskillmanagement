@@ -1,0 +1,18 @@
+.home {
+  height: calc(100vh - 48px);
+  overflow: auto;
+}
+
+.child-components {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.command-button-container {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    margin: 0 16px 0 16px;
+  }
+}

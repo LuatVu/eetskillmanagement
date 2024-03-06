@@ -1,0 +1,35 @@
+insert into `user` (created_date, display_name, email, modified_date, `name`, password, `status`, id) 
+values ('2022-06-28 00:00:00', 'Thuong Nguyen Thi Thu','Thuong.NguyenThiThu@vn.bosch.com', '2022-06-28 00:00:00', 'GNY8HC', '', 'Active',  '4e2ed1d4-73c6-4404-89c0-876970a7df55')
+
+INSERT INTO `user_group` VALUES ('073eced7-07f4-4f1a-a1a6-328731407e85','4e2ed1d4-73c6-4404-89c0-876970a7df55','0f7675ed-e201-4664-909d-855a43050d51');
+
+
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b24b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a02');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b7b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a03');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b8b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a04');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b9b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a05');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b10b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a06');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b11b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a07');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b12b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a08');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b13b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a09');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b14b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a10');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b16b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a11');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b15b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a12');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b17b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a13');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b18b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a14');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b19b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a15');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b20b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a16');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b21b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a17');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b22b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a18');
+INSERT INTO `role_permission` VALUES ('00302d8a-f7da-4134-8067-bccbf4872b23b','rol11111-a7bd-11e9-8f0a-00059a3c7a00','p001f0ae-a880-11e9-91cf-00059a3c7a19');
+
+Use `core_web_db`;
+select 
+u.name, p.name,g.name,r.name
+ from User u
+join user_group ug on u.id = ug.user_id
+join `group` g on ug.group_id = g.id
+join `group_role` gr on gr.group_id = g.id
+join `role` r on r.id = gr.role_id
+join role_permission rp on rp.role_id = r.id
+join permission p on p.id = rp.permission_id;

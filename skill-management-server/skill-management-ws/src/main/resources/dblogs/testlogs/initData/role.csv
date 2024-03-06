@@ -1,0 +1,4 @@
+id,name,display_name,description,status,created_date,created_by,modified_date,modified_by,priority
+admin_role,Administrator,admin_role,admin_role,Active,2022-11-14T14:57:53,sysadmin,2022-11-14T14:57:53,inactive_role,10
+user_role,User,user_role,user_role,Active,2022-11-14T14:57:53,sysadmin,2022-11-14T14:57:53,inactive_role,1
+inactive_role,Inactive_Role,inactive_role,inactive_role,Inactive,2022-11-14T14:57:53,sysadmin,2022-11-14T14:57:53,inactive_role,1

@@ -1,0 +1,63 @@
+<table mat-table matSort [dataSource]="dataSource" class="table-common">
+    <!-- Member Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'projects.detail.Member_Info.name' | translate}}</th>
+      <td class="nameCol" mat-cell *matCellDef="let element"><a (click)="btnClick(element.id)">{{ element.name }}</a></td>
+    </ng-container>
+  
+    <!-- Role Column -->
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'projects.detail.Member_Info.role' | translate}}</th>
+      <td mat-cell *matCellDef="let element" #role
+      [matTooltip]="isElementOverflow(role)? element.role: ''">{{ element.role }}</td>
+    </ng-container>
+  
+    <!-- Common Task Column -->
+    <ng-container matColumnDef="common_task">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'projects.detail.Member_Info.Common_Task' | translate}}</th>
+      <td mat-cell *matCellDef="let element" #commonTask
+      [matTooltip]="isElementOverflow(commonTask)? joinCommonTask(element.common_task): ''">{{ joinCommonTask(element.common_task) }}</td>
+    </ng-container>
+  
+    <!-- Additional Task Column -->
+    <ng-container matColumnDef="additional_task">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'projects.detail.Member_Info.Additional_Task' | translate}}</th>
+      <td mat-cell *matCellDef="let element" #additionalTask
+      [matTooltip]="isElementOverflow(additionalTask)? element.additional_task: ''">{{ element.additional_task }}</td>
+    </ng-container>
+  
+    <!-- start-date -->
+    <ng-container matColumnDef="start_day">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'projects.detail.Member_Info.start_date' | translate}}</th>
+      <td mat-cell *matCellDef="let element" #additionalTask
+      >{{ element.start_date ? element.start_date : '--' }}</td>
+    </ng-container>
+
+    <!-- end date -->
+    <ng-container matColumnDef="end_day">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'projects.detail.Member_Info.end_date' | translate}}</th>
+      <td mat-cell *matCellDef="let element" #additionalTask
+      >{{ element.end_date ? element.end_date : '--' }}</td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container *ngIf="typeOfCommand !== 'view'" matColumnDef="action" >
+      <th mat-header-cell *matHeaderCellDef>{{'projects.detail.Member_Info.action' | translate}}</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="action-col">
+          <ng-container *ngIf="typeOfCommand === 'edit'">
+            <mat-icon
+              class="action-col__button"
+              fontIcon="bosch-ic-reference"
+              (click)="editInfo(element)"
+            ></mat-icon>
+          </ng-container>
+          <mat-icon class="action-col__button" fontIcon="bosch-ic-delete" (click)="removeInfo(element)"></mat-icon>
+        </div>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  

@@ -1,0 +1,30 @@
+<div class="m-dialog" id="frontend-kit-dialog-alert-dialog-info" role="dialog"
+  aria-labelledby="frontend-kit-dialog-alert-dialog-info-title">
+  <div class="a-box">
+    <div class="m-dialog__remark --info"></div>
+    <div class="m-dialog__header">
+      <div class="dialog_title">
+        <i [class]="data?.icon"></i>
+        {{ (data?.title || 'dialogTitle') | translate }}
+      </div>
+      <button type="button" class="a-button a-button--integrated -without-label dialog-close-button"
+        data-frok-action="close" aria-label="close dialog" (click)="onClose()">
+        <i class="a-icon a-button__icon ui-ic-close" title="close"></i>
+      </button>
+    </div>
+    <hr class="a-divider" />
+    <div class="m-dialog__content">
+      <div class="m-dialog__body" id="frontend-kit-dialog-alert-dialog-info-description">
+        <ng-content select="[dialog-content]"></ng-content>
+      </div>
+      <div class="m-dialog__actions">
+        <ng-content select="[dialog-action]">
+        </ng-content>
+        <button type="button" class="a-button a-button--primary" (click)="onClose()" *ngIf="isShowCloseButton">
+          <i class="a-icon a-button__icon ui-ic-close" title="Cancel"></i>
+          <span class="a-button__label">Cancel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

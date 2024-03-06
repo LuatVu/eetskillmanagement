@@ -1,0 +1,21 @@
+<!--
+  ~ Copyright (C) 2018 Robert Bosch GmbH Copyright (C) 2018 Robert Bosch Manufacturing Solutions GmbH, Germany. All rights reserved.
+  -->
+<bci-content>
+  <bci-sidebar [sidebarLinks]="sidebarLinks" [applicationTitle]="applicationTitle"
+    [applicationTitleLineTwo]="applicationTitleLineTwo">
+
+    <bci-sidebar-footer [sidebarFooterLinks]="sidebarFooterLinks" [showTime]="showSidebarFooterTime">
+    </bci-sidebar-footer>
+
+    <eet-header [menuItems]="menuItems"></eet-header>
+
+
+    <bci-banner>
+    </bci-banner>
+
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  </bci-sidebar>
+</bci-content>

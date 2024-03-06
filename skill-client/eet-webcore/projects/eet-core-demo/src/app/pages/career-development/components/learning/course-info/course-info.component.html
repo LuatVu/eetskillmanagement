@@ -1,0 +1,253 @@
+<eet-common-dialog class="disable-overflow-y">
+  <!-- Content -->
+  <div
+  class="CourseInfoComponent"
+  fxLayout="column"
+  fxLayoutGap="2%"
+  dialog-content
+  >
+  <div fxLayout="row wrap" class="full-contain">
+    <!-- Left column -->
+    <div fxLayout="column" fxLayoutGap="5%" fxFlex="50%">
+      <!-- Name of course-->
+      <div fxLayout="row" fxLayoutGap="7%" class="columns1">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.name" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%" *ngIf="typeOfCommand === 'view'">
+          <ng-container style="overflow-wrap: break-word" >
+            <span [matTooltip]="infoData.name" class="info">{{infoData.name}}</span>
+          </ng-container>
+        </div>
+        <div fxLayout="column" fxFlex="50%" *ngIf="typeOfCommand === 'edit'">
+          <input type="text" [(ngModel)]="infoData.name" [style.color]="'black'" disabled/>
+        </div>
+      </div>
+      <!-- Trainer -->
+      <div fxLayout="row" fxLayoutGap="7%">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.trainer" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%" *ngIf="typeOfCommand === 'view'">
+          <ng-container style="overflow-wrap: break-word">
+            <span [matTooltip]="infoData.trainer" class="info">{{infoData.trainer}}</span>
+          </ng-container>
+        </div>
+        <div fxLayout="column" fxFlex="50%" *ngIf="typeOfCommand === 'edit'">
+          <input type="text"  [(ngModel)]="infoData.trainer" />
+        </div>
+      </div>
+      <!-- Type -->
+      <div fxLayout="row" fxLayoutGap="7%">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.type" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%" *ngIf="typeOfCommand === 'view'">
+          <ng-container>
+            <span [matTooltip]="infoData.course_type" class="info">{{infoData.course_type}}</span>
+          </ng-container>
+        </div>
+        <div fxLayout="column" fxFlex="50%" *ngIf="typeOfCommand === 'edit'">
+          <mat-form-field class="type">
+            <mat-select [(ngModel)]="infoData.course_type" disabled>
+              <mat-option *ngFor="let type of typeList" [value]="type.value">
+                {{ ('learning.learning_type.' + type.viewValue) | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Duration -->
+      <div fxLayout="row" fxLayoutGap="7%">
+        <ng-container *ngIf="typeOfCommand === 'view'">
+          <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+            <mat-label>{{
+              "learning.my_learning.info.duration" | translate
+            }}</mat-label>
+          </div>
+          <div fxLayout="column" fxFlex="50%">
+            <ng-container>
+              <span [matTooltip]="infoData.duration + ' ' + ('learning.my_learning.info.hour' | translate)" class="info">{{infoData.duration + ' ' +("learning.my_learning.info.hour" | translate)}}</span>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="typeOfCommand === 'edit'">
+          <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+            <mat-label>{{
+              "learning.my_learning.info.audience" | translate
+            }}</mat-label>
+          </div>
+          <div fxLayout="column" fxFlex="50%">
+            <mat-form-field class="type">
+              <mat-select [(ngModel)]="infoData.target_audience">
+                <mat-option *ngFor="let target of targetList" [value]="target.value"
+                  >{{ target.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div fxLayout="column" fxFlex="50%" fxLayoutGap="5%" class="columns2">
+      <!-- Category -->
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.category" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'view'">
+          <ng-container>
+            <span [matTooltip]="infoData.categoryName" class="info">{{infoData.categoryName}}</span>
+          </ng-container>
+        </div>
+        <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'edit'">
+          <mat-form-field class="type">
+            <mat-select [(ngModel)]="infoData.categoryName" disabled>
+              <mat-option
+                *ngFor="let category of categoryList"
+                [value]="category.value"
+                >{{ category.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Start date -->
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.start" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'view'">
+          <ng-container>
+            <span [matTooltip]="infoData.date" class="info">{{infoData.date | date:'dd/MM/yyyy'}}</span>
+          </ng-container>
+        </div>
+        <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'edit'">
+          <mat-form-field floatLabel="never">
+            <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="infoData.date" (click)="startDatePicker.open()">
+            <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single "
+              matTooltip="{{ 'learning.my_learning.info.start' | translate }}" (click)="startDatePicker.open()"></i>
+            <mat-datepicker #startDatePicker color="primary"></mat-datepicker>
+          </mat-form-field>        
+        </div>
+      </div>
+      <!-- Status -->
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{ "projects.detail.status" | translate }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'view'">
+          <ng-container>
+            <span [matTooltip]="infoData.status" [ngClass]="infoData.status">{{infoData.status}}</span>
+          </ng-container>
+        </div>
+        <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'edit'">
+          <mat-form-field class="type">
+            <mat-select [(ngModel)]="infoData.status">
+              <mat-option *ngFor="let target of statusList" [value]="target.value"
+                >{{ 'learning.learning_status.' + target.viewValue | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Target Audience -->
+      <div fxLayout="row">
+        <ng-container *ngIf="typeOfCommand === 'view'">
+          <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+            <mat-label>{{
+              "learning.my_learning.info.audience" | translate
+            }}</mat-label>
+          </div>
+          <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'view'">
+            <ng-container>
+              <span [matTooltip]="infoData.target_audience" class="info">{{infoData.target_audience}}</span>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="typeOfCommand === 'edit'">
+          <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+            <mat-label>{{
+              "learning.my_learning.info.duration" | translate
+            }}</mat-label>
+          </div>
+          <div fxLayout="column" fxFlex="60%" *ngIf="typeOfCommand === 'edit'">
+            <ng-container
+              ><input type="number"  [(ngModel)]="infoData.duration" />
+              {{ "learning.my_learning.info.hour" | translate }}</ng-container
+            >
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="column wrap" class="project-decription">
+    <!-- Project description (Title)-->
+    <div fxLayout="row ">
+      <mat-label>{{ "learning.my_learning.info.detail" | translate }}</mat-label>
+    </div>
+    <!-- Project description (Text area)-->
+    <div fxLayout="row ">
+      <textarea
+        rows="5"
+        cols="60"
+        [(ngModel)]="infoData.description"
+        name="description"
+        [ngClass]="{'description': typeOfCommand === 'view'}"
+        [style.color]="'black'"
+        disabled
+      >
+     
+      </textarea>
+    </div>
+  </div>
+</div>
+<ng-container dialog-action>
+    <!-- Bottom right button -->
+    <div
+    fxLayout="row-reverse wrap"
+    class="full-contain"
+    fxLayoutAlign="space-between center"
+  >
+  
+    <!-- Save/add button-->
+    <ng-container *ngIf="typeOfCommand === 'edit'">
+      <button
+        mat-raised-button
+        class="btn-exp"
+        (click)="onSave()"
+      >
+        <ng-container
+          ><mat-icon fontIcon="bosch-ic-save"> </mat-icon>
+          {{ "learning.command.save" | translate }}</ng-container
+        >
+      </button>
+    </ng-container>
+    <ng-container *ngIf="typeOfCommand === 'view' && canRegister()">
+      <button
+        mat-raised-button
+        class="btn-exp"
+        (click)="onRegister()"
+      >
+        <ng-container
+          ><mat-icon fontIcon="bosch-ic-glossary"> </mat-icon>
+          {{ "learning.command.register" | translate }}</ng-container
+        >
+      </button>
+    </ng-container>
+  </div>
+</ng-container>
+</eet-common-dialog>

@@ -1,0 +1,60 @@
+.title {
+  display: flex;
+  justify-content: space-between !important;
+}
+
+.CourseInfoComponent {
+  mat-label {
+    font-weight: bold;
+  }
+}
+
+mat-form-field {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.add-certificate-icon,
+.add-certificate-text {
+  margin-top: 16px;
+}
+
+.add-certificate-text {
+  margin-left: 8px;
+}
+
+.dropdown-icon {
+  align-self: center;
+  margin-top: 16px;
+}
+
+.description,
+.description:hover {
+  color: var(--bosch-blue-50);
+}
+
+.ON-GOING {
+  color: var(--bosch-yellow-50)
+}
+
+.CLOSED {
+  color: var(--bosch-red-50)
+}
+
+.info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--bosch-blue-50)
+}
+
+:host ::ng-deep {
+  mat-form-field.mat-form-field {
+    padding: 0;
+  }
+}
+
+:host ::ng-deep .mat-select-value-text {
+  color: black !important;
+}

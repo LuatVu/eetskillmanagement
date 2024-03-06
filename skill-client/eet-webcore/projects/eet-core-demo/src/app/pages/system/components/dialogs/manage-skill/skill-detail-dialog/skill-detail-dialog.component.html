@@ -1,0 +1,97 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <form action="" [formGroup]="skillForm" class="skill-info-container">
+      <div class="row" style="padding-bottom:20px">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-4 label-content">
+              <mat-label>{{'system.manage_skill.dialog.skill_name' | translate}}</mat-label>
+            </div>
+            <div class="col-md-8">
+              <input maxlength="120" type="text" formControlName="skillName" cdkFocusInitial>
+              <ng-container *ngIf="skillNameFormControl.touched || skillNameFormControl.dirty">
+                <ng-container *ngIf="skillNameFormControl?.errors?.required">
+                  <small class="text-error">{{"system.manage_skill.notification.add_field_empty" | translate}}</small>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6  label-content">
+          <mat-label>{{'system.manage_skill.dialog.competency_lead' | translate}}</mat-label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-4 label-content">
+              <mat-label>{{'system.manage_skill.competency' | translate}}</mat-label>
+            </div>
+            <div class="col-md-8">
+              <div class="form-content">
+                <eet-common-select [selectedData]="skillForm?.get('skillCompetency')?.value" [valueKey]="'name'"
+                  [nameKey]="'name'" (onSelectedItemChange)="onSkillCompetency($event)"
+                  [originalData]="competencyOptionsList" [isShowUnSelect]="false"></eet-common-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <eet-common-chip [typeChip]="'object'" [selectedChipList]="competencyLeadFormControl?.value || []"
+            [isDisabled]="false" [originalChipList]="competencyLeaderList" [isAddOnBlur]="false"
+            objectDisplayName="displayName" (selectedChipChange)="onCompetencyLeadChange($event)">
+          </eet-common-chip>
+          <ng-container *ngIf="isCompetencyLeadEmpty">
+            <small class="text-error">{{"system.manage_skill.notification.add_field_empty" | translate}}</small>
+          </ng-container>
+        </div>
+      </div>
+
+
+    </form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="filter">
+          <!-- COMMENT FOR REUSE IN FUTURE DO NOT DELETE -->
+          <!-- <eet-toggle id="toggle" [listData]="['Technical','Behavioral']" [checked]="isFilterTechnical"
+          [disabled]="true"
+                      ></eet-toggle> -->
+        </div>
+      </div>
+      <!-- COMMENT FOR REUSE IN FUTURE DO NOT DELETE -->
+      <!-- <div class="col-md-6">
+        <div class="filter">
+          <div class="a-checkbox">
+            <input type="checkbox" id="checkbox-3" name="unselected checkbox" [(ngModel)]="isRequired"  >
+              <label for="checkbox-3">Is Required</label>
+          </div>
+          <div class="a-checkbox">
+            <input type="checkbox" id="checkbox-4" name="unselected checkbox" [(ngModel)]="isMandatory" >
+              <label for="checkbox-4">Is Mandatory</label>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <mat-label>{{'system.manage_skill.dialog.description' | translate}}</mat-label>
+
+    <ng-container *ngIf="skillDescriptionList">
+      <mat-tab-group class="tab">
+        <mat-tab *ngFor="let skillDesc of skillDescriptionList; let i = index;" label="Level {{i}}">
+          <ng-template matTabContent>
+            <textarea maxlength="65535" matInput name="skillDesc?.name" [(ngModel)]="skillDesc.description" class="text-input" rows="8">
+                            </textarea>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </ng-container>
+  </ng-container>
+  <!-- dialog action -->
+  <ng-container dialog-action>
+    <button (click)="onSave()" type="button" class="a-button a-button--primary" bciTertiaryButton mat-raised-button>
+      <i class="a-icon a-button__icon boschicon-bosch-ic-save" title="save"></i>
+      <span class="a-button__label">{{'system.actions.save' | translate}}</span>
+    </button>
+  </ng-container>
+</eet-common-dialog>

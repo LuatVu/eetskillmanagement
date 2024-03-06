@@ -1,0 +1,2 @@
+id,code,name,description,status,created_date,created_by,modified_date,modified_by,permission_category_id
+306893ab-73a2-11ee-81c2-f875a4ce66e2,VIEW_CAREER_DEVELOPMENT,View career development,View career development,Active,2023-10-26T15:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f

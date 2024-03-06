@@ -1,0 +1,49 @@
+.notifi-common {
+  &.success-noti {
+    background-color: #d8f3b7 !important;
+    color: #78be20 !important;
+    .mat-simple-snackbar::before {
+      content: "\eb0a";
+      color: #78be20 !important;
+    }
+    .mat-simple-snack-bar-content {
+      color: #78be20 !important;
+    }
+  }
+
+  &.error-noti {
+    background-color: #ffb7be !important;
+    color: #ea0016 !important;
+    .mat-simple-snackbar::before {
+      content: "\eb08";
+      color: #ea0016 !important;
+    }
+    .mat-simple-snack-bar-content {
+      color: #ea0016 !important;
+    }
+  }
+
+  &.warning-noti {
+    background-color: #fff4e0 !important;
+    color: #fcaf17 !important;
+    .mat-simple-snackbar::before {
+      content: "\eb0c";
+      color: #fcaf17 !important;
+    }
+    .mat-simple-snack-bar-content {
+      color: #fcaf17 !important;
+    }
+  }
+
+  &.info-noti {
+    background-color: #cff0ff !important;
+    color: #008ecf !important;
+    .mat-simple-snackbar::before {
+      content: "\e1ac";
+      color: #008ecf !important;
+    }
+    .mat-simple-snack-bar-content {
+      color: #008ecf !important;
+    }
+  }
+}

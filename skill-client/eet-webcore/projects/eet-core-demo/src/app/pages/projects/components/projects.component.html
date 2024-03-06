@@ -1,0 +1,108 @@
+<div class="content-wrapper">
+  <mat-tab-group (selectedTabChange)="onProjectTabChange($event)" [selectedIndex]="selectedProjectTabIndex">
+    <mat-tab *ngFor="let tabItem of projectTabList" label="{{tabItem.name | translate}}"></mat-tab>
+  </mat-tab-group>
+  <ng-container [ngSwitch]="activeTab">
+    <ng-template [ngSwitchCase]="'project-list'">
+      <section id="container-filter" class="project-list">
+        <div class="left">
+          <form class="m-search-form" autocomplete="off">
+            <div class="a-text-field a-text-field--search searchProject">
+              <input type="text" [formControl]="searchControl" (keydown.enter)="handleSearch()" />
+              <button type="submit" class="a-text-field__icon-search" (click)="handleSearch()">
+                <i class="a-icon ui-ic-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="right">
+          <eet-toggle [listData]="LIST_DATA_TOOGLE" (toggleChange)="toggleChange($event)"
+            [checked]="false"></eet-toggle>
+          <eet-common-select class="filter-dropdown" [valueKey]="'id'" [nameKey]="'name'" [placeholder]="PROJECT_SCOPE"
+            [originalData]="projectScopeList" [labelAllForOptionUnselect]="true"
+            (onSelectedItemChange)="onChangeProjectScope($event)" [(ngModel)]="selectedProjectScope"
+            [isShowUnSelect]="true" ngDefaultControl></eet-common-select>
+          <eet-common-select class="filter-dropdown" [valueKey]="'name'" [nameKey]="'name'" [placeholder]="GB_UNIT"
+            [originalData]="listGbUnit" [labelAllForOptionUnselect]="true"
+            (onSelectedItemChange)="onChangeGBUnit($event)"></eet-common-select>
+          <eet-common-select class="filter-dropdown" [valueKey]="'name'" [nameKey]="'name'"
+            [placeholder]="('projects.dropdown_label.gb') | translate" [originalData]="gbList" [isShowUnSelect]="true"
+            [labelAllForOptionUnselect]="true" [(ngModel)]="selectedGB" ngDefaultControl
+            (onSelectedItemChange)="onSelectGB($event)"></eet-common-select>
+          <eet-common-select class="filter-dropdown" [valueKey]="'id'" [nameKey]="'name'"
+            [placeholder]="('projects.dropdown_label.status') | translate" [originalData]="statusList"
+            [isShowUnSelect]="true" [labelAllForOptionUnselect]="true" [(ngModel)]="selectedStatus" ngDefaultControl
+            (onSelectedItemChange)="onSelectStatus($event)"></eet-common-select>
+          <button mat-raised-button class="a-button a-button--primary button-round action" (click)="addItem()"
+            *ngIf="permission.get('ADD_BOSCH_PROJECT')">
+            <span class="a-button__label">{{ "projects.command.add" | translate }}</span>
+
+            <i class="a-icon boschicon-bosch-ic-add-frame" title="add-frame"></i>
+          </button>
+          <span  *ngIf="permission.get('ADD_BOSCH_PROJECT')" (click)="addItem()" class="action small-screen"><i class="a-icon boschicon-bosch-ic-add-frame" title="Add Project"></i></span>
+          <button mat-raised-button class="a-button a-button--primary button-round action removed" (click)="onUpload()"
+            *ngIf="permission.get('ADD_BOSCH_PROJECT')">
+            <span class="a-button__label">{{ "projects.command.import" | translate }}</span>
+            <i class="a-icon a-button__icon  boschicon-bosch-ic-import" title="import"></i>
+          </button>
+        </div>
+      </section>
+      <section id="container-tag-filter">
+        <mat-tab-group [selectedIndex]="1">
+          <ng-container *ngFor="let item of listFilter; let index=index">
+            <mat-tab *ngIf="item.name!=='All'"
+              [labelClass]="item.isSelected ? 'active' : ''">
+              <ng-template mat-tab-label>
+                <span class="label-span"
+                 [matTooltip]="item.name"
+                  (click)="onFilterClick(index)"
+                  [matTooltipShowDelay]="0"
+                  [matTooltipHideDelay]="0"
+                  >{{truncateText(item.name,11)}} ({{item.projectCount
+                  || 0}})</span>
+              </ng-template>
+            </mat-tab>
+          </ng-container>
+        </mat-tab-group>
+      </section>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'customer-gb'">
+      <section id="container-filter" class="customer-gb" [style]="'margin-bottom:24px !important;'">
+        <div class="left">
+          <form class="m-search-form" autocomplete="off">
+            <div class="a-text-field a-text-field--search">
+              <input type="text" (keydown.enter)="handleSearchBG()" [formControl]="searchControlBG" />
+              <button type="submit" class="a-text-field__icon-search" (click)="handleSearchBG()">
+                <i class="a-icon ui-ic-search"></i>
+              </button>
+            </div>
+          </form>
+          <button mat-raised-button class="a-button a-button--primary button-round action btn-add-customer"
+            (click)="onAddCustomerGb()" *ngIf="permission.get('ADD_BOSCH_PROJECT') === true">
+            <span class="a-button__label">{{ "our_customer.dialog.title_btn_add" | translate }}</span>
+            <i class="a-icon boschicon-bosch-ic-add-frame"></i>
+          </button>
+        </div>
+      </section>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'v-model'">
+      <section id="container-filter">
+        <div class="left"></div>
+        <div class="right">
+          <eet-common-select class="filter-dropdown" [valueKey]="'name'" [nameKey]="'name'" [placeholder]="GB_UNIT"
+            [originalData]="listGbUnit" [labelAllForOptionUnselect]="true"
+            (onSelectedItemChange)="onChangeGBForVmodel('gb_unit',$event)"></eet-common-select>
+          <eet-common-select class="filter-dropdown" [valueKey]="'name'" [nameKey]="'name'" [placeholder]="CUSTOMER_GB"
+            [originalData]="listCustomerGb" [labelAllForOptionUnselect]="true"
+            (onSelectedItemChange)="onChangeGBForVmodel('customer_gb',$event)"></eet-common-select>
+        </div>
+      </section>
+      <h2 class="header-title">Project V-Model</h2>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'project-portfolio'">
+    </ng-template>
+  </ng-container>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

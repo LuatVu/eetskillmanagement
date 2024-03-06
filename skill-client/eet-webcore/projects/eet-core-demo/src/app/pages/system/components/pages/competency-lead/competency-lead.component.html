@@ -1,0 +1,67 @@
+<div class="full-space">
+  <div class="header">
+    <div class="w-30">
+      <eet-toggle [listData]="skillTypes" [checked]="false" [data]="skillTypes[0]"
+          (toggleChange)="skillTypeToggleChange($event.data)" >
+      </eet-toggle>
+    </div>
+  </div>
+  <div class="content-container">
+    <div class="competency">
+      <div class="title">
+        <mat-label>{{'system.tab_label.competency-lead' | translate}}</mat-label>
+        <mat-icon fontIcon="bosch-ic-add" (click)="addCompetency()"></mat-icon>
+      </div>
+      <hr>
+      <eet-common-list #commonListComptetency [sourceList]="filterCompetency" [type]=1 (onItemDeleted)="onDeleteItem($event, 'competency')"
+        (onSelectItemInList)="onSelectItemInList($event, 'competency')" [truncateTextNumber]=23 [selectedItem]="selectedOption">
+      </eet-common-list>
+    </div>
+    <div class="competency-lead">
+      <div class="competency-lead-items">
+        <div class="title">
+          <mat-label>{{'system.competency_lead.competency_lead_title' | translate}}</mat-label>
+          <mat-icon *ngIf="currentCompetencyId" fontIcon="bosch-ic-add" (click)="addCompetencyLead()"></mat-icon>
+        </div>
+        <hr>
+        <eet-common-list [sourceList]="competencyLead" [type]=1
+          (onItemDeleted)="onDeleteItem($event, 'competency_lead')"
+          (onSelectItemInList)="onSelectItemInList($event, 'competency_lead')" [selectedItem]="selectedOptionLead">
+        </eet-common-list>
+      </div>
+    </div>
+    <div class="find-skills">
+      <div class="title">
+        <mat-label>{{'system.competency_lead.find_skills' | translate}}</mat-label>
+        <mat-icon fontIcon="bosch-ic-add" *ngIf="currentCompetencyId" (click)="addSkillForCompetency()"></mat-icon>
+      </div>
+      <hr>
+
+      <div class="search-bar">
+        <mat-form-field class="filter-form-field" floatLabel="always" fxFlex="grow" fxFlexFill>
+          <mat-label>{{ "user_management.search" | translate }}</mat-label>
+          <input matInput [(ngModel)]="keyword" (ngModelChange)="searchKeyword()" />
+          <mat-icon matSuffix fontIcon="Bosch-Ic-search"></mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="source-list">
+        <div class="no-data-box" *ngIf="!sourceList || sourceList.length == 0">
+          {{'system.no_data' | translate}}
+        </div>
+        <mat-list *ngFor="let item of sourceList">
+          <mat-list-item id="{{ item.id }}" [ngClass]="{
+                  'active-item-class': selectedItem && selectedItem.id == item.id
+                }">
+            <i class="a-icon boschicon-bosch-ic-alert-info icon-hover me-2" (click)="openSkillInforDialog(item.skill_id)"></i>
+            <div class="item-content">
+              {{handleTruncateLabel((item?.displayName || item?.name),25)}}
+            </div>
+            <i class="a-icon boschicon-bosch-ic-edit icon-hover me-1" title="edit" (click)="editSkillForCompetency(item.skill_id)"></i>
+            <i class="a-icon boschicon-bosch-ic-delete icon-hover" title="delete" (click)="deleteSkillForCompetency(item)"></i>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+</div>

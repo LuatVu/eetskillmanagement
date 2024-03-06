@@ -1,0 +1,106 @@
+<div class="full-space">
+    <div class="header">
+        <mat-label></mat-label>
+        <div class="action-group">
+            <div class="box-search">
+                <mat-form-field>
+                    <mat-label>{{ "system.manage_project_scope.search_label" | translate }}</mat-label>
+                    <input matInput #input (keyup)="applyFilter($event.target.value)" />
+                    <button type="submit" class="a-text-field__icon-search" matSuffix>
+                        <i class="a-icon ui-ic-search"></i>
+                    </button>
+                </mat-form-field>
+            </div>
+            <button mat-raised-button class="btn-exp" (click)="addProjectScope()">
+                <i class="a-icon ui-ic-plus" title="plus"></i>
+                {{ 'system.manage_project_scope.add_new_scope' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <div class="table-line-manager">
+        <table mat-table matSort [dataSource]="dataSource" class="project-scope-table table-common">
+            <!-- ordinal -->
+            <ng-container matColumnDef="ordinal">
+                <th class="hover-test table-header" mat-header-cell *matHeaderCellDef>
+                    {{ 'system.manage_project_scope.table_label.ordinal' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element; let i = index">{{ i+1 }}</td>
+            </ng-container>
+
+            <!-- Name of scope -->
+            <ng-container matColumnDef="scope_name">
+                <th class="hover-test" mat-header-cell *matHeaderCellDef >
+                    {{ 'system.manage_project_scope.table_label.scope_name' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.name?.length > 30
+                    ? (element.name | slice : 0 : 30) + "..."
+                    : element.name || '--' }}</td>
+
+            </ng-container>
+
+            <!-- Color -->
+            <ng-container matColumnDef="color">
+                <th class="hover-test w-24" mat-header-cell *matHeaderCellDef>
+                    {{ 'system.manage_project_scope.table_label.color' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <span class="scope_color"
+                        [ngStyle]="{'background-color': element.colour ? element.colour : DEFAULT_COLOUR_PROJECT_SCOPE}"></span>
+                </td>
+            </ng-container>
+
+            <!-- Color_HOVER -->
+            <ng-container matColumnDef="color_hover">
+                <th class="hover-test w-20" mat-header-cell *matHeaderCellDef>
+                    {{ 'system.manage_project_scope.table_label.color_hover' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <span class="scope_color" [ngStyle]="
+                    {'background': (element.hover_colour && element.colour) ? 
+                    manageProjectScopeService.linearBackgroundProjectCard(element.hover_colour,element.colour) 
+                    : 
+                    manageProjectScopeService.linearBackgroundProjectCard(DEFAULT_COLOUR_HOVER_PROJECT_SCOPE,DEFAULT_COLOUR_PROJECT_SCOPE)
+                }"></span>
+                </td>
+            </ng-container>
+
+            <!-- Edit-->
+            <ng-container matColumnDef="edit">
+                <th class="hover-test action center" mat-header-cell *matHeaderCellDef>
+                    {{ 'system.manage_project_scope.table_label.edit' | translate }}
+                </th>
+                <td class="clickable center" mat-cell *matCellDef="let element" (click)="editProjectScope(element)">
+                    <i class="a-icon boschicon-bosch-ic-edit icon-hover me-1" title="Edit"></i>
+                </td>
+            </ng-container>
+            <!-- delete-->
+            <ng-container matColumnDef="delete">
+                <th class="hover-test action center" mat-header-cell *matHeaderCellDef>
+                    {{ 'system.manage_project_scope.table_label.delete' | translate }}
+                </th>
+                <td class="clickable center" mat-cell *matCellDef="let element" (click)="deleteProjectScope(element)">
+                    <i class="a-icon boschicon-bosch-ic-delete icon-hover" title="Delete"></i>
+                </td>
+            </ng-container>
+            <ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="6" style="text-align: 'center';">
+                        {{ 'system.line_manager.no_result' | translate }}
+                    </td>
+                </tr>
+            </ng-container>
+        </table>
+    </div>
+    <div class="paginator-container">
+        <mat-paginator #paginator [pageSizeOptions]="pageSizeOption" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
+
+<ng-template #noData>
+    <div class="noData">
+        {{ 'system.no_data' | translate }}
+    </div>
+</ng-template>

@@ -1,0 +1,42 @@
+<eet-common-dialog [isShowCloseButton]="true">
+  <form action="" [formGroup]="formData" dialog-content>
+    <!-- --------------Content------------------- -->
+    <div *ngIf="data.data.type == constants.TYPE.TYPE_GROUP">
+      <mat-form-field class="dialog-fields-width">
+        <mat-label>{{'user_management.group_name' | translate}}</mat-label>
+        <input matInput placeholder="Ex. MS/EET11" [maxlength]="45" formControlName="name" cdkFocusInitial>
+  
+        <mat-hint class="text-danger"
+          *ngIf="formDataControls?.name?.invalid && (formDataControls?.name?.touched || formDataControls?.name?.dirty)">
+          <ng-container *ngIf="formDataControls?.name?.errors?.required">
+            This field is required
+          </ng-container>
+        </mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field class="dialog-fields-width">
+        <mat-label>{{'user_management.description' | translate}}</mat-label>
+        <textarea [maxlength]="250" matInput placeholder="Ex. This group was created by Admin..." formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+    <div *ngIf="data.data.type == constants.TYPE.TYPE_ROLE">
+      <mat-form-field class="dialog-fields-width">
+        <mat-label>{{'user_management.role.role_name' | translate}}</mat-label>
+        <input matInput [maxlength]="45" placeholder="Ex. MS/EET11" formControlName="name">
+      </mat-form-field>
+  
+      <mat-form-field class="dialog-fields-width">
+        <mat-label>{{'user_management.description' | translate}}</mat-label>
+        <textarea [maxlength]="250" matInput placeholder="Ex. This group was created by Admin..." formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+  <!-- --------------Actions------------------- -->
+  <ng-container dialog-action>
+    <button mat-raised-button color="primary" (click)="onSave()"
+    [disabled]="!formData.valid">
+      <i class="a-icon boschicon-bosch-ic-save"></i>
+      {{'user_management.dialog.button_name.button_save' | translate}}
+    </button>
+  </ng-container>
+</eet-common-dialog>

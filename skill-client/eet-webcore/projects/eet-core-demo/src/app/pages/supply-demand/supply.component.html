@@ -1,0 +1,273 @@
+<ng-container>
+  <div class="content-wrapper">
+    <section id="filter">
+      <!-- Row top -->
+      <div class="top">
+        <!-- Search input -->
+        <div class="search-box">
+          <mat-form-field>
+            <mat-label>{{ "supply.search" | translate }}</mat-label>
+            <input matInput placeholder="Type here..." #input [formControl]="searchControl" />
+            <button type="submit" class="a-text-field__icon-search" matSuffix>
+              <i class="a-icon ui-ic-search"></i>
+            </button>
+          </mat-form-field>
+        </div>
+        <!-- Checkbox view all -->
+        <div class="a-checkbox">
+          <input type="checkbox" id="checkbox-1" name="unselected checkbox" [(ngModel)]="isMyDemands"
+            (ngModelChange)="onChangeShowAll($event)">
+          <label for="checkbox-1">{{'supply.my_demends' | translate}}</label>
+        </div>
+        <!-- Add new button -->
+        <div class="action-box">
+          <button bciTertiaryButton mat-raised-button color="primary" type="button" class="bosch-ic-clickable"
+            (click)="addNewSupply()">
+            <mat-icon fontIcon="bosch-ic-add"></mat-icon>
+            {{"supply.add" | translate}}
+          </button>
+        </div>
+      </div>
+      <!-- Row filter -->
+      <div class="bottom">
+        <ng-container *ngFor="let item of arrayFilter">
+          <div class="box">
+            <mat-label>{{item?.name | translate}}</mat-label>
+            <div class="box-select">
+              <eet-common-select [selectedData]="item.selectedData" [isMultipleChoise]="item.isMultiple"
+                (onSelectedItemChange)="item.selectedData = $event; watchOnFilterChange();"
+                [originalData]="item.originalData"></eet-common-select>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+    <!-- Table -->
+    <section id="table-wrapper">
+      <table mat-table [dataSource]="dataSource" class="table-common full-width" matSort>
+
+        <ng-container matColumnDef="subId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.subId" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.subId && element.subId.length > maxCharacterProject ? element.subId : '' }}">
+              {{ (element.subId && element.subId.length > maxCharacterProject) ? (element.subId | slice : 0 : maxCharacterProject) + '...' :
+              (element.subId) }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="projectName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.project_name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.projectName && element.projectName.length > maxCharacterProject ? element.projectName : '' }}">
+              {{ (element.projectName && element.projectName.length > maxCharacterProject) ? (element.projectName | slice : 0 : maxCharacterProject) + '...' :
+              (element.projectName) }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="skillClusterName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.skill-cluster" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.skillClusterName && element.skillClusterName.length > maxCharacter ? element.skillClusterName : '' }}">
+              {{ (element.skillClusterName && element.skillClusterName.length > maxCharacter) ? (element.skillClusterName | slice : 0 : maxCharacter) + '...' :
+              (element.skillClusterName) }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="skill">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.skill" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.skill && element.skill.length > maxCharacter ? element.skill : '' }}">
+              {{ (element.skill && element.skill.length > maxCharacter) ? (element.skill | slice : 0 : maxCharacter) + '...' : (element.skill) }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.level" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.level }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.location" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.location || "" }}
+          </td>
+        </ng-container>
+
+        <!-- allow external -->
+        <ng-container matColumnDef="allowExternal">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.allow_external" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.allowExternal?"Yes":"No"}}
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="createdByName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.created-by" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element?.createdByName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.created-time" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element?.createdDate | date:'mediumDate'}}
+          </td>
+        </ng-container>
+
+        <!-- PIC -->
+        <ng-container matColumnDef="assignUserName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.pic" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.assignUserName || "" }}
+          </td>
+        </ng-container>
+
+        <!-- expected date -->
+        <ng-container matColumnDef="expectedDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.expected-date" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+              {{ element.expectedDate | date:'mediumDate'}}
+          </td>
+        </ng-container>
+
+        <!-- forecast date -->
+        <ng-container matColumnDef="forecastDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.forecast_date" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div [ngStyle]="{'color':buildColorForecastDate(element)}">
+              {{ element.forecastDate | date:'mediumDate'}}
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- filled date -->
+        <ng-container matColumnDef="filledDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.filled_date" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+              {{ element.filledDate | date:'mediumDate'}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="supplyType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.supply-type" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.supplyType || "" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="candidateName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.candidate-name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+             <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.candidateName }}">
+              {{ (element.candidateName && element.candidateName.length > maxCharacter) ? (element.candidateName | slice : 0 : maxCharacter) + '...' : (element.candidateName) }}
+            </div>
+          </td>
+        </ng-container>        
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.status" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="w-150" style="font-weight: 700;" [ngStyle]="{'color':buildColorStatus(element.status)}">
+              {{ element.status || "" }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "supply.action" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="table-action">
+            <div class="status-div">
+              <div class="status-icon" matTooltipClass="matTooltip" matTooltip="Edit Demand">
+                <button mat-icon-button [disabled]="!element.canUpdate" (click)="btnEditSupply(element)">
+                  <i *ngIf="element.canUpdate" style="color: #0088d4 !important;" class="boschicon-bosch-ic-document-edit"></i>
+                  <i *ngIf="!element.canUpdate" style="color: #9dc9ff !important;" class="boschicon-bosch-ic-document-edit"></i>
+                </button>
+              </div>
+              <div class="status-icon" matTooltipClass="matTooltip" matTooltip="More Action">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Action menu">
+                  <i class="a-icon boschicon-bosch-ic-options"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item [disabled]="!element.canUpdate" (click)="btnEditSupply(element)">
+                    <i style="padding-right: 0.5rem;" [ngStyle]="{'color':element.canUpdate ?  '#0088d4' : '#9dc9ff'}" class="boschicon-bosch-ic-document-edit"></i>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item [disabled]="!element.canDelete" (click)="btnDeleteSupply(element)">
+                    <i style="padding-right: 0.5rem;" class="boschicon-bosch-ic-delete" [ngStyle]="{'color':element.canDelete ?  '#0088d4' : '#9dc9ff'}" ></i>     
+                    <span>Delete</span>
+                  </button>
+                  <button mat-menu-item (click)="showHistory(element.id)" [disabled]="element.status === 'Draft'">
+                    <i style="padding-right: 0.5rem;" [ngStyle]="{'color':element.status === 'Draft' ? '#9dc9ff' : '#0088d4'}" class="boschicon-bosch-ic-history"></i>
+                    <span>Show History</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="note">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "supply.note" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.note && element.note.length > maxCharacter ? element.note : '' }}">
+              {{ (element.note && element.note.length > maxCharacter) ? (element.note | slice:0:maxCharacter) + '...' : (element.note) }}
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="14">
+            {{ "supply.search_null" | translate }}
+          </td>
+        </tr>
+      </table>
+    </section>
+    <section id="paginator-wrapper" fxLayout="row" fxLayoutAlign="center none">
+      <mat-paginator #paginator [length]="totalItems" [pageSizeOptions]="PAGINATION_SIZE_OPTIONS" showFirstLastButtons></mat-paginator>
+    </section>
+  </div>
+</ng-container>

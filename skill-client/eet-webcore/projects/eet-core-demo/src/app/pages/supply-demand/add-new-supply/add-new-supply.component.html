@@ -1,0 +1,205 @@
+<div class="m-dialog" id="frontend-kit-dialog-alert-dialog-info" role="dialog"
+  aria-labelledby="frontend-kit-dialog-alert-dialog-info-title">
+  <div class="a-box">
+    <div class="m-dialog__remark --info"></div>
+    <div class="m-dialog__header">
+      <div class="dialog_title">
+        <i class="a-icon a-button__icon ui-ic-plus"></i>
+        {{ 'add_demand.title' | translate }}
+      </div>
+      <button type="button" class="a-button a-button--integrated -without-label dialog-close-button"
+        data-frok-action="close" aria-label="close dialog" (click)="onClose()">
+        <i class="a-icon a-button__icon ui-ic-close" title="close"></i>
+      </button>
+    </div>
+    <hr class="a-divider" />
+    <div class="m-dialog__content">
+      <div class="m-dialog__body" id="frontend-kit-dialog-alert-dialog-info-description">
+        <ng-container dialog-content class="center">
+            <form class="info" [formGroup]="demandForm">
+                <ng-container>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-2 form-label">
+                            <mat-label class="required" for="">{{'add_demand.project_name' | translate}}</mat-label>
+                        </div>
+                        <div class="col-sm-8 col-md-4 d-flex">
+                          <div class="form-content has-add-project-btn">
+                            <eet-common-select [isMultipleChoise]="false"
+                            (onSelectedItemChange)="demandForm?.get('projectId')?.setValue($event);onFieldChange()"
+                            [selectedData] = "demandForm?.get('projectId')?.value"
+                            [originalData]="addDemandSharedModel?.projectList" [nameKey]="'name'" [valueKey]="'id'"
+                            [isShowUnSelect]="false"></eet-common-select>                            
+                            <i class="a-icon a-button__icon ui-ic-plus" [ngClass]="!HAS_ADD_NEW_BOSCH_PROJECT && 'disabled'" (click)="handleCreateNewBoschProject()" ></i>
+                          </div>
+                        </div>
+                        
+                      <div class="col-sm-4 col-md-2 form-label">
+                          <mat-label class="required" for="">{{'add_demand.expected_date' | translate}}</mat-label>
+                      </div>
+                      <div class="col-sm-8 col-md-4">
+                          <div class="form-content ">
+                              <div class="date-picker">
+                                <input formControlName="expectedDate" class="date-input" 
+                                matInput [matDatepicker]="expectedDate"
+                                placeholder="DD/MM/YYYY"
+                                [readonly]="true"
+                                [min]="getCurrentDay()"
+                                (dateInput)="fillExpectedDate($event);onFieldChange()"
+                                (dateChange)="fillExpectedDate($event);onFieldChange()">
+                                <div class="toggle-calendar">
+                                  <mat-datepicker-toggle matSuffix [for]="expectedDate">
+                                  </mat-datepicker-toggle>
+                                  <mat-datepicker #expectedDate [calendarHeaderComponent]="DATE_PICKER_HEADER"></mat-datepicker>
+                                </div>
+                              </div>                                                     
+                          </div>
+                          
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-2 form-label">
+                            <mat-label class="required" for="">{{'add_demand.skill_cluster' | translate}}</mat-label>
+                        </div>
+                        <div class="col-sm-8 col-md-4">
+                            <div class="form-content">
+                              <eet-common-select [isMultipleChoise]="false" 
+                              (onSelectedItemChange)="demandForm?.get('skillClusterId')?.setValue($event);onFieldChange()"
+                              [originalData]="addDemandSharedModel?.skillClusterList" [nameKey]="'name'" [valueKey]="'id'"
+                              [isShowUnSelect]="false"></eet-common-select>                              
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-4 col-md-2 form-label">
+                          <mat-label class="required" for="">{{'add_demand.quantity' | translate}}</mat-label>
+                        </div>
+                        <div class="col-sm-8 col-md-4">
+                          <div class="form-content">
+                            <eet-common-select [isMultipleChoise]="false"
+                              (onSelectedItemChange)="fillQuantity($event)"
+                              [selectedData]="1"
+                              [originalData]="[1,2,3,4,5,6,7,8,9]"
+                              [isShowUnSelect]="false"></eet-common-select>
+                          </div>                                                                                                                                                     
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-2 form-label">
+                            <mat-label class="required" for="">{{'add_demand.skill' | translate}}</mat-label>
+                        </div>
+                        <div class="col-sm-8 col-md-4">
+                          <mat-form-field class="input-material form-content" appearance="legacy">
+                            <input #inputSkill matInput
+                            (keyup)="onFieldChange()" formControlName="skill"
+                            [disabled]="false" required maxLength="120">
+                            <mat-hint align="end" style="color: #0009;margin-top: 11px;">{{inputSkill.value?.length || 0}}/120</mat-hint>
+                            <mat-error *ngIf="demandForm.controls.skill?.hasError('required')" style="margin-top: 11px;">
+                              {{'add_demand.validate.skills' | translate}}
+                            </mat-error>
+                            <mat-error *ngIf="demandForm.controls.skill.hasError('pattern')" style="margin-top: 11px;">
+                              {{'add_demand.validate.white_space' | translate}}
+                            </mat-error>
+                          </mat-form-field>                          
+                        </div>
+                        
+                        <div class="col-sm-4 col-md-2 form-label">
+                          <mat-label for="">{{'add_demand.assignee' | translate}}</mat-label>
+                        </div>
+                        <div class="col-sm-8 col-md-4">
+                          <div class="form-content">
+                            <eet-common-select [isMultipleChoise]="false"
+                              (onSelectedItemChange)="demandForm?.get('assignee')?.setValue($event);selectAssignee($event)"
+                              [selectedData]="addDemandSharedModel?.assigneeList[0]?.name"
+                              [originalData]="addDemandSharedModel?.assigneeList" [nameKey]="'name'" [valueKey]="'name'"
+                              [isShowUnSelect]="false"></eet-common-select>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-2 form-label">
+                            <mat-label class="required" for="">{{'add_demand.level' | translate}}</mat-label>
+                        </div>
+                        <div class="col-sm-8 col-md-4">
+                            <div class="form-content">
+                              <eet-common-select [isMultipleChoise]="false" 
+                              (onSelectedItemChange)="demandForm?.get('level')?.setValue($event);onFieldChange()"
+                              [originalData]="addDemandSharedModel?.levelList" [nameKey]="'name'" [valueKey]="'name'"
+                              [isShowUnSelect]="false"></eet-common-select>                              
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-4 col-md-2 form-label">
+                          <mat-label for="">{{'add_demand.pic' | translate}}</mat-label>
+                        </div>
+                        <div class="col-sm-8 col-md-4">
+                          <div class="form-content">
+                            <eet-common-select [isMultipleChoise]="false"
+                              (onSelectedItemChange)="fillAssigneeUser($event)"
+                              [originalData]="assigneeUsers" [nameKey]="'name'" [valueKey]="'ntId'"
+                              [selectedData]="assigneeUsers?assigneeUsers[0]?.name:undefined"
+                              [isShowUnSelect]="false"></eet-common-select>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-4 col-md-2 form-label">
+                        <mat-label class="required" for="">{{'add_demand.location' | translate}}</mat-label>
+                      </div>
+                      <div class="col-sm-8 col-md-4">
+                          <div class="form-content">
+                            <eet-common-select [isMultipleChoise]="false"
+                              (onSelectedItemChange)="demandForm?.get('location')?.setValue($event)"
+                              [originalData]="addDemandSharedModel?.locationList" [nameKey]="'name'" [valueKey]="'name'"
+                              [selectedData]="addDemandSharedModel?.locationList[0]?.name"
+                              [isShowUnSelect]="false"></eet-common-select>
+                          </div>
+                      </div>
+
+                      <div class="col-sm-4 col-md-2 form-label">
+                        <mat-label for="">{{'add_demand.note' | translate}}</mat-label>
+                      </div>
+                      <div class="col-sm-8 col-md-4">
+                        <mat-form-field class="input-material form-content" appearance="legacy">
+                          <input #inputNote matInput formControlName="note"                           
+                          maxLength="120"
+                          [disabled]="false">
+                          <mat-hint align="end" style="color: #0009;margin-top: 11px;">{{inputNote.value?.length || 0}}/120</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-4 col-md-2 form-label">
+                        <mat-label for="cb_allow_external">{{'add_demand.allow_external' | translate}}</mat-label>
+                      </div>
+                      <div class="col-sm-8 col-md-4">
+                        <mat-checkbox type="checkbox" name="checkbox" class="a-checkbox"
+                          (change)="setAllowExternal($event.checked)"
+                          aria-label="allow external" [checked]="demandForm?.get('allowExternal')?.value">
+                        </mat-checkbox>                                                  
+                      </div>
+
+                      <div class="col-sm-4 col-md-2"></div>
+                      <div class="col-sm-8 col-md-4"></div>                      
+                    </div>
+
+                </ng-container>
+                
+            </form>
+        </ng-container>
+      </div>
+      <div class="m-dialog__actions">
+        <ng-container dialog-action>
+          <button type="button" [disabled]="!isMeetRequired" class="a-button a-button--primary" (click)="createDemand()">
+            <i class="a-icon boschicon-bosch-ic-save" title="Create"></i>
+            {{'add_demand.button_create' | translate}}
+          </button>
+          <button type="button" class="a-button a-button--primary" mat-dialog-close>
+            <i class="a-icon a-button__icon ui-ic-close" title="Cancel"></i>
+            <span class="a-button__label">{{'add_demand.cancel' | translate}}</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

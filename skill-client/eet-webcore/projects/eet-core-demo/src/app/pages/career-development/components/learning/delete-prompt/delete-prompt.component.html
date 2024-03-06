@@ -1,0 +1,28 @@
+<eet-common-dialog>
+
+  <ng-container dialog-content>
+    <div class="text-dialog" style="display:flex;width:35rem" fxLayoutAlign="center">
+      <!-- prompt to delete member name for extra warning -->
+      <p class="text" style="margin: right 35px;">
+        {{ "learning.my_learning.delete_member.content.name_line" | translate }}
+        <span>{{name}}</span><br>{{ "learning.my_learning.delete_member.content.revert_line" | translate }}
+      </p>
+    </div>
+  </ng-container>
+
+  <mat-divider class="seprator"></mat-divider>
+
+  <ng-container dialog-action class="prompt-button" fxLayout="row" fxLayoutAlign="end">
+
+    <button class="btn" mat-raised-button (click)="deleteConfirm(true)">
+      <mat-icon fontIcon="bosch-ic-close"> </mat-icon>
+      <mat-label>{{ "projects.delete_prompt.yes" | translate }}</mat-label>
+    </button>
+
+    <button class="btn" mat-raised-button (click)="deleteConfirm(false)">
+      <mat-icon fontIcon="bosch-ic-delete"> </mat-icon>
+      <mat-label>{{ "projects.delete_prompt.no" | translate }}</mat-label>
+    </button>
+  </ng-container>
+
+</eet-common-dialog>

@@ -1,0 +1,109 @@
+<div class="portfolio-container">
+    <div class="banner">
+        <div class="back-btn" (click)="back()">
+            <i class="a-icon boschicon-bosch-ic-back-menu"></i>
+            <p>{{'project_porfolio.back' | translate}}</p>
+        </div>
+        <div class="color" [style.background]="currentBgHover">
+        </div>
+        <div class="name">
+            <div class="yellowbox"></div>
+            <div class="whitebox firstwhitebox">
+                <p>{{dataProjectPorfolio.projectName ? truncateText(dataProjectPorfolio.projectName) : '--'}}</p>
+            </div>
+            <div class="whitebox secondwhitebox">
+            </div>
+            <div class="whitebox thirdwhitebox">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="info-box">
+        <div class="tag-box">
+            <p class="label bold mt-0">{{'project_porfolio.customerGB' | translate}}</p>
+            <div *ngIf="dataProjectPorfolio.customerGB" class="list-skill__item tag tag-blue gb-tag">
+                {{ truncateText(dataProjectPorfolio.customerGB)}}
+
+            </div>
+            <p class="label bold">{{'project_porfolio.technology' | translate}}</p>
+            <section *ngIf="dataProjectPorfolio.skillTags?.length>0" class="list-skill-wrapper">
+                <div class="list-skill">
+                    <div *ngFor="let skill of dataProjectPorfolio.skillTags" class="list-skill__item tag tag-blue">
+                        {{ truncateText(skill.name)}}
+                    </div>
+                </div>
+            </section>
+            <p class="label bold">{{'project_porfolio.teamSize' | translate}}</p>
+            <div *ngIf="dataProjectPorfolio.teamSize" class="list-skill__item tag tag-blue">
+                {{ truncateText(dataProjectPorfolio.teamSize)}}
+            </div>
+            <p class="label bold">{{'project_porfolio.scope' | translate}}</p>
+            <div *ngIf="dataProjectPorfolio.projectScopeName" class="list-skill__item tag tag-blue">
+                {{ truncateText(dataProjectPorfolio.projectScopeName)}}
+
+            </div>
+        </div>
+
+        <div class="highlight">
+            <p class="bold">{{'project_porfolio.highlight' | translate}}</p>
+            <div class="actions_highlight">
+                <button *ngIf="HAS_EDIT_PORTFOLIO && !isEditHighlightMode"  type="button" (click)="onEditHighlight()" class="a-button a-button--primary -without-icon btn-login">
+                    <div class="a-button__label txt-label">Edit</div>
+                </button>
+                <button *ngIf="isEditHighlightMode" type="button" (click)="onSaveHighlight()" class="a-button a-button--primary -without-icon btn-login">
+                    <div class="a-button__label txt-label">Save</div>
+                </button>
+                <button *ngIf="isEditHighlightMode" type="button" (click)="onCancelHighlight()" class="a-button a-button--primary -without-icon btn-login">
+                    <div class="a-button__label txt-label">Cancel</div>
+                </button>
+            </div>
+            <textarea maxlength="1000" [disabled]="!isEditHighlightMode" [ngClass]="!isEditHighlightMode && 'offArea'" [(ngModel)]="highlight" rows="5" cols="60" name="description"></textarea>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="decoration-container1">
+            <img src="../../../../../assets/images/prjportfolio2.svg" alt="svg">
+        </div>
+        <div class="sections">
+            <section class="section">
+                <p class="title">
+                    {{'project_porfolio.problemStatement' | translate}}
+                </p>
+                <eet-editor class="editor" 
+                    [hasPermission]="HAS_EDIT_PORTFOLIO" (typeEvent)="handleEventEditor($event)"
+                    [layoutType]="PROJECT_PROBLEM_STATEMENT"></eet-editor>
+            </section>
+
+            <section class="section">
+                <p class="title">
+                    {{'project_porfolio.solution' | translate}}
+                </p>
+                <eet-editor class="editor" 
+                    [hasPermission]="HAS_EDIT_PORTFOLIO" (typeEvent)="handleEventEditor($event)"
+                    [layoutType]="PROJECT_SOLUTION"></eet-editor>
+            </section>
+
+            <section class="section">
+                <p class="title">
+                    {{'project_porfolio.benefits' | translate}}
+                </p>
+                <eet-editor class="editor"
+                    [hasPermission]="HAS_EDIT_PORTFOLIO" (typeEvent)="handleEventEditor($event)"
+                    [layoutType]="PROJECT_BENEFIT"></eet-editor>
+            </section>
+        </div>
+        <div class="decoration-container2">
+            <img src="../../../../../assets/images/prjportfolio1.svg" alt="svg">
+            <img src="../../../../../assets/images/prjportfolio3.svg" alt="svg">
+        </div>
+    </div>
+
+    <div class="footer">
+        <div *ngIf="HAS_VIEW_PROJECT_DETAIL" class="details" (click)="onDetailProject(projectId, 'view')">
+            {{'project_porfolio.projectDetail' | translate}}
+            <i class="a-icon ui-ic-right" title="right"></i>
+        </div>
+    </div>
+</div>

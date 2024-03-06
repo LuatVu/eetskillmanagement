@@ -1,0 +1,60 @@
+{
+  "groups": [
+    {
+      "groupId": 1,
+      "groupName": "MS/EET11",
+      "description": "MS/EET11",
+      "status": "Active",
+      "users": [],
+      "roles": []
+    },
+    {
+      "groupId": 2,
+      "groupName": "MS/EET22",
+      "description": "MS/EET22",
+      "status": "Active",
+      "users": [],
+      "roles": []
+    },
+    {
+      "groupId": 3,
+      "groupName": "MS/EZ123",
+      "description": "LKKK",
+      "status": "Active",
+      "users": [],
+      "roles": []
+    },
+    {
+      "groupId": 4,
+      "groupName": "VN/1123",
+      "description": "VN/1123",
+      "status": "Active",
+      "users": [],
+      "roles": []
+    },
+    {
+      "groupId": 5,
+      "groupName": "MS/ETT33",
+      "description": "",
+      "status": "Active",
+      "users": [],
+      "roles": []
+    },
+    {
+      "groupId": 6,
+      "groupName": "MS/123123",
+      "description": "",
+      "status": "Active",
+      "users": [],
+      "roles": []
+    },
+    {
+      "groupId": 7,
+      "groupName": "Ms32321",
+      "description": "",
+      "status": "Active",
+      "users": [],
+      "roles": []
+    }
+  ]
+}

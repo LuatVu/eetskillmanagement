@@ -1,0 +1,37 @@
+mat-form-field {
+  width: 100%;
+}
+:host ::ng-deep .mat-chip-list-wrapper {
+  padding-top: 5px !important;
+  min-height: 49px !important;
+  max-height: 200px;
+  overflow: auto;
+  .mat-chip {
+    line-height: 25px !important;
+    min-height: 25px !important;
+    height: auto !important;
+    border-color: var(--bosch-blue-50);
+    color: var(--bosch-blue-50);
+
+    .mat-icon::before {
+      font-size: 18px !important;
+      line-height: 18px !important;
+    }
+  }
+}
+
+:host ::ng-deep .chip-diabled {
+  .mat-chip {
+    border-color: #888a8f !important;
+    color: #888a8f !important;
+  }
+}
+
+:host ::ng-deep .mat-chip-input.mat-input-element {
+  height: 40px !important;
+
+  &:focus,
+  &:active {
+    background-color: transparent !important;
+  }
+}

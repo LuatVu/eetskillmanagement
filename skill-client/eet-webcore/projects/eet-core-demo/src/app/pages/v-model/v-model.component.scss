@@ -1,0 +1,62 @@
+.content{
+  display: flex;
+  height: 50rem;
+  top: 1rem;
+  justify-content: center;
+}
+#titleComponent{
+  fill: var(--bosch-blue-55);
+  font-size: 1.5em;
+  font-weight : bold;
+}
+.vmodel {
+}
+#vmodel{
+  width: 100%;
+}
+.rectangle {
+  opacity: 0.6;
+  fill: #ffffff2b; 
+  stroke: #b3b3b3;
+  stroke-miterlimit: 10;
+}
+.childRect {
+  fill: #007bc0;
+  stroke: #b3b3b3;
+  stroke-miterlimit: 10;
+  cursor: pointer;
+}
+#textChild {
+  fill: #ffffff;
+  cursor: pointer;
+}
+
+
+[id^="item_management_"]:hover,
+[id^="item_left_"]:hover,
+[id^="item_right_"]:hover {
+  stroke-width: 4;
+  stroke: var(--bosch-blue-55);
+}
+[id^="title_"]{
+  fill: var(--bosch-blue-55);
+  font-size: 1em;
+}
+#tooltip {
+  background: cornsilk;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  font-size: 0.75em;
+  background-color: white;
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 0.25rem;
+}

@@ -1,0 +1,70 @@
+<mat-card
+  [style.width.px]="479"
+  [style.border-radius.px]="5"
+  [style.background]="'#fff'"
+  [style.padding]="'20px 40px'"
+>
+  <img
+    mat-card-lg-image
+    [style.height.px]="90"
+    [style.width.%]="100"
+    [src]="baseHref + 'assets/images/Bosch_symbol_logo_black_red.svg'"
+  />
+  <mat-card-title [style.text-align]="'center'" [style.margin-bottom.px]="15">{{
+    "request_access" | translate
+  }}</mat-card-title>
+  <mat-card-content>
+    <form
+      fxLayout="column"
+      [formGroup]="requestForm"
+      (ngSubmit)="requestForm?.valid && request()"
+      novalidate
+    >
+      <mat-form-field floatLabel="auto" style="width: 100%">
+        <mat-label>{{ "request.winnt" | translate }}</mat-label>
+        <input matInput formControlName="winnt" inputTrim required />
+        <mat-error *ngIf="winnt?.invalid">
+          <span *ngIf="winnt?.errors?.['required']">
+            {{ "please_enter" | translate }} {{ "request.winnt" | translate }}
+          </span>
+
+          <span *ngIf="winnt?.errors?.['remote']">
+            {{ winnt?.errors?.['remote'] }}
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="auto" style="width: 100%">
+        <mat-label> {{ "request.reason" | translate }} </mat-label>
+        <textarea
+          matInput
+          formControlName="reason"
+          cols="30"
+          rows="2"
+          required
+        ></textarea>
+        <mat-error *ngIf="reason?.invalid">
+          <span *ngIf="reason?.errors?.['required']">
+            {{ "please_enter" | translate }} {{ "request.reason" | translate }}
+          </span>
+
+          <span *ngIf="reason?.errors?.['remote']">
+            {{ reason?.errors?.['remote'] }}
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!!requestForm?.invalid"
+        >
+          {{ "submit" | translate }}
+        </button>
+        <!-- <a [routerLink]="loginLink">{{'login.login' | translate}}</a> -->
+      </div>
+      <br />
+    </form>
+  </mat-card-content>
+</mat-card>

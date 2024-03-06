@@ -1,0 +1,156 @@
+<div class="page-wrapper">
+  <div class="search-bar">
+    <eet-toggle class="toggle" [listData]="['Technical','Behavioral']" (toggleChange)="filterType($event)"
+    ></eet-toggle>
+    <div fxLayout="flex" fxLayoutGap="16px">
+      <div class="checkboxes">
+        <div class="a-checkbox" [ngClass]="{'hidden' : !showMainSkillCluster}">
+          <input type="checkbox" id="checkbox-1" name="unselected checkbox" [(ngModel)]="isFilterMainSkill"
+            (ngModelChange)="onMainSkillClusterChange($event)"/>
+          <label for="checkbox-1">{{'personal_skill.main_skill_cluster' | translate}}</label>
+        </div>
+        <div class="a-checkbox">
+          <input type="checkbox" id="checkbox-2" name="unselected checkbox" [(ngModel)]="isFilterLessThanExpected"
+            (ngModelChange)="filterLessThanExpected($event)"/>
+          <label for="checkbox-2">{{'personal_skill.skills_gap' | translate}}</label>
+        </div>
+      </div>
+      <mat-form-field class="search-box">
+        <mat-label>{{ "skill.title.search_bar" | translate }}</mat-label>
+        <input [(ngModel)]="_filterValue" matInput (keyup)="applyFilter($event)" #input />
+        <button type="submit" class="a-text-field__icon-search" matSuffix (keyup)="applyFilter($event)">
+          <i class="a-icon ui-ic-search"></i>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="skill-table table-common  skill-table-header" matSort>
+    <!-- Skill -->
+    <ng-container matColumnDef="skill">
+      <th class="hover-test table-header" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.skill" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div class="w-130" [matTooltip]="c && c.scrollHeight>45? element.skill:''" #c>
+          <mat-icon style="
+            cursor: pointer;
+            color: var(--major-accent__enabled__fill__default);
+          " matTooltip="View Skill Detail" fontIcon="bosch-ic-alert-info-filled" (click)="onViewDetail(element)">
+          </mat-icon>
+          {{ truncateText(element.skill) || '--'}}</div>
+      </td>
+    </ng-container>
+
+    <!-- Skill Group -->
+    <ng-container matColumnDef="skill_group">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.skill_cluster" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="w-130">
+          {{ truncateText(element.skill_group) }}
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Evaluation Level -->
+    <ng-container matColumnDef="evaluate_level">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="current_level" class="hover-test evaluation-level-header">
+        {{ "skill.title.evaluate_level" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element" class="select-box evaluation-level-column">
+        <mat-select [(ngModel)]="element.current_level" (selectionChange)="onChange(element, $event)"
+          [ngClass]="onCheckUpdated(element.current_level, element.old_level)" [disabled]="!evaluateAllowed">
+          <mat-option *ngFor="let op of levels" [value]="op" class="filter">
+            {{ op }}
+          </mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+
+    <!-- Current Level -->
+    <ng-container matColumnDef="current_level">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="old_level" class="hover-test current-level-header">
+        {{ "skill.title.current_level" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element" class="skill-level current-level-column" [ngStyle]="{'color':buildColor_CurrentLevel(element)}">
+        {{element.old_level && customParseFloat(element.old_level).toString()}}
+      </td>
+    </ng-container>
+
+    <!-- Expected Level -->
+    <ng-container matColumnDef="expected_level">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="hover-test expected-level-header">
+        {{ "skill.title.expect_level" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element" class="skill-level expected-level-column">
+        {{ element.expected_level && customParseFloat(element.expected_level).toString() }}
+      </td>
+    </ng-container>
+
+    <!-- Experience -->
+    <ng-container matColumnDef="current_experience">
+      <th class="hover-test experience-header" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.year_exp" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element" class="select-box experience-column">
+        <mat-select [(ngModel)]="element.current_experience" (selectionChange)="onChange($event)"
+          [ngClass]="onCheckUpdated(element.current_experience, element.old_experience)" [disabled]="!evaluateAllowed">
+          <mat-option *ngFor="let op of experiences" [value]="op" class="filter">
+            {{ experiences_value[op] }}
+          </mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+
+    <!-- Comment -->
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef class="hover-test">{{ "skill.title.remark" | translate }}</th>
+      <td mat-cell *matCellDef="let element" class="comment">
+        <mat-form-field floatLabel="never" fxLayout="column" class="textfield-height">
+          <textarea class="comment-textarea" (keyup)="onResize($event)" matInput
+            [(ngModel)]="element.comment" [disabled]="!evaluateAllowed"></textarea>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Filter -->
+    <ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" class="test-row"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">
+          {{ "skill.message.no_match" | translate }}
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+
+
+  <!-- Pagination -->
+  <div fxLayout="row" fxLayoutAlign="center none">
+    <mat-paginator #paginator [pageSizeOptions]="paginationOption" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <div class="action-wrapper" fxLayout="row" fxLayoutGap="1.5rem" fxLayoutAlign="end">
+
+    <div class="a-notification -warning" role="alert" *ngIf="!evaluateAllowed">
+      <div id="notification-label-id-bar-warning-warning" class="a-notification__content">
+        {{'skill.message.still_have_request_waitting' | translate}}
+      </div>
+    </div>
+
+    <button *ngIf="evaluateAllowed" type="button" class="a-button a-button--primary -without-icon btn-login"
+      (click)="onEvaluate()" [disabled]="!isDataChanged">
+      <div class="a-button__label txt-label">{{ "Evaluate" | translate }}</div>
+    </button>
+    <button *ngIf="evaluateAllowed" type="button" class="a-button a-button--primary -without-icon btn-login" (click)="onReset()">
+      <div class="a-button__label txt-label">{{ "Reset" | translate }}</div>
+    </button>
+  </div>
+</div>

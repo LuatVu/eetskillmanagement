@@ -1,0 +1,3 @@
+id,name,display_name,description,status,created_date,created_by,modified_date,modified_by,priority
+58e2aafe-6a9e-4587-a36f-d2304d0191de,Associate,Associate,Associate,Active,2022-11-14 14:57:53,sysadmin-617e-11ed-b62d-00059a3c7a00,null,null,null
+e1c8a553-30cf-429c-a377-422644277c04,Manager,Manager,Manager,Active,2022-11-14 14:57:53,sysadmin-617e-11ed-b62d-00059a3c7a00,null,null,null

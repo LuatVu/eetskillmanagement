@@ -1,0 +1,60 @@
+<div class="outerContainer" style="width: 100%;">
+    <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="10px"
+        style="margin-top: 5px; margin-right: 10px;" *ngIf="displayBtn == true">
+        <button class="btn-edit" mat-raised-button (click)="onEdit()">Save</button>
+        <button mat-button (click)="onCancel()">{{'user_management.dialog.button_name.button_cancel' |
+            translate}}</button>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="30px" class="layoutGap layoutGapMarginBottom">
+        <div fxFlex="calc(30%-30px)">
+            <div fxLayout="row">
+                <p fxFlex="calc(50%)">{{'user_management.role.list_of_user_roles_title' | translate}}</p>
+                <mat-icon class="add-new-icon" fontIcon="bosch-ic-add" (click)="openDialog()"></mat-icon>
+            </div>
+            <hr>
+        </div>
+        <div fxFlex="calc(30%)">
+            <div fxLayout="row">
+                <p fxFlex="calc(50%)">{{'user_management.role.user_role_title' | translate}}</p>
+            </div>
+            <hr>
+        </div>
+        <div fxFlex="calc(30%-30px)">
+            <div fxLayout="row">
+                <p fxFlex="calc(50%)">{{'user_management.role.list_of_user_permission_title' | translate}}</p>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="30px" class="layoutGap">
+        <div fxFlex="calc(30%-30px)">
+            <eet-common-list [sourceList]="sourceList" (onItemDeleted)="onRemoveRole($event)" [type]="type"
+                (onSelectItemInList)="onSelectItemInList($event)" [selectedItem]="selectedOption"></eet-common-list>
+        </div>
+        <div fxFlex="calc(30%)">
+            <!-- <eet-common-detail [selectedItem]="selectedItem" [type]="type"></eet-common-detail> -->
+            <eet-common-detail-copy #detailForm [formType]="'Role'" [selectedItem]="selectedItem"
+                (onDisplayBtn)="onDisplayButton()"></eet-common-detail-copy>
+        </div>
+        <div fxFlex="calc(30%-30px)" class="permission-list-wrapper">
+            <section class="permission-section" *ngFor="let permission of permissions">
+                <span class="permission-list-section">
+                    <mat-checkbox class="permission-margin test" [(ngModel)]="permission.accepted"
+                        (change)="setAll($event.checked, permission)">
+                        {{permission.name}}
+                    </mat-checkbox>
+                </span>
+                <span class="permission-list-section">
+                    <ul>
+                        <li *ngFor="let subPermission of permissionByRole(permission.id)">
+                            <mat-checkbox [(ngModel)]="subPermission.accepted"
+                                (change)="updateAllAccept($event.checked, subPermission, permission)">
+                                {{subPermission.name}}
+                            </mat-checkbox>
+                        </li>
+                    </ul>
+                </span>
+            </section>
+        </div>
+    </div>
+</div>

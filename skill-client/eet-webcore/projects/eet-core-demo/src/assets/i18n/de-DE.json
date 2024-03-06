@@ -1,0 +1,649 @@
+{
+  "appName": "Competency Management System",
+  "request_access": "Request Access",
+  "submit": "Submit",
+  "please_enter": "Please enter",
+  "menu": {
+    "dummy": "Dummy link",
+    "dummy.overview": "Overview",
+    "dummy.sub-item-1": "Sub Item 1",
+    "dashboard": "Dashboard",
+    "tree-table-demo": "Tree Table Demo",
+    "user-management": "User Management",
+    "user-information": "User Information",
+    "home-page": "Home Page",
+    "associate-information": "Associate Information",
+    "imprint": "Imprint",
+    "logout.title": "Do you want to logout?",
+    "logout.btn": "Logout",
+    "department-project": "Department Projects",
+    "skill-evaluation": "Skill Evaluation",
+    "manage-request": "Manage Request",
+    "department-learning": "Department Learning",
+    "supply": "Angebot und Nachfrage"
+  },
+  "login": {
+    "title": "Welcome to Competency Management System",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "please_enter": "Please enter",
+    "bosch_login": "Bosch Login",
+    "for_employee": "Login for employees / Login für Mitarbeiter",
+    "msg_for_employee": "Login only works from Bosch or BSH network / Login funtkioniert lediglich aus dem Bosch oder BSH Netz",
+    "for_external": "LOGIN FOR EXTERNALS",
+    "success": "Login success"
+  },
+  "user_information": {
+    "my_personal_information": "My Personal Information",
+    "manage_information": "Manage Associate Information"
+  },
+  "personal_information": {
+    "associate_edit": "Edit",
+    "associate_save": "Save",
+    "associate_cancel": "Cancel",
+    "associate_export": "Export",
+    "associate_back": "Back",
+    "associate_profile": "Associate Profile",
+    "edit": "Edit",
+    "export": "Export",
+    "cancel": "Cancel",
+    "save": "Save",
+    "name": "Name",
+    "department": "Department",
+    "total_exp": "Total Exp",
+    "level": "Level",
+    "title": "Title",
+    "ntid": "NTID",
+    "team": "Team",
+    "non_bosch_exp": "Non Bosch Exp",
+    "bosch_exp": "Bosch Exp",
+    "skill_highlight": "Skill HighLight",
+    "skill_tab": "Skill",
+    "project_tab": "Assigned Project",
+    "learning_tab": "Assigned Learning",
+    "history_change_tab": "Historical change level skills"
+  },
+  "add_demand":{
+    "button": "Add demand",
+    "title": "Create demand form",
+    "demand_title":"Create Resource Demand",
+    "project_name": "Project Name",
+    "location": "Location",
+    "skill_cluster": "Skill Cluster",
+    "skill": "Skills",
+    "level": "Level",
+    "assign_to": "Assign To",
+    "expected_date": "Expected Date",
+    "quantity": "Quantity",
+    "button_create": "Create",
+    "cancel": "Cancel",
+    "assignee": "Group",
+    "pic":"PIC",
+    "candidate_name": "Candidate Name",
+    "support_type": "Supply Type",
+    "note": "Note",
+    "allow_external":"Allow External",
+    "filled_date": "Filled Date",
+    "forecast_date": "Forecast Date",
+    "validate":{
+      "project_name":"Project Name must not be empty",
+      "skill_cluster":"Skill Cluster must not be empty",
+      "skills":"Skills is required",
+      "level":"Level must not be empty",
+      "supply_type": "Supply Type must not be empty",
+      "location":"Location must not be empty",
+      "expected_date":"Expected Date must not be empty",
+      "quantity":"Quantity must be a positive number",
+      "white_space": "Skills do not have only white space"
+    }
+  },
+  "manage_associate": {
+    "search": "Search Associates here",
+    "list_associate": "List of Associates",
+    "name": "Name",
+    "ntid": "NTID",
+    "level": "Level",
+    "year_experience": "Year Experience",
+    "team": "Team",
+    "skill_group": "Skill Group",
+    "skill": "Skill",
+    "action": "Action",
+    "search_null": "No data matching the filter selected."
+  },
+  "personal_skill": {
+    "skill_evaluate": "Skill Evaluate",
+    "search": "Search",
+    "skill": "Skill",
+    "skill_group": "Skill Group",
+    "level": "Level",
+    "experience": "Experience",
+    "search_null": "No data matching the filter"
+  },
+  "personal_project": {
+    "add_non_bosch": "Assigned Project",
+    "add_bosch": "Assigned Project",
+    "add_non_bosch_project": "Add new non Bosch Project",
+    "add_bosch_project": "Assign Bosch Project",
+    "search": "search",
+    "name": "Name",
+    "type": "Project Type",
+    "role": "Role",
+    "size": "Team Size",
+    "status": "Status",
+    "action": "Action",
+    "search_null": " No data matching the filter",
+    "delete_project_successfully":"Delete project successfully"
+  },
+  "personal_project_info": {
+    "name": "Name",
+    "start_date": "Start Day",
+    "end_date": "End Day",
+    "pm_name": "Project Manager",
+    "size": "Team Size",
+    "challenge": "Project Challenge",
+    "gb": "GB",
+    "role": "Role",
+    "tasks": "Task(s)",
+    "additional_tasks": "Additional Task(s)",
+    "status": "Status",
+    "type": "Project Type",
+    "objective": "Project Objective",
+    "link": "Project Reference Link",
+    "description": "Project Desciption"
+  },
+  "personal_learning": {
+    "add_study": "Add Self Study",
+    "add_course": "Add Course",
+    "add_self_study": "Add Self Study",
+    "add_assigned_course": "Add Course",
+    "search": "Search",
+    "name": "Name",
+    "type": "Type",
+    "category": "Category",
+    "duration": "Duration",
+    "start_date": "Start Day",
+    "end_date": "End Day",
+    "status": "Status",
+    "certificate": "Certificate",
+    "action": "Action",
+    "detail": "See Detail",
+    "search_null": " No data matching the filter",
+    "learning_detail": {
+      "personal_detail": "Personal Learning Course Detail",
+      "associate_detail": "Associate Learning Course Detail",
+      "name": "Name",
+      "trainer": "Trainer",
+      "type": "Type",
+      "category": "Category",
+      "duration": "Duration",
+      "certificate": "Certificate",
+      "start_date": "Start Day",
+      "end_date": "End Day",
+      "status": "Status",
+      "close": "Close"
+    }
+  },
+  "historical_change": {
+    "skill_cluster": "Skill clusters",
+    "skill_name": "Skill name",
+    "date": "Date",
+    "level_change": "Level change",
+    "exp_Change": "Exp change",
+    "note": "Mote"
+  },
+  "projects": {
+    "delete_prompt": {
+      "title": "Are you sure?",
+      "content": {
+        "name_line": "Are you sure to delete",
+        "revert_line": "You won't be able to revert this"
+      },
+      "yes": "Yes",
+      "no": "No"
+    },
+    "navbar_name": "Department Project",
+    "title": "List of project in department",
+    "subtitle": "List of Projects",
+    "project": "Project",
+    "projects": "Projects",
+    "delete": "Delete Project",
+    "total": "Total",
+    "command": {
+      "view": "See Detail",
+      "add": "Add Project",
+      "edit": "Edit Detail"
+    },
+    "filter": {
+      "dropdown": {
+        "GB": "Customer's GB",
+        "team": "Team",
+        "order_by": "Order by"
+      },
+      "checkbox": {
+        "type": "Project Type",
+        "Project_Type": {
+          "Bosch": "Bosch",
+          "Non_Bosch": "Non-Bosch",
+          "Department Projects": "Department Project",
+          "Skill Evaluation": "Skill"
+        },
+
+        "projects": {
+          "delete_prompt": {
+            "title": "Are you sure?",
+            "content": {
+              "name_line": "Are you sure to delete",
+              "revert_line": "You won't be able to revert this"
+            },
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "status": "Project Status",
+        "Project_Status": {
+          "ongoing": "On-going",
+          "closed": "Closed"
+        }
+      }
+    },
+    "pagination": {
+      "first": "First",
+      "previous": "Previous",
+      "next": "Next",
+      "last": "Last"
+    },
+    "info": {
+      "name": "Project",
+      "type": "Project Type",
+      "start": "Start Date",
+      "end": "End Date",
+      "status": "Status"
+    },
+    "detail": {
+      "title": "Bosch Project Detail",
+      "title_edit": "Edit Bosch Project",
+      "title_add": "Add New Bosch Project",
+      "name": "Project Name",
+      "start": "Start Day",
+      "end": "End Day",
+      "PM": "Project Manager",
+      "challenge": "Project Challenge",
+      "status": "Status",
+      "type": "Project Type",
+      "objective": "Project Objective",
+      "size": "Team size",
+      "ref": "Reference Link",
+      "desc": "Project Description",
+      "Member_Title": "Project Members",
+      "Member_Add": "Add project member",
+      "Member_Info": {
+        "name": "Member Name",
+        "role": "Role",
+        "Common_Task": "Common Task",
+        "Additional_Task": "Additional Task",
+        "action": "Action",
+        "Member_Add": {
+          "title_update": "Update project member",
+          "title": "Add new member",
+          "name": "Associate Name",
+          "role": "Role",
+          "added": "The added members",
+          "confirm": "Add Member"
+        }
+      },
+      "add": "Add",
+      "save": "Save",
+      "close": "Close"
+    }
+  },
+
+  "learning": {
+    "title": "List of Courses in department",
+
+    "filter": {
+      "dropdown": {
+        "category": "Category",
+        "order_by": "Order by"
+      }
+    },
+    "learning_type": {
+      "self_study": "Self Study",
+      "rnd": "R&D"
+    },
+    "learning_status": {
+      "in_progress": "In Progress",
+      "done": "Done"
+    },
+    "command": {
+      "close": "Close",
+      "add": "Add",
+      "edit": "Edit",
+      "save": "Save",
+      "open": "Open File",
+      "register": "Register",
+      "import": "Import"
+    },
+    "sort": {
+      "start": "by Start Date",
+      "duration": "by Duration"
+    },
+    "my_learning": {
+      "add": "Add Course",
+      "edit": "Edit Detail",
+      "view": "See Detail",
+      "checkbox": {
+        "type": "Learning Type",
+        "status": "Learning Status"
+      },
+      "add_course": {
+        "title": "Add New Learning Course"
+      },
+      "info": {
+        "title": "View Learning Course",
+        "title_edit": "Edit Learning Course",
+        "name": "Course Name",
+        "start": "Start Date",
+        "end": "End Date",
+        "trainer": "Trainer",
+        "duration": "Duration",
+        "category": "Category",
+        "type": "Type",
+        "desc": "Course Description",
+        "status": "Status",
+        "edit": "Save",
+        "hour": "Hour(s)",
+        "audience": "Target Audience"
+      },
+      "register": {
+        "title": "Register/Assign Learning Course",
+        "find_member": "Find New Member"
+      },
+      "delete_member": {
+        "title": "Are you sure?",
+        "content": {
+          "name_line": "Are you sure to delete",
+          "revert_line": "You won't be able to revert this"
+        },
+        "yes": "Yes",
+        "no": "No"
+      },
+      "import": {
+        "title": "Import Learning Course from Excel",
+        "request": "Please choose file to import",
+        "download": "Download Template",
+        "browse": "Browse",
+        "template_type": "The excel file which need to follow the defined template: .csv, .xlsx"
+      }
+    }
+  },
+
+  "logout": {
+    "success": "logout success"
+  },
+  "request": {
+    "winnt": "NTID",
+    "reason": "Reason"
+  },
+  "register": {
+    "title": "Register",
+    "confirm_password": "Confirm Password"
+  },
+  "validations": {
+    "required": "This field is required",
+    "minlength": "Should have at least {{number}} characters",
+    "maxlength": "This value should be less than {{number}} characters",
+    "min": "This value should be more than {{number}}",
+    "max": "This value should be less than {{number}}",
+    "exist": "The {{value}} has exists",
+    "inconsistent": "Inconsistent with {{value}}",
+    "invalid_email": "Invalid email"
+  },
+
+  "user_management": {
+    "title": "User Management",
+    "groups_users_submenu": "Groups and Users",
+    "roles_submenu": "Roles",
+    "permissions_submenu": "Permissions",
+    "list_of_user_groups_title": "List of User Groups",
+    "user_group_title": "User Group Detail",
+    "list_of_user_distribution_title": "List of User and Distribution",
+    "search": "Search",
+    "group_name": "Group Name",
+    "description": "Description",
+    "applied_roles": "Applied Roles",
+    "permission": {
+      "list_of_permission": "List of permissions",
+      "permission_detail": "Permission detail",
+      "name": "Permission name"
+    },
+    "role": {
+      "list_of_user_roles_title": "List of User Roles",
+      "user_role_title": "User Role Detail",
+      "list_of_user_permission_title": "List of User Permissions",
+      "role_name": "Role Name"
+    },
+    "dialog": {
+      "title_create_group": "Create new group",
+      "title_create_role": "Create new role",
+      "title_confirm": "Confirmation",
+      "title_list_users_and_distributions": "Add list of users and distributions",
+      "title_selected_users": "Selected users",
+      "title_selected_distributions": "Selected distributions",
+      "title_search_users": "Search Users",
+      "title_search_distributions": "Search Distributions",
+      "title_message_content_confirmation_remove": "Do you want to remove {{messageParam}} from System?",
+      "button_name": {
+        "button_yes": "Yes",
+        "button_no": "No",
+        "button_cancel": "Cancel",
+        "button_create": "Create"
+      }
+    }
+  },
+  "error": {
+    "0": {
+      "title": "Server went wrong!",
+      "message": "Looks like the gateway timeout"
+    },
+    "400": {
+      "message": "Sorry, there's an error. Please contact to Admin for more detail"
+    },
+    "401": {
+      "message": "Username/Password is incorrect!"
+    },
+    "403": {
+      "title": "Permission denied!",
+      "message": "You do not have permission to access the requested data."
+    },
+    "404": {
+      "title": "Page not found!",
+      "message": "This is not the web page you are looking for."
+    },
+    "500": {
+      "title": "Server went wrong!",
+      "message": "Looks like we have an internal issue, please try refreshing."
+    },
+
+    "504": {
+      "title": "Server went wrong!",
+      "message": "Looks like the gateway timeout"
+    },
+
+    "back_to_home": "Back to Home",
+    "login": {
+      "NOT_EXISTED_USERNAME": "Sorry, You are not member of system!",
+      "INVALID_USERNAME_PASSWORD": "Oops ! NT-ID or Password is incorrect. Please try again!",
+      "NOT_AUTHORIZATION": "Sorry, but you are not authorized to log into the system!",
+      "CAN_NOT_CONNECT_LDAP_SERVER": "Sorry, but the page cannot connect to Bosch login system!"
+    },
+    "request_access": {
+      "SKM_USER_NOT_FOUND": "Oops! NT-ID does not exist. Please try again!",
+      "SKM_USER_EXISTED_ALREADY": "User has registered already. Please login instead",
+      "SKM_INTERNAL_USER_CREATE_FAIL": "Oops! Failed to create user. Please try again!",
+      "SKM_USER_WAITING_FOR_APPROVAL": "You have already requested access. Please wait for admin approval!",
+      "SKM_INVALID_LDAP_CHECKED": "Oops! NT-ID does not exist. Please try again!"
+    }
+  },
+  "dashboard_components": {
+    "form_controls": {
+      "title": "Form controls",
+      "description": "Controls that input, select and edit your data elements.",
+      "input_field": "Input Field",
+      "check_box": "Check Box"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "description": "That show the hierarchy between content and facilitates in this way to navigate of Software."
+    },
+    "layout": {
+      "title": "Layout",
+      "description": "Essential components for the presentation of your content."
+    },
+    "button_indicators": {
+      "title": "Button & Indicators",
+      "description": "Buttons, button groups and chips.",
+      "button_1": "Button 1",
+      "button_2": "Button 2"
+    },
+    "modals_popups": {
+      "title": "Modals & Popups",
+      "description": "Configurable components that can dynamically display information and action hints.",
+      "show_modals_popups": "Show modals & popups"
+    },
+    "master_detail": {
+      "title": "Master detail",
+      "description": "Displays a master area and a detail area for contents of the selected item."
+    },
+    "data_table": {
+      "title": "Data table",
+      "description": "Tools for displaying and interacting with tabular data."
+    },
+    "services": {
+      "title": "Services",
+      "description": "The services will help during the development of an application and report about process."
+    },
+    "charts": {
+      "title": "Charts",
+      "description": "Reusuable chart components."
+    },
+    "colors": {
+      "title": "Colors",
+      "description": "The colors available in Bosch applications are defined in the Bosch corporate design."
+    },
+    "icons": {
+      "title": "Icons",
+      "description": "Icons defined in the Bosch corporate design which make the content easier to understand."
+    },
+    "reference_document": "Reference Document For More Details",
+    "title": "Available Components/Modules In Blueprint"
+  },
+  "no_access": {
+    "title": "No Authorization",
+    "click_text": "Click ",
+    "request_link_title": " HERE ",
+    "request_access_text": " to request access",
+    "no_access_message": "You have no authorization to access EET Blueprint"
+  },
+  "skill": {
+    "evaluation_page_title": "My Skill Evaluation",
+    "request_page_title": "List of My Skill Evaluation Requests",
+    "edit_request_title": "Edit Request",
+    "title": {
+      "position": "No.",
+      "list_title": "List of Skills",
+      "skill": "Skill",
+      "skill_group": "Skill Group",
+      "approver": "Approver",
+      "select_dialog": "Select your line manager to approve your evaluation",
+      "status": "Status",
+      "current_level": "Current Level",
+      "expect_level": "Expected Level",
+      "exp": "Experience",
+      "request_date": "Request Date",
+      "modified_date": "Modified Date",
+      "approve_date": "Approved Date",
+      "action": "Action",
+      "search_bar": "Search for skill here"
+    },
+    "content": {
+      "exp": {
+        "#COMMENT: e0": "0 -> No need to actually map this.",
+        "e1": "1-6 months",
+        "e2": "6-12 months",
+        "e3": "1-3 years",
+        "e4": "3+ years"
+      }
+    },
+    "button": {
+      "evaluate": "Evaluate",
+      "reset": "Reset",
+      "dialog": {
+        "edit": "Edit",
+        "close": "Close"
+      }
+    }
+  },
+  "manage_request": {
+    "title": {
+      "new_request": "New Request",
+      "forward_request": "Forward Request",
+      "request_list": "List of Evaluation Requests"
+    },
+    "dialog": {
+      "level_notice": " The changed levels from evaluation of associate (with the previous evaluation) will be highlighted in blue color.",
+
+      "comment": "Comment",
+      "approved_by": "Approved by Competency Lead",
+      "check_approval": "Status"
+    },
+    "main": {
+      "id": "No.",
+      "requester": "Requester",
+      "req_date": "Request Date",
+      "mod_date": "Modified Date",
+      "status": "Status",
+      "action": "Action",
+      "search_tooltip": "Search for Associates"
+    },
+    "message": {
+      "error_filter": "No data matching the filter"
+    }
+  },
+  "button": {
+    "save": "Speichern",
+    "save_temporary": "Temporär Speichern",
+    "cancel": "Stornieren"
+  },
+  "supply": {
+    "project_name": "Project Name",
+    "skill-cluster": "Skill Cluster",
+    "skill": "Skill",
+    "level": "Level",
+    "created-by": "Created By",
+    "assign-to": "Assign To",
+    "candidate-name": "Candidate Name",
+    "assignee": "Group",
+    "pic":"PIC",
+    "supply-type": "Supply Type",
+    "location": "Location",
+    "expected-date": "Expected Date",
+    "status": "Status",
+    "action": "Action",
+    "search_null": "No data matching the filter selected.",
+    "existed_message": "Project existed in system",
+    "search": "Search project demand",
+    "add": "Add demand",
+    "old-status": "Old Status",
+    "new-status": "New Status",
+    "updated-name": "Updated By",
+    "updated-date": "Updated Date",
+    "history-dialog-title": "Show History",
+    "edit-dialog-title": "Edit Demand & Supply",
+    "my_demends": "My Demands",
+    "allow_external": "Allow External",
+    "forecast_date": "Forecast Date",
+    "filled_date": "Filled Date",
+    "subId":"ID"
+  }
+}

@@ -1,0 +1,53 @@
+<div class="row mb-24">
+  <div class="col-md-3 offset-md-6">
+    <eet-select-with-search label="Teams" [originalData]="allTeamsInFilter" [isMultiple]="true"
+      [filterDataFromParent]="savedTeamsInFilterOfProject" (onFilterChangeEvent)="onFilterChange($event)">
+    </eet-select-with-search>
+  </div>
+  <div class="col-md-3">
+    <eet-select-with-search label="GB Units" [originalData]="allProjectGbInFilter" [isMultiple]="true"
+      [filterDataFromParent]="savedProjectGbInFilterOfProject" (onFilterChangeEvent)="onFilterChange($event)">
+    </eet-select-with-search>
+  </div>
+</div>
+
+<div *ngIf="reRenderTrigger === false">
+  <div class="row  mb-24">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-xxl-4 mb-24 relative">
+      <div (click)="navigateProjectListPage()" class="box-info clickable">
+        <p class="title large-text">{{numOfProjects}}</p>
+        <p class="name">Projects</p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-xxl-4 mb-24">
+      <div class="chart-box">
+        <div class="report-title">
+          {{'report.project_by_status' | translate}}
+        </div>
+        <eet-pie-chart-common [chartInfo]="projectsByStatus"></eet-pie-chart-common>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-xxl-4 mb-24">
+      <div class="chart-box">
+        <div class="report-title">
+          {{'report.project_by_gbUnit' | translate}}
+        </div>
+        <eet-bar-chart-common [chartInfo]="projectsByGBs"></eet-bar-chart-common>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-xxl-12  mb-24">
+      <div class="contain-tag-cloud relative">
+        <div class="report-title">
+          {{'report.tag_cloud_title_technology' | translate}}
+        </div>
+        <eet-tag-cloud
+         [data]="reportData.data?.projects_by_skill_tags"
+         [categoryField]="tagCloudFieldForSkillTags.categoryField"
+         [valueField]="tagCloudFieldForSkillTags.valueField"
+         ></eet-tag-cloud>
+         <div class="hidden"></div>
+      </div>
+    </div>
+  </div>
+
+</div>

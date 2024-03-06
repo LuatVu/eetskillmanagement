@@ -1,0 +1,16 @@
+<div class="home">
+  <mat-tab-group id="selection" #selection>
+    <!-- My Personal Information -->
+    <!-- To find way to override label based on i18n.json-->
+    <mat-tab label="{{ 'skill.my_evaluate_tab' | translate }}">
+      <ng-template matTabContent>
+        <eet-skill-table class="child-components"></eet-skill-table>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="{{ 'skill.my_request_tab' | translate }}">
+      <ng-template matTabContent>
+        <eet-requests class="child-components"></eet-requests>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

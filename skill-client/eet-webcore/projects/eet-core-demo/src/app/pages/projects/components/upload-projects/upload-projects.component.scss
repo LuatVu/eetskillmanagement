@@ -1,0 +1,53 @@
+.import-file {
+    background-color: #efeff0;
+    display: flex;
+    justify-content: space-between;
+    span {
+        padding: 12px 16px;
+    }
+}
+.import-file:active {
+    background-color: #bfc0c2;
+}
+.import-file:hover {
+    cursor: pointer
+}
+
+.import-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    mat-label {
+        align-self:flex-end
+    }
+}
+
+.errors {
+    color: var(--bosch-red-50)
+}
+
+.existed-prj-table .table-header{
+    color: var(--bosch-red-50);
+    position: sticky;
+}
+
+.existed-prj-table{
+    width: 100%;
+}
+
+.existed-table-div{
+    overflow-y: scroll;
+    margin-top: 10px;
+    max-height: 300px;
+}
+
+.title {
+    position: relative;
+}
+
+@media only screen and (max-width: 1400px) {
+    .existed-table-div{
+        margin-top: 6px;
+        max-height: 180px;
+    }
+  }

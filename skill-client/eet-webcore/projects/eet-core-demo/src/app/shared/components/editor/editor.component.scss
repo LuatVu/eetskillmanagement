@@ -1,0 +1,28 @@
+.wrap{
+    margin: 52px 16px 0;
+    margin-top: 5px;
+    .actions{
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+        margin-bottom: 8px;
+        button{
+            min-width: 85px;
+        }
+    }
+}
+
+
+:host ::ng-deep .ql-editor{
+    height: calc(100vh - 258px);
+    padding-left: 0;
+    padding-right: 0;
+    scrollbar-width: thin;
+    &#content{
+        height: 100%;
+        padding-top: 0px;
+    }
+}
+.content{
+   overflow: auto;
+}

@@ -1,0 +1,30 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div class="full-space">
+      <mat-form-field class="search-box">
+        <mat-label>{{ "vmodel.dialog.list_project.searchLabel" | translate }}</mat-label>
+        <input matInput (keyup)="onSearch($event)" #input />
+      </mat-form-field>
+      <div class="chip-container">
+        <ng-container *ngIf="projectListsFilter && projectListsFilter.length>0;then projectList;else noData"></ng-container>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <div class="noData">{{ "vmodel.dialog.list_project.noData" | translate }}</div>
+    </ng-template>
+
+    <ng-template #projectList>
+      <ng-container *ngFor="let project of projectListsFilter">
+        <div tabindex="0" class="a-chip a-chip--fixed -selected" [matTooltip]="project.name" matTooltipShowDelay="200" matTooltipHideDelay="200"
+          aria-labelledby="fixed chip-label-id-selected" (click)="onClickProject(project)" role="button">
+          <div class="fixed-width-image-label-group">
+            <span id=" fixed chip-label-id-selected" class="a-chip__label">
+              {{project.name}}
+            </span>
+          </div>
+        </div>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+</eet-common-dialog>

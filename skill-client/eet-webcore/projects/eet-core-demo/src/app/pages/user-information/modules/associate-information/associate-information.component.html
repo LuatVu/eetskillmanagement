@@ -1,0 +1,169 @@
+<ng-container [ngSwitch]="currentViewAssociateMode">
+  <ng-container *ngSwitchCase="'VIEW_ASSOCIATE_PROFILE'">
+    <eet-personal-information [idAssociate]="getAsso">
+    </eet-personal-information>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <div class="content-wrapper">
+      <section id="filter">
+        <div class="top">
+          <div class="search-box">
+            <mat-form-field>
+              <mat-label>{{ "manage_associate.search" | translate }}</mat-label>
+              <input matInput #input [formControl]="searchControl"
+                [placeholder]="'manage_associate.ntid_fullname' | translate" />
+              <button type="submit" class="a-text-field__icon-search" matSuffix>
+                <i class="a-icon ui-ic-search"></i>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="action-box">
+            <button mat-raised-button color="primary" type="button" (click)="exportExcel()" class="bosch-ic-clickable">
+              <i class="a-icon boschicon-bosch-ic-export" title="export"></i>
+              {{'personal_information.associate_export' | translate}}
+            </button>
+            <button bciTertiaryButton mat-raised-button color="primary" type="button" class="bosch-ic-clickable"
+              (click)="addNewAssociates()">
+              <mat-icon fontIcon="bosch-ic-add"></mat-icon>
+              {{'manage_associate.add' | translate}}
+            </button>
+          </div>
+        </div>
+        <mat-chip-listbox selectable multiple>
+          <mat-tab-group mat-align-tabs="start" [selectedIndex]="null">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div tabindex="0" role="button" #c value="{{'personal_information.all' | translate}}"
+                  (click)="onSelectAllSkillGroup()" [ngClass]="isSelectAllSkillGroup ? 'a-chip -selected' : 'a-chip'">
+                  <span class="a-chip__label">{{'personal_information.all' | translate}}</span>
+                </div>
+              </ng-template>
+            </mat-tab>
+            <mat-tab *ngFor="let tagSkillGroup of arrayTagSkillGroup; let index=index">
+              <ng-template mat-tab-label>
+                <div tabindex="0"
+                  [ngClass]="arrayTagSkillGroupFilter.includes(tagSkillGroup) ? 'a-chip -selected' : 'a-chip'" #c
+                  [value]="tagSkillGroup" (click)="onFilterSkillGroup(index)" role="button">
+                  <span class="a-chip__label" [matTooltip]="tagSkillGroup">
+                    {{tagSkillGroup}}</span>
+                </div>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-chip-listbox>
+        <div class="bottom">
+          <ng-container *ngFor="let item of arrayFilter">
+
+            <div class="box">
+              <mat-label>{{item?.name | translate}}</mat-label>
+              <div class="box-select">
+                <eet-common-select [event]="forceUnselectAllTagSkillGroup.asObservable()"
+                  [selectedData]="item.selectedData" [isMultipleChoise]="item.isMultiple"
+                  (onSelectedItemChange)="item.selectedData = $event; watchOnFilterChange(item.name,$event);"
+                  [originalData]="item.originalData"></eet-common-select>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </section>
+
+      <section id="table-wrapper">
+        <table mat-table [dataSource]="dataSource" class="table-common full-width" matSort>
+
+          <ng-container matColumnDef="displayName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "manage_associate.name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="name-column" matTooltipClass="matTooltip" matTooltip="{{ element?.displayName }}">
+                {{ element?.displayName || "--" }}
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="personalCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "manage_associate.ntid" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.personalCode }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "manage_associate.level" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.level }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="experience">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "manage_associate.year_experience" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element?.experience }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="team">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "manage_associate.team" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <div matTooltipClass="matTooltip" matTooltip="{{ element.team }}" class="team-column">
+                {{ element.team || "--" }}
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="skillGroups">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "manage_associate.skill_cluster" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.skillGroups }}">
+                {{ element.skillGroups || "--" }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="skills">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "manage_associate.skill" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="w-150" matTooltipClass="matTooltip" matTooltip="{{ element.skills }}">
+                {{ element.skills || "--" }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "manage_associate.action" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="table-action">
+              <div class="actions">
+                <i (click)="btnClick(element.id)" *ngIf="viewAssociateInfoPermission || isSelfInformation(element)"
+                  class="a-icon ui-ic-watch-on item"></i>
+                <i (click)="btnEditAssociate(element)" *ngIf="editAssociateInfoPermission || isSelfInformation(element)"
+                  class="a-icon boschicon-bosch-ic-document-edit item"></i>
+                <mat-icon *ngIf="editAssociateInfoPermission" class="action-col__button delete-associate item"
+                  fontIcon="bosch-ic-delete" (click)="deleteAssociate(element)"></mat-icon>
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="8">
+              {{ "manage_associate.search_null" | translate }}
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="paginator-wrapper" fxLayout="row" fxLayoutAlign="center none">
+        <mat-paginator [length]="totalItems" showFirstLastButtons
+          [pageSizeOptions]="PAGINATION_SIZE_OPTIONS"></mat-paginator>
+      </section>
+    </div>
+  </ng-container>
+</ng-container>

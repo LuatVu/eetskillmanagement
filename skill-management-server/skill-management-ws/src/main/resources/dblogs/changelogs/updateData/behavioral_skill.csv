@@ -1,0 +1,8 @@
+id,name,description,sequence,status,skill_group_id,is_mandatory,is_required,es_updated
+fe0e52b4-c6f2-e894-fab3-71a4a5fab6a8,Communication,Communication,,Active,4b13d9fc-a2a7-0ba4-c5b0-c53a4030c83c,0,0,0
+604bb88f-03e3-45a0-9de2-d9a99c20bf95,Cooperation,Cooperation,,Active,4b13d9fc-a2a7-0ba4-c5b0-c53a4030c83c,0,0,0
+8ba1944f-ea11-8952-16b6-7c6db600c6f8,Result Orientation,Result Orientation,,Active,53075952-bc0e-b225-1a18-e7d251a9f7ed,0,0,0
+5001c534-cebd-8fba-a6ba-67c2af32ec31,Future Orientation,Future Orientation,,Active,53075952-bc0e-b225-1a18-e7d251a9f7ed,0,0,0
+f3afcc11-c0b1-1464-e0b7-718d74620a61,Leading myself,Leading myself,,Active,28c22540-d718-0fe5-60e2-a9518f0b4190,0,0,0
+8782b6cf-6e5b-526d-c270-e60db191009f,Leading others,Leading others,,Active,28c22540-d718-0fe5-60e2-a9518f0b4190,0,0,0
+c9514afb-1527-9950-b396-c90842ebecd3,English,English,,Active,9fda6e6f-5b39-44fe-ac9c-a0aa874627d2,0,0,0

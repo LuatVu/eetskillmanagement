@@ -1,0 +1,47 @@
+.table-common {
+  overflow: auto;
+
+  tr.mat-row:hover {
+      background-color: var(--bosch-blue-95) !important;
+  }
+
+  th.mat-header-cell {
+    color: var(--bosch-blue-55) !important;
+    font-size: 14px !important;
+
+    &::selection { 
+      color: #000 !important; 
+      background-color: var(--bosch-blue-55) !important; 
+    } 
+    &::-moz-selection { 
+      color: #000 !important; 
+      background-color: var(--bosch-blue-55) !important; 
+    }
+    .mat-sort-header-content {  
+      &::selection { 
+        color: #000 !important; 
+        background-color: var(--bosch-blue-55) !important;
+      } 
+      &::-moz-selection { 
+        color: #000 !important; 
+        background-color: var(--bosch-blue-55) !important;
+      }
+    }
+  }
+
+  td.mat-cell {
+    font-size: 14px !important;
+  }
+
+  td.table-action {
+    .mat-icon.mat-icon.Bosch-Ic[_ngcontent-fhh-c499]:before,
+    i {
+      color: var(--bosch-blue-55) !important;
+      font-size: 18px;
+    }
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+}

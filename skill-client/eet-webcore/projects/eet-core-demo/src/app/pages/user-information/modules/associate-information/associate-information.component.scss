@@ -1,0 +1,153 @@
+.content-wrapper {
+  width: 100%;
+  padding: 20px;
+  position: relative;
+
+  #filter {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    .top {
+      display: flex;
+      gap: 31px;
+
+      .search-box {
+        flex: 1;
+        mat-form-field {
+          width: 100%;
+          padding-bottom: 0;
+        }
+      }
+
+      .action-box {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 5px;
+      }
+    }
+
+    .bottom {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+
+      .box {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .table-header {
+          display: flex;
+          flex-direction: column;
+          margin-top: auto;
+
+          p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c2c2c;
+          }
+
+          .total-item {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--bosch-yellow-50);
+          }
+        }
+
+        mat-label {
+          font-size: 12px;
+        }
+        .box-select {
+          background-color: #efeff0;
+          padding: 0 12px;
+          border-bottom: 1px solid var(--bosch-gray-55);
+        }
+      }
+    }
+  }
+
+  #table-wrapper {
+    min-height: 100px;
+    margin-bottom: 20px;
+
+    .mat-column-displayName {
+      width: 350px;
+    }
+    .mat-column-action{
+      width: 140px;
+    }
+    .mat-column-team {
+      .team-column {
+        width: 100px;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    .mat-column-skillGroups,
+    .mat-column-skills {
+      .w-150 {
+        display: inline-block;
+        max-width: calc(calc(100vw - 1000px) / 3);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
+  .chip-tag
+  {
+    border-radius: 10px;
+    margin:8px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  mat-chip-listbox{
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+:host ::ng-deep{
+  .mat-ink-bar {
+    display: none !important;
+    visibility: hidden !important;
+    }
+    .mat-tab-header-pagination-chevron{
+    height: 100% !important;
+    }
+    .a-chip{
+      user-select: none;
+      max-width: 250px;
+      text-overflow: ellipsis;
+      &__label{
+        line-height: 100%;
+      }
+    }
+    mat-chip-listbox{
+      overflow: hidden !important;
+    }
+}
+.actions{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  .item{
+    font-size: 24px;
+  }
+}
+mat-icon.delete-associate{
+  color: var(--bosch-blue-55) !important;
+  display: flex;
+  align-items: center;
+}

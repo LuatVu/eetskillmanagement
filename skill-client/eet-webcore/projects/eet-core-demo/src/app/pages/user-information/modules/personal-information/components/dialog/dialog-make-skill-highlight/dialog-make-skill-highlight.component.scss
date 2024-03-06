@@ -1,0 +1,19 @@
+.m-dialog__content {
+    &__body {
+        max-height: calc(100vh - 380px);
+        overflow: auto;
+        padding-bottom: 15px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+        .hint {
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+          color: var(--bosch-red-50);
+          margin-right: auto;
+        }
+        .skillContainer{
+          margin-bottom: 5px;
+        }

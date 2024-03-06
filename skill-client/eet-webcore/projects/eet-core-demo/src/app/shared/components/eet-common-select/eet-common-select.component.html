@@ -1,0 +1,37 @@
+<mat-select
+  [(ngModel)]="selectedData"
+  [placeholder]="placeholder || 'Please select'"
+  [multiple]="isMultipleChoise"
+  [disabled]="isDisabled"
+  (ngModelChange)="onSelectedItem()"
+>
+  <div class="search-box">
+    <input type="text" [formControl]="searchControl"  />
+    <i
+      class="a-icon ui-ic-close"
+      title="close"
+      *ngIf="searchControl?.value"
+      (click)="searchControl.setValue(null)"
+    ></i>
+  </div>
+  <div
+    class="select-all-option"
+    (click)="onToggleAll()"
+    *ngIf="isMultipleChoise && !searchControl?.value"
+  >
+    <div class="check-all-box" [class.active]="isSelectAll">
+      <i class="a-icon boschicon-bosch-ic-checkmark"></i>
+    </div>
+    Select All
+  </div>
+  <mat-option
+    *ngIf="isShowUnSelect && !isMultipleChoise && !searchControl?.value"
+    >{{labelAllForOptionUnselect ? 'All' : 'Unselect'}}
+  </mat-option>
+  <mat-option *ngFor="let data of filterData" [value]="data?.[valueKey] || data"
+    >{{data?.[nameKey] || data}}
+  </mat-option>
+  <mat-option [disabled]="true" *ngIf="!filterData || filterData?.length == 0"
+    >Nodata
+  </mat-option>
+</mat-select>

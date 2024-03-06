@@ -1,0 +1,133 @@
+@import '~@bci-web-core/common-styles/sass/bci/colors';
+@import '~@bci-web-core/common-styles/sass/bci/bci-variables';
+
+$arrows-column-width: 8 * $gridSize;
+
+:host {
+  display: flex;
+
+  & > .picklist-container {
+    flex: 0 0 100%;
+  }
+}
+
+.picklist-container {
+  padding-bottom: 2*$padding-base-vertical;
+}
+
+.title {
+  overflow: hidden;
+
+  & > .source-title-container,
+  & > .target-title-container {
+    min-width: 0;
+    flex: 0 1 100%;
+  }
+}
+
+.content {
+  overflow: hidden;
+}
+
+.spacer {
+  flex: 0 0 $arrows-column-width;
+}
+
+.filter-form-field {
+  padding-bottom: $padding-base-vertical;
+  min-width: 0;
+
+  &.hidden {
+    visibility: hidden;
+  }
+}
+
+.filters-container {
+  & > :not(.spacer) {
+    min-width: 0;
+  }
+}
+
+.lists-container {
+  overflow: hidden;
+
+  & > bci-drag-drop-list {
+    min-width: 0;
+  }
+}
+
+.arrow-buttons {
+  & > *:nth-child(2) {
+    margin-bottom: 2*$padding-base-vertical;
+  }
+}
+
+.selection-buttons {
+  padding-top: 2*$padding-base-vertical;
+
+  a.selection-link-button {
+    margin-right: $padding-base-horizontal;
+    white-space: nowrap;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+a.selection-link-button {
+  cursor: pointer;
+  color: $boschDarkBlue;
+  user-select: none;
+
+  &:hover, &:active, &:focus {
+    color: $boschBlack;
+  }
+
+  &.disabled {
+    color: $boschLightGray50;
+    cursor: not-allowed;
+  }
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+.add-new-icon {
+  &:hover {
+    cursor: pointer;
+    color: $boschLightBlueW50;
+  }
+  margin-top: 22px;
+}
+
+.permission-margin {
+  margin: 0 12px;
+}
+
+ul li {
+  list-style-type: none;
+  margin-top: 10px;
+  padding-left: initial;
+}
+
+.mat-selection-list {
+  margin-bottom: 7px;
+}
+
+.permission-list-wrapper {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 70vh;
+}
+
+.layoutGap{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.layoutGapMarginBottom{
+  margin-bottom: 25px;
+}
+

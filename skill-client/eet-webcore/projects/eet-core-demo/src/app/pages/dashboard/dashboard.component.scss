@@ -1,0 +1,100 @@
+@import '~@bci-web-core/common-styles/sass/bci/bosch-ic';
+.dashboard-components {
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+  place-content: flex-start;
+  align-items: flex-start;
+  padding: 16px;
+  overflow: auto;
+  height: 75%;
+  .component {
+    padding: 0;
+    .info {
+      position: relative;
+      height: 270px;
+      width: 300px;
+      margin: auto;
+      margin-bottom: 16px;
+      margin-right: 16px;
+      padding: 16px;
+      border: 1px solid transparent;
+      border-top: 4px solid #008ECF;
+      box-shadow: 0px 5px 11px -6px #7e7c7d;
+      color: #4e525d;
+      font-weight: normal; //bosch style.
+  
+      transition: background-color 0.3s;
+      -webkit-transition: background-color 0.3s; /* Safari & Chrome */
+      -moz-transition: background-color 0.3s; /* Mozilla */
+      -ms-transition: background-color 0.3s; /* Internet Exploder */
+      -o-transition: background-color 0.3s; /* Opera */
+      
+      .title {
+        width: 100%;
+        height: 37.5px;
+        padding-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+        word-wrap: break-word;                   
+        white-space: nowrap;           
+        font-size: 19px;
+        font-weight: 500;
+      }
+  
+      .description {
+        white-space: pre-line;
+        overflow: hidden;
+        font-size: 17px;
+        margin-bottom: 16px;
+  
+        .description-value {
+          color: #21468d;
+        }
+      }
+    }
+  
+    .info:hover {
+      background-color: rgb(243, 243, 243);
+    }
+  }
+}
+
+.link {
+  padding: 16px;
+  font-size: 19px;
+  font-weight: 500;
+  
+  span {
+    padding-right: 10px;
+  }
+}
+
+.color-card {
+  margin: 1rem 0.5rem;
+  width: 12px;
+  .color-container {
+    height: 9px;
+    margin: -16px -16px 16px;
+  }
+}
+
+.btn-exp {
+  margin-right: 8px;
+}
+
+.modals-popups, .button-indicators {
+  text-align: center;
+}
+
+.dashboard-title {
+  display: flexbox;
+  margin: 16px;
+  font-size: 36px;
+  line-height: 46px;
+  font-weight: 400;
+}
+.full-space {
+  height: 100%;
+}

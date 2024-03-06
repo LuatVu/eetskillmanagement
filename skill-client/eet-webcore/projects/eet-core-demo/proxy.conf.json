@@ -1,0 +1,28 @@
+{
+  "/skm-ws/*": {
+    "target": "http://localhost:8080/skm-ws",
+    "secure": false,
+    "loglevel": "debug"
+  },
+  "/api/*": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "loglevel": "debug"
+  },
+  "/me": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "loglevel": "debug"
+  },
+  "/tree-data": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "loglevel": "debug"
+  }
+  ,
+  "/admin/*": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "loglevel": "debug"
+  }
+}

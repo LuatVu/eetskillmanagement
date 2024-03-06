@@ -1,0 +1,102 @@
+<eet-common-dialog>
+    <ng-container dialog-content>
+      <div class="wrap">
+        <form action="" [formGroup]="projectScopeFormGroup" class="project-scope-container">
+          <div class="row p-bottom-20">
+            <div class="col-md manager">
+              <div class="row h-100">
+                <div class="col-md-7 label-content alginText">
+                  <mat-label class="required">{{'system.manage_project_scope.dialog.project_scope' | translate}}</mat-label>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-content d-flex h-100 p-0">
+                    <mat-form-field class="w-100 p-0">
+                      <input maxlength="255" type="text" formControlName="name" matInput #input
+                        cdkFocusInitial/>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row p-bottom-20" >
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-7 label-content alginText">
+                  <mat-label class="required">{{'system.manage_project_scope.dialog.bg_color' | translate}}</mat-label>
+                </div>
+                <div class="col-md-5 contain_view">
+                  <div class="form-content small">
+                      <input
+                      [style.background]="colorPicker"
+                      [(colorPicker)]="colorPicker"
+                      class="color"
+                      (cpSliderDragEnd)="onEventLog(COLOR,$event)"
+                      (colorPickerSelect)="onEventLog(COLOR,$event)"
+                      [cpOutputFormat]="'hex'"
+                      (colorPickerChange)="rgbaText=onChangeColorHex8($event);colorPicker=$event"
+                      type="button"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row p-bottom-20">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-7 label-content alginText">
+                  <mat-label class="required">{{'system.manage_project_scope.dialog.bg_color_mixed' | translate}}</mat-label>
+                </div>
+                <div class="col-md-5 contain_view">
+                  <div class="form-content small">
+                      <input
+                      [style.background]="colorPickerHover"
+                      [(colorPicker)]="colorPickerHover"
+                      class="color"
+                      (cpSliderDragEnd)="onEventLog(COLORHOVER,$event)"
+                      (colorPickerSelect)="onEventLog(COLORHOVER,$event)"
+                      [cpOutputFormat]="'hex'"
+                      (colorPickerChange)="rgbaTextColorPickerMixed=onChangeColorHex8($event);colorPickerHover=$event"
+                      type="button"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row p-bottom-20">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-7 label-content alginText">
+                  <mat-label class="text-preview">{{'system.manage_project_scope.dialog.bg_color_hover' | translate}}</mat-label>
+                </div>
+                <div class="col-md-5 contain_view">
+                  <div class="form-content small">
+                      <input
+                      [style.background]="colorPickerMixed"
+                      class="color cursor-disabled"
+                      type="button"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="pre">
+          <div class="label">{{'system.manage_project_scope.dialog.preview_project_card' | translate}}</div>
+          <eet-project-item [project]="mock" [scopeColor]="colorPicker" [scopeColorMixed]="colorPickerHover"  [index]="1" [query]="query" [previewMode]="true"></eet-project-item>
+        </div>
+      </div>
+      
+    </ng-container>
+    <ng-container dialog-action>
+      <button *ngIf="passingData.data.type==='add'" (click)="onSave()" [disabled]="projectScopeFormGroup.invalid" type="button" class="a-button a-button--primary"  bciTertiaryButton mat-raised-button>
+        <i class="a-icon a-button__icon boschicon-bosch-ic-save" title="save"></i>
+        <span class="a-button__label">{{'system.actions.add' | translate}}</span>
+      </button>
+      <button *ngIf="passingData.data.type==='edit'" (click)="onSave()" [disabled]="projectScopeFormGroup.invalid" type="button" class="a-button a-button--primary"  bciTertiaryButton mat-raised-button>
+        <i class="a-icon a-button__icon boschicon-bosch-ic-save" title="save"></i>
+        <span class="a-button__label">{{'system.actions.save' | translate}}</span>
+      </button>
+    </ng-container>
+  </eet-common-dialog>

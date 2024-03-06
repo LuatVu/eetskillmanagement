@@ -1,0 +1,212 @@
+<eet-common-dialog>
+  <ng-container dialog-content class="center">
+    <form class="info" [formGroup]="associateForm">
+      <ng-container formGroupName="personalDto">
+        <div class="row">
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.name' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <input class="form-content" type="text" [value]="personalDtoFormGroup.get('name')?.value" [disabled]="true">
+          </div>
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.level' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content">
+              <eet-common-select [isMultipleChoise]="false" [isShowUnSelect]="false"
+                (onSelectedItemChange)="personalDtoFormGroup?.get('level_id')?.setValue($event)"
+                [selectedData]="personalDtoFormGroup?.get('level_id')?.value"
+                [originalData]="addNewAssociateSharedModel?.levelList" [nameKey]="'name'" [valueKey]="'id'"
+                [isDisabled]="personalDtoFormGroup?.disabled"></eet-common-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.ntid' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <input class="form-content" type="text" [value]="personalDtoFormGroup.get('code')?.value" [disabled]="true">
+          </div>
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.Gender' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content">
+              <eet-common-select [isMultipleChoise]="false" [isShowUnSelect]="false"
+                [selectedData]="personalDtoFormGroup?.get('gender')?.value"
+                (onSelectedItemChange)="personalDtoFormGroup?.get('gender')?.setValue($event)"
+                [originalData]="addNewAssociateSharedModel?.genderList" [nameKey]="'name'" [valueKey]="'code'"
+                [isDisabled]="personalDtoFormGroup?.disabled"></eet-common-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.email' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <input class="form-content" type="text" [value]="personalDtoFormGroup.get('email')?.value"
+              [disabled]="true">
+          </div>
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.Department' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content">
+              <eet-common-select [isMultipleChoise]="false" [isShowUnSelect]="false"
+                (onSelectedItemChange)="personalDtoFormGroup?.get('department')?.setValue($event)"
+                [selectedData]="personalDtoFormGroup?.get('department')?.value"
+                [originalData]="addNewAssociateSharedModel?.departmentList" [nameKey]="'department_name'"
+                [valueKey]="'id'" [isDisabled]="personalDtoFormGroup?.disabled"></eet-common-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label for="">{{'manage_associate.add_associate.Group' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <input class="form-content" type="text" [value]="groupName || '--'" [disabled]="true">
+          </div>
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.Team' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content">
+              <eet-common-select [isMultipleChoise]="false" [isShowUnSelect]="false"
+                (onSelectedItemChange)="onTeamChange($event)" [selectedData]="personalDtoFormGroup?.get('team')?.value"
+                [originalData]="addNewAssociateSharedModel?.teamList" [nameKey]="'name'" [valueKey]="'id'"
+                [isDisabled]="personalDtoFormGroup?.disabled"></eet-common-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.Title' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content">
+              <eet-common-select [isMultipleChoise]="false" [isShowUnSelect]="false"
+                [selectedData]="personalDtoFormGroup?.get('title')?.value"
+                (onSelectedItemChange)="personalDtoFormGroup?.get('title')?.setValue($event)"
+                [originalData]="addNewAssociateSharedModel?.titleList"
+                [isDisabled]="personalDtoFormGroup?.disabled"></eet-common-select>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.Location' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content">
+              <eet-common-select [isMultipleChoise]="false" [isShowUnSelect]="false"
+                (onSelectedItemChange)="personalDtoFormGroup?.get('location')?.setValue($event)"
+                [selectedData]="personalDtoFormGroup?.get('location')?.value"
+                [originalData]="addNewAssociateSharedModel?.locationList" [isDisabled]="personalDtoFormGroup?.disabled"
+                [nameKey]="'name'" [valueKey]="'code'">
+              </eet-common-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.join_date' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content date-picker">
+              <input formControlName="joinDate" class="date-input" matInput [matDatepicker]="joinDate"
+                placeholder="DD/MM/YYYY" (click)="joinDate.open()">
+              <div class="toggle-calendar">
+                <mat-datepicker-toggle matSuffix [for]="joinDate">
+                </mat-datepicker-toggle>
+                <mat-datepicker #joinDate [calendarHeaderComponent]="DATE_PICKER_HEADER"></mat-datepicker>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label for="">{{'manage_associate.add_associate.manager' | translate}}
+            </mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="form-content">
+              <input class="form-content" type="text" [value]="managerDisplayName" [disabled]="true">
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+
+      <div class="row">
+        <div class="col-sm-4 col-md-2 form-label">
+          <mat-label class="required" for="">{{'manage_associate.add_associate.skill_group' | translate}}
+          </mat-label>
+        </div>
+        <div class="col-sm-8 col-md-4">
+
+          <div class="form-content">
+            <eet-common-select [isMultipleChoise]="true" [isShowUnSelect]="false"
+              (onSelectedItemChange)="associateForm?.get('skill_group_ids')?.setValue($event)"
+              [selectedData]="associateForm?.get('skill_group_ids')?.value"
+              [originalData]="addNewAssociateSharedModel?.skillGroupList" [isDisabled]="associateForm?.disabled"
+              [nameKey]="'name'" [valueKey]="'id'"></eet-common-select>
+          </div>
+
+          <!-- <mat-select class="form-content" formControlName="skill_group_ids" multiple>
+            <mat-option *ngFor=" let skillGroup of addNewAssociateSharedModel?.skillGroupList"
+              [value]="skillGroup.id">{{skillGroup?.name || '--'}}
+            </mat-option>
+          </mat-select> -->
+        </div>
+
+        <ng-container formGroupName="personalDto">
+          <div class="col-sm-4 col-md-2 form-label">
+            <mat-label class="required" for="">{{'manage_associate.add_associate.non_bosch_exp' |
+              translate}}</mat-label>
+          </div>
+          <div class="col-sm-8 col-md-4">
+            <div class="non-bosch-exp-type-box">
+              <input class="form-content" type="number" formControlName="experienced_non_bosch"
+                style="margin-bottom: 0;" >
+              <mat-select class="form-content non-bosch-exp-type" formControlName="experienced_non_bosch_type"
+                style="margin-bottom: 0;">
+                <mat-option *ngFor=" let type of nonBoschTypeList" [value]="type?.value">{{type?.name ||
+                  '--'}}
+                </mat-option>
+              </mat-select>
+              <!-- <input type="text" class="form-content non-bosch-exp-type" style="margin-bottom: 0;" [value]="personalDtoFormGroup.get('experienced_non_bosch_type')?.value"  [disabled]="true"> -->
+            </div>
+            <ng-container
+              *ngIf="personalDtoFormGroup.get('experienced_non_bosch')?.dirty || personalDtoFormGroup.get('experienced_non_bosch')?.touched">
+              <small style="color: red;" *ngIf="personalDtoFormGroup.get('experienced_non_bosch')?.errors">This field is
+                invalid (min is 0)</small>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container dialog-action>
+    <button type="button" class="a-button a-button--primary" (click)="onSave()"
+      [disabled]="!personalDtoFormGroup.valid || !associateForm.get('skill_group_ids')?.valid">
+      <i class="a-icon boschicon-bosch-ic-save" title="save"></i>
+      {{'manage_associate.add_associate.button_save' | translate}}
+    </button>
+  </ng-container>
+</eet-common-dialog>

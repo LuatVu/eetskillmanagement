@@ -1,0 +1,36 @@
+<div class="page-wrapper">
+  <cdk-virtual-scroll-viewport [itemSize]="3" class="virtualScrolling">
+    <div [classList]="['grid-wrapper grid-wrapper-' + projectToShowLength]">
+      <div class="no-data" *ngIf="projectToShow && projectToShow.length===0">{{'system.no_data' | translate}}</div>
+
+      <ng-container *ngFor="let project of projectToShow;let i = index" >
+         <eet-project-item 
+         [project]="project"
+          [index]="i" 
+          [query]="query"
+          ></eet-project-item>
+      </ng-container>
+      
+    </div>
+  </cdk-virtual-scroll-viewport>
+  <div class="footer">
+    <div class="paginator">
+      <mat-paginator #paginator (page)="onPageChange($event)" [length]="projectListLength" [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+    <div class="sorter">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <span class="text"> {{ "projects.command.sort" | translate }} </span><i
+          class="a-icon boschicon-bosch-ic-post-it-collection"></i>
+      </button>
+      <mat-menu #menu="matMenu" class="menu-without-scroll">
+        <button class="sorter__item" mat-menu-item *ngFor="let orderBy of orderFunctions" (click)="onDropdownChange(orderBy.apiValue)" 
+          [ngClass]="orderBy.apiValue == currentlyOrderBy?'sorter__highlight':''"
+        >
+          <span>{{ orderBy.viewValue }}</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

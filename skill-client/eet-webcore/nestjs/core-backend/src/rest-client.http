@@ -1,0 +1,16 @@
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{"username": "user1",
+ "password": "user1"
+ }
+
+###
+http://localhost:3000/me
+CSRF-TOKEN: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwic3ViIjoxLCJpYXQiOjE2NDk5OTA2MzcsImV4cCI6MTY0OTk5NDIzN30.bxUbsMD_ipRJ65JkYyaMEzfb6FJkj2j4wBdMJAgS_N0
+
+###
+http://localhost:3000/user1
+
+###
+http://localhost:3000/admin/manage

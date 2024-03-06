@@ -1,0 +1,135 @@
+.LearningCompoment {
+  padding-left: 10px;
+  padding-right: 10px;
+  // border-style: solid;
+  // border-color: black;
+  background-color: white;
+}
+.ProjectTable {
+  width: 100%;
+  background-color: white;
+}
+
+.Table {
+  width: 100%;
+}
+.Search {
+  padding-top: 20px;
+  padding-right: 20px;
+}
+.Searchinput {
+  padding-left: 10px;
+  background-color: whitesmoke;
+}
+
+.associate {
+  padding-top: 0.5%;
+  padding-left: 2%;
+}
+.display {
+  display: flex;
+}
+
+table.mat-table {
+  width: 100%;
+  background-color: white;
+}
+
+tr.detail-row {
+  height: 0;
+  background-color: white;
+}
+
+.Project-info {
+  width: 100%;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.bosch-ic-clickable {
+  border-style: none;
+  color: black;
+  size: 4rem;
+}
+
+.editbtn {
+  flex: 1 1 auto;
+}
+.Closed {
+  color: green;
+}
+.On-going {
+  color: yellow;
+}
+.search-bar {
+  @mixin transition {
+    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s; /* Safari & Chrome */
+    -moz-transition: background-color 0.3s; /* Mozilla */
+    -ms-transition: background-color 0.3s; /* Internet Exploder */
+    -o-transition: background-color 0.3s; /* Opera */
+  }
+  display: flex;
+  align-items: baseline;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  padding-top: 6px;
+  margin-right: 1em;
+  background-color: #efeff0;
+  //background-color: ;
+  border-radius: 24px;
+  border: 1px solid #bfc0c2;
+  mat-icon {
+    border-width: 0 0 1px 0;
+    border-color: #efeff0;
+    border-style: solid;
+    border-radius: 16px 0 0 16px;
+    background-color: #efeff0;
+  }
+  input {
+    padding: 0;
+    color: #000000;
+    background-color: #efeff0;
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    caret-color: #000000;
+    cursor: auto;
+    font-family: "Bosch-Sans";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    border-width: 0px 0px 1px 0px;
+    border-color: #efeff0;
+    border-style: solid;
+    border-radius: 0px 16px 16px 0px;
+    padding-left: 4px;
+    padding-right: 2px;
+    @include transition;
+  }
+}
+.mat-column-expandedDetail {
+  padding: 0 !important;
+}
+
+.expanded-row {
+  background-color: var(--bosch-blue-95);
+}
+
+.box-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+  margin-bottom: 0;
+}
+
+.ProjectTable .table-action .icon-disabled {
+  color: var(--bosch-gray-50) !important;
+  cursor: no-drop;
+}

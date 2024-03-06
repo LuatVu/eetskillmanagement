@@ -1,0 +1,27 @@
+<eet-common-dialog [isShowCloseButton]="false">
+
+  <ng-container dialog-content>
+
+    <p class="title-comfirm">{{titleConfirm}}</p>
+
+    <mat-form-field>
+      <mat-label>Comment</mat-label>
+      <textarea matInput [(ngModel)]="comment"></textarea>
+    </mat-form-field>
+  </ng-container>
+
+
+  <ng-container dialog-action>
+    <button type="button" (click)="onSave(true)" class="a-button a-button--primary -without-icon btn-login">
+      <div class="a-button__label txt-label">
+        {{ "button.yes" | translate }}
+      </div>
+    </button>
+    <button type="button" (click)="onSave(false)" class="a-button a-button--primary -without-icon btn-login">
+      <div class="a-button__label txt-label">
+        {{ "button.no" | translate }}
+      </div>
+    </button>
+  </ng-container>
+
+</eet-common-dialog>

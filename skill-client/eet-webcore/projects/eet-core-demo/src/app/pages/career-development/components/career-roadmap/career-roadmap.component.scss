@@ -1,0 +1,154 @@
+@keyframes gbSlideUp{
+    from {
+    width: 0;
+    }
+    to {
+    width: 50%;
+    }
+}
+.grid-wrapper{
+    display: grid;
+    gap: 2px;
+    width: 100%;
+    height: calc(100vh - 100px);
+    grid-template-columns: 1fr 1fr;
+    .grid-item-left{
+        &:before{
+            background-image: url('../../../../../assets/images/career-road-map-left.png');
+        }
+    }
+    .grid-item-right{
+        &:before{
+            background-image: url('../../../../../assets/images/career-road-map-right.png');
+        }
+    }
+
+    .grid-item{
+        overflow: hidden;
+        &:before{
+            filter: brightness(0.7);
+            transition: all 0.25s;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(100% + 30px);
+            height: 100%;
+            background-position: left;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        z-index: 0;
+        
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.25s;
+        .topline-contain{
+            display: grid;
+            row-gap: 10px;
+            position: absolute;
+            width: 0;
+            top: 2rem;
+            transition: all 0.25s;
+            *:nth-child(1){
+                width: 100%;
+            }
+            *:nth-child(2){
+                width: 85%;
+            }
+            *:nth-child(3){
+                width: 70%;
+            }
+            *{
+                height: 14px;
+            }
+        }
+        .topline-left{
+            transform: rotateY(180deg);
+            right: 0;
+            *{
+                background-image: linear-gradient(to right, #8CBC68, #00937D);
+            }
+        }
+        .topline-right{
+            left: 0;
+            *{
+                background-image: linear-gradient(to right, #00C2DE, #B9F2FF);
+            }
+        }
+        &:hover{
+            &:before{
+                left: -30px;
+                filter: brightness(1.1);
+            }
+            cursor: pointer;
+            .content-contain{
+                .content-item{
+                    font-size: 3.5rem;
+                    text-transform: uppercase;                    
+                }
+                .content-item-left{
+                    background-image: linear-gradient(to right, #00937D, #8CBC68);
+                    -webkit-filter: drop-shadow(2px 2px #fff);
+                    filter: drop-shadow(2px 2px #fff);
+                }
+                .content-item-right{
+                    background-image: linear-gradient(to right, #00C2DE, #B9F2FF);
+                    -webkit-filter: drop-shadow(2px 2px #006793);
+                    filter: drop-shadow(2px 2px #006793);
+                }
+                .content-underline-left{
+                    background-image: linear-gradient(to right, #00937D, #8CBC68);
+                }
+                .content-underline-right{
+                    background-image: linear-gradient(to right, #00C2DE, #B9F2FF);
+                }
+                .content-underline{
+                    width: 70%;
+                }
+            }
+            
+            .topline-contain{
+                width: 50%;
+            }
+        }
+        .content-contain{
+            font-size: 2.5rem;
+            color: var(--bosch-white);
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .content-item{
+                text-transform: uppercase;
+                position: relative;
+                transition: all 0.5s;
+                background-clip: text;
+                background-image: linear-gradient(to right, #fff, #fff);
+                background-size: 100%;
+                background-repeat: repeat;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                -moz-background-clip: text;
+                -moz-text-fill-color: transparent;
+            }
+            .content-underline{
+                width: 20%;
+                z-index: 1;
+                height: 0.4rem;
+                margin-top: 25px;
+                border-radius: 0.4rem;
+                transition: all 0.25s;
+                background-color: var(--bosch-white);
+            }
+        }    
+    }
+}
+
+@media screen and (max-width: 876px) {
+    .grid-wrapper{
+        grid-template-columns: 1fr;
+    }
+}

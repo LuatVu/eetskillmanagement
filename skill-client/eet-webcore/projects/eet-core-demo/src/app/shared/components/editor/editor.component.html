@@ -1,0 +1,25 @@
+
+
+<div class="wrap">
+    <div class="actions">
+        <button *ngIf="isEdit || isPreview" (click)="onSave()" type="button" class="a-button a-button--primary -without-icon btn-login">
+            <div class="a-button__label txt-label">Save</div>
+        </button>
+        <button *ngIf="isEdit" (click)="onPreview()" type="button" class="a-button a-button--primary -without-icon btn-login">
+            <div class="a-button__label txt-label">Preview</div>
+        </button>
+        <button *ngIf="(!isEdit || isPreview) && hasPermission" (click)="onEdit()" type="button" class="a-button a-button--primary -without-icon btn-login">
+            <div class="a-button__label txt-label">Edit</div>
+        </button>
+        <button *ngIf="isEdit || isPreview" (click)="onCancel()" type="button" class="a-button a-button--primary -without-icon btn-login">
+            <div class="a-button__label txt-label">Cancel</div>
+        </button>
+    </div>
+    <div *ngIf="isEdit" class="editor">
+        <quill-editor format="html" [(ngModel)]="editor" (ngModelChange)="onChange($event)"></quill-editor>
+    </div>
+    <div class="ql-container ql-snow view">
+        <div [style.display]="isEdit ? 'none' : 'block'" class="ql-editor" id="content" [innerHTML]="byPassHTML(editor)"></div>
+    </div>
+</div>
+

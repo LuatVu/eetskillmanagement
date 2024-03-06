@@ -1,0 +1,41 @@
+<div class="m-dialog m-dialog--info" id="frontend-kit-dialog-alert-dialog-info" role="dialog"
+  aria-labelledby="frontend-kit-dialog-alert-dialog-info-title">
+  <div class="a-box -floating-shadow-s">
+    <div class="m-dialog__remark --info"></div>
+    <div class="m-dialog__header">
+      <div class="m-dialog__title">
+        <i *ngIf="data?.icon" [class]="data?.icon"></i>
+        {{(data.title || 'dialog.title_confirm') | translate}}
+      </div>
+      <button type="button" class="a-button a-button--integrated -without-label dialog-close-button"
+        data-frok-action="close" aria-label="close dialog" (click)="close()">
+        <i class="a-icon a-button__icon ui-ic-close" title="Close dialog"></i>
+      </button>
+    </div>
+    <hr class="a-divider" />
+    <div class="m-dialog__content">
+      <div class="m-dialog__body" id="frontend-kit-dialog-alert-dialog-info-description">
+        {{data.content}}
+      </div>
+      <div class="m-dialog__actions">
+        <ng-container [ngSwitch]="data?.isShowOKButton">
+          <ng-container *ngSwitchCase="true">
+            <button type="button" class="a-button a-button--primary -without-icon" (click)="onConfirm()">
+              <span class="a-button__label">OK </span>
+            </button>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <button type="button" class="a-button a-button--primary -without-icon" (click)="onConfirm()">
+              <span class="a-button__label">{{(data.btnConfirm || 'dialog.button_name.button_yes') | translate}} </span>
+            </button>
+            <button type="button" class="a-button a-button--secondary -without-icon" (click)="close()">
+              <span class="a-button__label">{{(data.btnCancel || 'dialog.button_name.button_cancel') |
+                translate}}</span>
+            </button>
+          </ng-container>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</div>

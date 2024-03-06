@@ -1,0 +1,2 @@
+﻿id,code,name,description,status,created_date,created_by,modified_date,modified_by,permission_category_id
+ac620b9c-d90d-11ed-afa1-0242ac120002,ASSIGN_ASSOCIATE_TO_PROJECT,Assign new associate to project,Assign new associate to project,Active,2022-11-14T14:57:53,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f

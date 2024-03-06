@@ -1,0 +1,60 @@
+<div class="outerContainer" style="width: 100%;">
+  <div fxLayout="row wrap" fxLayoutGap="30px" class="layoutGap layoutGapMarginBottom">
+    <div fxFlex="calc(30%-30px)">
+      <div fxLayout="row">
+        <p fxFlex="calc(50%)">{{'user_management.permission.list_of_permission' | translate}}</p>
+      </div>
+      <hr>
+    </div>
+    <div fxFlex="calc(30%-30px)">
+      <div fxLayout="row">
+        <p fxFlex="calc(50%)">{{'user_management.permission.permission_detail' | translate}}</p>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="30px" class="layoutGap">
+    <div fxFlex="calc(30%-30px)" class="permisisons-list-column">
+      <cdk-accordion class="example-accordion">
+        <cdk-accordion-item *ngFor="let permission of permissions; let index = index;" #accordionItem="cdkAccordionItem"
+          class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
+          [expanded]="true" [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+            {{permission.name}}
+            <span class="example-accordion-item-description">
+              <i class="a-icon ui-ic-down" title="down" *ngIf="accordionItem.expanded"></i>
+              <i class="a-icon ui-ic-up" title="down" *ngIf="!accordionItem.expanded"></i>
+            </span>
+          </div>
+          <div class="example-accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'"
+            [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
+            <eet-common-list [sourceList]="roleWithPermissions.get(permission.id)" [type]="type"
+              (onSelectItemInList)="onSelectItemInList($event)" [showDeleteIcon]=false [selectedItem]="selectedItem"></eet-common-list>
+          </div>
+        </cdk-accordion-item>
+      </cdk-accordion>
+
+
+      <!-- <section class="permission-section" *ngFor="let permission of permissions">
+        <span class="permission-list-section">
+          {{permission.name}}
+        </span>
+        <span class="permission-list-section">
+          <ul>
+
+          </ul>
+        </span>
+      </section> -->
+    </div>
+    <div fxFlex="calc(30%-30px)" class="permissions-list">
+      <eet-common-detail-copy #detailForm [formType]="'Permission'"
+        [selectedItem]="selectedItem" (onFormSave)="onSave($event)" (onCancle)="handleCancel(selectedItem)"></eet-common-detail-copy>
+
+      <mat-form-field style="width: 100%;">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Code" [value]="selectedItem?.code" [disabled]="true">
+      </mat-form-field>
+    </div>
+  </div>
+</div>

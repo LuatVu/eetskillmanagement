@@ -1,0 +1,151 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <form action="" [formGroup]="projectForm">
+
+      <div class="row">
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.project_name' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="name">
+        </div>
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.role' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <mat-select formControlName="role_id">
+            <mat-option *ngFor=" let value of roles" [value]="value.id">{{value.name}} </mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.start_date' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <div class="form-content date-picker">
+            <input formControlName="start_date" readonly (click)="startDate.open()" class="date-input" matInput
+              [matDatepicker]="startDate">
+            <div class="toggle-calendar">
+              <mat-datepicker-toggle matSuffix [for]="startDate">
+              </mat-datepicker-toggle>
+              <mat-datepicker #startDate [calendarHeaderComponent]="DATE_PICKER_HEADER"></mat-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.tasks' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <eet-common-chip class="form-content" typeChip="object" [selectedChipList]="taskFormControl?.value || []"
+            [isAddOnBlur]="true" (selectedChipChange)="onTaskListChange($event)" [isDisabled]="true"></eet-common-chip>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.end_date' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <div class="form-content date-picker">
+            <input formControlName="end_date" class="date-input" matInput readonly (click)="endDate.open()"
+              [matDatepicker]="endDate">
+            <div class="toggle-calendar">
+              <mat-datepicker-toggle matSuffix [for]="endDate">
+              </mat-datepicker-toggle>
+              <mat-datepicker #endDate [calendarHeaderComponent]="DATE_PICKER_HEADER"></mat-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.status' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="status">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.project_manager' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="pm_name">
+        </div>
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.project_type' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="project_type">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.project_challenge' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="challenge">
+        </div>
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_information.assign_project.dialog.non_bosch_project.project_objective' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="objective">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_project_info.technology_used' | translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="technology_used">
+        </div>
+        <div class="col-md-2 form-label">
+          <mat-label for="">{{'personal_project_info.size' | translate}}</mat-label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-content" type="text" formControlName="team_size">
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-md-12 form-label" style="margin-bottom: 5px;">
+          <mat-label for="">{{'personal_project_info.technology_used' | translate}}</mat-label>
+        </div>
+        <div class="col-md-12">
+          <input class="form-content" type="text" formControlName="technology_used">
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-12 form-label" style="margin-bottom: 5px;">
+          <mat-label for="">{{'personal_project_info.description' | translate}}</mat-label>
+        </div>
+        <div class="col-md-12">
+          <textarea rows="5" formControlName="description" class="form-content">
+                       </textarea>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container dialog-action>
+    <button type="button" class="a-button a-button--primary" (click)="onSave()">
+      <i class="a-icon boschicon-bosch-ic-save" title="save"></i>
+      <div *ngIf="this.data.data.type === 'edit'">{{'button.save' | translate}}</div>
+      <div *ngIf="this.data.data.type === 'add'">{{'button.add' | translate}}</div>
+    </button>
+  </ng-container>
+</eet-common-dialog>

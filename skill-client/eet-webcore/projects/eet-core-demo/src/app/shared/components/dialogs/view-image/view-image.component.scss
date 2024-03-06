@@ -1,0 +1,26 @@
+.image-box {
+  height: 100%;
+  width: fit-content;
+  margin: auto;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.dialog-close-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: #ffffff !important;
+
+  &:focus,
+  &:active {
+    outline: none !important;
+    border: none !important;
+  }
+
+  i {
+    font-size: 24px;
+  }
+}

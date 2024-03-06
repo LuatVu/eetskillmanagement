@@ -1,0 +1,182 @@
+{
+  "appName": "EET Portal",
+  "request_access": "Request Access",
+  "submit": "Submit",
+  "please_enter": "Please enter",
+  "menu": {
+    "dummy": "Dummy link",
+    "dummy.overview": "Overview",
+    "dummy.sub-item-1": "Sub Item 1",
+    "dashboard": "Dashboard",
+    "tree-table-demo": "Tree Table Demo",
+    "user-management": "User Management",
+    "personal-information":"Personal Information",
+    "associate-information": "Associate Information",
+    "imprint": "Imprint",
+    "logout.title": "Do you want to logout?",
+    "logout.btn": "Logout"
+  },
+  "login": {
+    "title": "Welcome to EET Portal",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "please_enter": "Please enter",
+    "bosch_login": "Bosch Login",
+    "for_employee": "Login for employees / Login für Mitarbeiter",
+    "msg_for_employee": "Login only works from Bosch or BSH network / Login funtkioniert lediglich aus dem Bosch oder BSH Netz",
+    "for_external":"LOGIN FOR EXTERNALS"
+  },
+  "request": {
+    "winnt": "NTID",
+    "reason": "Reason"
+  },
+  "register": {
+    "title": "Register",
+    "confirm_password": "Confirm Password"
+  },
+  "validations": {
+    "required": "This field is required",
+    "minlength": "Should have at least {{number}} characters",
+    "maxlength": "This value should be less than {{number}} characters",
+    "min": "This value should be more than {{number}}",
+    "max": "This value should be less than {{number}}",
+    "exist": "The {{value}} has exists",
+    "inconsistent": "Inconsistent with {{value}}",
+    "invalid_email": "Invalid email"
+  },
+  
+  "user_management": {
+    
+    "title": "User Management",
+    "groups_users_submenu": "Groups and Users",
+    "roles_submenu": "Roles",
+    "permissions_submenu": "Permissions",
+    "list_of_user_groups_title": "List of User Groups",
+    "user_group_title": "User Group Detail",
+    "list_of_user_distribution_title": "List of User and Distribution",
+    "search": "Search",
+    "group_name": "Group Name",
+    "description": "Description",
+    "applied_roles": "Applied Roles",
+    "permission":{
+      "list_of_permission": "List of Permision",
+      "permission_detail": "Permision Detail",
+      "name": "Permision Name"
+    },
+    "role":{
+      "list_of_user_roles_title": "List of User Roles",
+      "user_role_title": "User Role Detail",
+      "list_of_user_permission_title": "List of User Permissions",
+      "role_name": "Role Name"
+    },
+    "dialog": {
+      "title_create_group": "Create new group",
+      "title_create_role": "Create new role",
+      "title_confirm": "Confirmation",
+      "title_list_users_and_distributions": "Add list of users and distributions",
+      "title_selected_users": "Selected users",
+      "title_selected_distributions": "Selected distributions",
+      "title_search_users": "Search Users",
+      "title_search_distributions": "Search Distributions",
+      "title_message_content_confirmation_remove": "Do you want to remove {{messageParam}} from System?",
+      "button_name":{
+        "button_yes": "Yes",
+        "button_no": "No",
+        "button_cancel": "Cancel",
+        "button_create": "Create"
+      }
+    }
+  },
+  
+  "error": {
+    "400": {
+      "message": "Sorry, there's an error. Please contact to Admin for more detail"
+    },
+    "401": {
+      "message": "Username/Password is incorrect!"
+    },
+    "403": {
+      "title": "Permission denied!",
+      "message": "You do not have permission to access the requested data."
+    },
+    "404": {
+      "title": "Page not found!",
+      "message": "This is not the web page you are looking for."
+    },
+    "500": {
+      "title": "Server went wrong!",
+      "message": "Looks like we have an internal issue, please try refreshing."
+    },
+    "504": {
+      "title": "Server went wrong!",
+      "message": "Looks like the gateway timeout"
+    },
+    "back_to_home": "Back to Home"
+  },
+  "dashboard_components": {
+    "form_controls": {
+      "title": "Form controls",
+      "description": "Controls that input, select and edit your data elements.",
+      "input_field": "Input Field",
+      "check_box": "Check Box"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "description": "That show the hierarchy between content and facilitates in this way to navigate of Software."
+    },
+    "layout": {
+      "title": "Layout",
+      "description": "Essential components for the presentation of your content."
+    },
+    "button_indicators": {
+      "title": "Button & Indicators",
+      "description": "Buttons, button groups and chips.",
+      "button_1": "Button 1",
+      "button_2": "Button 2"
+    },
+    "modals_popups": {
+      "title": "Modals & Popups",
+      "description": "Configurable components that can dynamically display information and action hints.",
+      "show_modals_popups": "Show modals & popups"
+    },
+    "master_detail": {
+      "title": "Master detail",
+      "description": "Displays a master area and a detail area for contents of the selected item."
+    },
+    "data_table": {
+      "title": "Data table",
+      "description": "Tools for displaying and interacting with tabular data."
+    },
+    "services": {
+      "title": "Services",
+      "description": "The services will help during the development of an application and report about process."
+    },
+    "charts": {
+      "title": "Charts",
+      "description": "Reusuable chart components."
+    },
+    "colors": {
+      "title": "Colors",
+      "description": "The colors available in Bosch applications are defined in the Bosch corporate design."
+    },
+    "icons": {
+      "title": "Icons",
+      "description": "Icons defined in the Bosch corporate design which make the content easier to understand."
+    },
+    "reference_document": "Reference Document For More Details",
+    "title": "Available Components/Modules In Blueprint"
+  },
+
+"associate_info_components":{
+"title": "Manage Associates Information"
+},
+
+  "no_access": {
+    "title": "No Authorization",
+    "click_text": "Click ",
+    "request_link_title": " HERE ",
+    "request_access_text": " to request access",
+    "no_access_message": "You have no authorization to access EET Blueprint"
+  }
+}

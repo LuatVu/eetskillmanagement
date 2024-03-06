@@ -1,0 +1,75 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div class="full-contain" *ngIf="detailcourse">
+
+      <div class="detail-group-row full-width">
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.name' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.personal_course_name || '--'}}</label>
+        </div>
+      </div>
+
+      <div class="detail-group-row">
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.start_date' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.start_date | date:'dd/MM/yyyy' ||
+            '--'}}</label>
+        </div>
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.end_date' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.end_date | date:'dd/MM/yyyy' ||
+            '--'}}</label>
+        </div>
+      </div>
+
+      <div class="detail-group-row">
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.trainer' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.trainer || '--'}}</label>
+        </div>
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.category' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.category_name ||
+            '--'}}</label>
+        </div>
+      </div>
+
+      <div class="detail-group-row">
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.type' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.course_type || '--'}}</label>
+        </div>
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.status' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.status ||
+            '--'}}</label>
+        </div>
+      </div>
+
+      <div class="detail-group-row">
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.certificate' | translate}}</label>
+          <button mat-icon-button color="primary" (click)="view(detailcourse.certificate)" type="button"
+            class="bosch-ic-clickable">
+            <i class="a-icon boschicon-bosch-ic-document-dxf"></i>
+          </button>
+        </div>
+        <div class="detail-group-item">
+          <label for="" class="title">{{'personal_learning.learning_detail.duration' | translate}}</label>
+          <label for="" class="detail" matTooltipClass="matTooltip"
+            matTooltip="{{detailcourse.personal_course_name}}">{{detailcourse.duration ||
+            '--'}}</label>
+        </div>
+      </div>
+
+    </div>
+  </ng-container>
+  <ng-container dialog-action></ng-container>
+</eet-common-dialog>

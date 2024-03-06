@@ -1,0 +1,4 @@
+id,code,name,description,status,created_date,created_by,modified_date,modified_by,permission_category_id
+b399994a-e8fd-1a23-6f51-cc019f739e2d,EDIT_EET_OVERVIEW,Edit EET overview,Edit EET overview,Active,2023-10-10T15:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f
+44aeb860-271a-6ce6-0cac-48223de93f2f,EDIT_EET_ORG_CHART,Edit EET org chart,Edit EET org chart,Active,2023-10-10T15:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f
+3aa042d3-4f6a-279c-4ba6-63634e1928f1,EDIT_HELP,Edit help,Edit help,Active,2023-10-10T15:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f

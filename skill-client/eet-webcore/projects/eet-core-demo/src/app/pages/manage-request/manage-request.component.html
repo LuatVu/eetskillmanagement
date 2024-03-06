@@ -1,0 +1,13 @@
+<div class="home">
+  <mat-tab-group (selectedTabChange)="onTabSwitch($event)" [selectedIndex]="selectedTabIndex">
+    <mat-tab *ngFor="let tabItem of manageRequestTabList" label="{{tabItem.name | translate}}"></mat-tab>
+  </mat-tab-group>
+  <ng-container [ngSwitch]="activeTab">
+    <ng-template [ngSwitchCase]="pending_request_url">
+      <eet-pending-request class="child-components"></eet-pending-request>
+    </ng-template>
+    <ng-template [ngSwitchCase]="approved_rejected_request_url">
+      <eet-previous-request class="child-components"></eet-previous-request>
+    </ng-template>    
+  </ng-container>
+</div>

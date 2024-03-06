@@ -1,0 +1,273 @@
+[
+  {
+    "title": "overview",
+    "url": "/overview",
+    "position": 1,
+    "icon": "boschicon-bosch-ic-document-copy",
+    "permissions": []
+  },
+  {
+    "title": "org-chart",
+    "url": "/org-chart",
+    "position": 2,
+    "icon": "boschicon-bosch-ic-structure-organization",
+    "permissions": []
+  },
+  {
+    "menu": "projects",
+    "title": "department-project",
+    "url": "/projects",
+    "position": 3,
+    "icon": "boschicon-bosch-ic-projection-interactive",
+    "permissions": [],
+    "items": [
+      {
+        "title": "our-customers",
+        "url": "/projects/customer-gb",
+        "permissions": []
+      },
+      {
+        "title": "project-list",
+        "url": "/projects/project-list",
+        "permissions": []
+      },
+      {
+        "title": "v-model",
+        "url": "/projects/v-model",
+        "permissions": []
+      }
+    ]
+  },
+  {
+    "title": "competence-development",
+    "url": "/competence-development",
+    "position": 4,
+    "icon": "boschicon-bosch-ic-clipboard",
+    "permissions": [
+      "VIEW_CAREER_DEVELOPMENT"
+    ],
+    "items": [
+      {
+        "title": "career-road-map",
+        "url": "/competence-development/career-road-map",
+        "permissions": []
+      },
+      {
+        "title": "jd",
+        "url": "/competence-development/jd",
+        "permissions": [
+          "VIEW_DEPARTMENT_LEARNING"
+        ]
+      },
+      {
+        "title": "learn-courses",
+        "url": "/competence-development/learn-courses",
+        "permissions": [
+          "VIEW_DEPARTMENT_LEARNING"
+        ]
+      },
+      {
+        "title": "self-skill-evaluation",
+        "url": "/competence-development/self-skill-evaluation",
+        "permissions": []
+      },
+      {
+        "title": "my-request",
+        "url": "/competence-development/my-request",
+        "permissions": []
+      }
+    ]
+  },
+  {
+    "title": "report",
+    "url": "/report",
+    "position": 5,
+    "icon": "boschicon-bosch-ic-chart-bar",
+    "permissions": [
+      "VIEW_REPORT"
+    ],
+    "items": [
+      {
+        "title": "associate",
+        "url": "/report/associate",
+        "permissions": [
+          "VIEW_REPORT"
+        ]
+      },
+      {
+        "title": "project",
+        "url": "/report/project",
+        "permissions": [
+          "VIEW_REPORT"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "user-information",
+    "url": "/user-information",
+    "position": 6,
+    "icon": "boschicon-bosch-ic-user-framed",
+    "permissions": [
+      "VIEW_PERSONAL_PERMISSION",
+      "VIEW_ASSOCIATE_INFO_PERMISSION"
+    ],
+    "items": [
+      {
+        "title": "personal-information",
+        "url": "/user-information/personal-info",
+        "permissions": [
+          "VIEW_PERSONAL_PERMISSION"
+        ]
+      },
+      {
+        "title": "associate-information",
+        "url": "/user-information/associate-info",
+        "permissions": [
+          "VIEW_ASSOCIATE_INFO_PERMISSION"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "user-management",
+    "url": "/user-management",
+    "position": 7,
+    "icon": "bosch-ic-field-users",
+    "permissions": [
+      "VIEW_USER_MANAGEMENT"
+    ],
+    "items": [
+      {
+        "title": "groups-users-submenu",
+        "url": "/user-management/groups-users",
+        "permissions": [
+          "VIEW_USER_MANAGEMENT"
+        ]
+      },
+      {
+        "title": "roles-submenu",
+        "url": "/user-management/roles",
+        "permissions": [
+          "VIEW_USER_MANAGEMENT"
+        ]
+      },
+      {
+        "title": "permissions-submenu",
+        "url": "/user-management/permissions",
+        "permissions": [
+          "VIEW_USER_MANAGEMENT"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "system",
+    "url": "/system",
+    "position": 8,
+    "icon": "boschicon-bosch-ic-settings",
+    "permissions": [
+      "VIEW_SYSTEM"
+    ],
+    "items": [
+      {
+        "title": "competency-lead",
+        "url": "/system/competency-lead",
+        "permissions": [
+          "VIEW_SYSTEM"
+        ]
+      },
+      {
+        "title": "manage-skill",
+        "url": "/system/manage-skill",
+        "permissions": [
+          "VIEW_SYSTEM"
+        ]
+      },
+      {
+        "title": "manage-project-scope",
+        "url": "/system/manage-project-scope",
+        "permissions": [
+          "VIEW_SYSTEM"
+        ]
+      },
+      {
+        "title": "manage-project-role",
+        "url": "/system/manage-project-role",
+        "permissions": [
+          "VIEW_SYSTEM"
+        ]
+      },
+      {
+        "title": "line-manager",
+        "url": "/system/line-manager",
+        "permissions": [
+          "VIEW_SYSTEM"
+        ]
+      },
+      {
+        "title": "common-config",
+        "url": "/system/common-config",
+        "permissions": [
+          "VIEW_SYSTEM"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "manage-request",
+    "url": "/manage-request",
+    "position": 9,
+    "icon": "boschicon-bosch-ic-message",
+    "permissions": [
+      "VIEW_MANAGE_REQUEST"
+    ],
+    "items": [
+      {
+        "title": "pending-request",
+        "url": "/manage-request/pending-request",
+        "permissions": [
+          "VIEW_MANAGE_REQUEST"
+        ]
+      },
+      {
+        "title": "approved-rejected-request",
+        "url": "/manage-request/approved-rejected-request",
+        "permissions": [
+          "VIEW_MANAGE_REQUEST"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "demand-supply",
+    "url": "/demand-supply",
+    "position": 10,
+    "icon": "boschicon-bosch-ic-delivery",
+    "permissions": [
+      "USER_DEMAND_SUPPLY",
+      "ADMIN_DEMAND_SUPPLY"
+    ]
+  },
+  {
+    "title": "travel-plan",
+    "url": "https://rb-wam-ap.bosch.com/cms/travel-plan/",
+    "position": 11,
+    "icon": "boschicon-bosch-ic-plane-start",
+    "permissions": []
+  },
+  {
+    "title": "help",
+    "url": "/help",
+    "position": 12,
+    "icon": "boschicon-bosch-ic-question-frame",
+    "permissions": []
+  },
+  {
+    "title": "release-note",
+    "url": "/release-note",
+    "position": 13,
+    "icon": "boschicon-bosch-ic-notepad-edit",
+    "permissions": []
+  }
+]

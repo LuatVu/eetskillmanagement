@@ -1,0 +1,110 @@
+/*!
+  *  Copyright (C) 2018 Robert Bosch GmbH Copyright (C) 2018 Robert Bosch Manufacturing Solutions GmbH, Germany. All rights reserved.
+ */
+
+// @import "~@bci-web-core/common-styles/sass/bci/bci-variables";
+// @import "~@bci-web-core/common-styles/sass/bci/mixins/borders";
+// @import "~@bci-web-core/common-styles/sass/bci/mixins/typography";
+// @import "~@bci-web-core/common-styles/sass/bci/mixins/header";
+
+// .supergraphic {
+//   z-index: 10;
+// }
+
+// .bci-header-container {
+//   @include make-responsive-header-padding("0px", "0px");
+//   height: $header-height-screen-xs;
+//   @media (min-width: $screen-sm-min) {
+//     height: $header-height;
+//   }
+
+//   //align-items: center;
+//   @include make-border(0 0 1px 0, $boschLightGray50);
+
+//   .header-title {
+//     margin-right: 32px;
+//     @include make-font(28px);
+//   }
+
+//   .header-content {
+//     margin-right: 32px;
+//   }
+
+//   .header-logo {
+//     margin-left: auto;
+//     width: $header-logo-width;
+//     height: 28.4px;
+//     img {
+//       //align-self: center;
+//       height: 100%;
+//       width: $header-logo-width;
+//     }
+//   }
+// }
+
+// .o-minimal-header__top {
+//   height: 3rem;
+//   border-bottom: 1px solid #8a9097;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+// }
+// .o-minimal-header__logo #bosch-logo-text {
+//   fill: #ea0016;
+// }
+
+@media (min-width: 768px) {
+  .o-minimal-header__title {
+    margin-left: 26px;
+    
+  }
+}
+@media (max-width: 768px) {
+  .o-minimal-header__title {
+    margin-left: 46px;
+    
+  }
+}
+
+
+eet-header {
+  .o-minimal-header,
+  .o-minimal-header .m-side-navigation {
+    z-index: 1;
+    padding-top: 0;
+  }
+
+  .o-minimal-header {
+    position: relative;
+    width: 100%;
+  }
+  .badge {
+    position: absolute;
+    left: 3.5em;
+    font-size: 11px;
+    top: 1rem;
+    background: red;
+    font-weight: bold;
+  }
+  .o-minimal-header__logo{
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+.hide-badge {
+  display: none;
+}
+
+.o-minimal-header__actions {
+  button{
+   display: flex;
+   align-items: center;
+  }
+ }
+
+ .mat-menu-panel{
+  min-height:unset !important ;
+}

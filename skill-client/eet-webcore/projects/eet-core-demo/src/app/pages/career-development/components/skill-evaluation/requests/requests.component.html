@@ -1,0 +1,96 @@
+<div class="full-space">
+  <table mat-table [dataSource]="dataSource" class="skill-table table-common" matSort>
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.position" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element; index as i">
+        {{ i+1 }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="approver">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.approver" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div class="w-130" #approver
+        [matTooltip]="approver && approver.scrollHeight> 45? element.approver:''">
+          {{ element.approver }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th class="status hover-test" mat-header-cell mat-sort-header *matHeaderCellDef>
+        {{ "skill.title.status" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element" [ngClass]="{
+          evaluated: (element.status === 'APPROVED/REJECTED'),
+          waiting: element.status === 'APPROVAL_PENDING',
+          approved: element.status === 'APPROVED',
+          rejected: element.status === 'REJECTED'
+        }">
+        <div class="w-130"
+        [matTooltip]="status && status.scrollHeight> 45? element.statusMsg:''" #status>
+          {{element.statusMsg}}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.request_date" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        {{ element.created_date | date: 'dd/MM/yyyy HH:mm:ss' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updated_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.modified_date" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        {{ element.updated_date | date: 'dd/MM/yyyy HH:mm:ss' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="approved_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "skill.title.approve_date" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">{{ (!!element.approved_date && element.approved_date.length > 0) ?
+        (element.approved_date | date: 'dd/MM/yyyy HH:mm:ss') : ' ' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "skill.title.action" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element" class="table-action">
+        <i class="a-icon boschicon-bosch-ic-watch-on" title="{{'skill.button.see_request' | translate }}"
+          style="cursor: pointer" (click)="onClick(element, false)"></i>
+        <i class="a-icon boschicon-bosch-ic-document-edit" title="Edit Request" style="cursor: pointer"
+          (click)="onClick(element, true)" *ngIf="element.isEnabled"></i>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="7">
+        {{ "skill.message.no_match" | translate }}
+      </td>
+    </tr>
+  </table>
+  <div fxLayout="row" fxLayoutAlign="center none">
+    <mat-paginator #paginator [pageSizeOptions]="pageOption" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

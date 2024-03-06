@@ -1,0 +1,26 @@
+<eet-common-dialog>
+  <div dialog-content fxLayout="column wrap">
+    <div class="select-title">
+      <p>{{ "skill.title.select_dialog" | translate }}</p>
+    </div>
+    <mat-form-field class="field">
+      <mat-label [style.color]="'black'">{{ "skill.title.approver" | translate }}</mat-label>
+      <mat-select [(ngModel)]="chosenCompetencyLeader.id" panelClass="panel-full-width" disabled>
+        <mat-option *ngFor="let approver of approverList" [value]="approver.id"
+          placeholder="{{ 'skill.message.select_placeholder' | translate }}">
+          {{ approver.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ng-container dialog-action>
+    <button (click)="onConfirm()" 
+type="button" class="a-button a-button--primary -without-icon btn-login">
+      <div class="a-button__label txt-label">
+        {{ "skill.button.dialog.ok" | translate }}
+      </div>
+    </button>
+  </ng-container>
+
+</eet-common-dialog>

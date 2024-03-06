@@ -1,0 +1,18 @@
+id,name,description
+45bdbe73-0064-5653-1bc9-1e748f9904db,requirementEngineering,Requirement Engineering
+54d21a88-ac8a-6b89-e952-320e77beda47,systemArchitecture,System Architecture
+c66e7577-f41b-07fd-2af1-16812f153c8b,softwareArchitecture,Software Architecture
+908ccb9f-0897-1429-f525-09460f0e8f49,softwareDocumentation,Software Design & Document
+cc0549d7-08f0-f1a1-9cd8-8012f3d4b7d6,softwareModelBasedDevelopment,Software Design & Model Based Development
+48913fff-eb35-bb82-d1d5-fc7038024865,softwareRapidPrototyping,Software Design & Model Rapid Prototyping
+887450f1-e03f-6744-e207-422bd4f362c9,genericReview,Generic review
+567332c2-c73d-94b9-d34b-332447c74bbf,systemSoftwareTest,System & Software Test
+2f9675a5-01e6-b521-1a4c-d9a12a84a15e,systemIntegration,Software Integration & System Integration Test
+9c0b45df-fa66-6456-574b-d8778608c59c,softwareIntegration,Software Integration
+b368f023-44a0-5091-2b69-9d7d5591fbb2,ciDashboard,CI Dashboard
+3a7f0043-2eaf-1e4f-273e-a61af59fa1d3,softwareUnitTest,SW Unit Test & Component Verification
+d00d1b3d-3453-5f99-993d-fb60d7468e31,softwareConstruction,Software Construction
+c6b069d8-1f4d-aeee-585f-e07a5922976a,prjConfigManagement,Project Management and Configuration Management
+5ba242eb-f565-fbef-bed4-6ab7e03ae81c,prjPlanCreationDeli,"Product Management - Planning, Creation and Delivery"
+c06f86ca-be24-1813-025c-1c3bd7259fe9,swConfigManagement,Software Configuration Management
+a212b828-6282-9853-7604-8ac9d55043a1,changeRequest,Change Request and Problem Resolution Management

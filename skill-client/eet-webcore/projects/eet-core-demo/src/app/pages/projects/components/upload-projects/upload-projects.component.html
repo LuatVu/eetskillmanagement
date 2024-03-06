@@ -1,0 +1,58 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div class="title">
+    <div class="import-title">
+      <mat-label>
+        {{ "projects.import.request" | translate }}
+      </mat-label>
+    </div>
+    <div class="import-file" fxLayout="row wrap" fxLayoutAlign="start center">
+      <div fxFlex="80%" class="file-upload" (click)="fileUpload.click()">
+        <input type="file" hidden accept=".csv, .xlsx" id="fileUpload" (change)="onChange($event)" #fileUpload />
+        <span>{{files?.name || ''}}</span>
+        
+      </div>
+      <button fxFlex="20%" style="float: right" mat-raised-button (click)="fileUpload.click()">
+        <mat-icon fontIcon="bosch-ic-search"></mat-icon>
+        <mat-label>{{ "projects.import.browse" | translate }}</mat-label>
+      </button>
+      
+    </div>
+    <ng-container style="padding-bottom: 10px">
+      {{ "projects.import.template_type" | translate }}
+    </ng-container>
+    <div *ngFor="let errors of errorList">
+      <mat-label><span class="errors">{{errors}}</span></mat-label>
+    </div>
+  </div>
+    <div class="existed-table-div" *ngIf="isProjectExisted">
+      <table mat-table class="existed-prj-table" [dataSource]="existedList">
+        <ng-container matColumnDef="name">
+          <th class="hover-test table-header" mat-header-cell *matHeaderCellDef>
+            {{ "projects.import.existed_projects_list" | translate }}
+          </th>
+    
+          <td mat-cell *matCellDef="let element">
+            {{ element }}
+          </td>
+        </ng-container>
+
+        <ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="7">
+              {{ "skill.message.no_match" | translate }}
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </ng-container>
+  <ng-container dialog-action>
+    <button mat-raised-button class="btn-exp" [disabled]="!isUserUploaded" (click)="onImport()">
+      <ng-container><mat-icon fontIcon="bosch-ic-import"> </mat-icon>
+        {{ "projects.command.import" | translate }}</ng-container>
+    </button>
+  </ng-container>
+</eet-common-dialog>

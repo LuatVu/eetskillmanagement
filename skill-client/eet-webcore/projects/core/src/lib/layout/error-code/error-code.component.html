@@ -1,0 +1,6 @@
+<div class="app-error-wrap">
+  <div class="app-error-code">{{code}}</div>
+  <div class="app-error-title" *ngIf="title">{{title | translate}}</div>
+  <div class="app-error-message" *ngIf="message">{{message | translate}}</div>
+  <div><a mat-raised-button color="primary" routerLink="/">{{'error.back_to_home' | translate}}</a></div>
+</div>

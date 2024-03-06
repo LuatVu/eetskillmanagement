@@ -1,0 +1,271 @@
+<eet-common-dialog>
+<div 
+  class="CourseInfoCompoment"
+  fxLayout="column"
+  fxLayoutGap="5%"
+  dialog-content
+>
+  <div fxLayout="row wrap" class="full-contain">
+    <!-- Left column -->
+    <div fxLayout="column" fxLayoutGap="7%" fxFlex="50%">
+      <!-- Name of course-->
+      <div fxLayout="row" fxLayoutGap="7%" class="columns1">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.name" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <ng-container> 
+            <span [matTooltip]="infoData.name" class="info">{{infoData.name}}</span>
+          </ng-container>
+        </div>
+      </div>
+      <!-- Trainer -->
+      <div fxLayout="row" fxLayoutGap="7%">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.trainer" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <ng-container>
+            <span [matTooltip]="infoData.trainer" class="info">{{infoData.trainer}}</span>
+          </ng-container>
+        </div>
+      </div>
+      <!-- Type -->
+      <div fxLayout="row" fxLayoutGap="7%">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.type" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <ng-container>
+            <span [matTooltip]="infoData.course_type" class="info">{{infoData.course_type}}</span>  
+          </ng-container>
+        </div>
+      </div>
+      <!-- Duration -->
+      <div fxLayout="row" fxLayoutGap="7%">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.duration" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <ng-container>
+            <span [matTooltip]="infoData.duration + ' ' + ('learning.my_learning.info.hour' | translate)" class="info">{{infoData.duration + ' ' + ("learning.my_learning.info.hour" | translate)}}</span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div fxLayout="column" fxFlex="50%" fxLayoutGap="7%" class="columns2">
+      <!-- Category -->
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.category" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <ng-container>
+            <span [matTooltip]="infoData.categoryName" class="info">{{infoData.categoryName}}</span>  
+          </ng-container>
+        </div>
+      </div>
+      <!-- Start date -->
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.start" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="30%">
+          <div fxLayout="row" class="startdate">
+            <div fxLayout="row">
+              <ng-container>
+                <span [matTooltip]="infoData.date" class="info">{{infoData.date}}</span>  
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Status -->
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{ "projects.detail.status" | translate }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="60%">
+          <ng-container>
+            <span [matTooltip]="infoData.status" class="info">{{infoData.status}}</span>  
+          </ng-container>
+        </div>
+      </div>
+      <!-- Target Audience -->
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center none" fxFlex="40%">
+          <mat-label>{{
+            "learning.my_learning.info.audience" | translate
+          }}</mat-label>
+        </div>
+        <div fxLayout="column" fxFlex="30%">
+          <div fxLayout="row" class="enddate">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <ng-container>
+                <span [matTooltip]="infoData.target_audience" class="info">{{infoData.target_audience}}</span>  
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- Assign members for course (for MANAGER only!!!) -->
+  <div>
+    <!-- Find members by search -->
+    <div
+      fxLayout="row wrap"
+      fxLayoutAlign="space-between center"
+      class="find-member"
+    >
+      <div fxFlex="20%" fxFlexAlign="center">
+        <ng-container>{{
+          "learning.my_learning.register.find_member" | translate
+        }}</ng-container>
+      </div>
+
+      <mat-form-field fxFlex="60%" fxFlexAlign="end">
+        <mat-label>Search by name/NTID</mat-label>
+        <input type="text" matInput  #input
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+          (ngModelChange)="onSearchChange()"
+          cdkFocusInitial
+          
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of optionList" [value]="option._source.personalId" (click)="selectOption(option)" [disabled]="option._source.displayName === '(No Result)' || option._source.personalId.length === 0 || !option._source.personalId">
+            {{option._source.displayName}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-icon
+          matSuffix
+          fontIcon="bosch-ic-search"
+          *ngIf="!isShowLoading"
+        ></mat-icon>
+        <div class="loading-spinner-wrapper" *ngIf="isShowLoading">
+          <div class="loading-spinner-wrapper-content">
+            <div></div>
+          </div>
+        </div>
+      </mat-form-field>
+
+      <div fxFlex="20%" fxFlexAlign="center">
+        <ng-container>
+          <button mat-raised-button class="btn-exp" [disabled]="currentMemberSearch === null" (click)="refresh()">
+            <ng-container
+              ><mat-icon fontIcon="bosch-ic-add"> </mat-icon>
+              {{ "learning.command.add" | translate }}</ng-container
+            >
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="assigned-member">
+      <div>
+        
+      </div>
+      <div>
+
+      </div>
+    </div>
+    <!-- Assign member table -->
+    <table mat-table matSort [dataSource]="dataSource" class="table-common">
+      <!-- Member Column -->
+      <ng-container matColumnDef="display_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'learning.my_learning.register.member_name' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{ element.display_name }}</td>
+      </ng-container>
+    
+      <!-- Start Date -->
+      <ng-container matColumnDef="start_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'learning.my_learning.info.start' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field floatLabel="never" [ngClass]="{'notAllowed': isFieldBlocked('start_date')}">
+            <input matInput  [ngClass]="{'notAllowed': isFieldBlocked('start_date')}" [disabled]="isFieldBlocked('start_date')" [matDatepicker]="startDatePicker" [(ngModel)]="element.start_date" (click)="startDatePicker.open()">
+            <i matSuffix  [ngClass]="{'notAllowed': isFieldBlocked('start_date')}" class="a-icon boschicon-bosch-ic-calendar-date-single "
+              matTooltip="{{ 'learning.my_learning.info.start' | translate }}" (click)="startDatePicker.open()"></i>
+            <mat-datepicker  [ngClass]="{'notAllowed': isFieldBlocked('start_date')}" #startDatePicker color="primary"></mat-datepicker>
+          </mat-form-field>
+        </td>
+      </ng-container>
+    
+      <!-- End Date -->
+      <ng-container matColumnDef="end_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'learning.my_learning.info.end' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field floatLabel="never" [ngClass]="{'notAllowed': isFieldBlocked('end_date')}">
+            <input matInput [ngClass]="{'notAllowed': isFieldBlocked('end_date')}" [disabled]="isFieldBlocked('end_date')" [matDatepicker]="startDatePicker" [(ngModel)]="element.end_date" (click)="startDatePicker.open()">
+            <i matSuffix [ngClass]="{'notAllowed': isFieldBlocked('end_date')}" class="a-icon boschicon-bosch-ic-calendar-date-single "
+              matTooltip="{{ 'learning.my_learning.info.start' | translate }}" (click)="startDatePicker.open()"></i>
+            <mat-datepicker #startDatePicker color="primary" [ngClass]="{'notAllowed': isFieldBlocked('end_date')}"></mat-datepicker>
+          </mat-form-field>
+        </td>
+      </ng-container>
+    
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>{{'learning.my_learning.register.action' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+         <button mat-icon-button  [ngClass]="{'notAllowed': isFieldBlocked('delete')}" [disabled]="isFieldBlocked('delete')" (click)="onDelete(element)">
+          <mat-icon
+          [ngClass]="{'notAllowed': isFieldBlocked('delete')}"
+          class="delete"
+          fontIcon="bosch-ic-delete"
+        ></mat-icon>
+         </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    
+    <mat-paginator
+      #paginator
+      [pageSizeOptions]="paginationOption"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+    
+  </div>
+
+
+</div>
+<ng-container dialog-action>
+      <!-- Save/add button-->
+      <div>
+        <ng-container>
+          <button
+            mat-raised-button
+            mat-dialog-close
+            class="btn-exp"
+            (click)="onSave()"
+          >
+            <ng-container
+              ><mat-icon fontIcon="bosch-ic-glossary"> </mat-icon>
+              {{ "learning.command.register" | translate }}</ng-container
+            >
+          </button>
+        </ng-container>
+      </div>
+</ng-container>
+</eet-common-dialog>

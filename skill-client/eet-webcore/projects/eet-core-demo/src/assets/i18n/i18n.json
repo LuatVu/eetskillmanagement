@@ -1,0 +1,1398 @@
+{
+  "appName": "EET Portal",
+  "request_access": "Request Access",
+  "submit": "Submit",
+  "please_enter": "Please enter",
+  "menu": {
+    "dummy": "Dummy link",
+    "dummy.overview": "Overview",
+    "dummy.sub-item-1": "Sub Item 1",
+    "dashboard": "Dashboard",
+    "tree-table-demo": "Tree Table Demo",
+
+    "user-management": "User Management",
+    "user-management.groups-users-submenu": "Groups and Users",
+    "user-management.roles-submenu": "Roles",
+    "user-management.permissions-submenu": "Permissions",
+
+    "user-information": "User Information",
+    "user-information.personal-information": "My Personal Information",
+    "user-information.associate-information": "My Team Information",
+
+    "home-page": "Home Page",
+    "associate-information": "Associate Information",
+    "imprint": "Imprint",
+    "logout.title": "Do you want to logout?",
+    "logout.btn": "Logout",
+
+    "department-project": "Our Projects",
+    "department-project.project-list": "Project List",
+    "department-project.our-customers": "Customer",
+    "department-project.v-model": "V-Model",
+
+    "skill-evaluation": "Skill Evaluation",
+    "skill-evaluation.my-skill-evaluation":"My Skill Evaluation",
+    "skill-evaluation.my-request":"My Request",
+
+    "manage-request": "Manage Request",
+    "manage-request.pending-request": "Pending Request",
+    "manage-request.approved-rejected-request": "Approved/Rejected Request",
+
+    "department-learning": "Department Learning",
+    "system": "System Management",
+    "system.competency-lead": "Skill Clusters",
+    "system.manage-project-role": "Project Roles",
+    "system.manage-skill": "Skills",
+    "system.line-manager": "Line Managers",
+    "system.common-config": "Common Config",
+    "system.expect-skills-level-for-associate":"Skill Matrix",
+    "system.manage-project-scope":"Project Scopes",
+
+    "report": "Report",
+    "report.associate":"Associate Report",
+    "report.project":"Project Report",
+
+    "vmodel": "V-Model",
+    "demand-supply": "Demand & Supply",
+    "travel-plan": "Travel Plan",
+    
+    "competence-development": "Competence Development",
+    "competence-development.career-road-map":"CDR",
+    "competence-development.jd":"JD",
+    "competence-development.learn-courses":"Learning Courses",
+    "competence-development.self-skill-evaluation":"Skills - Self Evaluation",
+    "competence-development.my-request":"My Request",
+    "competence-development.technical-competencies":"Technical Competencies",
+
+    "org-chart":"Org Chart",
+    "overview":"Overview",
+    "help":"Help",
+    "release-note":"Release Note"
+  },
+  "login": {
+    "title": "Welcome to EET Portal",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "please_enter": "Please enter",
+    "bosch_login": "Bosch Login",
+    "for_employee": "Login for employees / Login für Mitarbeiter",
+    "msg_for_employee": "Login only works from Bosch or BSH network / Login funtkioniert lediglich aus dem Bosch oder BSH Netz",
+    "for_external": "LOGIN FOR EXTERNALS",
+    "success": "Login success"
+  },
+  "user_information": {
+    "my_personal_information": "My Personal Information",
+    "manage_information": "My Team Information"
+  },
+  "personal_information": {
+    "all": "All",
+    "associate_edit": "Edit",
+    "associate_save": "Save",
+    "associate_cancel": "Cancel",
+    "associate_export": "Export",
+    "make_skill_highlight": "Make Skill Highlight",
+    "associate_back": "Back",
+    "associate_profile": "Associate Profile",
+    "edit": "Edit",
+    "export": "Export",
+    "cancel": "Cancel",
+    "save": "Save",
+    "name": "Name",
+    "department": "Department",
+    "group": "Group",
+    "total_exp": "Total Exp",
+    "level": "Level",
+    "title": "Title",
+    "ntid": "NTID",
+    "team": "Team",
+    "non_bosch_exp": "Non-Bosch Exp",
+    "bosch_exp": "Bosch Exp",
+    "skill_highlight": "Skill Highlight",
+    "skill_tab": "My Skills",
+    "project_tab": "My Projects",
+    "personal_skill_tab": "Personal Skills",
+    "personal_project_tab": "Personal Projects",
+    "learning_tab": "Assigned Learning",
+    "history_change_tab": "Change Skills Level History",
+    "years": "Years",
+    "brief_info": "Brief Info",
+    "personal_number": "Personal Number",
+    "project_search": "Input Project Name",
+    "skill_search": "Input Skill Name",
+    "button": {
+      "skill_evaluate": "Skill Evaluate",
+      "assign_project": "Assigned Project",
+      "assign_learning": "Assigned Learning"
+    },
+    "dialog": {
+      "make_skill_highlight": {
+        "title": "Make Skill Highlight",
+        "content": "Name of skill cluster",
+        "add_success": "Saved Successfully",
+        "add_failed": "Failed to save skill highlight",
+        "hint":"*Only 6 skills to display"
+      },
+      "upload_avatar":{
+        "upload_success": "Upload avatar successfully"
+      }
+    },
+    "upload_file": "Upload File",
+    "assign_project": {
+      "dialog": {
+        "bosch_project": {
+          "title": "Add Bosch Project",
+          "project_name": "Project Name",
+          "role": "Role",
+          "common_tasks": "Common Tasks",
+          "addition_tasks": "Additional Tasks",
+          "project_phase": "Project Phase",
+          "notification_add_success": "New Bosch project is assigned successfully!",
+          "edit_project": "Edit Bosch Project",
+          "notification_choose_duplicate": "User has already assigned to this project"
+        },
+        "non_bosch_project": {
+          "title": "Add Non-Bosch Project",
+          "project_name": "Project Name",
+          "role": "Role",
+          "start_date": "Start Date",
+          "tasks": "Task(s)",
+          "end_date": "End Date",
+          "status": "Status",
+          "project_manager": "Project Manager",
+          "project_type": "Project Type",
+          "project_challenge": "Project Challenge",
+          "project_objective": "Project Objective",
+          "project_description": "Project Description",
+          "notification_add_success": "Add Non-Bosch project successfully"
+        }
+      },
+      "confirm_delete_project": "Are you sure to delete this project ?"
+    },
+    "assign_learning": {
+      "file_name": "File name"
+    }
+  },
+  "add_demand":{
+    "button": "Add Demand",
+    "title": "Create Demand Form",
+    "demand_title":"Create Resource Demand",
+    "subId": "ID", 
+    "project_name": "Project Name",
+    "location": "Location",
+    "skill_cluster": "Skill Cluster",
+    "skill": "Skills",
+    "level": "Level",
+    "assign_to": "Assign To",
+    "expected_date": "Expected Date",
+    "quantity": "Quantity",
+    "button_create": "Create",
+    "cancel": "Cancel",
+    "assignee": "Group",
+    "pic":"PIC",
+    "candidate_name": "Candidate Name",
+    "supply_type": "Supply Type",
+    "note": "Note",
+    "allow_external":"Allow External",
+    "filled_date": "Filled Date",
+    "forecast_date": "Forecast Date",
+    "validate":{
+      "project_name":"Project Name must not be empty",
+      "skill_cluster":"Skill Cluster must not be empty",
+      "skills":"Skills is required",
+      "level":"Level must not be empty",
+      "supply_type": "Supply Type is required",
+      "location":"Location must not be empty",
+      "expected_date":"Expected Date must not be empty",
+      "quantity":"Quantity must be a positive number",
+      "white_space": "Skills do not have only white space",
+      "candidate_name": "Candidate Name is required"
+    }
+  },
+  "manage_associate": {
+    "add": "Add New Associate",
+    "search": "Input Associate's NTID/FullName",
+    "ntid_fullname": "NTID/Fullname",
+    "list_associate": "List of Associates",
+    "name": "Name",
+    "ntid": "NTID",
+    "level": "Level",
+    "year_experience": "Year Exp",
+    "team": "Team",
+    "skill_cluster": "Skill Cluster",
+    "skill": "Skill",
+    "action": "Action",
+    "search_null": "No data matching the filter selected.",
+    "existed_message": "User existed in system",
+    "add_associate": {
+      "title": "Add New Associate",
+      "search_placeholder": "hyc1hc (Search by NTID/Name)",
+      "name": "Associate Name",
+      "ntid": "NTID",
+      "email": "Email",
+      "Group": "Group",
+      "Title": "Title",
+      "join_date": "Joined Date",
+      "skill_group": "Skill Cluster",
+      "level": "Level",
+      "Gender": "Gender",
+      "Department": "Department",
+      "Team": "Team",
+      "Location": "Location",
+      "manager": "Line Manager",
+      "non_bosch_exp": "Non-Bosch Exp",
+      "months": "Months",
+      "years": "Years",
+      "button_add": "Add",
+      "button_save": "Save",
+      "button_cancel": "Cancel"
+    },
+    "edit_associate": {
+      "title": "Edit Associate Information"
+    },
+    "delete_associate": {
+      "title": "Delete Associate Confirmation",
+      "content":"This action will delete",
+      "additional":"from the system.",
+      "cannot_revert":"You won't be able to revert this.",
+      "success":"Delete associate successfully",
+      "failed":"Failed to delete associate"
+
+    }
+  },
+  "personal_skill": {
+    "skill_evaluate": "Skill Evaluate",
+    "search": "Search",
+    "skill": "Skill",
+    "skill_group": "Skill Cluster",
+    "skill_cluster": "Skill Cluster",
+    "current_level": "Current Level",
+    "expected_level": "Expected Level",
+    "experience": "Year Exp",
+    "search_null": "No data matching the filter",
+    "main_skill_cluster": "Main Skill Cluster(s)",
+    "line_manager": "Line Manager",
+    "skills_gap": "Skills Gap"
+  },
+  "personal_project": {
+    "add_non_bosch": "Assigned Project",
+    "add_bosch": "Assigned Project",
+    "add_non_bosch_project": "Add new Non-Bosch Project",
+    "add_bosch_project": "Assign Bosch Project",
+    "update_non_bosch_project":"Edit Non-Bosch project",
+    "update_non_bosch_project_successfully":"Edit Non-Bosch project successfully",
+    "update_bosch_project_successfully":"Edit Bosch project successfully",
+    "view_non_bosch_project":"View Non-Bosch project",
+    "search": "search",
+    "name": "Name",
+    "type": "Project Type",
+    "role": "Role",
+    "size": "Team Size",
+    "status": "Status",
+    "action": "Action",
+    "search_null": " No data matching the filter",
+    "start_date": "Start Date",
+    "end_date": "End Date",
+    "delete_project_successfully":"Delete project successfully"
+  },
+  "personal_project_info": {
+    "name": "Name",
+    "start_date": "Start Day",
+    "end_date": "End Day",
+    "pm_name": "Project Manager",
+    "size": "Team Size",
+    "challenge": "Project Challenge",
+    "gb": "GB",
+    "role": "Role",
+    "tasks": "Task(s)",
+    "additional_tasks": "Additional Task(s)",
+    "status": "Status",
+    "type": "Project Type",
+    "objective": "Project Objective",
+    "link": "Project Reference Link",
+    "description": "Project Description",
+    "technology_used": "Technology Used"
+  },
+  "personal_learning": {
+    "add_study": "Add Self Study",
+    "add_course": "Add Course",
+    "add_self_study": "Add Self Study",
+    "add_assigned_course": "Add Course",
+    "search": "Search",
+    "name": "Name",
+    "type": "Type",
+    "category": "Category",
+    "duration": "Duration",
+    "start_date": "Start Day",
+    "end_date": "End Day",
+    "status": "Status",
+    "certificate": "Certificate",
+    "action": "Action",
+    "detail": "See Detail",
+    "search_null": " No data matching the filter",
+    "learning_detail": {
+      "personal_detail": "Personal Learning Course Detail",
+      "associate_detail": "Associate Learning Course Detail",
+      "name": "Name",
+      "trainer": "Trainer",
+      "type": "Type",
+      "category": "Category",
+      "duration": "Duration",
+      "certificate": "Certificate",
+      "start_date": "Start Day",
+      "end_date": "End Day",
+      "status": "Status",
+      "close": "Close"
+    }
+  },
+  "historical_change": {
+    "skill_cluster": "Skill Cluster",
+    "skill_name": "Skill Name",
+    "date": "Date",
+    "level_change": "Level Change",
+    "exp_Change": "Exp Change",
+    "note": "Note"
+  },
+  "projects": {
+    "import": {
+        "title": "Import Projects from Excel",
+        "request": "Please choose file to import",
+        "download": "Download Template",
+        "browse": "Browse",
+        "template_type": "The excel file which need to follow the defined template: .csv, .xlsx",
+        "import_successfully": "Import file successfully",
+        "import_failed": "Import file failed",
+        "existed_projects_list": "Below is the list of existed projects' name"
+      },
+    "delete_prompt": {
+      "title": "Remove confirmation",
+      "content": {
+        "name_line": "Are you sure to delete",
+        "revert_line": "You won't be able to revert this"
+      },
+      "required_one_member":"At least 1 member is required. You have to add another member to complete this task!",
+      "yes": "Yes",
+      "no": "No",
+      "delete_successfully": "Delete project successfully"
+    },
+    "non_bosch_type":"Non-Bosch",
+    "navbar_name": "Department Project",
+    "title": "List of project in department",
+    "subtitle": "List of Projects",
+    "project": "Project",
+    "projects": "Projects",
+    "search_project_title": "Search by project name",
+    "edit_project_tooltip": "Edit Project Detail",
+    "delete": "Delete Project",
+    "total": "Total",
+    "filter": {
+      "dropdown": {
+        "GB": "Customer's GB",
+        "GB_Placeholder": "All",
+        "Team_Placeholder": "Select",
+        "team": "Team",
+        "order_by": "Order by"
+      },
+      "checkbox": {
+        "type": "Project Type",
+        "Project_Type": {
+          "Bosch": "Bosch",
+          "Non_Bosch": "Non-Bosch",
+          "Department Projects": "Department Project",
+          "Skill Evaluation": "Skill"
+        },
+        "projects": {
+          "delete_prompt": {
+            "title": "Are you sure?",
+            "content": {
+              "name_line": "Are you sure to delete ?",
+              "revert_line": "You won't be able to revert this"
+            },
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "status": "Project Status",
+        "Project_Status": {
+          "ongoing": "On-going",
+          "closed": "Closed"
+        }
+      }
+    },
+    "pagination": {
+      "first": "First",
+      "previous": "Previous",
+      "next": "Next",
+      "last": "Last"
+    },
+    "info": {
+      "name": "Project",
+      "type": "Project Type",
+      "start": "Start Date",
+      "end": "End Date",
+      "status": "Status",
+      "description": "Description",
+      "technology": "Technologies Used",
+      "team_size": "Team Size",
+      "more_info": "More details"
+    },
+    "search_placeholder": "Search",
+    "command": {
+      "view": "See Detail",
+      "add": "Add Project",
+      "edit": "Edit Detail",
+      "save": "Save",
+      "open": "Open File",
+      "register": "Register",
+      "import": "Import Project(s)",
+      "istop": "Top Project",
+      "sort": "Sort"
+    },
+    "pagination": {
+      "first": "<< First",
+      "prev": "< Prev",
+      "next": "> Next",
+      "last": ">> Last"
+    },
+    "detail": {
+      "detail":"Detail Project",
+      "title": "Bosch Project Detail",
+      "title_edit": "Edit Bosch Project",
+      "title_add": "Add New Bosch Project",
+      "title_nonBosch": "Non-Bosch Project Detail",
+      "title_nonBosch_edit": "Edit Non-Bosch Project",
+      "name": "Project Name",
+      "start": "Start Day",
+      "end": "End Day",
+      "PM": "Project Manager",
+      "highlight":"Highlight",
+      "portfolio":"See project's portfolio",
+      "PM_Search_Placeholder": "Search by manager's fullname/NTID",
+      "Name_Search_Placeholder": "Search by name/NTID",
+      "challenge": "Project Challenge",
+      "status": "Status",
+      "type": "Project Type",
+      "objective": "Project Objective",
+      "gb_unit": "GB Unit",
+      "size": "Team Size",
+      "ref": "Reference Link",
+      "stake_holder": "Stakeholder",
+      "project_phases": "Project Phases",
+      "search_or_add_technology": "Search or add new technology...",
+      "search_project_phase": "Search for project phase...",
+      "desc": "Project Description",
+      "team": "Team",
+      "role": "Role",
+      "add_skill_tag":"Add this skill tag",
+      "customer_gb_form":"Customer",
+      "customer_gb":"Customer",
+      "notification_add_success": "Add project successfully",
+      "notification_update_success": "Edit project successfully",
+      "tasks": "Tasks",
+      "Member_Title": "Project Members",
+      "Member_Add": "Add Project Member",
+      "technology_used": "Technology Used",
+      "top_project": "Top Project",
+      "scope_project":"Scope",
+      "member_count_greater_than_team_size":"*The number of Members is greater than Team Size",
+      "Member_Info": {
+        "name": "Member Name",
+        "role": "Role",
+        "Common_Task": "Common Task",
+        "Additional_Task": "Additional Task",
+        "action": "Action",
+        "profile": "Profile",
+        "start_date":"Start Date",
+        "end_date":"End Date",
+        "Member_Add": {
+          "title_update": "Edit Project Member",
+          "title": "Add New Member",
+          "name": "Associate Name",
+          "role": "Role",
+          "added": "The Added Members",
+          "confirm": "Add Member"
+        }
+      },
+      "add": "Add",
+      "edit": "Edit",
+      "save": "Save",
+      "close": "Close",
+      "member_start_date_not_value":"The start date of a certain member does not exist"
+    },
+    "tab_label":{
+      "v_model":"V-Model",
+      "project_list":"Project List",
+      "customer_gb":"Customer"
+    },
+    "dropdown_label":{
+      "gb": "Customer",
+      "status": "Project Status",
+      "type": "Project Type",
+      "is_top": "Is Top"
+    }
+  },
+  "customer_gb":{
+    "our_customer":"Our customer",
+    "detail": {
+      "projects": "Projects",
+      "tool": "tool",
+      "apply": "apply",
+      "across": "across",
+      "project_type": "Technologies",
+      "hcs": "HCs",
+      "detail_project": "Detail project"
+    }
+  },
+  "our_customer": {
+    "v_model": "V-Model",
+    "project_list": "Project List",
+    "project_supported": "Project that we supported",
+    "our_customer_threedot": "Our customer...",
+    "corporation": "Corporation",
+    "customer_highlight": "Highlight",
+    "customer_gb_name": "Name",
+    "new_corporation": "New corporation...",
+    "dialog": {
+      "title_add": "Add New Customer",
+      "title_btn_add": "Add Customer",
+      "back": "Back",
+      "add": "Add",
+      "edit": "Edit",
+      "save": "Save",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "confirm": "Confirmation",
+      "message":{
+        "add_success": "Add Customer successfully",
+        "update_success": "Edit Customer successfully",
+        "delete_success": "Delete Customer successfully",
+        "update_failed": "Failed to edit Customer",
+        "delete_failed": "Failed to delete Customer"
+      },
+      "remove_confirm": "Are you sure to delete: ",
+      "remove_confirm_end": ". You won't be able to revert this."
+    }
+  }
+  ,
+  "learning": {
+    "title": "List of Courses in Department",
+    "filter": {
+      "dropdown": {
+        "category": "Category",
+        "order_by": "Order by"
+      }
+    },
+    "learning_type": {
+      "self_study": "Self Study",
+      "rnd": "R&D",
+      "classroom": "Class room",
+      "online": "Online"
+    },
+    "learning_status": {
+      "on_going": "ON-GOING",
+      "new": "NEW",
+      "closed": "CLOSED"
+    },
+    "command": {
+      "close": "Close",
+      "add": "Add",
+      "edit": "Edit",
+      "save": "Save",
+      "open": "Open File",
+      "register": "Register",
+      "import": "Import"
+    },
+    "sort": {
+      "start": "by Start Date",
+      "duration": "by Duration"
+    },
+    "my_learning": {
+      "search_placeholder": "Search by course name",
+      "add": "Add Course",
+      "edit": "Edit Course Detail",
+      "view": "See Detail",
+      "delete": "Delete Course",
+      "total": "Total",
+      "courses": "Courses",
+      "checkbox": {
+        "type": "Learning Type",
+        "status": "Course Status"
+      },
+      "add_course": {
+        "title": "Add New Learning Course",
+        "available_date": "Available Date"
+      },
+      "info": {
+        "title": "Learning Course Detail",
+        "title_edit": "Edit Learning Course",
+        "name": "Course Name",
+        "start": "Start Date",
+        "available": "Available Date",
+        "end": "End Date",
+        "trainer": "Trainer",
+        "duration": "Duration",
+        "category": "Category",
+        "type": "Course Type",
+        "desc": "Course Description",
+        "status": "Status",
+        "edit": "Save",
+        "hour": "Hour(s)",
+        "audience": "Target Audience",
+        "detail": "Detail",
+        "nodata": "No Data"
+      },
+      "register": {
+        "title": "Register/Assign Learning Course",
+        "find_member": "Find New Member",
+        "member_name": "Member Name",
+        "action": "Action",
+        "confirm": "Confirm"
+      },
+      "delete_member": {
+        "title": "Remove Confirmation",
+        "content": {
+          "name_line": "Are you sure to delete ",
+          "revert_line": "You won't be able to revert this"
+        },
+        "yes": "Yes",
+        "no": "No"
+      },
+      "import": {
+        "title": "Import Learning Course from Excel",
+        "request": "Choose file to import",
+        "download": "Download Template",
+        "browse": "Browse",
+        "template_type": "The excel file which need to follow the defined template: .csv, .xlsx and the duplicate course name will be skipped"
+      },
+      "duration": {
+        "hour_short": "h",
+        "day_short": "d"
+      }
+    }
+  },
+  "logout": {
+    "success": "logout success"
+  },
+  "request": {
+    "winnt": "NTID",
+    "reason": "Reason"
+  },
+  "register": {
+    "title": "Register",
+    "confirm_password": "Confirm Password"
+  },
+  "validations": {
+    "required": "This field is required",
+    "minlength": "Should have at least {{number}} characters",
+    "maxlength": "This value should be less than {{number}} characters",
+    "min": "This value should be more than {{number}}",
+    "max": "This value should be less than {{number}}",
+    "exist": "The {{value}} has exists",
+    "inconsistent": "Inconsistent with {{value}}",
+    "invalid_email": "Invalid email"
+  },
+  "user_management": {
+    "title": "User Management",
+    "groups_users_submenu": "Groups and Users",
+    "roles_submenu": "Roles",
+    "permissions_submenu": "Permissions",
+    "list_of_user_groups_title": "List of User Groups",
+    "user_group_title": "User Group Detail",
+    "list_of_user_distribution_title": "List of User and Distribution",
+    "search": "Search",
+    "group_name": "Group Name",
+    "description": "Description",
+    "applied_roles": "Applied Roles",
+    "permission": {
+      "list_of_permission": "List of Permissions",
+      "permission_detail": "Permission Detail",
+      "name": "Permission Name"
+    },
+    "role": {
+      "list_of_user_roles_title": "List of User Roles",
+      "user_role_title": "User Role Detail",
+      "list_of_user_permission_title": "List of User Permissions",
+      "role_name": "Role Name"
+    },
+    "dialog": {
+      "title_create_group": "Create New Group",
+      "title_create_role": "Create New Role",
+      "title_confirm": "Confirmation",
+      "title_list_users_and_distributions": "Add List of Users and Distributions",
+      "title_selected_users": "Selected users",
+      "title_selected_distributions": "Selected distributions",
+      "title_search_users": "Search by user's fullname/NTID",
+      "title_search_distributions": "Search Distributions",
+      "title_message_content_confirmation_remove": "Do you want to remove {{messageParam}} from System?",
+      "button_name": {
+        "button_yes": "Yes",
+        "button_no": "No",
+        "button_cancel": "Cancel",
+        "button_create": "Create",
+        "button_save": "Save"
+      },
+      "create_new_role_successfully":"Create new role successfully",
+      "edit_role_successfully":"Update role successfully",
+      "delete_role_successfully":"Delete role successfully",
+      "delete_user_group_successfully":"Delete user group successfully",
+      "edit_user_group_successfully":"Update user group successfully",
+      "create_user_group_successfully":"Create new user group successfully",
+      "add_user_to_group_successfully":"Add user(s) to group successfully"
+    }
+  },
+  "dialog": {
+    "title_confirm": "Confirmation",
+    "title_close": "Close",
+    "button_name": {
+      "button_yes": "Yes",
+      "button_no": "No",
+      "button_cancel": "Cancel",
+      "button_close": "Close"
+    }
+  },
+  "system": {
+    "tab_label": {
+      "competency-lead": "Skill Clusters",
+      "manage-project-role": "Project Roles",
+      "manage-skill": "Skills",
+      "line-manager": "Line Managers",
+      "common-config": "Common Config",
+      "expect-skills-level-for-associate": "Skill Matrix",
+      "manage-project-scope":"Project Scopes"
+    },
+    "no_data": "No data",
+    "competency_lead": {
+      "title": "Competency Lead",
+      "title_manage": "Manage Competency Lead",
+      "competency": "Skill Cluster",
+      "competency_lead_title": "Competency Lead(s)",
+      "description": "Description",
+      "find_skills": "Skills",
+      "find_skills_search_placeholder": "Search",
+      "save": "Save",
+      "cancel": "Cancel",
+      "select": "Select",
+      "skill_type": "Skill type",
+      "dialog": {
+        "add_competency": {
+          "title": "Add Skill Cluster",
+          "technical": "Add Technical Skill Cluster",
+          "behavioral": "Add Behavioral Skill Cluster",
+          "content": "Name of skill cluster",
+          "add_success": "Add skill cluster successful",
+          "add_failed": "Failed to add skill cluster"
+        },
+        "add_competency_lead": {
+          "title": "Add competency lead",
+          "content": "You are currently adding a new competency leader to skill cluster",
+          "label": "Name of competency lead",
+          "placeholder": "Search by name/NTID",
+          "add_success": "Add competency lead successful",
+          "add_failed": "Failed to add competency lead"
+        },
+        "add_skill": {
+          "title":"Add skill",
+          "add_success": "Add skill successful",
+          "add_failed": "Failed to add skill"
+        },
+        "delete_competency": {
+          "success": "Delete skill cluster successful",
+          "failed": "Failed to delete skill cluster"
+        },
+        "delete_competency_lead": {
+          "success": "Delete competency lead successful",
+          "failed": "Failed to delete competency lead"
+        },
+        "remove_skill": {
+          "confirm_message": "Do you want to remove",
+          "from_system": "from System?",
+          "success": "Delete skill successfully",
+          "failed": "Failed to delete skill"
+        }
+      }
+    },
+    "manage_project_role": {
+      "title": "Manage Project Role",
+      "project_role": "Project Role",
+      "project_common_task": "Project Common Task",
+      "dialog": {
+        "project_role": {
+          "title": "Add Project Role",
+          "content": "Name of Project Role"
+        },
+        "project_common_task": {
+          "title": "Add Project Common Task"
+        },
+        "add_project": "Add new Project Role",
+        "add_common_task": "Add new Common Task",
+        "project_name": "Project Name",
+        "common_task_name": "Common Task Name",
+        "error": "Error"
+      }
+    },
+    "manage_skill": {
+      "title": "Manage Skill",
+      "search": "Input Skill Name",
+      "add_new_skill": "Add New Skill",
+      "edit_new_skill": "Edit New Skill",
+      "more": "Read More",
+      "dialog": {
+        "skill_name": "Skill Name",
+        "competency_lead": "Competency Lead(s)",
+        "description": "Description",
+        "level_detail": "Level Detail"
+      },
+      "notification": {
+        "add_skill_success": "Add new skill successfully!",
+        "add_skill_error": "Add new skill error!",
+        "edit_skill_success": "Edit skill successfully!",
+        "add_field_empty": "Field cannot be empty!",
+        "field_not_match": "Input does not exist in system!",
+        "SKM_SKILL_ALREADY_EXISTS": "Skill already exists in system!",
+        "skill_exist": "Skill already exists in system!"
+      },
+      "skill": "Skill",
+      "competency": "Skill Cluster",
+      "skill_clusters": "Skill Clusters",
+      "l0": "Level 0",
+      "l1": "Level 1",
+      "l2": "Level 2",
+      "l3": "Level 3",
+      "l4": "Level 4",
+      "is_required": "Is Required",
+      "is_mandatory": "Is Mandatory",
+      "action": "Action",
+      "no_data": "No data matching the filter"
+    },
+    "line_manager":{
+      "title":"Line Manager",
+      "header_label" :"Manage Line Manager in each team",
+      "add_new_manager":"Add new Manager",
+      "update_line_manager":"Edit Line Manager",
+      "search_label":"Input Manager Name",
+      "no_result":"No result available",
+      "dialog":{
+        "associate" :{
+          "title_add":"Add new manager",
+          "title_update":"Edit Line Manager",
+          "content": "Name of manager",
+          "team":"Team",
+          "name_search_placeholder":"Search by name/NTID",
+          "add_success": "Add manager successfully",
+          "add_failed": "Failed to add manager",
+          "name_manager":"Name manager",
+          "update_success":"Edit manager successfully",
+          "update_failed":"Failed to edit manager"
+        }
+      },
+      "table_label":{
+        "team":"Team",
+        "line_manager":"Line Manager",
+        "action":"Action"
+      },
+      "notification":{
+        "add_field_empty": "Field cannot be empty!",
+        "invalid_name":"Invalid manager name!"
+      }
+    },
+    "common_config": {
+      "search_by_tags":"Input Tag Name",
+      "title":"Common Config",
+      "hint":"*You can set which tags are mandatory by checking the checkbox",
+      "tags_to_show":"Tags to Show",
+      "search_by_name":"Search",
+      "num_of_tags":"Number of tags:",
+      "save": "Save",
+      "cancel": "Cancel",
+      "save_success":"Save Skill Tags successfully",
+      "save_failed":"Failed to save Skill Tags",
+      "edit_label":"Edit",
+      "more_info":"The yellow is the mandatory tag",
+      "tags_mandatory":"Is Mandatory",
+      "dialog":{
+        "replace_tag_skill":{
+          "title":"Replace tag skill",
+          "choose_tag_to_replace":"Choose tag to replace",
+          "num_of_results":"Num of results"
+        },
+        "confirm":{
+          "title":"Replace confirmation",
+          "content":{
+            "name_line": "Are you sure to replace",
+            "to":"to"
+          },
+          "yes": "Yes, replace it",
+          "no": "No",
+          "success": "Replace tag successfully",
+          "failed":"Failed to replace tag"
+        }
+      }
+    },
+    "actions": {
+      "save": "Save",
+      "close": "Close",
+      "add":"Add",
+      "delete": {
+        "title": "Are you sure?",
+        "content_title": "Are you sure to delete?",
+        "content_assure": "You won't be able to revert",
+        "confirm": "Yes",
+        "cancel": "No",
+        "success": "Delete Successfully"
+      }
+    },
+    "search_placeholder": "Search",
+    "expect_skill_level_for_associate": {
+      "title": "Expect Skills Level For Associates",
+      "skill_cluster":"Main Skill Cluster(s)",
+      "save_change": "Save Change",
+      "cancel":"Cancel",
+      "reset_information":"Reset",
+      "switch_skill": "Switch competencies",
+      "back": "Back",
+      "edit": "Edit",
+      "notification": {
+        "save_change_success": "Save expected skills change successfully!",
+        "save_change_error": "Save expected skills change error!"
+      },
+      "no_data": "No data",
+      "table":{
+        "view_skill_detail":"View skill detail",
+        "skill": "Skill\\Level",
+        "competency": "Skill Cluster",
+        "action": "Action",
+        "no_data": "No data matching the filter"
+      }
+    },
+    "manage_project_scope":{
+      "header_label" :"Manage project scopes for projects",
+      "search_label":"Input Project Scopes Name",
+      "add_new_scope":"Add New Scope",
+      "table_label":{
+        "ordinal":"No.",
+        "scope_name":"Scope Name",
+        "color":"Project Card Background",
+        "color_hover":"Project Card Hover",
+        "edit":"Edit",
+        "delete":"Delete"
+      },
+      "dialog":{
+          "title_add":"Add new Project Scope",
+          "title_update":"Edit Project Scope",
+          "project_scope":"Project scope",
+          "color":"Color",
+          "bg_color":"Background card",
+          "bg_color_mixed":"Background mixed when hover",
+          "bg_color_hover":"*Background hover preview",
+          "preview_project_card":"Preview project card",
+          "add_success": "Add new Project Scope successfully",
+          "add_failed":"Failed to add new Project scope",
+          "update_success":"Edit Project Scope successfully",
+          "update_failed":"Failed to edit Project Scope",
+          "delete_success":"Delete Project Scope successfully",
+          "delete_failed":"Failed to delete Project scope"
+      }
+    }
+  },
+  "error": {
+    "0": {
+      "title": "Server went wrong!",
+      "message": "Looks like the gateway timeout"
+    },
+    "400": {
+      "message": "Sorry, there's an error. Please contact to Admin for more detail"
+    },
+    "401": {
+      "message": "Username/Password is incorrect!"
+    },
+    "403": {
+      "title": "Permission denied!",
+      "message": "You do not have permission to access the requested data."
+    },
+    "404": {
+      "title": "Page not found!",
+      "message": "This is not the web page you are looking for."
+    },
+    "500": {
+      "title": "Server went wrong!",
+      "message": "Looks like we have an internal issue, please try refreshing."
+    },
+    "504": {
+      "title": "Server went wrong!",
+      "message": "Looks like the gateway timeout"
+    },
+    "back_to_home": "Back to Home",
+    "login": {
+      "NOT_EXISTED_USERNAME": "Sorry, You are not member of system!",
+      "INVALID_USERNAME_PASSWORD": "Oops ! NT-ID or Password is incorrect. Please try again!",
+      "NOT_AUTHORIZATION": "Sorry, but you are not authorized to log into the system!",
+      "CAN_NOT_CONNECT_LDAP_SERVER": "Sorry, but the page cannot connect to Bosch login system!"
+    },
+    "request_access": {
+      "SKM_USER_NOT_FOUND": "Oops! NT-ID does not exist. Please try again!",
+      "SKM_USER_EXISTED_ALREADY": "User has registered already. Please login instead",
+      "SKM_INTERNAL_USER_CREATE_FAIL": "Oops! Failed to create user. Please try again!",
+      "SKM_USER_WAITING_FOR_APPROVAL": "You have already requested access. Please wait for admin approval!",
+      "SKM_INVALID_LDAP_CHECKED": "Oops! NT-ID does not exist. Please try again!"
+    }
+  },
+  "dashboard_components": {
+    "form_controls": {
+      "title": "Form controls",
+      "description": "Controls that input, select and edit your data elements.",
+      "input_field": "Input Field",
+      "check_box": "Check Box"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "description": "That show the hierarchy between content and facilitates in this way to navigate of Software."
+    },
+    "layout": {
+      "title": "Layout",
+      "description": "Essential components for the presentation of your content."
+    },
+    "button_indicators": {
+      "title": "Button & Indicators",
+      "description": "Buttons, button groups and chips.",
+      "button_1": "Button 1",
+      "button_2": "Button 2"
+    },
+    "modals_popups": {
+      "title": "Modals & Popups",
+      "description": "Configurable components that can dynamically display information and action hints.",
+      "show_modals_popups": "Show modals & popups"
+    },
+    "master_detail": {
+      "title": "Master detail",
+      "description": "Displays a master area and a detail area for contents of the selected item."
+    },
+    "data_table": {
+      "title": "Data table",
+      "description": "Tools for displaying and interacting with tabular data."
+    },
+    "services": {
+      "title": "Services",
+      "description": "The services will help during the development of an application and report about process."
+    },
+    "charts": {
+      "title": "Charts",
+      "description": "Reusuable chart components."
+    },
+    "colors": {
+      "title": "Colors",
+      "description": "The colors available in Bosch applications are defined in the Bosch corporate design."
+    },
+    "icons": {
+      "title": "Icons",
+      "description": "Icons defined in the Bosch corporate design which make the content easier to understand."
+    },
+    "reference_document": "Reference Document For More Details",
+    "title": "Available Components/Modules In CMS System"
+  },
+  "no_access": {
+    "title": "No Authorization",
+    "click_text": "Click ",
+    "request_link_title": " HERE ",
+    "request_access_text": " to request access",
+    "no_access_message": "You have no authorization to access CMS System"
+  },
+  "waiting_access": {
+    "waiting_access_message": "Your account is being waiting for approval, please check with your admin."
+  },
+  "skill": {
+    "my_evaluate_tab": "My Skill Evaluation",
+    "my_request_tab": "My Request",
+    "request_page_title": "List of My Skill Evaluation Requests",
+    "edit_request_title": "Edit Request",
+    "dialog": {
+      "requester": "Requester",
+      "approver": "Approver",
+      "status": "Status"
+    },
+    "title": {
+      "position": "No.",
+      "list_title": "List of Skills",
+      "skill": "Skill",
+      "skill_cluster": "Skill Cluster",
+      "approver": "Approver",
+      "select_dialog": "Select Approver",
+      "status": "Status",
+      "current_level": "Current Level",
+      "evaluate_level": "Evaluated Level",
+      "expect_level": "Expected Level",
+      "exp": "Exp",
+      "request_date": "Request Date",
+      "modified_date": "Modified Date",
+      "approve_date": "Approved Date",
+      "action": "Action",
+      "comment": "Associate Comment",
+      "approver_comment": "Approver Comment",
+      "remark": "Remark",
+      "search_bar": "Input Skill Name",
+      "year_exp": "Year Exp"
+    },
+    "content": {
+      "exp": {
+        "#COMMENT: e0": "0 -> No need to actually map this.",
+        "e1": "1-6 months",
+        "e2": "6-12 months",
+        "e3": "1-3 years",
+        "e4": "3+ years"
+      }
+    },
+    "button": {
+      "evaluate": "Evaluate",
+      "reset": "Reset",
+      "dialog": {
+        "edit": "Edit",
+        "close": "Close",
+        "ok": "OK",
+        "save": "Save"
+      },
+      "see_request": "View request detail"
+    },
+    "message": {
+      "no_match": "No data matching the filter",
+      "select_placeholder": "Select your approver",
+      "still_have_request_waitting": "You have a request waitting for approval."
+    },
+    "request_pending_notification": {
+      "content": "Number of your pending request",
+      "view": "View",
+      "pending_notification": "Pending Request"
+    },
+    "type": {
+      "technical": "Technical",
+      "behavioral": "Behavioral"
+    }
+  },
+  "manage_request": {
+    "pending_request_tab": "Pending Request",
+    "approved_rejected_request_tab": "Approved/Rejected Request",
+    "title": {
+      "new_request": "New Request",
+      "forward_request": "Forward Request",
+      "request_list": "List of Evaluation Requests",
+      "previous_request_list": "List of Approved/Rejected Evaluation Requests",
+      "pending_request_detail": "Approve/Reject Skill Evaluation",
+      "previous_request_detail": "Skill Evaluation Detail"
+    },
+    "dialog": {
+      "level_notice": " The changed levels and exp from evaluation of associate (with the previous evaluation) will be highlighted in blue color.",
+      "requester": "Requester",
+      "status": "Status",
+      "approver": "Approver",
+      "skill_information": "Skill Information",
+      "skill_name": "Skill Name",
+      "skill_group": "Skill Cluster",
+      "old_level": "Current Level",
+      "expect_level": "Expected Level",
+      "evaluated_level": "Evaluated Level",
+      "competency_name": "Competency Lead's Name",
+      "competency": "Skill Cluster",
+      "forward": "Forward",
+      "comment": "Comment",
+      "approved_by": "Competency Lead(s)",
+      "check_approval": "Status",
+      "check_forward": "Is Forwarded?",
+      "yes": "Yes",
+      "no": "No",
+      "action": "Action",
+      "select_competency_lead": "Select Competency Lead",
+      "confirm_approve_all_request": "Are you sure you want to approve all evaluation?",
+      "confirm_reject_all_request": "Are you sure you want to reject all evaluation?",
+      "confirm_approve_request": "Are you sure you want to approve this evaluation?",
+      "confirm_reject_request": "Are you sure you want to reject this evaluation?"
+    },
+    "experience": {
+      "0": "0",
+      "1-6 Months": "1-6 Months",
+      "6-12 Months": "6-12 Months",
+      "1-3 Years": "1-3 Years",
+      "3-5 Years": "3-5 Years",
+      "5+ Years": "5+ Years"
+    },
+    "main": {
+      "number": "No.",
+      "requester": "Requester",
+      "req_date": "Request Date",
+      "mod_date": "Modified Date",
+      "status": "Status",
+      "action": "Action",
+      "detail": "Detail",
+      "search_tooltip": "Search for Associates"
+    },
+    "message": {
+      "error_filter": "No data matching the filter",
+      "tooltip_view": "See and make decision",
+      "tooltip_forward": "Forward Request",
+      "tooltip_view_detail": "View request detail"
+    },
+    "button": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "ok": "OK",
+      "approve_all": "Approve All",
+      "reject_all": "Reject All"
+    }
+  },
+  "notification": {
+    "save_user-information_success": "Edit associate's information successfully",
+    "send_request-evaluation_approved": "Request is approved",
+    "send_request-evaluation_rejected": "Request is rejected",
+    "send_request-evaluation": "Done evaluating request",
+    "you-dont-have-certificate": "You don't have certificate.",
+    "not_select_role": "You have not selected any Project Role yet!",
+    "add_project-role_success": "Successfully added new Project Role",
+    "add_common-task_success": "Successfully added new Common Task",
+    "delete_common-task_success": "Successfully deleted Common Task",
+    "delete_project-role_success": "Successfully deleted Project Role",
+    "delete_project_in_use": "Project role is currently in use, can't delete!",
+    "add_duplicate": "Name already exist, can't add!",
+    "evaluated_successfully": "Successfully evaluated skill !!!",
+    "forward_successfully": "Successfully forward !!!",
+    "add_member_duplicate": "Member already added with this role",
+    "update_project_member_role": "Edit member role successfully",
+    "update_project_member":"Edit project member successfully",
+    "field_cannot_be_empty": "Field cannot be empty",
+    "field_can_not_contain_only_white_space": "Field can not contain only white space",
+    "start_date_member_invalid":"*The start date of a member must be before the end date.",
+    "end_date_cannot_null":"*This member already exists with a null end date, you must choose a certain end date"
+  },
+  "vmodel": {
+    "phase": {
+      "systemTools": "System Tools",
+      "softwareTools": "Software Tools",
+      "managementSupportTools": "Management/Support Tools"
+    },
+    "requirementEngineering": "Requirement Engineering",
+    "systemArchitecture": "System Architecture",
+    "softwareArchitecture": "Software Architecture",
+    "softwareDocumentation": "Software Design - Documentation",
+    "softwareModelBasedDevelopment": "Software Design - Model Based Development",
+    "softwareRapidPrototyping": "Software Design - Rapid Prototyping",
+    "genericReview": "Generic Review",
+    "systemSoftwareTest": "System - Software Test",
+    "systemIntegration": "System Integration - System Integration Test",
+    "softwareIntegration": "Software Integration - Integration Test",
+    "ciDashboard": "CI Dashboard",
+    "softwareUnitTest": "Software Unit Test - Component Verification",
+    "softwareConstruction": "Software Construction",
+    "prjConfigManagement": "Project Management - Configuration Management",
+    "prjPlanCreationDeli": "Product Management - Planning, Creation & Delivery",
+    "swConfigManagement": "Software Configuration Management",
+    "changeRequest": "Change Request - Problem Resolution Management",
+    "option":"...",
+    "dialog":{
+      "list_project":{
+        "title":"Project List",
+        "searchLabel":"Search by project name",
+        "noData":"No data"
+      }
+    }
+    
+  },
+  "button": {
+    "save": "Save",
+    "add": "Add",
+    "close": "Close",
+    "delete": "Delete",
+    "yes": "Yes",
+    "no": "No",
+    "upload": "Upload"
+  },
+  "supply": {
+    "project_name": "Project Name",
+    "skill-cluster": "Skill Cluster",
+    "skill": "Skills",
+    "level": "Level",
+    "created-by": "Created By",
+    "created-time": "Created Time",
+    "assignee": "Group",
+    "pic":"PIC",
+    "candidate-name": "Candidate Name",
+    "supply-type": "Supply Type",
+    "location": "Location",
+    "expected-date": "Expected Date",
+    "status": "Status",
+    "note": "Note",
+    "action": "Action",
+    "search_null": "No data",
+    "existed_message": "Project existed in system",
+    "search": "Search",
+    "add": "Add Demand",
+    "old-status": "Old Status",
+    "new-status": "New Status",
+    "updated-name": "Edited By",
+    "updated-date": "Edited Date",
+    "history-dialog-title": "Show History",
+    "edit-dialog-title": "Edit Demand & Supply",
+    "my_demends": "My Demands",
+    "allow_external": "Allow External",
+    "forecast_date": "Forecast Date",
+    "filled_date": "Filled Date",
+    "subId":"ID",
+    "update_success": "Edit demand successfully",
+    "delete_success": "Delete supply successfully"
+  },
+  "career_development": {
+    "tab_label": {
+      "career_road_map": "CDR",
+      "jd": "JD",
+      "learning_courses": "Learning Courses",
+      "self_skill_evaluation": "Skills - Self Evaluation",
+      "my_request":"My Request"
+    },
+    "technical_competencies": {
+      "search": "Search Skill",
+      "title": "Technical Competencies",
+      "edit": "Edit",
+      "main_skill": "Main Skill Cluster"
+    },
+    "jd": {
+      "search_placeholder":"Search for job details",
+      "welcome_tag":"Welcome to a place where your ideas lead something big.",
+      "career_email":"career.RBVH@vn.bosch.com",
+      "make_difference": "Let's make difference.",
+      "list_of_jobs": "List of jobs",
+      "detail": "Details"
+    }
+  },
+  "editor": {
+    "dialog" : {
+      "confirm" : {
+        "title":"Cancel confirmation",
+        "content":"Do you want to cancel? This action cannot be reverted.",
+        "yes":"Yes",
+        "no":"No"
+      }
+    },
+    "save_success" :"Save content successfully",
+    "maximum_upload_size_exceeded":"The content exceeds allowed limit. Please adjust your content and try again.",
+    "server_error":"Server error, please try again."
+  },
+  "report":{
+    "tag_cloud_title_skill_group":"Associates by Skill Cluster",
+    "num_associate_title":"Number of Associates",
+    "associate_by_team_title":"Associates by Team",
+    "associate_by_level_title":"Associates by Level",
+    "total_projects":"Number of Projects",
+    "project_by_status":"Projects by Status",
+    "project_by_gbUnit":"Projects by GB Unit",
+    "tag_cloud_title_technology":"Projects by Skill Tag"
+  },
+  "project_porfolio" : {
+    "back":"Back",
+    "customerGB":"Customer GB",
+    "technology":"Technology",
+    "teamSize":"Team Size",
+    "scope":"Scope",
+    "highlight":"Highlight",
+    "problemStatement":"Problem Statement",
+    "solution":"Solution",
+    "benefits":"Benefits",
+    "projectDetail":"Project Detail",
+    "save_highlight_success":"Save Highlight Successfully"
+
+  }
+}

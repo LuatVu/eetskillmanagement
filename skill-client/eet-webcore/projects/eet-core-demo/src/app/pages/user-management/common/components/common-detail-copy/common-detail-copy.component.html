@@ -1,0 +1,60 @@
+<div style="width:100%">
+  <form class="example-form" [formGroup]="detailForm" [class.diabled]="!selectedItem">
+
+    <div class="button-group" *ngIf="showActionButton">
+      <button mat-raised-button color="primary" (click)="onSave()"><span class="mat-button-wrapper">Save</span>
+      </button>
+      <button mat-button color="primary" (click)="onCancel()" class="cancel-button"><span
+          class="mat-button-wrapper">Cancel</span>
+      </button>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <mat-label *ngIf="formType == 'Group'">{{'user_management.group_name' | translate}}</mat-label>
+      <mat-label *ngIf="formType == 'Role'">{{'user_management.role.role_name' | translate}}</mat-label>
+      <mat-label *ngIf="formType == 'Permission'">{{'user_management.permission.name' | translate}}</mat-label>
+      <input  [maxlength]="45" *ngIf="formType == 'Group'" (focus)="onFieldFocus()" matInput placeholder="Ex. MS/EET11"
+        [formControlName]="'name'" (focus)="onFieldFocus()">
+      <input *ngIf="formType == 'Role'" (focus)="onButtonShow()" matInput placeholder="Ex. Admin"
+        [formControlName]="'name'" (focus)="onButtonShow()">
+      <input [maxlength]="120" *ngIf="formType == 'Permission'" (focus)="onFieldFocus()" matInput placeholder="Ex. Admin"
+        [formControlName]="'name'" (focus)="onFieldFocus()">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>{{'user_management.description' | translate}}</mat-label>
+      <textarea [maxLength]="250" *ngIf="formType == 'Group'" (focus)="onFieldFocus()" matInput
+        placeholder="Ex. This group was created by Admin..." [formControlName]="'description'"
+        (focus)="onFieldFocus()"></textarea>
+      <textarea *ngIf="formType == 'Role'" (focus)="onButtonShow()" matInput placeholder="Ex. Admin role"
+        [formControlName]="'description'" (focus)="onButtonShow()"></textarea>
+        <textarea [maxlength]="250" *ngIf="formType == 'Permission'" (focus)="onFieldFocus()" matInput placeholder="Ex. Admin role can add user into system"
+        [formControlName]="'description'" (focus)="onFieldFocus()"></textarea>
+    </mat-form-field>
+
+    <ng-container class="example-form" *ngIf="formType == 'Group'">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <span class="label">
+          <mat-label>{{'user_management.applied_roles' | translate}}
+          </mat-label>
+        </span>
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let role of selectedRoleList; let i = index;" (removed)="onRemoveRole(role,i)">
+            {{role?.name}}
+            <span>
+              <mat-icon matChipRemove fontIcon="Bosch-Ic-abort"></mat-icon>
+            </span>
+          </mat-chip>
+          <input placeholder="New role..." #chipInput [formControl]="searchRoleCtrl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            #newRoleInput>
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedRole($event)">
+          <mat-option *ngFor="let filterRole of filterRoleList" [value]="filterRole">
+            {{filterRole?.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </ng-container>
+  </form>
+</div>

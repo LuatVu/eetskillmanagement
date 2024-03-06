@@ -1,0 +1,219 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div class="title-wrapper" fxLayout="row wrap" fxLayoutAlign="space-between">
+      <div fxLayout="row">
+        <p class="dialog-title">
+          {{ "manage_request.dialog.requester" | translate }}:
+        </p>
+        <p>{{ infoList.requester }}</p>
+      </div>
+      <div fxLayout="row">
+        <p class="dialog-title">
+          {{ "manage_request.dialog.approver" | translate }}:
+        </p>
+        <p>{{ infoList.approver }}</p>
+      </div>
+    </div>
+
+    <hr class="a-divider" />
+
+    <table mat-table [dataSource]="dataSource" class="skill-table table-common table-common">
+
+      <!-- Skill info icon -->
+      <ng-container matColumnDef="skill_info">
+        <th mat-header-cell *matHeaderCellDef></th>
+
+        <td mat-cell *matCellDef="let element">
+          <i class="a-icon boschicon-bosch-ic-alert-info-filled skill-info-icon" matTooltip="{{ 'manage_request.dialog.skill_information' | translate }}" (click)="showSkillInfo(element.skill, element?.skill_description)"></i>
+        </td>
+      </ng-container>
+
+      <!-- Skill -->
+      <ng-container matColumnDef="skill">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.skill_name" | translate }}
+        </th>
+
+        <td mat-cell *matCellDef="let element">
+          {{ element.skill }}
+        </td>
+      </ng-container>
+
+      <!-- Skill Group -->
+      <ng-container matColumnDef="skill_group">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.skill_group" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.skill_group }}</td>
+      </ng-container>
+
+      <!-- Evaluated Level -->
+      <ng-container matColumnDef="current_level">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.evaluated_level" | translate }}
+        </th>
+
+        <td mat-cell *matCellDef="let element" class="select-box">
+          <eet-common-select *ngIf="element.skill_type === 'Technical'" [selectedData]="element.current_level" [isMultipleChoise]="false"
+            (onSelectedItemChange)="element.current_level = $event" [originalData]="technicalLevelList" [isShowUnSelect]="false"
+            [ngClass]="onCheckUpdated(element.current_level, element.old_level)"></eet-common-select>
+          <eet-common-select *ngIf="element.skill_type === 'Behavioral'"[selectedData]="element.current_level" [isMultipleChoise]="false"
+          (onSelectedItemChange)="element.current_level = $event" [originalData]="behavioralLevelList" [isShowUnSelect]="false"
+          [ngClass]="onCheckUpdated(element.current_level, element.old_level)"></eet-common-select>
+        </td>
+      </ng-container>
+
+      <!-- Current Level -->
+      <ng-container matColumnDef="old_level">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.old_level" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element" class="skill-level" [ngStyle]="{'color':buildColor_CurrentLevel(element)}">
+          <p>
+            {{ element.old_level }}
+          </p>
+        </td>
+      </ng-container>
+
+      <!-- Expected Level -->
+      <ng-container matColumnDef="expected_level">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "skill.title.expect_level" | translate }}
+        </th>
+
+        <td mat-cell *matCellDef="let element" class="skill-level">
+          {{ element.expected_level }}
+        </td>
+      </ng-container>
+
+      <!-- Experience -->
+      <ng-container matColumnDef="experience">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "skill.title.exp" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element" class="select-box">
+          <eet-common-select [selectedData]="element.experience" [isMultipleChoise]="false"
+            (onSelectedItemChange)="element.experience=$event; onWatchExperienceChange(element)"
+            [originalData]="experienceList" [isShowUnSelect]="false"
+            [ngClass]="onCheckUpdated(element.current_experience, element.old_experience)"></eet-common-select>
+        </td>
+      </ng-container>
+
+      <!-- Comment -->
+      <ng-container matColumnDef="comment">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.comment" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container>
+            {{
+            element?.comment?.length > 115
+            ? (element?.comment | slice : 0 : 115) + "..."
+            : element?.comment
+            }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Check Forward -->
+      <ng-container matColumnDef="is_forwarded">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.check_forward" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.is_forwarded ? 'Yes':'No' }}
+        </td>
+      </ng-container>
+
+      <!-- Check Approval -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.check_approval" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="onCheckStatus(element.statusMessage)">
+          {{ element.statusMessage }}
+        </td>
+      </ng-container>
+
+      <!-- Approved By -->
+      <ng-container matColumnDef="competency_lead">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.approved_by" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container>
+            {{ element.competency_lead.display_name }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Action -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "manage_request.dialog.action" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div style="display:flex; gap:8px" class="skill-action">
+            <button type="button" class="a-button a-button--primary -without-icon btn-login"
+              (click)="onEvaluateSingle(element,'APPROVED')" [disabled]="element.isDisabled">
+              <div class="a-button__label txt-label">
+                {{ "manage_request.button.approve" | translate }}
+              </div>
+            </button>
+
+            <button type="button" class="a-button a-button--primary -without-icon btn-login"
+              (click)="onEvaluateSingle(element,'REJECTED')" [disabled]="element.isDisabled">
+              <div class="a-button__label txt-label">
+                {{ "manage_request.button.reject" | translate }}
+              </div>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Filter -->
+      <ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            {{ "manage_request.message.error_filter" | translate }}
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+
+    <!-- Pagination -->
+    <ng-container *ngIf="isNotFromDialog === true">
+      <div fxLayout="row" fxLayoutAlign="center none">
+        <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+      </div>
+    </ng-container>
+
+    <hr class="a-divider" />
+
+    <div class="extra-info">
+      <mat-icon matTooltip="View Skill Detail" fontIcon="bosch-ic-alert-info-filled"></mat-icon>{{
+      "manage_request.dialog.level_notice" | translate }}
+    </div>
+  </ng-container>
+
+  <ng-container dialog-action>
+    <div style="display:flex; gap:20px">
+      <button type="button" class="a-button a-button--primary -without-icon btn-login"
+        (click)="onEvaluateAll('APPROVED')">
+        <div class="a-button__label txt-label">
+          {{ "manage_request.button.approve_all" | translate }}
+        </div>
+      </button>
+
+      <button type="button" class="a-button a-button--primary -without-icon btn-login"
+        (click)="onEvaluateAll('REJECTED')">
+        <div class="a-button__label txt-label">
+          {{ "manage_request.button.reject_all" | translate }}
+        </div>
+      </button>
+    </div>
+  </ng-container>
+
+</eet-common-dialog>

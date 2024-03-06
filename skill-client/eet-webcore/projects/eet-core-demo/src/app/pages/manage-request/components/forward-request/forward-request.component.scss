@@ -1,0 +1,32 @@
+.select-title > p {
+  font-weight: bold;
+  color: #007bc0;
+  margin: 0;
+}
+
+.action {
+  padding-top: 20px;
+  button {
+    width: 15%;
+  }
+}
+
+mat-form-field.mat-form-field.mat-form-field-type-mat-select .mat-select {
+  display: flex;
+}
+
+mat-form-field.mat-form-field.mat-form-field-type-mat-select
+  .mat-select-trigger {
+  border: none;
+}
+
+:host
+  ::ng-deep
+  .cdk-overlay-container
+  .mat-select-panel:not([class*="mat-elevation-z"]) {
+  min-width: unset !important;
+}
+.mat-checkbox-column
+{
+  margin-left: 15px ;
+}

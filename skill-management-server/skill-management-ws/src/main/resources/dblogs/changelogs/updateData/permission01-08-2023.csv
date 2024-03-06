@@ -1,0 +1,4 @@
+﻿id,code,name,description,status,created_date,created_by,modified_date,modified_by,permission_category_id
+46233c9b-bfcb-2551-f037-9e34c315a1ba,PM_DEMAND_SUPPLY,Project Manage Demand Supply,Project Manage Demand Supply,Active,2023-07-12T17:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f
+46233c9b-bfcb-2551-f037-9e34c315a1bb,TM_DEMAND_SUPPLY,Technical Manage Demand Supply,Technical Manage Demand Supply,Active,2023-07-12T17:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f
+46233c9b-bfcb-2551-f037-9e34c315a1bc,USER_DEMAND_SUPPLY,User Demand Supply,User Demand Supply,Active,2023-07-12T17:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f

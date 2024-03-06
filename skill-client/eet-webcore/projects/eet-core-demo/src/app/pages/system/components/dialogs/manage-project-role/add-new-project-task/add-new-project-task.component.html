@@ -1,0 +1,29 @@
+<eet-common-dialog>
+    <ng-container dialog-content>
+        <form action="" [formGroup]="projectForm">
+            <div class="form-content" fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="start center">
+                <div class="skill-name" fxFlex="20%">
+                    <p *ngIf="isProject">{{'system.manage_project_role.dialog.project_name' | translate}}</p>
+                    <p *ngIf="!isProject">{{'system.manage_project_role.dialog.common_task_name' | translate}}</p>
+                </div>
+                <div class="add-field" fxFlex="80%"><input type="text"
+                        [ngClass]="{'error_field': projectForm.invalid && (projectForm.get('name')?.touched || projectForm.get('name')?.dirty)}"
+                        formControlName="name" [maxlength]="45" [minLength]="1">
+                    <ng-container *ngIf="projectForm.get('name')?.touched || projectForm.get('name')?.dirty">
+                        <small class="error" *ngIf="projectForm.get('name')?.errors?.required">{{'notification.field_cannot_be_empty' | translate}}</small>
+                        <small class="error" *ngIf="projectForm.get('name')?.errors?.whiteSpace">{{'notification.field_can_not_contain_only_white_space' | translate}}</small>
+                        <small class="error" *ngIf="projectForm.get('name')?.errors?.isDuplicate">{{'notification.add_duplicate' | translate}}</small>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+
+    <ng-container dialog-action>
+        <button (click)="onSave()" type="button" class="a-button a-button--primary" bciTertiaryButton mat-raised-button
+        [disabled]="!isFormValid()">
+            <i class="a-icon a-button__icon boschicon-bosch-ic-save" title="save"></i>
+            <span class="a-button__label">{{'system.actions.save' | translate}}</span>
+        </button>
+    </ng-container>
+</eet-common-dialog>

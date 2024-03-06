@@ -1,0 +1,16 @@
+<eet-common-dialog>
+    <ng-container dialog-content>
+        <div class="full-space">
+            <mat-form-field>
+                <mat-label>{{'system.competency_lead.dialog.add_competency.content' | translate}}</mat-label>
+                <input maxlength="45" matInput [formControl]="competencyName">
+            </mat-form-field>
+        </div>
+    </ng-container>
+    <ng-container dialog-action>
+        <button [disabled]="!competencyName.valid" type="button" class="a-button a-button--primary" (click)="onConfirm()" bciTertiaryButton mat-raised-button>
+            <i class="a-icon a-button__icon boschicon-bosch-ic-save" title="save"></i>
+            <span class="a-button__label">{{'system.actions.save' | translate}}</span>
+          </button>
+    </ng-container>
+</eet-common-dialog>

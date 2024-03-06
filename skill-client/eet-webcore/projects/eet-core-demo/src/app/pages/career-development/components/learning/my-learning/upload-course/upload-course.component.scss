@@ -1,0 +1,27 @@
+.import-file {
+    background-color: #efeff0;
+    display: flex;
+    justify-content: space-between;
+    span {
+        padding: 12px 16px;
+    }
+}
+.import-file:active {
+    background-color: #bfc0c2;
+}
+.import-file:hover {
+    cursor: pointer
+}
+
+.import-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    mat-label {
+        align-self:flex-end
+    }
+}
+
+.errors {
+    color: var(--bosch-red-50)
+}

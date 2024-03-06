@@ -1,0 +1,273 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="TGI2HC (generated)"
+		id="AddOauthClientDetails">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/oauth_client_details.csv"
+			quotchar="&quot;" separator="," tableName="oauth_client_details">
+			<column header="client_id" name="client_id" type="STRING" />
+			<column header="resource_ids" name="resource_ids"
+				type="STRING" />
+			<column header="client_secret" name="client_secret"
+				type="STRING" />
+			<column header="scope" name="scope" type="STRING" />
+			<column header="authorized_grant_types"
+				name="authorized_grant_types" type="STRING" />
+			<column header="web_server_redirect_uri"
+				name="web_server_redirect_uri" type="skip" />
+			<column header="authorities" name="authorities" type="skip" />
+			<column header="access_token_validity"
+				name="access_token_validity" type="NUMERIC" />
+			<column header="refresh_token_validity"
+				name="refresh_token_validity" type="NUMERIC" />
+			<column header="additional_information"
+				name="additional_information" type="skip" />
+			<column header="autoapprove" name="autoapprove" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="oauth_client_details">
+				<where>client_id='skm-ws'</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)"
+		id="AddPermissionCategory">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/permission_category.csv"
+			quotchar="&quot;" separator="," tableName="permission_category">
+			<column header="id" name="id" type="STRING" />
+			<column header="code" name="code" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="sequence" name="sequence" type="NUMERIC" />
+		</loadData>
+		<rollback>
+			<delete tableName="permission_category">
+				<where>id='admincb5-61d1-11ed-b4a3-00505695263f'</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddPermission">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/permission.csv" quotchar="&quot;"
+			separator="," tableName="permission">
+			<column header="id" name="id" type="STRING" />
+			<column header="code" name="code" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="description" name="description" type="STRING" />
+			<column header="status" name="status" type="STRING" />
+			<column header="created_date" name="created_date" type="DATE" />
+			<column header="created_by" name="created_by" type="STRING" />
+			<column header="modified_date" name="modified_date"
+				type="skip" />
+			<column header="modified_by" name="modified_by" type="skip" />
+			<column header="permission_category_id"
+				name="permission_category_id" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="permission">
+				<where>id='005be29f-d1c9-11ec-81c0-38f3ab0673e4'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='13e55248-d1c5-11ec-81c0-38f3ab0673e4'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='195283d2-61d5-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='21fbe010-61d5-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='27a33594-61d5-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='2d4f8961-61d5-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='32ff12af-61d5-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='b01481ee-d1c8-11ec-81c0-38f3ab0673e4'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='b0d14f7a-61d5-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='deaaef2c-d1c8-11ec-81c0-38f3ab0673e4'</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id='e8172595-d1c8-11ec-81c0-38f3ab0673e4'</where>
+			</delete>
+
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddRole">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/role.csv" quotchar="&quot;"
+			separator="," tableName="role">
+			<column header="id" name="id" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="display_name" name="display_name"
+				type="STRING" />
+			<column header="description" name="description" type="STRING" />
+			<column header="status" name="status" type="STRING" />
+			<column header="created_date" name="created_date" type="DATE" />
+			<column header="created_by" name="created_by" type="STRING" />
+			<column header="modified_date" name="modified_date"
+				type="skip" />
+			<column header="modified_by" name="modified_by" type="skip" />
+		</loadData>
+		<rollback>
+			<delete tableName="role">
+				<where>id='rladmin3-d1c0-11ec-81c0-38f3ab0673e4'</where>
+			</delete>
+			<delete tableName="role">
+				<where>id='rluser0e-d1c0-11ec-81c0-38f3ab0673e4'</where>
+			</delete>
+		</rollback>
+	</changeSet>
+
+	<changeSet author="TGI2HC (generated)" id="AddRolePermission">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/role_permission.csv"
+			quotchar="&quot;" separator="," tableName="role_permission">
+			<column header="id" name="id" type="STRING" />
+			<column header="role_id" name="role_id" type="STRING" />
+			<column header="permission_id" name="permission_id"
+				type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="role_permission">
+				<where>id='0b33f93b-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b33fdea-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b33fed9-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b33ff71-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b33fff3-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b340084-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b340106-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b340196-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b340212-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b34028a-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id='0b340309-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddSetting">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/setting.csv" quotchar="&quot;"
+			separator="," tableName="setting">
+			<column header="key" name="key" type="STRING" />
+			<column header="value" name="value" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="setting">
+				<where>[key]='skm_ws.version'</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddUser">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/user.csv" quotchar="&quot;"
+			separator="," tableName="user">
+			<column header="id" name="id" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="display_name" name="display_name"
+				type="STRING" />
+			<column header="email" name="email" type="STRING" />
+			<column header="type" name="type" type="STRING" />
+			<column header="status" name="status" type="STRING" />
+			<column header="created_by" name="created_by" type="STRING" />
+			<column header="created_date" name="created_date" type="DATE" />
+			<column header="modified_by" name="modified_by" type="skip" />
+			<column header="modified_date" name="modified_date"
+				type="skip" />
+			<column header="first_logged_in_date"
+				name="first_logged_in_date" type="skip" />
+			<column header="last_logged_in_date"
+				name="last_logged_in_date" type="skip" />
+		</loadData>
+		<rollback>
+			<delete tableName="user">
+				<where>id='0b434f55-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user">
+				<where>id='0b43fe1c-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user">
+				<where>id='0b44a921-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user">
+				<where>id='0b4561e1-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user">
+				<where>id='luk1hced-617e-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="user">
+				<where>id='sysadmin-617e-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+			<delete tableName="user">
+				<where>id='systeste-617e-11ed-b62d-00059a3c7a00'</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddUserRole">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/user_role.csv" quotchar="&quot;"
+			separator="," tableName="user_role">
+			<column header="id" name="id" type="STRING" />
+			<column header="user_id" name="user_id" type="STRING" />
+			<column header="role_id" name="role_id" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="user_role">
+				<where>id='0b347a13-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id='0b34daba-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id='0b42bbd8-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id='0b439f62-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id='0b444ae4-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id='0b44f2ff-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id='0b45aee2-63f2-11ed-8977-6c2408f06cc1'</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC" id="Database_version_0.0.2">
+		<tagDatabase tag="version_0.0.2" />
+	</changeSet>
+</databaseChangeLog>

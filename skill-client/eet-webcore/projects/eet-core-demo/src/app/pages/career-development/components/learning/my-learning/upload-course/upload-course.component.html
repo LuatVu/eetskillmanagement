@@ -1,0 +1,37 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div class="import-title">
+      <mat-label>
+        {{ "learning.my_learning.import.request" | translate }}
+      </mat-label>
+      <button mat-raised-button class="btn-exp" (click)="   onDownloadTemplate()">
+        <mat-icon fontIcon="bosch-ic-download"> </mat-icon>
+        {{ "learning.my_learning.import.download" | translate }}
+      </button>
+    </div>
+    <div class="import-file" fxLayout="row wrap" fxLayoutAlign="start center">
+      <div fxFlex="80%" class="file-upload" (click)="fileUpload.click()">
+        <input type="file" hidden accept=".csv, .xlsx" id="fileUpload" (change)="onChange($event)" #fileUpload />
+        <span>{{files?.name || ''}}</span>
+        
+      </div>
+      <button fxFlex="20%" style="float: right" mat-raised-button (click)="fileUpload.click()">
+        <mat-icon fontIcon="bosch-ic-search"></mat-icon>
+        <mat-label>{{ "learning.my_learning.import.browse" | translate }}</mat-label>
+      </button>
+      
+    </div>
+    <ng-container style="padding-bottom: 10px">
+      {{ "learning.my_learning.import.template_type" | translate }}
+    </ng-container>
+    <div *ngFor="let errors of errorList">
+      <mat-label><span class="errors">{{errors}}</span></mat-label>
+    </div>
+  </ng-container>
+  <ng-container dialog-action>
+    <button mat-raised-button class="btn-exp" [disabled]="!isUserUploaded" (click)="onImport()">
+      <ng-container><mat-icon fontIcon="bosch-ic-import"> </mat-icon>
+        {{ "learning.command.import" | translate }}</ng-container>
+    </button>
+  </ng-container>
+</eet-common-dialog>

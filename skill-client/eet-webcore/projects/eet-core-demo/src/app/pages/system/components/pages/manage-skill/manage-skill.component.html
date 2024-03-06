@@ -1,0 +1,204 @@
+<div class="full-space">
+  <div class="title">
+    <eet-toggle id="toggle" [listData]="[technical,behavorial]" [checked]="isFilterTechnical"
+      (toggleChange)="applyFilter($event)"  ></eet-toggle>
+    <div class="filter">
+        <mat-form-field class="search-box">
+        <mat-label>{{ "system.manage_skill.search" | translate }}</mat-label>
+          <input [(ngModel)]="_filterValue" matInput (keyup)="onFilter($event)"  #input />
+          <button type="submit" class="a-text-field__icon-search" matSuffix (click)="onFilter($event)">
+            <i class="a-icon ui-ic-search" matTooltip="{{ 'manage_request.main.search_tooltip' | translate }}"></i>
+          </button>
+        </mat-form-field>
+    </div>
+    <div class="add-new">
+      <button bciTertiaryButton mat-raised-button color="primary" type="button"
+        class="bosch-ic-clickable a-button a-button--primary" (click)="addSkill()"><i
+          class="a-icon boschicon-bosch-ic-add" title="save"></i> {{ "system.manage_skill.add_new_skill" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort class="table-common table">
+
+    <ng-container matColumnDef="skill_group">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef>
+        <mat-label mat-sort-header>{{
+          "system.manage_skill.skill_clusters" | translate
+          }}</mat-label>
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        {{element.skill_group}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="skill_name">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef>
+        <mat-label mat-sort-header>{{
+          "system.manage_skill.skill" | translate
+          }}</mat-label>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.skill_name?.length > 50
+          ? (element.skill_name | slice : 0 : 50) + "..."
+          : element.skill_name}}
+      </td>
+    </ng-container>
+
+    
+
+    <!-- Level 0 -->
+    <ng-container matColumnDef="level_0">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "system.manage_skill.l0" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column">
+          <div class="skill-level">{{element?.level_0?.length > 120
+            ? (element?.level_0 | slice : 0 : 120) + "..."
+            : element?.level_0}}
+          </div>
+          <div *ngIf="element?.level_0?.length > 120" class="read-more"
+            (click)="viewLevelDetail('system.manage_skill.l0', element.level_0)"><u>{{"system.manage_skill.more" |
+              translate }}</u> 
+          </div> 
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Level 1 -->
+    <ng-container matColumnDef="level_1">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "system.manage_skill.l1" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column">
+          <div class="skill-level">{{element?.level_1?.length > 115
+            ? (element?.level_1 | slice : 0 : 115) + "..."
+            : element?.level_1}}
+          </div>
+          <div *ngIf="element?.level_1?.length > 115" class="read-more"
+            (click)="viewLevelDetail('system.manage_skill.l1', element.level_1)"><u>{{"system.manage_skill.more" |
+              translate }}</u>
+          </div> 
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Level 2 -->
+    <ng-container matColumnDef="level_2">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "system.manage_skill.l2" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column">
+          <div class="skill-level">{{element?.level_2?.length > 115
+            ? (element?.level_2 | slice : 0 : 115) + "..."
+            : element?.level_2}}
+          </div>
+          <div *ngIf="element?.level_2?.length > 115" class="read-more"
+            (click)="viewLevelDetail('system.manage_skill.l2', element.level_2)"><u>{{"system.manage_skill.more" |
+              translate }}</u>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Level 3 -->
+    <ng-container matColumnDef="level_3">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "system.manage_skill.l3" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column">
+          <div class="skill-level">{{element?.level_3?.length > 115
+            ? (element?.level_3 | slice : 0 : 115) + "..."
+            : element?.level_3}}
+          </div>
+          <div *ngIf="element?.level_3?.length > 115" class="read-more"
+            (click)="viewLevelDetail('system.manage_skill.l3', element.level_3)"><u>{{"system.manage_skill.more" |
+              translate }}</u>
+          </div> 
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Level 4 -->
+    <ng-container matColumnDef="level_4">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "system.manage_skill.l4" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column">
+          <div class="skill-level">{{element?.level_4?.length > 115
+            ? (element?.level_4 | slice : 0 : 115) + "..."
+            : element?.level_4}}
+          </div>
+          <div *ngIf="element?.level_4?.length > 115" class="read-more"
+            (click)="viewLevelDetail('system.manage_skill.l4', element.level_4)"><u>{{"system.manage_skill.more" |
+              translate }}</u>
+          </div> 
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- COMMENT TO REUSE IN FUTURE DO NOT DELETE -->
+    <!-- <ng-container matColumnDef="required">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "system.manage_skill.is_required" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column">
+          <mat-checkbox [checked]="element.required" [disabled]="true">
+          </mat-checkbox>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mandatory">
+      <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "system.manage_skill.is_mandatory" | translate }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <div fxLayout="column">
+          <mat-checkbox [checked]="element.mandatory" [disabled]="true">
+          </mat-checkbox>
+        </div>
+      </td>
+    </ng-container> -->
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-label>{{ "system.manage_skill.action" | translate }}</mat-label>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div style="display: flex; justify-content: center">
+          <mat-icon class="edit" fontIcon="bosch-ic-reference" (click)="editSkill(element)" style="cursor: pointer">
+          </mat-icon>
+          <mat-icon class="delete" fontIcon="bosch-ic-delete" (click)="deleteSkill(element)"></mat-icon>
+        </div>
+      </td>
+    </ng-container>
+    <!-- Filter -->
+    <ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="8">
+          {{ "system.manage_skill.no_data" | translate }}
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+  <div fxLayout="row" class="paginator" fxLayoutAlign="center none">
+    <mat-paginator #paginator [pageSizeOptions]="pageSizeOption" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

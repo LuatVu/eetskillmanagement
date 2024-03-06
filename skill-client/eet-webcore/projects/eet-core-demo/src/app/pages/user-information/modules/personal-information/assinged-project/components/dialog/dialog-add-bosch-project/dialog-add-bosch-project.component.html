@@ -1,0 +1,108 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <form action="" [formGroup]="form">
+      <div class="row">
+        <div class="col-md-4 form-label">
+          <mat-label class="required">{{'personal_information.assign_project.dialog.bosch_project.project_name' | translate}}</mat-label>
+        </div>
+        <div class="col-md-8">
+          <div class="form-column">
+            <input *ngIf="data.data.type === 'edit-personal'" class="form-content" type="text" formControlName="name" disabled>
+            <!-- <eet-common-select *ngIf="data.data.type !== 'edit-personal'" [selectedData]="'a'" class="form-content" [isMultipleChoise]="false" [isShowUnSelect]="false"
+                   [valueKey]="'id'"
+                  [nameKey]="'name'" (onSelectedItemChange)="onProjectChosen($event)"
+                  [originalData]="projectList"></eet-common-select> -->
+            <mat-select *ngIf="data.data.type !== 'edit-personal'" class="form-content" formControlName="project_id" [disabled]="disableSelect.value" (selectionChange)="onProjectChosen($event)">
+              <mat-option *ngFor=" let project of projectList" [value]="project.project_id">{{project.name}} </mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-label">
+          <mat-label class="basic-detail__label required">{{'projects.detail.start' | translate}}</mat-label>
+        </div>
+        <div class="col-md-8">
+          <div class="form-column date">
+            <mat-form-field floatLabel="never" class="basic-detail__field-short dateField" (click)="startDatePicker.open()">
+              <input [matDatepickerFilter]="filterMemberStartDay" matInput [matDatepicker]="startDatePicker"
+                 placeholder="DD/MM/YYYY" [readonly]="true"
+                class="date-input" formControlName="member_start_date" 
+                [disabled]="!this.form.getRawValue()?.project_id">
+              <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single date-picker-icon"
+                matTooltip="{{ 'learning.my_learning.info.start' | translate }}" ></i>
+              <mat-datepicker #startDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-label">
+          <mat-label class="basic-detail__label ml-100 text-center">{{'projects.detail.end' | translate}}</mat-label>
+        </div>
+        <div class="col-md-8">
+          <div class="form-column date">
+            <mat-form-field floatLabel="never" class="basic-detail__field-short dateField" (click)="endDatePicker.open()">
+              <input matInput [matDatepicker]="endDatePicker"
+                 placeholder="DD/MM/YYYY" [readonly]="true" 
+                 [matDatepickerFilter]="filterMemberEndDay"
+                class="date-input" formControlName="member_end_date"
+                [disabled]="!this.form.getRawValue()?.project_id"
+                >
+              <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single date-picker-icon"
+                matTooltip="{{ 'learning.my_learning.info.end' | translate }}" ></i>
+              <mat-datepicker #endDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-label">
+          <mat-label class="required">{{'personal_information.assign_project.dialog.bosch_project.role' | translate}}</mat-label>
+        </div>
+        <div class="col-md-8">
+          <div class="form-column">
+            <mat-select formControlName="role_id" *ngIf="data.data.type !== 'edit-personal'" class="form-content" formControlName="role_id" [disabled]="disableSelect.value">
+              <mat-option *ngFor=" let value of roles" [value]="value.id">{{value.name}} </mat-option>
+            </mat-select>
+            <input *ngIf="data.data.type === 'edit-personal'" class="form-content" type="text" formControlName="role_name" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-label">
+          <mat-label>{{'personal_information.assign_project.dialog.bosch_project.common_tasks' | translate}}</mat-label>
+        </div>
+        <div class="col-md-8">
+          <div class="form-column">
+            <eet-common-chip class="form-content" typeChip="object" [selectedChipList]="taskFormControl?.value || []"
+              [isDisabled]="false" (selectedChipChange)="onTaskListChange($event)"></eet-common-chip>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-label">
+          <mat-label>{{'personal_information.assign_project.dialog.bosch_project.addition_tasks' |
+            translate}}</mat-label>
+        </div>
+        <div class="col-md-8">
+          <div class="form-column">
+            <textarea placeholder="Add additional tasks..." class="form-content" maxlength="250" type="text" formControlName="additional_tasks"></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container dialog-action>
+    <button (click)="onEditAdditionalTask()" *ngIf="data.data.type === 'edit-personal' || data.data.type === 'edit-associate'" type="button" class="a-button a-button--primary" [disabled]="!form.valid">
+      <i class="a-icon boschicon-bosch-ic-save" title="save"></i>
+      <span >
+        {{'button.save' | translate}}</span>
+    </button>
+    <button  (click)="onSave()" *ngIf="data.data.type !== 'edit-personal' && data.data.type !== 'edit-associate'" type="button" class="a-button a-button--primary" [disabled]="!form.valid">
+      <i class="a-icon boschicon-bosch-ic-save" title="save"></i>
+      <span>
+        {{'button.add' | translate}}</span>
+    </button>
+  </ng-container>
+</eet-common-dialog>

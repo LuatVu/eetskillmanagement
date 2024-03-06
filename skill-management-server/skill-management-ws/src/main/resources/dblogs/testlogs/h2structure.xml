@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1671374284826-1" author="MAC9HC (generated)">
+        <createTable tableName="change_log" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="table_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="VARCHAR(12)"/>
+            <column name="modified_by" type="VARCHAR(10)"/>
+            <column name="modified_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-2" author="MAC9HC (generated)" >
+        <createTable tableName="change_log_details" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="field_name" type="VARCHAR(120)"/>
+            <column name="old_value" type="TEXT"/>
+            <column name="new_value" type="TEXT"/>
+            <column name="change_log_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-3" author="MAC9HC (generated)">
+        <createTable tableName="course" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column name="course_type" type="VARCHAR(120)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-4" author="MAC9HC (generated)">
+        <createTable tableName="department" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="gb_unit_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-5" author="MAC9HC (generated)">
+        <createTable tableName="gb_unit" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-6" author="MAC9HC (generated)">
+        <createTable tableName="group" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="display_name" type="VARCHAR(45)"/>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="created_by" type="VARCHAR(45)"/>
+            <column name="modified_date" type="timestamp"/>
+            <column name="modified_by" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-7" author="MAC9HC (generated)">
+        <createTable tableName="group_role" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="group_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-8" author="MAC9HC (generated)">
+        <createTable tableName="level" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-9" author="MAC9HC (generated)">
+        <createTable tableName="oauth_access_token" schemaName="PUBLIC">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication_id" type="VARCHAR(255)"/>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="client_id" type="VARCHAR(255)"/>
+            <column name="authentication" type="BLOB"/>
+            <column name="refresh_token" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-10" author="MAC9HC (generated)">
+        <createTable tableName="oauth_client_details" schemaName="PUBLIC">
+            <column name="client_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="resource_ids" type="VARCHAR(255)"/>
+            <column name="client_secret" type="VARCHAR(255)"/>
+            <column name="scope" type="VARCHAR(255)"/>
+            <column name="authorized_grant_types" type="VARCHAR(255)"/>
+            <column name="web_server_redirect_uri" type="VARCHAR(255)"/>
+            <column name="authorities" type="VARCHAR(255)"/>
+            <column name="access_token_validity" type="INT"/>
+            <column name="refresh_token_validity" type="INT"/>
+            <column name="additional_information" type="VARCHAR(4096)"/>
+            <column name="autoapprove" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-11" author="MAC9HC (generated)">
+        <createTable tableName="oauth_client_token" schemaName="PUBLIC">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication_id" type="VARCHAR(255)"/>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="client_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-12" author="MAC9HC (generated)">
+        <createTable tableName="oauth_code" schemaName="PUBLIC">
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="authentication" type="BLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-13" author="MAC9HC (generated)">
+        <createTable tableName="oauth_refresh_token" schemaName="PUBLIC">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication" type="BLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-14" author="MAC9HC (generated)">
+        <createTable tableName="permission" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="timestamp"/>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="permission_category_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-15" author="MAC9HC (generated)">
+        <createTable tableName="permission_category" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="sequence" type="TINYINT(3)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-16" author="MAC9HC (generated)">
+        <createTable tableName="personal" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_number" type="VARCHAR(25)"/>
+            <column name="personal_code" type="VARCHAR(25)"/>
+            <column name="title" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manager" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="experienced_at_bosch" type="SMALLINT"/>
+            <column name="experienced_non_bosch" type="SMALLINT"/>
+            <column name="picture" type="BLOB"/>
+            <column name="department_id" type="VARCHAR(45)"/>
+            <column name="team" type="VARCHAR(225)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-17" author="MAC9HC (generated)">
+        <createTable tableName="personal_course" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="course_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="course_type" type="VARCHAR(50)"/>
+            <column name="start_date" type="date"/>
+            <column name="end_date" type="date"/>
+            <column name="status" type="VARCHAR(25)"/>
+            <column name="certificate" type="BLOB"/>
+            <column name="trainer" type="VARCHAR(120)"/>
+            <column name="duration" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-18" author="MAC9HC (generated)">
+        <createTable tableName="personal_project" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task" type="VARCHAR(120)"/>
+            <column name="additional_task" type="VARCHAR(250)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-19" author="MAC9HC (generated)">
+        <createTable tableName="personal_skill" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="level" type="SMALLINT"/>
+            <column defaultValueNumeric="0" name="experience" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-20" author="MAC9HC (generated)">
+        <createTable tableName="project" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="date"/>
+            <column name="leader" type="VARCHAR(45)"/>
+            <column name="team_size" type="VARCHAR(45)"/>
+            <column name="challenge" type="VARCHAR(250)"/>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="status" type="VARCHAR(25)"/>
+            <column name="target_object" type="VARCHAR(250)"/>
+            <column name="project_type_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stack_holder" type="VARCHAR(120)"/>
+            <column name="gb_unit" type="VARCHAR(45)"/>
+            <column name="department" type="VARCHAR(45)"/>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="modified_date" type="timestamp"/>
+            <column name="reference_link" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-21" author="MAC9HC (generated)">
+        <createTable tableName="project_role" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="ENUM('Inactive', 'Active')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-22" author="MAC9HC (generated)">
+        <createTable tableName="project_type" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="sequence" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-23" author="MAC9HC (generated)">
+        <createTable tableName="role" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="display_name" type="VARCHAR(45)"/>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="timestamp"/>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="priority" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-24" author="MAC9HC (generated)">
+        <createTable tableName="role_permission" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-25" author="MAC9HC (generated)">
+        <createTable tableName="setting" schemaName="PUBLIC">
+            <column name="key" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(120)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-26" author="MAC9HC (generated)">
+        <createTable tableName="skill" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column name="sequence" type="SMALLINT"/>
+            <column defaultValue="Active" name="status" type="ENUM('Inactive', 'Active')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level_id" type="VARCHAR(45)"/>
+            <column name="skill_group_id" type="VARCHAR(45)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-27" author="MAC9HC (generated)">
+        <createTable tableName="skill_evaluation" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_level" type="SMALLINT"/>
+            <column name="target_level" type="SMALLINT"/>
+            <column name="comment" type="VARCHAR(250)"/>
+            <column name="date" type="VARCHAR(45)"/>
+            <column name="status" type="ENUM('CANCELLED', 'REJECTED', 'APPROVED', 'APPROVAL_PENDING')"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-28" author="MAC9HC (generated)">
+        <createTable tableName="skill_group" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-29" author="MAC9HC (generated)">
+        <createTable tableName="training_course" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="course_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trainer" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="effort" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-30" author="MAC9HC (generated)">
+        <createTable tableName="user" schemaName="PUBLIC" >
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" remarks="name is user-nt-id" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="display_name" type="VARCHAR(250)"/>
+            <column name="email" type="VARCHAR(120)">
+                <constraints unique="true"/>
+            </column>
+            <column defaultValue="Person" name="type" remarks="type enum is USER | GROUP | APPROVER"
+                    type="VARCHAR(45)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)"/>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="modified_date" type="timestamp"/>
+            <column name="first_logged_in_date" type="timestamp"/>
+            <column name="last_logged_in_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-31" author="MAC9HC (generated)">
+        <createTable tableName="user_group" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-32" author="MAC9HC (generated)">
+        <createTable tableName="user_role" schemaName="PUBLIC">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1671374284826-33" author="MAC9HC (generated)">
+        <createIndex indexName="fk_change_log_details_change_log1_idx" tableName="change_log_details">
+            <column name="change_log_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-34" author="MAC9HC (generated)">
+        <createIndex indexName="fk_department_gb_unit1_idx" tableName="department">
+            <column name="gb_unit_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-35" author="MAC9HC (generated)">
+        <createIndex indexName="fk_group" tableName="group_role">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-36" author="MAC9HC (generated)">
+        <createIndex indexName="fk_member_has_role_member1_idx" tableName="user_role">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-37" author="MAC9HC (generated)">
+        <createIndex indexName="fk_member_has_role_role1_idx" tableName="user_role">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-38" author="MAC9HC (generated)">
+        <createIndex indexName="fk_permission_permission_category1_idx" tableName="permission">
+            <column name="permission_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-39" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_department1_idx" tableName="personal">
+            <column name="department_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-40" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_has_course_course1_idx" tableName="personal_course">
+            <column name="course_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-41" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_has_course_personal1_idx" tableName="personal_course">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-42" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_has_project_personal1_idx" tableName="personal_project">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-43" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_has_project_project1_idx" tableName="personal_project">
+            <column name="project_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-44" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_has_skill_skill1_idx" tableName="personal_skill">
+            <column name="skill_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-45" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_project_project_role1_idx" tableName="personal_project">
+            <column name="project_role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-46" author="MAC9HC (generated)">
+        <createIndex indexName="fk_personal_skill_personal1_idx" tableName="personal_skill">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-47" author="MAC9HC (generated)">
+        <createIndex indexName="fk_project_project_type1_idx" tableName="project">
+            <column name="project_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-48" author="MAC9HC (generated)">
+        <createIndex indexName="fk_role" tableName="group_role">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-49" author="MAC9HC (generated)">
+        <createIndex indexName="fk_role_has_permission_permission1_idx" tableName="role_permission">
+            <column name="permission_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-50" author="MAC9HC (generated)">
+        <createIndex indexName="fk_role_has_permission_role1_idx" tableName="role_permission">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-51" author="MAC9HC (generated)">
+        <createIndex indexName="fk_skill_evaluation_personal1_idx" tableName="skill_evaluation">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-52" author="MAC9HC (generated)">
+        <createIndex indexName="fk_skill_evaluation_skill1_idx" tableName="skill_evaluation">
+            <column name="skill_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-53" author="MAC9HC (generated)">
+        <createIndex indexName="fk_skill_level1_idx" tableName="skill">
+            <column name="level_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-54" author="MAC9HC (generated)">
+        <createIndex indexName="fk_training_course_course1_idx" tableName="training_course">
+            <column name="course_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-55" author="MAC9HC (generated)">
+        <createIndex indexName="fk_user_has_group_group1" tableName="user_group">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-56" author="MAC9HC (generated)">
+        <createIndex indexName="fk_user_has_group_user1" tableName="user_group">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1671374284826-57" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="change_log_id" baseTableName="change_log_details"
+                                 constraintName="fk_change_log_details_change_log1" onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="change_log"/>
+    </changeSet>
+    <changeSet id="1671374284826-58" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="gb_unit_id" baseTableName="department"
+                                 constraintName="fk_department_gb_unit1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="gb_unit"/>
+    </changeSet>
+    <changeSet id="1671374284826-59" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="group_role" constraintName="fk_group"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="group"/>
+    </changeSet>
+    <changeSet id="1671374284826-60" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role"
+                                 constraintName="fk_member_has_role_member1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1671374284826-61" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role"
+                                 constraintName="fk_member_has_role_role1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1671374284826-62" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="permission_category_id" baseTableName="permission"
+                                 constraintName="fk_permission_permission_category1" onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="permission_category"/>
+    </changeSet>
+    <changeSet id="1671374284826-63" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="personal"
+                                 constraintName="fk_personal_department1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="department"/>
+    </changeSet>
+    <changeSet id="1671374284826-64" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="course_id" baseTableName="personal_course"
+                                 constraintName="fk_personal_has_course_course1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="course"/>
+    </changeSet>
+    <changeSet id="1671374284826-65" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="personal_course"
+                                 constraintName="fk_personal_has_course_personal1" onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet id="1671374284826-66" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="personal_project"
+                                 constraintName="fk_personal_has_project_personal1" onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet id="1671374284826-67" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="personal_project"
+                                 constraintName="fk_personal_has_project_project1" onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="project"/>
+    </changeSet>
+    <changeSet id="1671374284826-68" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="skill_id" baseTableName="personal_skill"
+                                 constraintName="fk_personal_has_skill_skill1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill"/>
+    </changeSet>
+    <changeSet id="1671374284826-69" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="project_role_id" baseTableName="personal_project"
+                                 constraintName="fk_personal_project_project_role1" onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="project_role"/>
+    </changeSet>
+    <changeSet id="1671374284826-70" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="personal_skill"
+                                 constraintName="fk_personal_skill_personal1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet id="1671374284826-71" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="personal" constraintName="fk_personal_user1"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+    <changeSet id="1671374284826-72" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="project_type_id" baseTableName="project"
+                                 constraintName="fk_project_project_type1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="project_type"/>
+    </changeSet>
+    <changeSet id="1671374284826-73" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="group_role" constraintName="fk_role"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1671374284826-74" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="role_permission"
+                                 constraintName="fk_role_has_permission_permission1" onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="permission"/>
+    </changeSet>
+    <changeSet id="1671374284826-75" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_permission"
+                                 constraintName="fk_role_has_permission_role1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet id="1671374284826-76" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="skill_evaluation"
+                                 constraintName="fk_skill_evaluation_personal1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet id="1671374284826-77" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="skill_id" baseTableName="skill_evaluation"
+                                 constraintName="fk_skill_evaluation_skill1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill"/>
+    </changeSet>
+    <changeSet id="1671374284826-78" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="level_id" baseTableName="skill" constraintName="fk_skill_level1"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="level"/>
+    </changeSet>
+    <changeSet id="1671374284826-79" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="course_id" baseTableName="training_course"
+                                 constraintName="fk_training_course_course1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="course"/>
+    </changeSet>
+    <changeSet id="1671374284826-80" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="user_group"
+                                 constraintName="fk_user_has_group_group1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="group"/>
+    </changeSet>
+    <changeSet id="1671374284826-81" author="MAC9HC (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_group"
+                                 constraintName="fk_user_has_group_user1" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+
+</databaseChangeLog>

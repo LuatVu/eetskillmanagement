@@ -1,0 +1,4 @@
+id,user_id,group_id
+sysadmin_admin,sysadmin,admin
+admin_admin,admin,admin
+user_user,user_active,user

@@ -1,0 +1,48 @@
+@import "~@bci-web-core/common-styles/sass/bci/colors";
+@import "~@bci-web-core/common-styles/sass/bci/bci-variables";
+
+.search-bar {
+  .mat-form-field.mat-form-field {
+    padding-bottom: 7px;
+  }
+}
+.source-list {
+  overflow: auto;
+  .mat-list-item {
+    background-color: #efeff0;
+
+    .item-content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .delete-icon {
+      position: absolute;
+      right: 8px;
+      &:hover {
+        cursor: pointer;
+        color: $boschLightBlueW50;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .active-item-class {
+    background-color: var(--bosch-blue-70);
+    color: #ffffff;
+  }
+  .mat-selection-list {
+    margin-bottom: 7px;
+  }
+}
+
+.no-data-box {
+  background-color: #efeff0;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  border: 1px solid #bfc0c2;
+}

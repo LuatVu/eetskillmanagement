@@ -1,0 +1,31 @@
+<eet-common-dialog [isShowCloseButton]="true">
+  <ng-container dialog-content>
+    <div mat-dialog-actions>
+      <section class="section-button">
+        <mat-button-toggle-group name="alignment" [(ngModel)]="selectedType">
+          <mat-button-toggle value="User"><i class="bosch-ic bosch-ic-clickable bosch-ic-user"></i>
+          </mat-button-toggle>
+          <mat-button-toggle value="Distribution"><i class="bosch-ic bosch-ic-clickable bosch-ic-team-3"></i>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </section>
+    </div>
+    
+    <eet-add-user-or-group searchTitle="user_management.dialog.title_search_users"
+      selectedTitle="user_management.dialog.title_selected_users" searchType="User"
+      (selectedOptionChange)="selectedOptionChange($event, 'User')" *ngIf="selectedType == 'User'"
+      [selectedOptionList]="dataForm.ldapUsers"></eet-add-user-or-group>
+    
+    <eet-add-user-or-group searchTitle="user_management.dialog.title_search_distributions"
+      selectedTitle="user_management.dialog.title_selected_distributions" searchType="DistributionList"
+      (selectedOptionChange)="selectedOptionChange($event, 'DistributionList')" *ngIf="selectedType == 'Distribution'"
+      [selectedOptionList]="dataForm.distributionLists"></eet-add-user-or-group>
+  </ng-container>
+  
+  <ng-container dialog-action>
+    <button mat-raised-button color="primary" (click)="onSave()">
+      <i class="a-icon boschicon-bosch-ic-save"></i>
+      {{'user_management.dialog.button_name.button_save' | translate}}
+    </button>
+  </ng-container>
+</eet-common-dialog>

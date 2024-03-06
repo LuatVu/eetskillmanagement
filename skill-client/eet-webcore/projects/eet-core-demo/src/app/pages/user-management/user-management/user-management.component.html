@@ -1,0 +1,17 @@
+<div class="page-wrapper" >
+  <mat-tab-group (selectedTabChange)="onTabSwitch($event)" [selectedIndex]="selectedTabIndex">
+    <mat-tab *ngFor="let tabItem of userManagementTabList" label="{{tabItem.name | translate}}"></mat-tab>
+  </mat-tab-group>
+
+  <ng-container [ngSwitch]="activeTab">
+    <ng-template [ngSwitchCase]="groups_users_url">
+      <eet-users-and-groups></eet-users-and-groups>
+    </ng-template>
+    <ng-template [ngSwitchCase]="roles_url">
+      <eet-user-roles></eet-user-roles>
+    </ng-template>
+    <ng-template [ngSwitchCase]="permissions_url">
+      <eet-user-permision></eet-user-permision>
+    </ng-template>
+  </ng-container>
+</div>

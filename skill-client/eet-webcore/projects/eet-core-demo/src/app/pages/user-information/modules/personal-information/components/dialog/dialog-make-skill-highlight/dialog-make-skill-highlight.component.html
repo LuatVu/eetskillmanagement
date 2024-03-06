@@ -1,0 +1,21 @@
+<eet-common-dialog>
+    <ng-container dialog-content>
+        <div *ngFor="let skill of listSkill" class="skillContainer">
+            <mat-checkbox class="permission-margin test" [(ngModel)]="skill.selected"
+                (change)="onSelectedChange($event)">
+                {{skill.skillName ? skill.skillName : skill.skill_id}} - Experience: {{skill.experience}} years
+            </mat-checkbox>
+        </div>
+    </ng-container>
+    <ng-container dialog-action>
+        <div class="hint" *ngIf="isDisabled">{{'personal_information.dialog.make_skill_highlight.hint' | translate}}</div>
+        <button mat-raised-button color="primary" type="button" class="bosch-ic-clickable" (click)="save()"
+            *ngIf="!isDisabled">
+            <i class="a-icon boschicon-bosch-ic-save" title="save"></i>
+            {{'button.save' | translate}}</button>
+        <button mat-raised-button disabled color="primary" type="button" class="bosch-ic-clickable"
+            *ngIf="isDisabled">
+            <i class="a-icon boschicon-bosch-ic-save" title="save"></i>
+            {{'button.save' | translate}}</button>
+    </ng-container>
+</eet-common-dialog>

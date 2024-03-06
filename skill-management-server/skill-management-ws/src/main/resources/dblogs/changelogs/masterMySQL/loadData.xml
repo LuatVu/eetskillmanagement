@@ -1,0 +1,508 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="TGI2HC (generated)"
+		id="AddOauthClientDetails">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/oauth_client_details.csv"
+			quotchar="&quot;" separator="," tableName="oauth_client_details">
+			<column header="client_id" name="client_id" type="STRING" />
+			<column header="resource_ids" name="resource_ids"
+				type="STRING" />
+			<column header="client_secret" name="client_secret"
+				type="STRING" />
+			<column header="scope" name="scope" type="STRING" />
+			<column header="authorized_grant_types"
+				name="authorized_grant_types" type="STRING" />
+			<column header="web_server_redirect_uri"
+				name="web_server_redirect_uri" type="skip" />
+			<column header="authorities" name="authorities" type="skip" />
+			<column header="access_token_validity"
+				name="access_token_validity" type="NUMERIC" />
+			<column header="refresh_token_validity"
+				name="refresh_token_validity" type="NUMERIC" />
+			<column header="additional_information"
+				name="additional_information" type="skip" />
+			<column header="autoapprove" name="autoapprove" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="oauth_client_details">
+				<where>client_id="skm-ws"</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)"
+		id="AddPermissionCategory">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/permission_category.csv"
+			quotchar="&quot;" separator="," tableName="permission_category">
+			<column header="id" name="id" type="STRING" />
+			<column header="code" name="code" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="sequence" name="sequence" type="NUMERIC" />
+		</loadData>
+		<rollback>
+			<delete tableName="permission_category">
+				<where>id="admincb5-61d1-11ed-b4a3-00505695263f"</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddPermission">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/permission.csv" quotchar="&quot;"
+			separator="," tableName="permission">
+			<column header="id" name="id" type="STRING" />
+			<column header="code" name="code" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="description" name="description" type="STRING" />
+			<column header="status" name="status" type="STRING" />
+			<column header="created_date" name="created_date" type="DATE" />
+			<column header="created_by" name="created_by" type="STRING" />
+			<column header="modified_date" name="modified_date"
+				type="skip" />
+			<column header="modified_by" name="modified_by" type="skip" />
+			<column header="permission_category_id"
+				name="permission_category_id" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="permission">
+				<where>id="005be29f-d1c9-11ec-81c0-38f3ab0673e4"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="13e55248-d1c5-11ec-81c0-38f3ab0673e4"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="195283d2-61d5-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="21fbe010-61d5-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="27a33594-61d5-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="2d4f8961-61d5-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="32ff12af-61d5-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="b01481ee-d1c8-11ec-81c0-38f3ab0673e4"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="b0d14f7a-61d5-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="deaaef2c-d1c8-11ec-81c0-38f3ab0673e4"</where>
+			</delete>
+			<delete tableName="permission">
+				<where>id="e8172595-d1c8-11ec-81c0-38f3ab0673e4"</where>
+			</delete>
+
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddRole">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/role.csv" quotchar="&quot;"
+			separator="," tableName="role">
+			<column header="id" name="id" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="display_name" name="display_name"
+				type="STRING" />
+			<column header="description" name="description" type="STRING" />
+			<column header="status" name="status" type="STRING" />
+			<column header="created_date" name="created_date" type="DATE" />
+			<column header="created_by" name="created_by" type="STRING" />
+			<column header="modified_date" name="modified_date"
+				type="skip" />
+			<column header="modified_by" name="modified_by" type="skip" />
+		</loadData>
+		<rollback>
+			<delete tableName="role">
+				<where>id="rladmin3-d1c0-11ec-81c0-38f3ab0673e4"</where>
+			</delete>
+			<delete tableName="role">
+				<where>id="rluser0e-d1c0-11ec-81c0-38f3ab0673e4"</where>
+			</delete>
+		</rollback>
+	</changeSet>
+
+	<changeSet author="TGI2HC (generated)" id="AddRolePermission">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/role_permission.csv"
+			quotchar="&quot;" separator="," tableName="role_permission">
+			<column header="id" name="id" type="STRING" />
+			<column header="role_id" name="role_id" type="STRING" />
+			<column header="permission_id" name="permission_id"
+				type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="role_permission">
+				<where>id="0b33f93b-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b33fdea-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b33fed9-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b33ff71-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b33fff3-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b340084-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b340106-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b340196-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b340212-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b34028a-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="role_permission">
+				<where>id="0b340309-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddSetting">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/setting.csv" quotchar="&quot;"
+			separator="," tableName="setting">
+			<column header="key" name="key" type="STRING" />
+			<column header="value" name="value" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="setting">
+				<where>`key`="skm_ws.version"</where>
+				
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddUser">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/user.csv" quotchar="&quot;"
+			separator="," tableName="user">
+			<column header="id" name="id" type="STRING" />
+			<column header="name" name="name" type="STRING" />
+			<column header="display_name" name="display_name"
+				type="STRING" />
+			<column header="email" name="email" type="STRING" />
+			<column header="type" name="type" type="STRING" />
+			<column header="status" name="status" type="STRING" />
+			<column header="created_by" name="created_by" type="STRING" />
+			<column header="created_date" name="created_date" type="DATE" />
+			<column header="modified_by" name="modified_by" type="skip" />
+			<column header="modified_date" name="modified_date"
+				type="skip" />
+			<column header="first_logged_in_date"
+				name="first_logged_in_date" type="skip" />
+			<column header="last_logged_in_date"
+				name="last_logged_in_date" type="skip" />
+		</loadData>
+		<rollback>
+			<delete tableName="user">
+				<where>id="0b434f55-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user">
+				<where>id="0b43fe1c-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user">
+				<where>id="0b44a921-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user">
+				<where>id="0b4561e1-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user">
+				<where>id="luk1hced-617e-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="user">
+				<where>id="sysadmin-617e-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+			<delete tableName="user">
+				<where>id="systeste-617e-11ed-b62d-00059a3c7a00"</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC (generated)" id="AddUserRole">
+		<loadData encoding="UTF-8"
+			file="dblogs/changelogs/initData/user_role.csv" quotchar="&quot;"
+			separator="," tableName="user_role">
+			<column header="id" name="id" type="STRING" />
+			<column header="user_id" name="user_id" type="STRING" />
+			<column header="role_id" name="role_id" type="STRING" />
+		</loadData>
+		<rollback>
+			<delete tableName="user_role">
+				<where>id="0b347a13-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id="0b34daba-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id="0b42bbd8-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id="0b439f62-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id="0b444ae4-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id="0b44f2ff-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+			<delete tableName="user_role">
+				<where>id="0b45aee2-63f2-11ed-8977-6c2408f06cc1"</where>
+			</delete>
+		</rollback>
+	</changeSet>
+	<changeSet author="TGI2HC" id="Database_version_0.0.2">
+		<tagDatabase tag="version_0.0.2" />
+	</changeSet>
+	<changeSet id="Hung.MacBao@vn.bosch.com" author="MAC9HC">
+		<update tableName="role">
+			<column name="priority" value="10"/>
+			<where>id='rladmin3-d1c0-11ec-81c0-38f3ab0673e4'</where>
+		</update>
+		<update tableName="role">
+			<column name="priority" value="1"/>
+			<where>id='rluser0e-d1c0-11ec-81c0-38f3ab0673e4'</where>
+		</update>
+	</changeSet>
+	<changeSet id="Add skill management permissions" author="MAC9HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission.csv" separator=","/>
+	</changeSet>
+	<changeSet id="Add level" author="MAC9HC">
+		<loadData tableName="level" file="dblogs/changelogs/initData/level.csv"/>
+	</changeSet>
+	<changeSet id="Add skill group" author="MAC9HC">
+		<loadData tableName="skill_group" file="dblogs/changelogs/initData/skill_group.csv"/>
+	</changeSet>
+	<changeSet id="Add permission 23-12-2022" author="MAC9HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission23-12-2022.csv" separator=","/>
+	</changeSet>
+	<changeSet id="Add permission 20-03-2023" author="DUP5HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission20-03-2023.csv" separator=","/>
+	</changeSet>
+	<changeSet id="Add role data" author="TAY3HC">
+		<loadData tableName="role" file="dblogs/changelogs/updateData/role-data.csv" separator="," />
+		<loadData tableName="group" file="dblogs/changelogs/updateData/group-data.csv" separator="," />
+		<loadData tableName="group_role" file="dblogs/changelogs/updateData/group_role.csv" separator="," />
+		<loadData tableName="role_permission" file="dblogs/changelogs/updateData/role-permission.csv" separator="," />
+	</changeSet>
+	
+	<changeSet id="Add permission 12-04-2023" author="DUP5HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission12-04-2023.csv" separator=","/>
+	</changeSet>
+	
+	<changeSet id="Add phase" author="GLO7HC">
+		<loadData tableName="phase" file="dblogs/changelogs/updateData/phase.csv" separator=","/>
+	</changeSet>
+
+	<changeSet id="Add project role" author="CAV5HC">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sqlCheck expectedResult="1">SELECT COUNT(*) FROM project_role WHERE id = '1'</sqlCheck>
+			</not>
+			<not>
+				<sqlCheck expectedResult="1">SELECT COUNT(*) FROM project_role WHERE id = '2'</sqlCheck>
+			</not>
+		</preConditions>
+		<loadData tableName="project_role" file="dblogs/changelogs/updateData/project-role.csv" separator=","/>
+	</changeSet>
+
+	
+	<changeSet id="Add permission for expected level" author="GLO7HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission12-07-2023.csv" separator=","/>
+	</changeSet>
+	
+	<changeSet id="Add permission for supply and demand" author="DUP5HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission01-08-2023.csv" separator=","/>
+	</changeSet>
+
+	<changeSet id="Replace permission remove non-bosch project by remove project" author="RRN5HC">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*)
+				FROM PERMISSION
+				WHERE code = 'REMOVE_BOSCH_PROJECT'
+			</sqlCheck>
+		</preConditions>
+		<update tableName="permission">
+			<column name="code" value="REMOVE_PROJECT"/>
+			<column name="name" value="remove project"/>
+			<column name="description" value="remove project"/>
+			<where>id = '31198323-840a-4de7-af60-483a625cf53b'</where>
+		</update>
+	</changeSet>
+	
+	
+	<changeSet id="Remove VIEW_DEPARTMENT_PROJECT permission" author="RRN5HC">
+		<delete tableName="role_permission">
+			<where>permission_id="be758884-826b-11ed-a1eb-0242ac120002"</where>
+		</delete>
+		<delete tableName="permission">
+			<where>id="be758884-826b-11ed-a1eb-0242ac120002"</where>
+		</delete>
+	</changeSet>
+	
+	<changeSet id="Update permission remove and update to delete and edit" author="RRN5HC">
+		<update tableName="permission">
+			<column name="code" value="EDIT_PROJECT"/>
+			<column name="name" value="Edit project"/>
+			<column name="description" value="Edit project"/>
+			<where>id = '43738ecc-b405-4a3e-a5c6-cc3f4c61db4a'</where>
+		</update>
+		<update tableName="permission">
+			<column name="code" value="EDIT_LEARNING_COURSE"/>
+			<column name="name" value="Edit learning course"/>
+			<column name="description" value="Edit learning course"/>
+			<where>id = 'dd314d9d-fbea-4af5-961a-28d702399aea'</where>
+		</update>
+		<update tableName="permission">
+			<column name="code" value="EDIT_ROLE"/>
+			<column name="name" value="Edit role"/>
+			<column name="description" value="Edit role"/>
+			<where>id = '21fbe010-61d5-11ed-b62d-00059a3c7a00'</where>
+		</update>
+		<update tableName="permission">
+			<column name="code" value="EDIT_USER"/>
+			<column name="name" value="Edit user"/>
+			<column name="description" value="Edit user"/>
+			<where>id = 'b01481ee-d1c8-11ec-81c0-38f3ab0673e4'</where>
+		</update>
+		
+		<update tableName="permission">
+			<column name="code" value="DELETE_PROJECT"/>
+			<column name="name" value="Delete project"/>
+			<column name="description" value="Delete project"/>
+			<where>id = '31198323-840a-4de7-af60-483a625cf53b'</where>
+		</update>
+		<update tableName="permission">
+			<column name="code" value="DELETE_LEARNING_COURSE"/>
+			<column name="name" value="Delete learning course"/>
+			<column name="description" value="Delete learning course"/>
+			<where>id = 'bb688c32-9793-48b2-aeb0-4d78e40332a3'</where>
+		</update>
+	</changeSet>
+	
+	<changeSet id="Add permission 25-08-2023" author="VOU6HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission25-08-2023.csv" separator=","/>
+	</changeSet>
+
+	<changeSet author="GLO7HC" id="update_tm_demand_supply_to_admin_demand_supply">
+		<update tableName="permission">
+			<column name="code" value="ADMIN_DEMAND_SUPPLY" />
+			<column name="name" value="Admin Demand Supply" />
+			<column name="description" value="Admin Demand Supply" />
+			<where>code='TM_DEMAND_SUPPLY'</where>
+		</update>
+	</changeSet>
+
+	<changeSet
+		id="remove_rolepermission_and_permission_for_pmdemand_supply"
+		author="GLO7HC">
+		<delete tableName="role_permission">
+			<where>permission_id='46233c9b-bfcb-2551-f037-9e34c315a1ba'</where>
+		</delete>
+		<delete tableName="permission">
+			<where>id='46233c9b-bfcb-2551-f037-9e34c315a1ba'</where>
+		</delete>
+	</changeSet>
+	
+	<changeSet id="load_project_type" author="GLO7HC">
+		<loadData tableName="project_type" file="dblogs/changelogs/initData/project_type.csv" separator=","/>
+	</changeSet>
+	<changeSet id="load_gb_unit" author="GLO7HC">
+		<loadData tableName="gb_unit" file="dblogs/changelogs/initData/gb_unit.csv" separator=","/>
+	</changeSet>
+	
+	<changeSet id="load skill type" author="RRN5HC">
+		<loadData tableName="skill_type" file="dblogs/changelogs/initData/skill_type.csv" separator=","/>
+	</changeSet>
+	
+	<changeSet id="update technical skill_group skill_type_id" author="RRN5HC">
+		<update tableName="skill_group">
+			<column name="skill_type_id" value="253bdd5d-767a-34c9-8f81-af68eab56b09" />
+			<where>skill_type_id is null</where>
+		</update>
+	</changeSet>
+
+	<changeSet id="Update skill group id for skill competency lead table" author="RRN5HC">
+		<update tableName="skill_competency_lead">
+			<column name="skill_group_id" valueComputed="(select s.skill_group_id from skill s where s.id = skill_id)"/>
+		</update>
+	</changeSet>
+	
+	<changeSet id="load default behavioral skill-group and skill" author="RRN5HC">
+		<loadData tableName="skill_group" file="dblogs/changelogs/updateData/behavioral_skill_group.csv" separator=","/>
+		<loadData tableName="skill" file="dblogs/changelogs/updateData/behavioral_skill.csv" separator=","/>
+		<loadData tableName="skill_experience_level" file="dblogs/changelogs/updateData/behavioral_skill_experience_level.csv" separator=","/>
+	</changeSet>
+
+	<changeSet author="GLO7HC" id="insert-data-to-customer">
+		<sqlFile dbms="mysql" encoding="UTF-8" path="customer.sql"
+			relativeToChangelogFile="true" splitStatements="true"
+			stripComments="true"/>
+	</changeSet>
+	
+	<changeSet id="Update-data-customer-gb-id-column" author="GLO7HC">
+		<update tableName="project">
+			<column name="customer_id" valueComputed="(select c.id from customer c where c.name = customer_gb)"/>
+		</update>
+	</changeSet>
+	
+	<changeSet id="Add permission for editing eet overview, org chart, help" author="RRN5HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission10-10-2023.csv" separator=","/>
+	</changeSet>
+
+	<changeSet id="Clean data personal skill with 0 level and experience" author="RRN5HC">
+		<delete tableName="personal_skill">
+			<where>level = 0 AND experience = 0</where>
+		</delete>
+	</changeSet>
+
+	<changeSet id="Add permission for viewing career development menu" author="RRN5HC">
+		<loadData tableName="permission" file="dblogs/changelogs/updateData/permission26-10-2023.csv" separator=","/>
+	</changeSet>
+
+	<changeSet id="change-name-l55-to-sl1" author="GLO7HC">
+		<update tableName="level">
+			<column name="name" value="SL1"/>
+			<column name="description" value="SL1"/>
+			<where>name='L55'</where>
+		</update>
+	</changeSet>
+
+	<changeSet id="update personal project start_date as project start_date" author="RRN5HC">
+		<update tableName="personal_project">
+			<column name="start_date" valueComputed="(select timestamp(p.start_date) from project p where p.id = project_id)"/>
+			<where>start_date is null</where>
+		</update>
+	</changeSet>
+	
+	
+	<changeSet id="update data title associates" author="UGN8HC">
+    	<update tableName="personal">
+        	<column name="title" value="Senior Engineer"/>
+        	<where>title='Sr. Engineer'</where>
+    	</update>
+    	<update tableName="personal">
+        	<column name="title" value="Senior Specialist"/>
+        	<where>title='Sr. Specialist'</where>
+    	</update>
+	</changeSet>
+	
+</databaseChangeLog>

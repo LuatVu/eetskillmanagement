@@ -1,0 +1,15 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div class="upload-box">
+      <mat-label>{{'personal_information.assign_learning.file_name' | translate}}:</mat-label>
+      <input type="file" class="file-upload" #fileUpload (change)="onChange($event)"
+        accept="application/pdf,application/vnd.ms-excel">
+    </div>
+  </ng-container>
+  <ng-container dialog-action>
+    <button mat-raised-button color="primary" type="button" (click)="upload()" class="bosch-ic-clickable"
+      [disabled]="isDisabledUploadButton">
+      <i class="a-icon boschicon-bosch-ic-upload"></i>
+      {{'button.upload' | translate}}</button>
+  </ng-container>
+</eet-common-dialog>

@@ -1,0 +1,12 @@
+<form class="m-search-form" autocomplete="off">
+  <div class="a-text-field a-text-field--search">
+    <input type="text" (keyup)="onKeyUp()" [(ngModel)]="searchKey" 
+      [ngModelOptions]="{standalone: true}" />
+    <button type="submit" class="a-text-field__icon-search">
+      <i class="a-icon ui-ic-search"></i>
+    </button>
+    <button type="button" class="a-text-field__icon-close" (click)="onRemove()" *ngIf="searchKey">
+      <i class="a-icon ui-ic-close-small"></i>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+"id","name","display_name","email","type","status","created_by","created_date","modified_by","modified_date","first_logged_in_date","last_logged_in_date"
+"0b434f55-63f2-11ed-8977-6c2408f06cc1","HYC1HC","Nguyen Thi Kieu Chinh (MS/EET11)","Chinh.NguyenThiKieu@vn.bosch.com","Person","Active","sysadmin-617e-11ed-b62d-00059a3c7a00","2022-11-14T14:57:54","NULL","NULL","NULL","NULL"
+"0b43fe1c-63f2-11ed-8977-6c2408f06cc1","VLL1HC","Vo Ly Luan (MS/EET11)","Luan.VoLy@vn.bosch.com","Person","Active","sysadmin-617e-11ed-b62d-00059a3c7a00","2022-11-14T14:57:54","NULL","NULL","NULL","NULL"
+"0b44a921-63f2-11ed-8977-6c2408f06cc1","LGH1HC","Le Huu Nghia (MS/EET11 MS/EET13)","Nghia.LeHuu@vn.bosch.com","Person","Active","sysadmin-617e-11ed-b62d-00059a3c7a00","2022-11-14T14:57:54","NULL","NULL","NULL","NULL"
+"0b4561e1-63f2-11ed-8977-6c2408f06cc1","TYA1HC","Tran Thi Phuong Uyen (MS/EET12)","Uyen.TranThiPhuong@vn.bosch.com","Person","Active","sysadmin-617e-11ed-b62d-00059a3c7a00","2022-11-14T14:57:54","NULL","NULL","NULL","NULL"
+"luk1hced-617e-11ed-b62d-00059a3c7a00","luk1hc","Luu Kim Bao (MS/EET12)","bao.luukim@vn.bosch.com","Person","Active","sysadmin-617e-11ed-b62d-00059a3c7a00","2022-11-14T14:57:54","NULL","NULL","NULL","NULL"
+"sysadmin-617e-11ed-b62d-00059a3c7a00","sysadmin","System Administrator","sysadmin@skm.com","Person","Active","sysadmin-617e-11ed-b62d-00059a3c7a00","2022-11-14T14:57:53","NULL","NULL","NULL","NULL"
+"systeste-617e-11ed-b62d-00059a3c7a00","systest","System Test","systest@skm.com","Person","Active","sysadmin-617e-11ed-b62d-00059a3c7a00","2022-11-14T14:57:53","NULL","NULL","NULL","NULL"

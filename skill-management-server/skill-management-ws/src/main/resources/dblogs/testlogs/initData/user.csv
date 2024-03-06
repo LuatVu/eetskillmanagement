@@ -1,0 +1,7 @@
+id,name,display_name,email,type,status,created_by,created_date,modified_by,modified_date,first_logged_in_date,last_logged_in_date
+sysadmin,sysadmin,sysadmin,sysadmin,Person,Active,sysadmin,2022-11-14T14:57:53,admin,2022-11-14T14:57:53,2022-11-14T14:57:53,2022-11-14T14:57:53
+admin,admin,admin,admin,Person,Active,sysadmin,2022-11-14T14:57:53,admin,2022-11-14T14:57:53,2022-11-14T14:57:53,2022-11-14T14:57:53
+user_active,user_active,user_active,user_active,Person,Active,sysadmin,2022-11-14T14:57:53,admin,2022-11-14T14:57:53,2022-11-14T14:57:53,2022-11-14T14:57:53
+user_inactive,user_inactive,inactive,user_inactive,Person,Inactive,sysadmin,2022-11-14T14:57:53,admin,2022-11-14T14:57:53,2022-11-14T14:57:53,2022-11-14T14:57:53
+group_active,group_active,group_active,group_active,Group,Active,sysadmin,2022-11-14T14:57:53,admin,2022-11-14T14:57:53,2022-11-14T14:57:53,2022-11-14T14:57:53
+group_inactive,group_inactive,group_inactive,group_inactive,Group,Inactive,sysadmin,2022-11-14T14:57:53,admin,2022-11-14T14:57:53,2022-11-14T14:57:53,2022-11-14T14:57:53

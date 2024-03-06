@@ -1,0 +1,237 @@
+
+<div #tooltip class="tooltip"></div>
+<div class="content">
+  <svg
+    #svg
+    appClickDrag
+    version="1.1"
+    id="vmodel"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    viewBox="0 0 1920 1080"
+    style="enable-background: new 0 0 1920 1080"
+    xml:space="preserve"
+    (singleClick)="onClick($event)"
+    (dragStart)="onDragStart($event)"
+    (dragMove)="onDragMove($event)"
+    (dragEnd)="onDragEnd($event)"
+    (filter)="onFilter($event)"
+  >
+  <defs> <!-- define gradient color for V svg -->
+    <radialGradient id="gradient" cx="0.5" cy="0.05" r="0.8">
+      <stop offset="0%" stop-color="rgba(145, 155, 242, 0)" />
+      <stop offset="26.56%" stop-color="rgba(5, 30, 255, 0.0625)" />
+      <stop offset="83.33%" stop-color="rgba(0, 24, 236, 0.3)" />
+    </radialGradient>
+  </defs>
+    <path
+      id="v-model"
+      class="vmodel"
+      d="M1371.82,54.61L984.02,852.22c-5.44,11.2-21.27,11.54-27.2,0.59L524.34,54.01
+    c-2.67-4.94-7.83-8.01-13.45-8.01h-163.8c-11.68,0-19.05,12.57-13.34,22.76l533.87,953.42c2.7,4.83,7.81,7.82,13.34,7.82h176.86
+    c5.65,0,10.84-3.12,13.5-8.1l507.71-953.42c5.42-10.19-1.96-22.48-13.5-22.48h0h-179.96C1379.72,46,1374.38,49.34,1371.82,54.61z"
+    fill="url(#gradient)"/>
+    <g *ngFor="let phase of locationPhase; let i = index">
+      <rect 
+        [attr.class]="phase.class"
+        [attr.x]="phase.x"
+        [attr.y]="phase.y"
+        [attr.width]="phase.width"
+        [attr.height]="phase.height"
+        />
+        <text
+          [attr.id]="phase.text.id"
+          [attr.x]="phase.text.x"
+          [attr.y]="phase.text.y"
+          dominant-baseline="middle"
+          text-anchor="middle">
+          {{ phase.text.title | translate }}
+      </text>
+    </g>
+    <g id="content_left" *ngFor="let zone of contentLeft; let i = index"> 
+      <rect
+        [attr.id]="zone.id + (i + 1)"
+        [attr.x]="zone.x"
+        [attr.y]="zone.y"
+        [attr.class]="zone.class"
+        [attr.width]="zone.width"
+        [attr.height]="zone.height"
+      />
+      <text
+          [attr.id]="'title_' + (i + 1)"
+          [attr.x]="zone.x + (zone.width / 2)"
+          [attr.y]="zone.y + 15"
+          dominant-baseline="middle"
+          text-anchor="middle">
+        {{ ("vmodel." + zone.label) | translate }}
+      </text>
+      <!-- Child Left -->
+      <g *ngFor="let child of zone?.children; let i = index">
+        <rect
+          *ngIf="i<maxNumItemInPhase(zone)"
+          [attr.id]="child.id + (i + 1)"
+          [attr.x]="child.x"
+          [attr.y]="child.y"
+          [attr.class]="child.class"
+          [attr.width]="child.width"
+          [attr.height]="child.height"
+          [attr.project_id]="child.project_id"
+          (mouseenter)="mouseEnter($event, child.label)"
+          (mouseleave)="mouseLeave($event)"
+          (click)="onClickProject($event)"
+          [style.fill]="child.bgColor"
+          />
+          <text
+            *ngIf="i<maxNumItemInPhase(zone)"
+            [attr.id]="'textChild'"
+            [attr.x]="child.x + (child.width / 2)"
+            [attr.y]="child.y + 14"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            [attr.project_id]="child.project_id"
+            (mouseenter)="mouseEnter($event, child.label)"
+            (mouseleave)="mouseLeave($event)"
+            (click)="onClickProject($event)">
+          {{ trimText(child.label, threshold.small) }}
+        </text>
+      </g>
+      <g *ngIf="zone?.children.length > maxNumItemInPhase(zone)">
+        <text
+          [attr.x]="zone.x + zone.width - 10"
+          [attr.y]="zone.y - 10"
+          text-anchor="end"
+          dominant-baseline="hanging"
+          font-size="30px"
+          cursor="pointer"
+          (click)="showListProject(zone)">
+          {{ 'vmodel.option' | translate }}
+        </text>
+      </g>
+      
+    </g>
+    
+    <g id="content_right" *ngFor="let zone of contentRight; let i = index">
+      <rect
+        [attr.id]="zone.id + (i + 1)"
+        [attr.x]="zone.x"
+        [attr.y]="zone.y"
+        [attr.class]="zone.class"
+        [attr.width]="zone.width"
+        [attr.height]="zone.height"
+      />
+      <text
+          [attr.id]="'title_' + (i + 1)"
+          [attr.x]="zone.x + (zone.width / 2)"
+          [attr.y]="zone.y + 15"
+          dominant-baseline="middle"
+          text-anchor="middle">
+          {{ ("vmodel." + zone.label) | translate }}
+      </text>
+      <!-- Chile Right -->
+      <g *ngFor="let child of zone?.children; let i = index">
+        <rect
+          *ngIf="i<maxNumItemInPhase(zone)"
+          [attr.id]="child.id + (i + 1)"
+          [attr.x]="child.x"
+          [attr.y]="child.y"
+          [attr.class]="child.class"
+          [attr.width]="child.width"
+          [attr.height]="child.height"
+          [attr.project_id]="child.project_id"
+          (mouseenter)="mouseEnter($event, child.label)"
+          (mouseleave)="mouseLeave($event)"
+          (click)="onClickProject($event)"
+          [style.fill]="child.bgColor"
+          />
+          <text
+            *ngIf="i<maxNumItemInPhase(zone,i)"
+            [attr.id]="'textChild'"
+            [attr.x]="child.x + (child.width / 2)"
+            [attr.y]="child.y + 14"
+            [attr.project_id]="child.project_id"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            (mouseenter)="mouseEnter($event, child.label)"
+            (mouseleave)="mouseLeave($event)"
+            (click)="onClickProject($event)">
+          {{ trimText(child.label, threshold.small) }}
+        </text>
+      </g>
+      
+      <g *ngIf="zone?.children.length > maxNumItemInPhase(zone)">
+        <text
+          [attr.x]="zone.x + zone.width - 10"
+          [attr.y]="zone.y - 10"
+          text-anchor="end"
+          dominant-baseline="hanging"
+          font-size="30px"
+          cursor="pointer"
+          (click)="showListProject(zone)">
+          {{ 'vmodel.option' | translate }}
+        </text>
+      </g>
+    </g>
+    <g *ngFor="let phase of locationManagement; let i = index">
+      <rect 
+        [attr.id]="phase.id + (i + 1)"
+        [attr.class]="phase.class"
+        [attr.x]="phase.x"
+        [attr.y]="phase.y"
+        [attr.width]="phase.width"
+        [attr.height]="phase.height"
+        />
+        <text
+          [attr.id]="phase.text.id"
+          [attr.x]="phase.text.x"
+          [attr.y]="phase.text.y"
+          dominant-baseline="middle"
+          text-anchor="middle">
+          {{ "vmodel." + phase.text.title | translate }}
+      </text>
+      <!-- Child Management -->
+      <g *ngFor="let child of phase?.children; let i = index">
+        <rect
+          *ngIf="i<maxNumItemInPhase(phase)"
+          [attr.id]="child.id + (i + 1)"
+          [attr.x]="child.x"
+          [attr.y]="child.y"
+          [attr.class]="child.class"
+          [attr.width]="child.width"
+          [attr.height]="child.height"
+          [attr.project_id]="child.project_id"
+          (mouseenter)="mouseEnter($event, child.label)"
+          (mouseleave)="mouseLeave($event)"
+          (click)="onClickProject($event)"
+          [style.fill]="child.bgColor"
+          />
+          <text
+            *ngIf="i<maxNumItemInPhase(phase)"
+            [attr.id]="'textChild'"
+            [attr.x]="child.x + (child.width / 2)"
+            [attr.y]="child.y + 15"
+            [attr.project_id]="child.project_id"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            (mouseenter)="mouseEnter($event, child.label)"
+            (mouseleave)="mouseLeave($event)"
+            (click)="onClickProject($event)">
+          {{ trimText(child.label, threshold.normal) }}
+        </text>
+      </g>
+      <g *ngIf="phase?.children.length > maxNumItemInPhase(phase)">
+        <text
+          [attr.x]="phase.x + phase.width - 10"
+          [attr.y]="phase.y - 10"
+          text-anchor="end"
+          dominant-baseline="hanging"
+          font-size="30px"
+          cursor="pointer"
+          (click)="showListProject(phase)">
+          {{ 'vmodel.option' | translate }}
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>

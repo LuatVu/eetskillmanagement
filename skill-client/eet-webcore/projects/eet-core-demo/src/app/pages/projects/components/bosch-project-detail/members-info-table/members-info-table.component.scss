@@ -1,0 +1,53 @@
+table {
+    width: 100%;
+    overflow: hidden;
+}
+
+@mixin transition {
+    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s; /* Safari & Chrome */
+    -moz-transition: background-color 0.3s; /* Mozilla */
+    -ms-transition: background-color 0.3s; /* Internet Exploder */
+    -o-transition: background-color 0.3s; /* Opera */
+  }
+.action-col {
+    display: inline-flex;
+    gap: 10px;
+    justify-content: flex-start;
+    &__button {
+        @include transition;
+        cursor: pointer;
+        color: var(--major-accent__enabled__fill__default);
+    }
+    // &__button:hover {
+    //     background-color: rgb(255, 255, 255);
+    // }
+}
+.mat-cell{
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.mat-cell:first-child{
+    max-width: unset;
+}
+ 
+a {
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1500px) {
+    .nameCol{
+        max-width: 2em !important;
+        a{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+       
+    }
+  }

@@ -1,0 +1,25 @@
+.dialog-title {
+  margin-top: 0;
+  font-size: 22px;
+  font-weight: bold;
+
+  span {
+    font-size: 22px;
+    font-weight: bold;
+    overflow: auto;
+    overflow-wrap: break-word;
+    color: var(--bosch-blue-50);
+  }
+}
+
+.level-title {
+  font-weight: bold;
+}
+
+.level-content {
+  padding-left: 5%;
+}
+
+.skill-description{
+  white-space: pre-wrap;
+}

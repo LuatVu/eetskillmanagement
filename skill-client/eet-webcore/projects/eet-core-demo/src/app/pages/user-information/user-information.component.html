@@ -1,0 +1,16 @@
+<div class="page-wrapper" >
+  <mat-tab-group (selectedTabChange)="onTabSwitch($event)" [(selectedIndex)]="selectedTabIndex">
+    <ng-container *ngFor="let tabItem of userInforTabList" >
+      <mat-tab 
+      *ngIf="tabItem.name == 'user_information.manage_information' && HAS_VIEW_ASSOCIATE_INFO_PERMISSION || tabItem.name == 'user_information.my_personal_information' && HAS_VIEW_PERSONAL_PERMISSION"
+      label="{{tabItem.name | translate}}">
+      </mat-tab>
+    </ng-container>
+    
+  </mat-tab-group>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

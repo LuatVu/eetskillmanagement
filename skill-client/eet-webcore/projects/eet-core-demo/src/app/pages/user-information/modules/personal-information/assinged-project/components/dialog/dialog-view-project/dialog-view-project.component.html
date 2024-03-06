@@ -1,0 +1,139 @@
+<eet-common-dialog [isShowCloseButton]="false">
+  <ng-container dialog-content>
+    <div class="row">
+      <div class="col-md-3">
+        <label>Project Name</label>
+      </div>
+      <div class="col-md-3">
+        <p  
+        [matTooltip]="projectDetail?.name"
+        [matTooltipShowDelay]="300"
+        [matTooltipHideDelay]="300"
+         class="long-content">{{projectDetail?.name || 'N/a'}}</p>
+      </div>
+      <div class="col-md-3">
+        <label>Role</label>
+      </div>
+      <div class="col-md-3">
+        <p>{{projectDetail?.role || projectDetail?.role_name || 'N/a'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>Start Date</label>
+      </div>
+      <div class="col-md-3">
+        <p>{{projectDetail?.start_date || 'N/a'}}</p>
+      </div>
+      <div class="col-md-3">
+        <label>Task(s)</label>
+      </div>
+      <div class="col-md-3">
+        <p 
+        [matTooltip]="tasksDisplay"
+        [matTooltipShowDelay]="300"
+        [matTooltipHideDelay]="300"
+        class="long-content">{{tasksDisplay || 'N/a'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>End Date</label>
+      </div>
+      <div class="col-md-3">
+        <p>{{projectDetail?.end_date || 'N/a'}}</p>
+      </div>
+      <div class="col-md-3">
+        <label>Status</label>
+      </div>
+      <div class="col-md-3">
+        <p>{{projectDetail?.status || 'N/a'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>Project Manager
+        </label>
+      </div>
+      <div class="col-md-3">
+        <p
+        [matTooltip]="projectDetail?.pm_name"
+        [matTooltipShowDelay]="300"
+        [matTooltipHideDelay]="300"
+        class="long-content "
+        >{{projectDetail?.pm_name || 'N/a'}}</p>
+      </div>
+      <div class="col-md-3">
+        <label>Project Type
+        </label>
+      </div>
+      <div class="col-md-3">
+        <p>{{projectDetail?.project_type || 'N/a'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>Project Challenge
+        </label>
+      </div>
+      <div class="col-md-3">
+        <p  
+        [matTooltip]="projectDetail?.challenge"
+        [matTooltipShowDelay]="300"
+        [matTooltipHideDelay]="300"
+        class="long-content ">{{projectDetail?.challenge || 'N/a'}}</p>
+      </div>
+      <div class="col-md-3">
+        <label>Project Objective
+        </label>
+      </div>
+      <div class="col-md-3">
+        <p
+        [matTooltip]="projectDetail?.objective"
+        [matTooltipShowDelay]="300"
+        [matTooltipHideDelay]="300" 
+        class="long-content">{{projectDetail?.objective || 'N/a'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>Technology Used
+        </label>
+      </div>
+      <div class="col-md-3">
+        <p 
+        [matTooltip]="skillTagsDisplay"
+        [matTooltipShowDelay]="300"
+        [matTooltipHideDelay]="300" 
+        class="long-content">{{skillTagsDisplay || 'N/a'}}</p>
+      </div>
+      <div class="col-md-3">
+        <label>Team Size
+        </label>
+      </div>
+      <div class="col-md-3">
+        <p>{{projectDetail?.team_size || 'N/a'}}</p>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom: '10px'">
+      <div class="col-md-12">
+        <label>Project Desciption
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p>{{projectDetail?.description || 'N/a'}}
+        </p>
+      </div>
+    </div>
+
+  </ng-container>
+  <ng-container dialog-action></ng-container>
+</eet-common-dialog>

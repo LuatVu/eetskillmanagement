@@ -1,0 +1,46 @@
+<div fxLayout="column" fxLayoutAlign="center">
+  <div class="search-bar">
+    <mat-form-field
+      class="filter-form-field"
+      floatLabel="always"
+      fxFlex="grow"
+      fxFlexFill
+    >
+      <mat-label>{{ "user_management.search" | translate }}</mat-label>
+      <input matInput [(ngModel)]="keyword" (ngModelChange)="searchKeyword()" />
+      <mat-icon matSuffix fontIcon="Bosch-Ic-search"></mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="source-list">
+    <div class="no-data-box" *ngIf="!sourceList || sourceList.length == 0">
+      No data
+    </div>
+    <mat-selection-list *ngFor="let item of sourceList">
+      <mat-list-item
+        id="{{ item.id }}"
+        [ngClass]="{
+          'active-item-class': selectedItem && selectedItem.id == item.id
+        }"
+        (click)="selectItem(item,$event)"
+      >
+        <div class="item-content">
+         {{ truncateTextNumber ? handleTruncateLabel(item?.displayName || item?.name) : (item?.displayName || item?.name)}}
+        </div>
+        <mat-icon
+          *ngIf="showDeleteIcon"
+          matSuffix
+          fontIcon="bosch-ic-delete"
+          class="delete-icon"
+          (click)="deleteItem(item)"
+        ></mat-icon>
+        <mat-icon 
+          *ngIf="showEditIcon"
+          fontIcon="bosch-ic-edit"
+          class="edit-icon"
+          (click)="editItem(item)"
+        >
+        </mat-icon>
+      </mat-list-item>
+    </mat-selection-list>
+  </div>
+</div>

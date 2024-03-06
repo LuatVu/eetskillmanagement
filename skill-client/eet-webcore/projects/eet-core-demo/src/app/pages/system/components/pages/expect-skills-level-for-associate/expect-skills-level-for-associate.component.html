@@ -1,0 +1,109 @@
+<div class="full-space">
+    <div class="left">
+        <div class="top-left">
+            <div class="w-100">
+                <eet-toggle  [listData]="['Technical','Behavioral']" [(checked)]="toggleChecked" 
+                    (toggleChange)="toggleChange($event)" [disabled]="editted" ></eet-toggle>
+            </div>
+        </div>  
+        <hr>
+        <eet-common-list [sourceList]="skillGroupData.originalData" [type]=1 [showDeleteIcon]="false" [defaultItem]="defaultSelect" [selectedItem]="defaultSelect"
+            (onSelectItemInList)="onSelectCompetency($event)" [truncateTextNumber]=23>
+        </eet-common-list>
+    </div>
+    <div class="right">
+        <div class="top-right">
+            <button *ngIf="!editMode && defaultSelect" bciTertiaryButton mat-raised-button color="primary" type="button"
+                class="bosch-ic-clickable a-button a-button--primary" (click)="changeToEditMode()"
+                >
+                <i class="a-icon boschicon-bosch-ic-edit"></i>
+                {{ "system.expect_skill_level_for_associate.edit" | translate }}
+            </button>
+            <button bciTertiaryButton mat-raised-button color="primary" type="button"
+                class="bosch-ic-clickable a-button a-button--primary" (click)="back()"
+                [disabled]="editted" >
+                <i class="a-icon boschicon-bosch-ic-back-menu"></i>
+                {{ "system.expect_skill_level_for_associate.back" | translate }}
+            </button>
+        </div>  
+        
+        <div class="table-contain">
+            <table mat-table [dataSource]="dataSource" matSort class="table-common table">
+                <ng-container matColumnDef="nameSkill">
+                    <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{"system.expect_skill_level_for_associate.table.skill" | translate}}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="skill-name" #skill_name
+                        [matTooltip]="isElementOverflow(skill_name)?element.nameSkill: ''">
+                        <i class="a-icon ui-ic-alert-info"
+                            matTooltip="{{'system.expect_skill_level_for_associate.table.view_skill_detail' | translate}}"
+                            (click)="onViewDetail(element.idSkill)"></i>
+                        {{element.nameSkill}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="{{level}}" *ngFor="let level of levelData">
+                    <th *matHeaderCellDef mat-header-cell class="hover-test" mat-sort-header>
+                        {{level}}
+                    </th>
+                    <td *matCellDef="let element" mat-cell>
+                        <ng-container *ngIf="editMode">
+                            <mat-select [(ngModel)]="element[level.toString()]" [disabled]="canEdit"
+                                [ngClass]="element[level.toString()] !== element[level.toString()+CONST_ORIGIN]? 'updated-field': 'not-updated-field'"
+                                (selectionChange)="onChangeExpectLevel(level.toString(), element)" class="select-box"
+                                panelClass="panel-full-width-default">
+                                <mat-option *ngFor="let op of listExpectedSkillLevelValue" [value]="op" class="filter">
+                                    {{ op }}
+                                </mat-option>
+                            </mat-select>
+                        </ng-container>
+                        <ng-container *ngIf="!editMode">
+                            {{ element[level.toString()] }}
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell text-center" colspan="8">
+                            {{ "system.expect_skill_level_for_associate.no_data" | translate }}
+                        </td>
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+        <div class="footer">
+            <div class="paginator">
+                <mat-paginator #paginator showFirstLastButtons [pageSizeOptions]="PAGINATION_SIZE_OPTIONS">
+                </mat-paginator>
+            </div>
+        </div>
+        <div class="title">
+            <!-- <button *ngIf="editMode" bciTertiaryButton mat-raised-button color="primary" type="button"
+                class="bosch-ic-clickable a-button a-button--primary" (click)="saveChange()"
+                [disabled]="listExpectSkillUpdate.length === 0">
+                <i class="a-icon boschicon-bosch-ic-save"></i>
+                {{ "system.expect_skill_level_for_associate.save_change" | translate }}
+            </button>
+            <button *ngIf="!editMode && defaultSelect" bciTertiaryButton mat-raised-button color="primary" type="button"
+                class="bosch-ic-clickable a-button a-button--primary" (click)="changeToEditMode()"
+                >
+                <i class="a-icon boschicon-bosch-ic-edit"></i>
+                {{ "system.expect_skill_level_for_associate.edit" | translate }}
+            </button> -->
+            <button *ngIf="editMode" bciTertiaryButton mat-raised-button color="primary" type="button"
+            class="bosch-ic-clickable a-button a-button--primary" (click)="saveChange()"
+            [disabled]="listExpectSkillUpdate.length === 0">
+            <i class="a-icon boschicon-bosch-ic-save"></i>
+            {{ "system.expect_skill_level_for_associate.save_change" | translate }}
+            </button>
+            <button  *ngIf="editMode" bciTertiaryButton mat-raised-button color="primary" type="button"
+            class="bosch-ic-clickable a-button a-button--primary" (click)="resetTableInformation()"
+            [disabled]="!editMode">
+                <i class="a-icon boschicon-bosch-ic-close"></i>
+                {{ "system.expect_skill_level_for_associate.cancel" | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+

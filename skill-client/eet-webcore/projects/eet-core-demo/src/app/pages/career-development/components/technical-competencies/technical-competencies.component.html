@@ -1,0 +1,88 @@
+<div class="full-space">
+    <div class="header">
+        <div class="left">
+            <mat-form-field class="search-box">
+                <mat-label>{{"career_development.technical_competencies.search" | translate }} </mat-label>
+                <input matInput (keyup)="onSearch($event)" #input />
+                <button type="submit" class="a-text-field__icon-search" matSuffix (click)="onSearch($event)">
+                  <i class="a-icon ui-ic-search" matTooltip="{{ 'manage_request.main.search_tooltip' | translate }}"></i>
+                </button>
+              </mat-form-field>
+          </div>
+          <p class="title"> {{"career_development.technical_competencies.title" | translate }} </p>
+          <div class="right">
+
+            <div class="a-toggle toggle">
+                <label class="a-toggle__label -left" for="toggle-label-both-sides">
+                  Technical Competencies
+                </label>
+                <input
+                  #isFilter
+                  type="checkbox"
+                  id="toggle-label-both-sides"
+                  name="toggle-label-both-sides"
+                  aria-describedby="toggle-label-both-sides"
+                  [(ngModel)]="isFilterTechnicalSkill"
+                  (ngModelChange)="onTypeChange($event)"
+                />
+                <label class="a-toggle__box" for="toggle-label-both-sides"></label>
+                <label class="a-toggle__label -right" for="toggle-label-both-sides">
+                  Behavorial Competencies
+                </label>
+              </div>
+
+              <button bciTertiaryButton mat-raised-button color="primary" type="button"
+              class="bosch-ic-clickable a-button a-button--primary editbutton" [routerLink]="['/system/expect-skills-level-for-associate']"
+              >
+                  <i class="a-icon boschicon-bosch-ic-edit"></i>
+                  {{"career_development.technical_competencies.edit" | translate }} 
+              </button>
+            <div class="select-skill-contain">
+                <mat-label class="search-label">{{ "system.expect_skill_level_for_associate.skill_cluster" | translate
+                    }}</mat-label>
+                <div class="box">
+                    <div class="box-select">
+                        <eet-common-select [isMultipleChoise]="skillGroupData.isMultiple"
+                            (onSelectedItemChange)="skillGroupData.selectedData = $event;watchOnFilterChange();"
+                            [selectedData]="skillGroupData.selectedData"
+                            [originalData]="skillGroupData.originalData">
+                        </eet-common-select>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+    <table mat-table [dataSource]="dataSource" matSort class="table-common table">
+        <ng-container matColumnDef="nameSkill">
+            <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{"system.expect_skill_level_for_associate.table.skill" | translate}}
+            </th>
+            <td mat-cell *matCellDef="let element" class="skill-name" #skill_name 
+                [matTooltip]="isElementOverflow(skill_name)?element.nameSkill: ''">
+                <i class="a-icon ui-ic-alert-info"
+                    matTooltip="{{'system.expect_skill_level_for_associate.table.view_skill_detail' | translate}}"
+                    (click)="onViewDetail(element.idSkill)"></i>
+                {{element.nameSkill}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="{{level}}" *ngFor="let level of levelData">
+            <th *matHeaderCellDef mat-header-cell class="hover-test" mat-sort-header>
+                {{level}}
+            </th>
+            <td *matCellDef="let element" mat-cell>
+                {{element[level.toString()]}}
+            </td>
+        </ng-container>
+        <ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="8">
+                    {{ "system.expect_skill_level_for_associate.no_data" | translate }}
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+    <mat-paginator #paginator showFirstLastButtons [pageSizeOptions]="PAGINATION_SIZE_OPTIONS">
+    </mat-paginator>
+</div>

@@ -1,0 +1,9 @@
+.upload-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  mat-label {
+    width: 200px;
+  }
+}

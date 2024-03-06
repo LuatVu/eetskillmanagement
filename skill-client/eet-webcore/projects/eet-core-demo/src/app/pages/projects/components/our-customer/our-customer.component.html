@@ -1,0 +1,154 @@
+<div class="content-container" #ourCustomerContainer>
+    <div class="header" [ngStyle]="{'background-color':customerGb.detail.gbStyle.backgroundColor}">
+        <div class="header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+            'top':customerGb.detail.top.top,'left':customerGb.detail.top.left}" *ngIf="customerGb.detail.top"></div>
+        <div class="header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+            'top':customerGb.detail.right.top,'right':customerGb.detail.right.right}" *ngIf="customerGb.detail.right">
+        </div>
+        <div class="header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+            'bottom':customerGb.detail.bottom.bottom,'left':customerGb.detail.bottom.left}"
+            *ngIf="customerGb.detail.bottom"></div>
+        <div class="header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+            'left':customerGb.detail.left.top,'left':customerGb.detail.left.left}" *ngIf="customerGb.detail.left">
+        </div>
+        <button class="back-button" (click)="returnToCustomerGb()">
+            <i class="a-icon boschicon-bosch-ic-back-menu"></i>
+            <p>{{'our_customer.dialog.back' | translate}}</p>
+        </button>
+        <div class="content">
+            <h1 class="gb-name">{{type !== TYPES.ADD?ourCustomer.name: ('our_customer.dialog.title_add'|translate)}}</h1>
+        </div>
+    </div>
+    <div class="body-container">
+        <div class="vertical-line" [ngStyle]="{'background-color':customerGb.detail.gbStyle.backgroundColor}"></div>
+        <div class="vertical-line" [ngStyle]="{'background-color':customerGb.detail.gbStyle.backgroundColor}"></div>
+        <div class="vertical-line" [ngStyle]="{'background-color':customerGb.detail.gbStyle.backgroundColor}"></div>
+        <div class="info-container">
+            <div class="action-button-container">
+                <button *ngIf="permissions.HAS_EDIT_PROJECT && type === TYPES.VIEW" bciTertiaryButton mat-raised-button
+                    color="primary" type="button" class="bosch-ic-clickable" (click)="onEdit()">
+                    <i class="a-icon boschicon-bosch-ic-edit"></i> {{'our_customer.dialog.edit' | translate}}
+                </button>
+                <button *ngIf="permissions.HAS_EDIT_PROJECT && type === TYPES.EDIT" bciTertiaryButton mat-raised-button
+                    color="primary" type="button" class="bosch-ic-clickable" (click)="onSave()"
+                    [disabled]="isFormValid()">
+                    <i class="a-icon boschicon-bosch-ic-save"></i> {{'our_customer.dialog.save' | translate}}
+                </button>
+                <button *ngIf="type === TYPES.ADD" bciTertiaryButton mat-raised-button color="primary"
+                    type="button" class="bosch-ic-clickable" #addCorBtn
+                    (click)="onAdd()" [disabled]="isFormValid()">
+                    <i class="a-icon boschicon-bosch-ic-add"></i> {{'our_customer.dialog.add' | translate}}
+                </button>
+                <button *ngIf="permissions.HAS_EDIT_PROJECT && type !== TYPES.VIEW" bciTertiaryButton mat-raised-button
+                    color="primary" type="button" class="bosch-ic-clickable" (click)="onCancel()">
+                    <i class="a-icon boschicon-bosch-ic-close"></i> {{'our_customer.dialog.cancel' | translate}}
+                </button>
+                <button *ngIf="permissions.HAS_DELETE_PROJECT && type !== TYPES.ADD" bciTertiaryButton mat-raised-button color="primary"
+                    type="button" class="bosch-ic-clickable custom-outline-button" #delCorBtn
+                    (click)="onDelete(ourCustomer)">
+                    <i class="a-icon boschicon-bosch-ic-delete"></i> {{'our_customer.dialog.delete' | translate}}
+                </button>
+            </div>
+            <div class="info">
+                <div class="left">
+                    <div class="title">{{'our_customer.customer_gb_name' | translate}}</div>
+                    <div class="tag-container">
+                        <div class="tag project-tag gb-tag" 
+                        [ngStyle]="{'background-color': customerGb.detail.gbStyle.backgroundColor}" 
+                        *ngIf="type === TYPES.VIEW">
+                        <span class="gb-tag" #corTag
+                            [matTooltip]="isElementOverflow(corTag)? ourCustomer.name:''">
+                            {{ourCustomer.name}}</span>
+                            
+                        </div>
+                        <div *ngIf="type !== TYPES.VIEW" class="tag-add-container">
+                            <mat-form-field class="tag-add">
+                                <input matInput [formControl]="gbNameControl"
+                                    placeholder="{{'our_customer.customer_gb_name' | translate}}" maxlength="120"
+                                    minlength="1">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="title mt-8px">{{'our_customer.corporation' | translate}}</div>
+                    <div class="tag-container">
+                        <ng-container *ngIf="type === TYPES.VIEW">
+                            <div class="tag" *ngFor="let tag of corporations">
+                            <span class="tag-text" #corTag
+                                [matTooltip]="isElementOverflow(corTag)? tag:''">
+                                {{tag}}</span>
+                            </div>
+                        </ng-container>
+                        <div *ngIf="type !== TYPES.VIEW" class="tag-add-container">
+                            <mat-form-field class="tag-add">
+                                <input matInput [formControl]="corporationControl"
+                                    placeholder="{{'our_customer.new_corporation' | translate}}"
+                                    (keyup.enter)="onAddCorporation()" maxlength="1000">
+                            </mat-form-field>
+                            <button mat-raised-button color="primary" type="button"
+                                class="bosch-ic-clickable btn-add-cor" (click)="onAddCorporation()"
+                                [disabled]="isCorporationValid()" [ngClass]="isCorporationValid()?'btn-disabled':''">
+                                <i class="a-icon boschicon-bosch-ic-add"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tag-container mt-3" *ngIf="type !== TYPES.VIEW">
+                        <div class="tag" *ngFor="let tag of corporations">
+                            <span class="tag-text" #corTag
+                                [matTooltip]="isElementOverflow(corTag)? tag:''">
+                                {{tag}}</span>
+                            <i (click)="onRemoveCorporation(tag)" class="a-icon boschicon-bosch-ic-close"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="title">{{'our_customer.customer_highlight' | translate}}</div>
+                    <div *ngIf="type !== TYPES.VIEW">
+                        <textarea class="textarea-highlight" [maxlength]="500"
+                        [formControl]="highlightControl"></textarea>
+                    </div>
+                    <div *ngIf="type === TYPES.VIEW" class="text-container">
+                        <textarea class="textarea-highlight textarea-highlight__disabled" [disabled]="true"
+                        [maxlength]="500">{{ourCustomer.hightlight}}
+                    </textarea></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-container" *ngIf="type !== TYPES.ADD">
+            <div class="center-box">
+                <mat-tab-group mat-align-tabs="center" (selectedTabChange)="onTabChange()"
+                    [selectedIndex]="selectedTabIndex" class="mat-tab-our-customer">
+                    <mat-tab *ngFor="let tab of tabList" label="{{tab.name | translate}}"></mat-tab>
+                </mat-tab-group>
+            </div>
+            <ng-container [ngSwitch]="isActiveTab">
+                <ng-template [ngSwitchCase]="'v-model'">
+                    <div class="tab-content" [ngClass]="'tab-content-border'">
+                        <eet-v-model [dataFilters]="filterData"></eet-v-model>
+                    </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="'project-list'">
+                    <div class="filter-container">
+                        <div class="left"></div>
+                        <div class="right">
+                            <form class="m-search-form" autocomplete="off">
+                                <div class="a-text-field a-text-field--search">
+                                    <input [formControl]="ourCustomerSearchControl" type="text"  />
+                                    <button type="submit" class="a-text-field__icon-search" (click)="onSearchProject()">
+                                        <i class="a-icon ui-ic-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <eet-project-list></eet-project-list>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </div>
+        <div class="footer">
+            <div class="elip" [ngStyle]="{'background-color':customerGb.detail.gbStyle.backgroundColor}"></div>
+            <img [src]="baseHref + 'assets/images/our-customer.png'" alt="our-customer.png">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+"id","code","name","description","status","created_date","created_by","modified_date","modified_by","permission_category_id"
+"005be29f-d1c9-11ec-81c0-38f3ab0673e4","VIEW_ALL_USER","View all user","View all user","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL",admincb5-61d1-11ed-b4a3-00505695263f
+"13e55248-d1c5-11ec-81c0-38f3ab0673e4","CREATE_USER","Create user","Create user","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"195283d2-61d5-11ed-b62d-00059a3c7a00","CREATE_ROLE","Create role","Create role","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"21fbe010-61d5-11ed-b62d-00059a3c7a00","UPDATE_ROLE","Update role","Update role","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"27a33594-61d5-11ed-b62d-00059a3c7a00","VIEW_ROLE","View role","View role","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"2d4f8961-61d5-11ed-b62d-00059a3c7a00","DELETE_ROLE","Delete role","Delete role","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"32ff12af-61d5-11ed-b62d-00059a3c7a00","VIEW_ALL_ROLE","View all role","View all role","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"b01481ee-d1c8-11ec-81c0-38f3ab0673e4","UPDATE_USER","Update user","Update user","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"b0d14f7a-61d5-11ed-b62d-00059a3c7a00","VIEW_PERMISSION","View permission","View permission","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"deaaef2c-d1c8-11ec-81c0-38f3ab0673e4","VIEW_USER","View user","View user","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"e8172595-d1c8-11ec-81c0-38f3ab0673e4","DELETE_USER","Delete user","Delete user","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"

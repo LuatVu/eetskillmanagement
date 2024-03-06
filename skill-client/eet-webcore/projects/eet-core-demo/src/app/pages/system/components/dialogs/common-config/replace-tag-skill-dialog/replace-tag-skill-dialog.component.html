@@ -1,0 +1,32 @@
+<eet-common-dialog>
+    <div dialog-content class="container">
+      <mat-label class="label">
+        {{'system.common_config.dialog.replace_tag_skill.title' | translate}} 
+          <span>
+            {{ (tagSkillSelected.name && tagSkillSelected.name.length > 25) ? (tagSkillSelected.name | slice : 0 : 25) + '...' :
+            (tagSkillSelected.name) }}
+          </span>
+       </mat-label>
+       <span class="number_result">{{'system.common_config.dialog.replace_tag_skill.num_of_results' | translate}} <span>{{tagsFilter.length}}</span></span>
+        <mat-form-field class="search-box">
+            <input id="inputNameTag" matInput [(ngModel)]="searchString" (keyup)="onSearch($event)" #input />
+        </mat-form-field>
+
+        <div *ngIf="tagsFilter&&tagsFilter.length>0;then tagsContainer;else notFound"></div>
+        <ng-template #tagsContainer>
+          <div class="tags-container">
+            <ng-container *ngFor="let tag of tagsFilter" >
+              <div tabindex="0" class="a-chip tag-name" role="button" aria-labelledby="chip-label-id-default" (click)="handleReplaceTag(tag)">
+                <span id="chip-label-id-default" class="a-chip__label">{{tag.name}}</span>
+                <span class="a-tooltip -floating-shadow-s" role="tooltip">
+                  {{tag.name}}
+                </span>
+              </div>
+            </ng-container>
+          </div>
+        </ng-template>
+        <ng-template #notFound>
+          <div class="notFound">{{'system.no_data' | translate}}</div>
+        </ng-template>
+    </div>
+</eet-common-dialog>

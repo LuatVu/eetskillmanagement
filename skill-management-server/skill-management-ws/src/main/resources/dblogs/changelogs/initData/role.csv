@@ -1,0 +1,3 @@
+"id","name","display_name","description","status","created_date","created_by","modified_date","modified_by"
+"rladmin3-d1c0-11ec-81c0-38f3ab0673e4","Administrator","Administrator","Administrator","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL"
+"rluser0e-d1c0-11ec-81c0-38f3ab0673e4","User","User","User","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL"

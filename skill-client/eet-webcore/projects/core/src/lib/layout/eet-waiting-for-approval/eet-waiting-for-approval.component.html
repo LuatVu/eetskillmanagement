@@ -1,0 +1,10 @@
+<mat-card [style.width.px]="479" [style.border-radius.px]="5" [style.background]="'#fff'" [style.padding]="'20px 40px'">
+  <img mat-card-lg-image [style.height.px]="80" [style.width.%]="100"
+    [src]="baseHref + 'assets/images/Bosch_symbol_logo_black_red.svg'">
+  <mat-card-title class="no-access-title" [style.text-align]="'center'"
+    [style.margin-bottom.px]="15">{{'no_access.title' | translate}}
+  </mat-card-title>
+  <mat-card-content>
+    <p class="no-access-message">{{'waiting_access.waiting_access_message' | translate}}</p>
+  </mat-card-content>
+</mat-card>

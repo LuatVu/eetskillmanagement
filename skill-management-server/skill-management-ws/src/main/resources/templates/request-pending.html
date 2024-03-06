@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="max-width: 600px">
+        <h3>Hello <span th:text="${nameDisplay}"></span></h3>
+        <span>You have <span th:text="${count}"></span> pending requests for approving skill evaluation.</span><br>
+        <span><b>Please check the details in the below link</b></span><br>
+        <p><a th:href="${requestLink}">EET Portal</a>.</p>
+        <p><b>Best regards,</b> </p>
+        <p><b>EET Portal</b></p>
+    </div>
+</body>
+</html>

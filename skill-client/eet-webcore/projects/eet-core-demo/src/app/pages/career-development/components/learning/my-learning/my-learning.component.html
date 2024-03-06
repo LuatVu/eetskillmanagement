@@ -1,0 +1,136 @@
+<div class="content-wrapper" id="paging">
+
+  <div class="header">
+    <p class="page-title">{{ "learning.title" | translate }}</p>
+    <div class="action-group">
+      <div class="import-course" *ngIf="findPermissions(PERMISSIONS.IMPORT_FROM_EXCEL)">
+        <mat-icon style="cursor: pointer" matTooltip="Import Course from Excel file" fontIcon="bosch-ic-cloud-download"
+          (click)="onUpload()">
+        </mat-icon>
+      </div>
+      <section class="button-indicators" *ngIf="findPermissions(PERMISSIONS.ADD)">
+        <button mat-raised-button class="btn-exp" (click)="addItem()">
+          <mat-icon fontIcon="bosch-ic-add"> </mat-icon>
+          {{ "learning.my_learning.add" | translate }}
+        </button>
+      </section>
+    </div>
+  </div>
+
+  <div class="search-content">
+    <p class="total-items"><span class="title">{{'learning.my_learning.total' | translate}}: </span>
+      {{courseInfoList.length}} {{'learning.my_learning.courses' | translate}}</p>
+
+    <div class="box-search">
+      <mat-form-field class="search-box">
+
+
+        <mat-label>{{'learning.my_learning.search_placeholder' | translate}}</mat-label>
+        <input matInput (keyup)="onSearch($event)" #input />
+
+
+        <button type="submit" class="a-text-field__icon-search" matSuffix>
+          <i class="a-icon ui-ic-search" title="Click (or press Enter) to search" (click)="onSearch($event)">
+          </i>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "learning.filter.dropdown.category" | translate }}</mat-label>
+        <mat-select (selectionChange)="onSort()" [(ngModel)]="categoryOrderValue">
+          <mat-option class="test" *ngFor="let category of categoryOrder" [value]="category.value">{{ category.viewValue
+            }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <ng-container *ngIf="courseInfoList">
+    <div class="table-content">
+      <div class="filter">
+        <ul class="filter-tree">
+          <li class="filter-tree__item">
+            <span class="title">{{ "learning.my_learning.checkbox.type" | translate }}</span>
+            <mat-checkbox *ngFor="let i of typeFilter" type="checkbox" name="type" aria-label="{{i.value}}"
+              (change)="applyFilter($event)">
+              {{
+              ("learning.learning_type." + i.viewValue) | translate
+              }}
+            </mat-checkbox>
+          </li>
+          <li class="filter-tree__item">
+            <span class="title">{{ "learning.my_learning.checkbox.status" | translate }}</span>
+            <mat-checkbox *ngFor="let i of statusFilter" type="checkbox" name="status" (change)="applyFilter($event)"
+              aria-label="{{i.value}}">
+              {{
+              "learning.learning_status." + i.viewValue | translate
+              }}</mat-checkbox>
+          </li>
+        </ul>
+      </div>
+      <mat-label *ngIf="courseInfoList.length === 0" class="no-data">{{ "learning.my_learning.info.nodata" | translate
+        }}</mat-label>
+      <div class="table" [class.table-length-minium]="courseInfoList.length < 4">
+        <ng-container
+          *ngFor="let info of courseInfoList.slice(currentPage * pageSize, currentPage * pageSize + pageSize)">
+          <div class="card-common">
+
+            <div class="card-info">
+
+              <p class="title">
+                {{ info.name }}
+              </p>
+
+              <p class="box-title">
+                <span class="label">{{ "learning.my_learning.info.type" | translate }}:</span>
+                {{ info.course_type }}
+              </p>
+              <p class="box-title">
+                <span class="label">{{ "learning.my_learning.info.trainer" | translate }}:</span>
+                {{ info.trainer }}
+              </p>
+              <p class="box-title">
+                <span class="label">{{ "learning.my_learning.info.duration" | translate }}:</span>
+                {{ info.duration }} {{ "learning.my_learning.info.hour" | translate }}
+              </p>
+              <p class="box-title">
+                <span class="label">{{ "learning.my_learning.info.start" | translate }}:</span>
+                {{ info.date | date : "dd/MM/yyyy" }}
+              </p>
+              <p class="box-title">
+                <span class="label">{{ "learning.my_learning.info.status" | translate }}:</span>
+                {{ info.status }}
+              </p>
+            </div>
+
+            <div class="action-block">
+              <div class="left">
+                <button mat-raised-button class="btn-view-detail" (click)="viewItem(info.id)"
+                  *ngIf="findPermissions(PERMISSIONS.VIEW_DETAIL)">
+                  {{ "learning.my_learning.view" | translate }}
+                </button>
+              </div>
+              <div class="right">
+                <ng-container *ngIf="findPermissions(PERMISSIONS.UPDATE)">
+                  <button mat-icon-button (click)="changeItem(info.id)"
+                    matTooltip="{{ 'learning.my_learning.edit' | translate }}">
+                    <i class="a-icon boschicon-bosch-ic-document-edit"></i>
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="findPermissions(PERMISSIONS.DELETE)">
+                  <button mat-icon-button (click)="deleteItem(info)"
+                    matTooltip="{{ 'learning.my_learning.delete' | translate}}">
+                    <i class="a-icon boschicon-bosch-ic-delete"></i>
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <mat-paginator #paginator [length]="courseInfoList.length" [pageSize]="pageSize" [pageSizeOptions]="pageOptions"
+      (page)="onPaginationChange($event)" style="display:flex; justify-content: center;"
+      showFirstLastButtons></mat-paginator>
+  </ng-container>
+</div>

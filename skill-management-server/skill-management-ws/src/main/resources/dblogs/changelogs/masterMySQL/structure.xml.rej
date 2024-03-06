@@ -1,0 +1,9 @@
+diff a/skill-management-server/skill-management-ws/src/main/resources/dblogs/changelogs/masterMySQL/structure.xml b/skill-management-server/skill-management-ws/src/main/resources/dblogs/changelogs/masterMySQL/structure.xml	(rejected hunks)
+@@ -2352,7 +2352,6 @@
+          </rollback>
+      </changeSet>
+  
+-     <changeSet author="RRN5HC" id="add columns colour and hover_colour in project_scope table">
+      <changeSet author="RRN5HC" id="add column colour in project_scope table">
+          <addColumn tableName="project_scope">
+              <column name="colour" type="VARCHAR(45)"/>

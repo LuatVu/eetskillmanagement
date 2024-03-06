@@ -1,0 +1,180 @@
+{
+  "appName": "Deine Bewerbung",
+  "request_access": "Anfrage Zugang",
+  "submit": "Einreichen",
+  "please_enter": "Bitte eingeben",
+  "menu": {
+    "home": "Heim",
+    "dummy": "Dummy Verbindung",
+    "dummy.overview": "Überblick",
+    "dummy.sub-item-1": "Unterpunkt 1",
+    "dashboard": "Armaturenbrett",
+    "tree-table-demo": "Baumtabellen Demo",
+    "user-management": "Benutzerverwaltung",
+    "imprint": "Impressum",
+    "logout.title": "Möchten Sie sich abmelden?",
+    "logout.btn": "Ausloggen"
+  },
+  "login": {
+    "title": "Willkommen bei der EET Blueprint-Webanwendung",
+    "username": "Nutzername",
+    "password": "Passwort",
+    "login": "Anmeldung",
+    "please_enter": "Bitte eingeben",
+    "bosch_login": "Bosch Login",
+    "for_employee": "Login for employees / Login für Mitarbeiter",
+    "msg_for_employee": "Login only works from Bosch or BSH network / Login funtkioniert lediglich aus dem Bosch oder BSH Netz",
+    "for_external":"LOGIN FÜR EXTERNE"
+  },
+  "request": {
+    "winnt": "NTID",
+    "reason": "Grund"
+  },
+  "register": {
+    "title": "Registrieren",
+    "confirm_password": "Passwort bestätigen"
+  },
+  "validations": {
+    "required": "Dieses Feld ist erforderlich",
+    "minlength": "Sollte mindestens {{number}} Zeichen haben",
+    "maxlength": "Dieser Wert sollte weniger als {{number}} Zeichen lang sein",
+    "min": "Dieser Wert sollte größer als {{number}} sein",
+    "max": "Dieser Wert sollte kleiner als {{number}} sein",
+    "exist": "Der {{Wert}} ist vorhanden",
+    "inconsistent": "Inkonsistent mit {{Wert}}",
+    "invalid_email": "Ungültige E-Mail"
+  },
+  "user_management": {
+    "title": "Benutzerverwaltung",
+    "groups_users_submenu": "Gruppen und Benutzer",
+    "roles_submenu": "Rollen",
+    "permissions_submenu": "Berechtigungen",
+    "list_of_user_groups_title": "Liste der Benutzergruppen",
+    "user_group_title": "Benutzergruppendetails",
+    "list_of_user_distribution_title": "Liste der Benutzer und Verteilung",
+    "search": "Suche",
+    "group_name": "Gruppenname",
+    "description": "Beschreibung",
+    "applied_roles": "Angewandte Rollen",
+    "role":{
+      "list_of_user_roles_title": "Liste der Benutzerrollen",
+      "user_role_title": "Details zur Benutzerrolle",
+      "list_of_user_permission_title": "Liste der Benutzerberechtigungen",
+      "role_name": "Rollenname"
+    }
+  },
+  "error": {
+    "400": {
+      "message": "Leider ist ein Fehler aufgetreten. Bitte wenden Sie sich für weitere Einzelheiten an den Administrator"
+    },
+    "401": {
+      "message": "Benutzername/Passwort ist falsch!"
+    },
+    "403": {
+      "title": "Erlaubnis verweigert!",
+      "message": "Sie sind nicht berechtigt, auf die angeforderten Daten zuzugreifen."
+    },
+    "404": {
+      "title": "Seite nicht gefunden!",
+      "message": "Dies ist nicht die gesuchte Webseite."
+    },
+    "500": {
+      "title": "Server ging schief!",
+      "message": "Anscheinend haben wir ein internes Problem, bitte versuchen Sie es mit einer Aktualisierung."
+    },
+    "504": {
+      "title": "Server ging schief!",
+      "message": "Sieht aus wie das Gateway-Timeout"
+    },
+    "back_to_home": "Zurück nach Hause",
+    "BP_INVALID_LDAP_CHECKED": "User is not valid with LDAP checking",
+    "BP_USER_EXISTED_ALREADY": "User is existed in the system already",
+    "BP_EMPTY_USERNAME": "Benutzername ist nicht leer",
+    "BP_USERNAME_LENGTH_REQ": "Die Länge des Benutzernamens sollte länger als 3 Zeichen sein",
+    "BP_EMPTY_PASSWORD": "Passwort ist nicht leer",
+    "BP_PASSWORD_LENGTH_REQ": "Die Eingabe der Passwortlänge muss mindestens 6 Zeichen lang sein",
+    "BP_PASSWORD_CHANGED_REQ": "Erfolgskennwort ist abgelaufen, muss also aktualisiert werden",
+    "BP_USER_NOT_FOUND": "Benutzer existiert nicht im System",
+    "BP_USER_WAITED_TO_APPROVAL": "Der Benutzer existiert und wartet auf die Genehmigung des Administrators",
+    "BP_USER_SEND_EMAIL_REQUEST_FAIL": "Benutzer sendet E-Mail-Anfrage an Administrator fehlgeschlagen.",
+    "BP_INTERNAL_USER_CREATE_FAIL": "Interner Benutzer kann nicht erstellt werden",
+    "BP_INVALID_USER_STATUS": "Ungültiger Benutzerstatuswert sollte (Aktiv, Inaktiv und Entfernt) sein",
+    "BP_INTERNAL_USER_UPDATED_FAIL": "Fehler beim Aktualisieren des Benutzers",
+    "BP_INTERNAL_USER_REMOVED_FAIL": "Benutzerfehler entfernen",
+    "BP_GROUP_NOT_FOUND": "Gruppe existiert nicht im System",
+    "BP_GROUP_EXISTED_ALREADY": "Gruppe existiert bereits im System",
+    "BP_GROUP_CREATE_FAIL": "Fehler beim Erstellen einer Gruppe",
+    "BP_GROUP_UPDATED_FAIL": "Fehler beim Aktualisieren der Gruppe",
+    "BP_GROUP_REMOVED_FAIL": "Gruppenfehler entfernen",
+    "BP_INVALID_GROUP_STATUS": "Ungültiger Statuswert, er sollte 'Aktiv', 'Inaktiv' und 'Entfernt' sein",
+    "BP_USER_GROUP_EMPTY": "Ausgewählte Benutzer sind leer, um sie der bestehenden Gruppe hinzuzufügen",
+    "BP_ROLE_GROUP_EMPTY": "Ausgewählte Rollen sind leer, um sie der bestehenden Gruppe hinzuzufügen",
+    "BP_ROLE_NOT_FOUND": "Rolle existiert nicht im System",
+    "BP_ROLE_EXISTED_ALREADY": "Rolle existiert bereits im System",
+    "BP_ROLE_CREATE_FAIL": "Fehler beim Erstellen einer Rolle",
+    "BP_ROLE_UPDATED_FAIL": "Fehler beim Aktualisieren der Rolle",
+    "BP_ROLE_REMOVED_FAIL": "Rollenfehler entfernen",
+    "BP_ROLE_NAME_EMPTY": "Rollenname darf nicht leer sein. Bitte versuchen Sie es mit einem anderen.",
+    "BP_INVALID_ROLE_NAME": "Der Rollenname darf die folgenden Zeichen nicht enthalten: '\\/:*?'<>|'. Bitte versuchen Sie es mit einem anderen."
+  },
+  "dashboard_components": {
+    "form_controls": {
+      "title": "Formularsteuerelemente",
+      "description": "Steuert die Eingabe, Auswahl und Bearbeitung Ihrer Datenelemente.",
+      "input_field": "Eingabefeld",
+      "check_box": "Kontrollkästchen aktivieren"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "description": "Das zeigt die Hierarchie zwischen den Inhalten und erleichtert auf diese Weise die Navigation der Software."
+    },
+    "layout": {
+      "title": "Layout",
+      "description": "Wesentliche Komponenten für die Darstellung Ihrer Inhalte."
+    },
+    "button_indicators": {
+      "title": "Taste & Anzeigen",
+      "description": "Knöpfe, Knopfgruppen und Chips.",
+      "button_1": "Taste 1",
+      "button_2": "Taste 2"
+    },
+    "modals_popups": {
+      "title": "Modale und Popups",
+      "description": "Konfigurierbare Komponenten, die Informationen und Aktionshinweise dynamisch anzeigen können.",
+      "show_modals_popups": "Modale und Popups anzeigen"
+    },
+    "master_detail": {
+      "title": "Master detail",
+      "description": "Zeigt einen Hauptbereich und einen Detailbereich für den Inhalt des ausgewählten Elements an."
+    },
+    "data_table": {
+      "title": "Datentabelle",
+      "description": "Tools zum Anzeigen von und Interagieren mit tabellarischen Daten."
+    },
+    "services": {
+      "title": "Dienstleistungen",
+      "description": "Die Dienste helfen bei der Entwicklung einer Anwendung und berichten über den Prozess."
+    },
+    "charts": {
+      "title": "Diagramme",
+      "description": "Wiederverwendbare Diagrammkomponenten."
+    },
+    "colors": {
+      "title": "Farben",
+      "description": "Die in Bosch-Anwendungen verfügbaren Farben sind im Corporate Design von Bosch definiert."
+    },
+    "icons": {
+      "title": "Symbole",
+      "description": "Im Corporate Design von Bosch definierte Icons, die die Verständlichkeit der Inhalte erleichtern."
+    },
+    "reference_document": "Referenzdokument Für mehr Details",
+    "title": "Verfügbare Komponenten/Module im Blueprint"
+  },
+  "no_access": {
+    "title": "No Authorization",
+    "click_text": "Click ",
+    "request_link_title": " HERE ",
+    "request_access_text": " to request access",
+    "no_access_message": "You have no authorization to access EET Blueprint"
+  }
+}

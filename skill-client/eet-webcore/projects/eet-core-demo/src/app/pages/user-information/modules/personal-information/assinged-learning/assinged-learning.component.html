@@ -1,0 +1,110 @@
+<div class="LearningCompoment">
+  <div class="box-search">
+    <div>
+      <button type="button" class="a-button a-button--primary" matTooltipClass="matTooltip"
+        matTooltip="{{'personal_learning.add_self_study' | translate}}" *ngIf="isEditMode" (click)="openDialog()">
+        <i class="a-icon a-button__icon ui-ic-plus" title="alert-success"></i>
+        <span class="a-button__label">{{'personal_information.button.assign_learning' | translate}}</span>
+      </button>
+    </div>
+    <eet-search-box (onApplySearch)="applyFilter($event)"></eet-search-box>
+  </div>
+  <div fxLayout="row">
+    <table mat-table [dataSource]="dataSource" class="table-common full-width">
+      <ng-container matColumnDef="cource">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.name' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{element.personal_course_name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.type' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{element.course_type}}</td>
+      </ng-container>
+      <ng-container matColumnDef="cagetory">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.category' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{ element.category_name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.duration' | translate}} (hours)</th>
+        <td mat-cell *matCellDef="let element">{{ element.duration}}</td>
+      </ng-container>
+      <ng-container matColumnDef="startDay">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.start_date' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          <div [ngSwitch]="isEditMode">
+            <div *ngSwitchCase="false">
+              {{ element.start_date | date:'dd/MM/yyyy'}}
+            </div>
+            <div *ngSwitchDefault class="date-picker-group">
+              <div class="enddateinput">
+                <input matInput class="dateinput" [matDatepicker]="startDate" [(ngModel)]="element.start_date"
+                  (ngModelChange)="onStartDateChange(element)">
+              </div>
+              <div class="calendar">
+                <mat-datepicker-toggle matSuffix [for]="startDate"><i matDatepickerToggleIcon
+                    class="a-icon boschicon-bosch-ic-calendar" title="calendar"></i>
+                </mat-datepicker-toggle>
+                <mat-datepicker #startDate></mat-datepicker>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="endDay">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.end_date' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          <div [ngSwitch]="isEditMode">
+            <div>
+              {{ element.end_date | date:'dd/MM/yyyy'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.status' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          <div [ngSwitch]="isEditMode">
+            <div *ngSwitchCase="false" [class]="element.status">{{ element.status | translate}}</div>
+            <div *ngSwitchDefault>
+              <mat-select [ngClass]="getStatus(element)" [(ngModel)]="element.status"
+                (ngModelChange)="onFormChange()">
+                <mat-option [value]="item" *ngFor="let item of statusList">{{item | translate}}</mat-option>
+              </mat-select>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="certificate">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.certificate' | translate}}</th>
+        <td mat-cell *matCellDef="let element" class="table-action">
+          <div class="certificate-action">
+            <button mat-icon-button color="primary" (click)="view(element.certificate)" type="button"
+              class="bosch-ic-clickable">
+              <i class="a-icon boschicon-bosch-ic-document-dxf"></i>
+            </button>
+            <button mat-icon-button (click)="onOpenUploadCertificate(element)" *ngIf="isEditMode">
+              <i class="a-icon boschicon-bosch-ic-upload"></i>
+            </button>
+            <button mat-icon-button color="primary" *ngIf="isEditMode && element.certificate"
+              (click)="onDeleteCertificate(element)" type="button" class="bosch-ic-clickable">
+              <i class="a-icon boschicon-bosch-ic-delete"></i>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>{{'personal_learning.action' | translate}}</th>
+        <td mat-cell *matCellDef="let element" class="table-action">
+          {{ element.action }}
+          <button mat-icon-button (click)="openDetail(element.id)">
+            <i class="a-icon ui-ic-watch-on"></i>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="9">{{'personal_learning.search_null' | translate}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

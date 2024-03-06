@@ -1,0 +1,71 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <form action="" [formGroup]="lineManagerInfoForm" class="skill-info-container">
+      <div class="row" style="padding-bottom:20px">
+        <div class="col-md manager">
+          <div class="row h-100">
+            <div class="col-md-4 label-content">
+              <mat-label>{{'system.line_manager.dialog.associate.content' | translate}}</mat-label>
+            </div>
+            <div class="col-md-8">
+              <div class="form-content d-flex h-100 p-0">
+                <mat-form-field class="w-100 p-0">
+                  <mat-label>{{'system.line_manager.dialog.associate.name_search_placeholder' | translate}}</mat-label>
+                  <input type="text" matInput #input
+                    formControlName="manager"
+                    [matAutocomplete]="auto"
+                    (ngModelChange)="onSearchChange()"
+                    cdkFocusInitial
+                    name="manager"
+                  />
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" class="panel-full-width" >
+                    <mat-option *ngFor="let option of optionList" [value]="option.displayName" (onSelectionChange)="selectOption(option)" [disabled]="!option || option.length === 0">
+                      {{option.displayName}}
+                    </mat-option>
+                    <mat-option [disabled]="true" *ngIf="!optionList || optionList.length == 0">{{'system.no_data' | translate}}</mat-option>
+                  </mat-autocomplete>
+                  <div matSuffix class="associate-search-field">
+                    <mat-icon 
+                      fontIcon="bosch-ic-search" *ngIf="!isShowLoading">
+                    </mat-icon>
+                    <div class="loading-spinner-wrapper" *ngIf="isShowLoading">
+                      <div class="loading-spinner-wrapper-content">
+                        <div></div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-4 label-content">
+              <mat-label>{{'system.line_manager.dialog.associate.team' | translate}}</mat-label>
+            </div>
+            <div class="col-md-8">
+              <div class="form-content">
+                <eet-common-select [isDisabled]="isEditFunc"
+                  [selectedData]="teamFormControl.value" [originalData]="listTeam"
+                  [isShowUnSelect]="false" (onSelectedItemChange)="onSelectTeam($event)" [nameKey]="'name'" [valueKey]="'id'">
+                </eet-common-select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </ng-container>
+  <ng-container dialog-action>
+    <button type="button" class="a-button a-button--primary" (click)="onSave()" bciTertiaryButton mat-raised-button
+      [disabled]="lineManagerInfoForm.invalid">
+      <i class="a-icon a-button__icon boschicon-bosch-ic-save" title="save"></i>
+      <span class="a-button__label">{{'system.actions.save' | translate}}</span>
+    </button>
+  </ng-container>
+</eet-common-dialog>

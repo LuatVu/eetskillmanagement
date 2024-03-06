@@ -1,0 +1,2 @@
+id,code,name,description,status,created_date,created_by,modified_date,modified_by,permission_category_id
+ef1f998d-32e2-4812-8658-e61c3abe4d8f,ADD_NEW_ASSOCIATE,Add new associate permission,Add new associate permission,Active,2023-08-25T15:00:00,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f

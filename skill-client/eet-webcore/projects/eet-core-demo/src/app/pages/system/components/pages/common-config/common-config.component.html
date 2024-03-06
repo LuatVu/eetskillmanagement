@@ -1,0 +1,81 @@
+<div class="full-space" *ngIf="tagsOriginal.length > 0">
+
+  <div class="tag-container">
+    <div class="title-tags">
+      <span class="moreInfo mr-auto">
+        <i class="a-icon ui-ic-alert-info" matTooltip="{{'system.common_config.more_info' | translate}}"
+          [matTooltipShowDelay]="0" [matTooltipHideDelay]="0"></i>
+      </span>
+      <mat-label class="text_blue flex-1" *ngIf="isEditMode">{{"system.common_config.hint" | translate }}</mat-label>
+      <div class="checkboxes">
+        <div class="a-checkbox">
+          <input type="checkbox" id="checkbox-1" (ngModelChange)="filterMandatory($event)"
+            [(ngModel)]="isFilterMandatory" />
+          <label for="checkbox-1">{{ "system.common_config.tags_mandatory" | translate }}</label>
+        </div>
+      </div>
+      <mat-form-field class="search-box">
+        <mat-label>{{ "system.common_config.search_by_tags" | translate }}</mat-label>
+        <input id="inputNameTag" matInput [(ngModel)]="searchString" (keyup)="onSearch(searchString)" #input />
+        <button type="submit" class="a-text-field__icon-search" matSuffix>
+          <i class="a-icon ui-ic-search"></i>
+        </button>
+      </mat-form-field>
+      <button [disabled]="isEditMode" bciTertiaryButton mat-raised-button color="primary" type="button"
+        (click)="editTags()" class="bosch-ic-clickable a-button a-button--primary editbutton">
+        <i class="a-icon boschicon-bosch-ic-edit"></i>
+        {{"system.common_config.edit_label" | translate }}
+      </button>
+    </div>
+
+    <ng-container *ngIf="tempTagArray.length>0;then tags;else noData"></ng-container>
+  </div>
+  <div class="footer">
+    <div class="num-tags">
+      {{'system.common_config.num_of_tags' | translate}}
+      <mat-label class="text_blue">{{tempTagArray.length}}</mat-label>
+    </div>
+    <div class="buttons" [ngClass]="{'hidden': !isEditMode}">
+      <button type="button" class="a-button a-button--primary -without-icon" (click)="onSave()">
+        <span class="a-button__label">{{'system.common_config.save' | translate}}</span>
+      </button>
+      <button type="button" class="a-button a-button--secondary -without-icon" (click)="handleCancel()"
+        [disabled]="!isEditMode">
+        <span class="a-button__label">{{'system.common_config.cancel' | translate}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #tags>
+  <div #contenedor class="tags">
+    <ng-container *ngFor="let tag of tempTagArray; let i = index">
+      <div class="categories-item">
+        <div class="tag" (click)=handleSetCheckMandatory(tag)>
+          <div id="ord" class="a-badge ord" [ngClass]="tag.is_mandatory && 'isMandatory'" tabindex="0" role="status"
+            aria-live="off">{{tag.index + 1}}</div>
+          <div tabindex="0" class="a-chip tag-name" role="button" aria-labelledby="chip-label-id-default">
+            <span id="chip-label-id-default" class="a-chip__label">{{tag.name}} </span>
+          </div>
+          <span class="a-tooltip -floating-shadow-s" role="tooltip">
+            {{tag.name}}
+          </span>
+          <div class="tag-replace" (click)="showReplaceDialog(tag)" *ngIf="!isEditMode">
+            <i class="a-icon boschicon-bosch-ic-replace" title="replace"></i>
+          </div>
+          <div class="checkbox-container" *ngIf="isEditMode">
+            <input type="checkbox" (ngModelChange)="handleCheckboxMandatoryForTag($event,tag)"
+              [(ngModel)]="tag.is_mandatory" />
+          </div>
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #noData>
+  <div class="tags noData">
+    {{'system.no_data' | translate}}
+  </div>
+</ng-template>

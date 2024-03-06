@@ -1,0 +1,25 @@
+{
+    "name": "skill-client",
+    "version": "0.0.0",
+    "scripts": {
+        "ng": "cd .\\eet-webcore\\ && npm run ng",
+        "start": "cd .\\eet-webcore\\ && start npm run start && cd .\\nestjs\\core-backend\\ && start npm run start",
+        "start:core": "cd .\\eet-webcore\\ && npm run start",
+        "start:core-demo": "cd .\\eet-webcore\\ && npm run start:core-demo",
+        "start:core-net": "cd .\\eet-webcore\\ && npm run start:core-net",
+        "start:core-java": "cd .\\eet-webcore\\ && npm run start:core-java",
+        "start:nest": "cd .\\eet-webcore\\nestjs\\core-backend\\ && npm run start",
+        "start:nest-dev": "cd .\\eet-webcore\\nestjs\\core-backend\\ && npm run start:dev",
+        "start:nest-debug": "cd .\\eet-webcore\\nestjs\\core-backend\\ && npm run start:debug",
+        "start:nest-prod": "cd .\\eet-webcore\\nestjs\\core-backend\\ && npm run start:prod",
+        "build:net": "cd .\\eet-webcore\\ && npm run build:net",
+        "build:java": "cd .\\eet-webcore\\ && npm run build:java",
+        "build:nest": "cd .\\eet-webcore\\nestjs\\core-backend\\ && nest build",
+        "watch": "cd .\\eet-webcore\\ && npm run watch",
+        "test": "cd .\\eet-webcore\\ && npm run test",
+        "install": "cd .\\eet-webcore\\ && npm install --legacy-peer-deps && cd .\\nestjs\\core-backend\\ && npm install --legacy-peer-deps",
+        "install:core": "cd .\\eet-webcore\\ && npm install --legacy-peer-deps",
+        "install:nest": "cd .\\eet-webcore\\nestjs\\core-backend\\ && npm install --legacy-peer-deps"
+    },
+    "private": true
+}

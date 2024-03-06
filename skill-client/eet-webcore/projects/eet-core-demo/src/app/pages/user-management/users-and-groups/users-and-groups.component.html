@@ -1,0 +1,45 @@
+<div class="outerContainer" style="width: 100%;">
+  <div fxLayout="row wrap" fxLayoutGap="30px" class="layoutGap layoutGapMarginBottom">
+    <div fxFlex="calc(30%-30px)">
+      <div fxLayout="row">
+        <p fxFlex="calc(50%)">{{'user_management.list_of_user_groups_title' | translate}}</p>
+        <mat-icon class="add-new-icon" fontIcon="bosch-ic-add" (click)="openDialog()"></mat-icon>
+      </div>
+      <hr>
+    </div>
+    <div fxFlex="calc(30%)">
+      <div fxLayout="row">
+        <p fxFlex="calc(50%)">{{'user_management.user_group_title' | translate}}</p>
+      </div>
+      <hr>
+    </div>
+    <div fxFlex="calc(30%-30px)">
+      <div fxLayout="row">
+        <p fxFlex="calc(50%)">{{'user_management.list_of_user_distribution_title' | translate}}</p>
+        <mat-icon class="add-new-icon" fontIcon="bosch-ic-add" (click)="openAddListUsersAndDistributionsDialog()"
+          *ngIf="selectedGroup">
+        </mat-icon>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="30px" class="layoutGap">
+    <div fxFlex="calc(30%-30px)">
+      <eet-common-list (onItemDeleted)="onDeleteItem($event)" [sourceList]="groupList" [selectedItem]="selectedItem"
+        (onSelectItemInList)="onSelectItemInList($event)" [type]="type" [truncateTextNumber]="15"></eet-common-list>
+    </div>
+    <div fxFlex="calc(30%)">
+      <eet-common-detail-copy #detailForm [selectedItem]="selectedGroup"
+      (onFormSave)="onSave($event)" (onCancle)="handleCancleEdit(selectedGroup)"></eet-common-detail-copy>
+      <!-- <eet-common-detail #detailForm (OnFormSave)="onSave($event)" [selectedItem]="selectedGroup"></eet-common-detail> -->
+    </div>
+    <div fxFlex="calc(30%-30px)">
+      <eet-common-list 
+      (onItemDeleted)="onDeleteUserOrDistributionItem($event)"
+       [sourceList]="userAndDistributionList"
+       (onSelectItemInList)="onSelectItemUserAndDistribution($event)"
+       [type]="type"
+        [selectedItem]="selectedUser"></eet-common-list>
+    </div>
+  </div>
+</div>

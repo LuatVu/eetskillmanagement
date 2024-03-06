@@ -1,0 +1,126 @@
+.LearningCompoment {
+    padding-left: 20px;
+    padding-right: 20px;
+    // border-style: solid;
+    // border-color: black;
+  }
+  .LearningTable {
+    width: 100%;
+    padding-top: 30px;
+  }
+  .Search {
+    padding-top: 20px;
+    padding-right: 20px;
+  }
+  
+  .LearningTable {
+    width: 100%;
+    padding-top: 30px;
+  }
+  .Search {
+    padding-top: 20px;
+  }
+  
+  .bosch-ic-clickable {
+    border-style: none;
+    color: black;
+    size: 4rem;
+  }
+  
+  .editbtn {
+    flex: 1 1 auto;
+  }
+  .Done {
+    color: green;
+  }
+  .New {
+    color: darkgray;
+  }
+  .In-Progress {
+    color: orange;
+  }
+  .search-bar {
+    @mixin transition {
+      transition: background-color 0.3s;
+      -webkit-transition: background-color 0.3s; /* Safari & Chrome */
+      -moz-transition: background-color 0.3s; /* Mozilla */
+      -ms-transition: background-color 0.3s; /* Internet Exploder */
+      -o-transition: background-color 0.3s; /* Opera */
+    }
+    display: flex;
+    align-items: baseline;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    padding-top: 6px;
+    margin-right: 1em;
+    background-color: #efeff0;
+    //background-color: ;
+    border-radius: 24px;
+    border: 1px solid #bfc0c2;
+    mat-icon {
+      border-width: 0 0 1px 0;
+      border-color: #efeff0;
+      border-style: solid;
+      border-radius: 16px 0 0 16px;
+      background-color: #efeff0;
+    }
+    input {
+      padding: 0;
+      color: #000000;
+      background-color: #efeff0;
+      box-shadow: none;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      caret-color: #000000;
+      cursor: auto;
+      font-family: "Bosch-Sans";
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      border-width: 0px 0px 1px 0px;
+      border-color: #efeff0;
+      border-style: solid;
+      border-radius: 0px 16px 16px 0px;
+      padding-left: 4px;
+      padding-right: 2px;
+      @include transition;
+    }
+  }
+  
+  .date-picker-group {
+    display: flex;
+    align-items: center;
+    max-width: 140px;
+  }
+  
+  .NEW {
+    // color: var(--bosch-blue-70);
+    color: var(--bosch-green-70);
+  }
+  
+  .DONE {
+    color: var(--bosch-green-70);
+  }
+  
+  .IN-PROGRESS {
+    color: var(--bosch-yellow-70);
+  }
+  
+  .ON-GOING {
+    color: var(--bosch-gray-70);
+  }
+  
+  .certificate-action {
+    display: flex;
+    align-items: center;
+  }
+  .box-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0;
+    flex-direction: row-reverse;
+  }
+  

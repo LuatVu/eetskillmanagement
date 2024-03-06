@@ -1,0 +1,41 @@
+<eet-common-dialog>
+    <ng-container dialog-content>
+        <div class="full-space">
+            <mat-label>{{'system.competency_lead.dialog.add_competency_lead.content' | translate}}: </mat-label>
+            <p>{{data.data.name}}</p>
+            <mat-form-field>
+                <mat-label>{{'system.competency_lead.dialog.add_competency_lead.label' | translate}}</mat-label>
+                <input type="text" matInput #input
+                  [formControl]="competencyLead"
+                  [matAutocomplete]="auto"
+                  (ngModelChange)="onSearchChange()"
+                  cdkFocusInitial
+                  
+                />
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" panelClass="panel-full-width">
+                  <mat-option *ngFor="let option of optionList" [value]="option.displayName" (onSelectionChange)="selectOption(option)" [disabled]="!option || option.length === 0">
+                    {{option.displayName}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-icon
+                  matSuffix
+                  fontIcon="bosch-ic-search"
+                  *ngIf="!isShowLoading"
+                ></mat-icon>
+                <div class="loading-spinner-wrapper" *ngIf="isShowLoading">
+                  <div class="loading-spinner-wrapper-content">
+                    <div></div>
+                  </div>
+                </div>
+              </mat-form-field>
+          
+
+        </div>
+    </ng-container>
+    <ng-container dialog-action>
+        <button [disabled]="(currentMemberSearch === null || isShowLoading) ? true : null" type="button" class="a-button a-button--primary" (click)="onConfirm()" bciTertiaryButton mat-raised-button>
+            <i class="a-icon a-button__icon boschicon-bosch-ic-save" title="save"></i>
+            <span class="a-button__label">{{'system.actions.save' | translate}}</span>
+          </button>
+    </ng-container>
+</eet-common-dialog>

@@ -1,0 +1,72 @@
+<div class="row mb-24">
+  <div class="col-md-3 offset-md-9">
+    <eet-select-with-search label="Teams" [originalData]="allTeamsInFilter" [isMultiple]="true"
+      [filterDataFromParent]="savedTeamsInFilterOfAssociate" (onFilterChangeEvent)="onFilterChange($event)">
+    </eet-select-with-search>
+  </div>
+  <div class="col-md-3 hidden">
+    <eet-select-with-search label="Project GB" [originalData]="allProjectGbInFilter"
+      [isMultiple]="true" [filterDataFromParent]="savedProjectGbInFilterOfAssociate" (onFilterChangeEvent)="onFilterChange($event)">
+    </eet-select-with-search>
+  </div>
+</div>
+
+<div class="row" *ngIf="reRenderTrigger === false">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-xxl-4  mb-24">
+    <div class="row relative">
+      <div class="col-md-12">
+        <div [ngClass]="HAS_VIEW_ASSOCIATE_INFO_PERMISSION && 'clickable'" (click)="navigateToAssociateInfo()" class="box-info" style="margin-bottom: 24px;">
+          <p class="title">{{numOfAssociates}}</p>
+          <p class="name">Associates</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box-info">
+          <p class="title">{{numOfInternals}}</p>
+          <p class="name">Internals</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box-info">
+          <p class="title">{{numOfExternals}}</p>
+          <p class="name">Externals</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box-info">
+          <p class="title">{{numOfFixedTerms}}</p>
+          <p class="name center">Fixed-terms</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-xxl-4  mb-24">
+    <div class="chart-box">
+      <div class="report-title">
+        {{'report.associate_by_team_title' | translate}}
+      </div>
+      <eet-bar-chart-common [chartInfo]="associateByTeam"></eet-bar-chart-common>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-xxl-4  mb-24">
+    <div class="chart-box">
+      <div class="report-title">
+        {{'report.associate_by_level_title' | translate}}
+      </div>
+      <eet-bar-chart-common [chartInfo]="associateByLevels"></eet-bar-chart-common>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-xxl-12  mb-24">
+    <div class="contain-tag-cloud relative">
+      <div class="report-title">
+        {{'report.tag_cloud_title_skill_group' | translate}}
+      </div>
+      <eet-tag-cloud
+       [data]="reportData.data?.associates_by_skill_cluster"
+       [categoryField]="tagCloudFieldForSkillGroup.categoryField"
+       [valueField]="tagCloudFieldForSkillGroup.valueField"
+       ></eet-tag-cloud>
+       <div class="hidden"></div>
+    </div>
+  </div>
+</div>

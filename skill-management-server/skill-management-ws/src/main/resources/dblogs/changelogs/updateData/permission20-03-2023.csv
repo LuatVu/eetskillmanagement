@@ -1,0 +1,4 @@
+﻿id,code,name,description,status,created_date,created_by,modified_date,modified_by,permission_category_id
+e8172595-d1c8-11ec-81c0-39f3ab0673e4,VIEW_REPORT,View Report,View Report,Active,2022-11-14T14:57:53,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f
+e8172595-d1c8-11ec-81c0-39f3ab0673e5,VIEW_SYSTEM,View System,View System,Active,2022-11-14T14:57:54,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f
+e8172595-d1c8-11ec-81c0-39f3ab0673e6,VIEW_DEPARTMENT_LEARNING,View Department Learning,View Department Learning,Active,2022-11-14T14:57:55,sysadmin-617e-11ed-b62d-00059a3c7a00,NULL,NULL,admincb5-61d1-11ed-b4a3-00505695263f

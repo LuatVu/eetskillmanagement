@@ -1,0 +1,446 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="TGI2HC (generated)" id="Create_Table_change_log">
+        <createTable tableName="change_log">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="table_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="VARCHAR(12)"/>
+            <column name="modified_by" type="VARCHAR(10)"/>
+            <column name="modified_date" type="timestamp"/>
+        </createTable>
+        <rollback>
+            drop table [change_log]
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_change_log_details">
+        <createTable tableName="change_log_details">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="field_name" type="VARCHAR(120)"/>
+            <column name="old_value" type="TEXT"/>
+            <column name="new_value" type="TEXT"/>
+            <column name="change_log_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table [change_log_details]
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_access_token">
+        <createTable tableName="oauth_access_token">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication_id" type="VARCHAR(255)"/>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="client_id" type="VARCHAR(255)"/>
+            <column name="authentication" type="BLOB"/>
+            <column name="refresh_token" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            drop table [oauth_access_token]
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_client_details">
+        <createTable tableName="oauth_client_details">
+            <column name="client_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="resource_ids" type="VARCHAR(255)"/>
+            <column name="client_secret" type="VARCHAR(255)"/>
+            <column name="scope" type="VARCHAR(255)"/>
+            <column name="authorized_grant_types" type="VARCHAR(255)"/>
+            <column name="web_server_redirect_uri" type="VARCHAR(255)"/>
+            <column name="authorities" type="VARCHAR(255)"/>
+            <column name="access_token_validity" type="INT"/>
+            <column name="refresh_token_validity" type="INT"/>
+            <column name="additional_information" type="VARCHAR(4096)"/>
+            <column name="autoapprove" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            drop table [oauth_client_details]
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_client_token">
+        <createTable tableName="oauth_client_token">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication_id" type="VARCHAR(255)"/>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="client_id" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            drop table [oauth_client_token]
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_code">
+        <createTable tableName="oauth_code">
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="authentication" type="BLOB"/>
+        </createTable>
+        <rollback>
+            drop table [oauth_code]
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_refresh_token">
+        <createTable tableName="oauth_refresh_token">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication" type="BLOB"/>
+        </createTable>
+        <rollback>
+            drop table [oauth_refresh_token]
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_permission">
+        <createTable tableName="permission">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="timestamp"/>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="permission_category_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="permission_name_UNIQUE"
+                     tableName="permission" unique="true">
+            <column descending="false" name="name" />
+        </createIndex>
+        <rollback>
+            drop table [permission]
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_permission_category">
+        <createTable tableName="permission_category">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="sequence" type="TINYINT(3)"/>
+        </createTable>
+        <rollback>
+            drop table [permission_category]
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_role">
+        <createTable tableName="role">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="display_name" type="VARCHAR(45)"/>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="timestamp"/>
+            <column name="modified_by" type="VARCHAR(45)"/>
+        </createTable>
+        <sql>ALTER TABLE [role] ADD CONSTRAINT check_status CHECK (status =
+                                                                 'Active' OR status = 'Inactive')
+        </sql>
+        <createIndex indexName="name_UNIQUE" tableName="role"
+                     unique="true">
+            <column descending="false" name="name" />
+        </createIndex>
+        <rollback>
+            drop table [role]
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_role_permission">
+        <createTable tableName="role_permission">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table [role_permission]
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_setting">
+        <createTable tableName="setting">
+            <column name="key" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(120)"/>
+        </createTable>
+        <rollback>
+            drop table [setting]
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_user">
+        <createTable tableName="user">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" remarks="name is user-nt-id" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="display_name" type="VARCHAR(250)"/>
+            <column name="email" type="VARCHAR(120)"/>
+            <column defaultValue="Person" name="type" remarks="type enum is USER | GROUP | APPROVER" type="varchar(45)"/>
+            <column defaultValue="Active" name="status" type="varchar(45)"/>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="modified_date" type="timestamp"/>
+            <column name="first_logged_in_date" type="timestamp"/>
+            <column name="last_logged_in_date" type="timestamp"/>
+        </createTable>
+        <addUniqueConstraint columnNames="name"
+                             constraintName="UQ_USER_1" tableName="user " />
+
+        <addUniqueConstraint columnNames="email"
+                             constraintName="UQ_USER_2" tableName="user " />
+        <sql>ALTER TABLE [user] ADD CONSTRAINT check_type CHECK (type =
+            'Person'
+            OR type = 'Group')
+        </sql>
+        <sql>ALTER TABLE [user] ADD CONSTRAINT check_status_user CHECK (status
+            =
+            'Active' OR status = 'Inactive')
+        </sql>
+        <rollback>
+            drop table [user]
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_user_role">
+        <createTable tableName="user_role">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table [user_role]
+        </rollback>
+    </changeSet>
+
+    <!-- Create table group -->
+    <changeSet author="TGI2HC (generated)" id="Create_Table_group">
+
+        <createTable tableName="group">
+            <column name="id" type="varchar(45)">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="name" type="varchar(45)">
+            </column>
+
+            <column name="display_name" type="varchar(45)" >
+            </column>
+
+            <column name="description" type="varchar(250)" >
+            </column>
+
+            <column name="status" type="varchar(45)"  >
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created_date" type="TIMESTAMP" />
+
+            <column name="created_by" type="varchar(45)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="modified_date" type="TIMESTAMP" >
+                <constraints nullable="true" />
+            </column>
+
+            <column name="modified_by" type="varchar(45)">
+            </column>
+        </createTable>
+        <addDefaultValue
+                columnDataType="varchar(45)"
+                columnName="status"
+                defaultValue="Active"
+                tableName="group"/>
+        <sql>ALTER TABLE [group] ADD CONSTRAINT check_status_group CHECK
+            (status =
+            'Active' OR status = 'Inactive')
+        </sql>
+        <rollback>
+            drop table [group]
+        </rollback>
+    </changeSet>
+
+    <!-- Create table group_role -->
+    <changeSet author="TGI2HC (generated)" id="Create_Table_group_role">
+
+
+        <createTable tableName="group_role">
+            <column name="id" type="varchar(45)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+
+            <column name="group_id" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="role_id" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="group_id" baseTableName="group_role"
+                constraintName="fk_group" referencedColumnNames="id"
+                referencedTableName="group" />
+
+        <addForeignKeyConstraint
+                baseColumnNames="role_id" baseTableName="group_role"
+                constraintName="fk_role" referencedColumnNames="id"
+                referencedTableName="role" />
+        <rollback>
+            drop table [group_role]
+        </rollback>
+    </changeSet>
+
+    <!-- Create table user_group -->
+    <changeSet author="TGI2HC (generated)" id="Create_Table_user_group">
+        <createTable tableName="user_group">
+            <column name="id" type="varchar(45)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+
+            <column name="user_id" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="group_id" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="user_id" baseTableName="user_group"
+                constraintName="fk_user_has_group_user1" onDelete="NO ACTION"
+                onUpdate="NO ACTION" referencedColumnNames="id"
+                referencedTableName="user" />
+
+        <addForeignKeyConstraint
+                baseColumnNames="group_id" baseTableName="user_group"
+                constraintName="fk_user_has_group_group1" onDelete="NO ACTION"
+                onUpdate="NO ACTION" referencedColumnNames="id"
+                referencedTableName="group" />
+
+        <createIndex indexName="fk_user_has_group_user1"
+                     tableName="user_group">
+            <column descending="false" name="user_id" />
+        </createIndex>
+
+        <createIndex indexName="fk_user_has_group_group1"
+                     tableName="user_group" >
+            <column descending="false" name="group_id" />
+        </createIndex>
+        <rollback>
+            drop table [user_group]
+        </rollback>
+    </changeSet>
+
+
+    <changeSet author="TGI2HC (generated)" id="add_Index_and_ForeignKey">
+        <createIndex indexName="fk_change_log_details_change_log1_idx" tableName="change_log_details">
+            <column name="change_log_id"/>
+        </createIndex>
+        <createIndex indexName="fk_member_has_role_member1_idx" tableName="user_role">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex indexName="fk_member_has_role_role1_idx" tableName="user_role">
+            <column name="role_id"/>
+        </createIndex>
+        <createIndex indexName="fk_permission_permission_category1_idx" tableName="permission">
+            <column name="permission_category_id"/>
+        </createIndex>
+        <createIndex indexName="fk_role_has_permission_permission1_idx" tableName="role_permission">
+            <column name="permission_id"/>
+        </createIndex>
+        <createIndex indexName="fk_role_has_permission_role1_idx" tableName="role_permission">
+            <column name="role_id"/>
+        </createIndex>
+        <addForeignKeyConstraint baseColumnNames="change_log_id" baseTableName="change_log_details" constraintName="fk_change_log_details_change_log1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="change_log"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="fk_member_has_role_member1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user"/>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role" constraintName="fk_member_has_role_role1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="role"/>
+        <addForeignKeyConstraint baseColumnNames="permission_category_id" baseTableName="permission" constraintName="fk_permission_permission_category1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="permission_category"/>
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="role_permission" constraintName="fk_role_has_permission_permission1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="permission"/>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_permission" constraintName="fk_role_has_permission_role1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="role"/>
+
+    </changeSet>
+
+
+    <changeSet  author="TGI2HC"  id="Database_version_0.0.1">
+        <tagDatabase  tag="version_0.0.1"/>
+    </changeSet>
+
+
+
+</databaseChangeLog>

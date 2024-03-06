@@ -1,0 +1,10 @@
+@import '~@bci-web-core/common-styles/sass/bci/colors';
+@import '~@bci-web-core/common-styles/sass/bci/mixins/borders';
+
+.dialog-fields-width {
+    width: 100%;
+}
+
+.text-danger {
+  color: #EA0016 !important;
+}

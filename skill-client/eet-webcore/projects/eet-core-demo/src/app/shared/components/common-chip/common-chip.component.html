@@ -1,0 +1,18 @@
+<div class="chip-list-wrapper" [class.chip-diabled]="!isDisabled">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let fruit of selectedChipList" (removed)="onRemoveChip(fruit)">
+      {{fruit?.[objectDisplayName] || fruit}}
+      <span *ngIf="isDisabled">
+        <mat-icon matChipRemove fontIcon="Bosch-Ic-abort"></mat-icon>
+      </span>
+    </mat-chip>
+    <input placeholder="New ..." #chipInput [formControl]="chipControl" [matAutocomplete]="auto"
+      [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="isAddOnBlur" (matChipInputTokenEnd)="onAddChip($event)" *ngIf="isDisabled">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedChip($event)">
+      <mat-option *ngFor="let filterChip of filteredChipList | async" [value]="filterChip">
+        {{filterChip?.[objectDisplayName] || filterChip}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-chip-list>
+</div>

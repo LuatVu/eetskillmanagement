@@ -1,0 +1,29 @@
+.mat-button-base {
+  line-height: 36px !important;
+  font-size: 14px !important;
+
+  i {
+    font-size: 14px;
+  }
+}
+
+.mat-icon-button {
+  height: 36px !important;
+}
+
+.a-button {
+  line-height: 36px;
+  font-size: 14px;
+  padding: 0 16px;
+
+  .a-icon {
+    padding: 0 !important;
+    font-size: 14px;
+    line-height: 36px;
+    margin-right: 2px;
+  }
+
+  &__label {
+    padding: 0 !important;
+  }
+}

@@ -1,0 +1,58 @@
+@mixin transition {
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s; /* Safari & Chrome */
+  -moz-transition: background-color 0.3s; /* Mozilla */
+  -ms-transition: background-color 0.3s; /* Internet Exploder */
+  -o-transition: background-color 0.3s; /* Opera */
+}
+
+.full-space {
+  width: 100%;
+  padding: 0 30px 50px;
+}
+.container {
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  justify-content: flex-start;
+  margin: 0 !important;
+}
+
+.project-role,
+.project-common-task {
+  width: 100%;
+  .project-role-title,
+  .project-common-task-title {
+    display: flex;
+    justify-content: space-between;
+    mat-icon {
+      align-self: center;
+      @include transition;
+    }
+    mat-icon:hover {
+      background-color: #efeff0;
+    }
+  }
+}
+
+.project-role {
+  transition-duration: 0.3s;
+}
+
+.add-new {
+  cursor: pointer;
+}
+
+.action {
+  display: flex;
+  justify-content: space-between;
+  div {
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding: 0 12px;
+  }
+}
+:host ::ng-deep .source-list {
+  height: calc(100vh - 260px) !important;
+}

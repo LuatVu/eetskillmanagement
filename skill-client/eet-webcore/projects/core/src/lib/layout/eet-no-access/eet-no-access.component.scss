@@ -1,0 +1,22 @@
+.no-access-title {
+  font-weight: 700;
+  color: #A4A4A4;
+}
+.no-access-message {
+  color: #9999A6;
+  font-weight: 500;
+}
+
+.request-access-area {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 10px 0;
+  .request-access-link {
+    text-align: justify;
+    padding-left: 3px;
+    padding-right: 3px;
+    .request-title {
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<mat-form-field class="select-with-search-form-field">
+  <mat-label [class.required]="isRequired">{{ label | translate }}</mat-label>
+
+  <mat-select placeholder='Please select' [formControl]="valueCtrl" [multiple]="isMultiple" [panelClass]="panelClass"
+    [disableOptionCentering]="disableOptionCentering" [compareWith]="compareObjects">
+    <div class="search-box">
+      <input type="text" [formControl]="searchCtrl" [placeholder]="_searchPlaceHolder">
+      <i class="a-icon ui-ic-close" title="close" *ngIf="searchCtrl?.value" (click)="searchCtrl.setValue(null)"></i>
+    </div>
+    <div class="nodata-box" *ngIf="isNoData">
+      Nodata
+    </div>
+    <div class="select-all-option" (click)="onToggleAll()" *ngIf="isMultiple && !searchCtrl?.value">
+      <div class="check-all-box" [class.active]="isToggleAll">
+        <i class="a-icon boschicon-bosch-ic-checkmark"></i>
+      </div>
+      Select All
+    </div>
+    <mat-option *ngFor="let item of filteredList | async" [value]="fieldValuename ? item[fieldValuename] : item"
+      title="{{ fieldDiaplayname ? item[fieldDiaplayname] : item}}">
+      {{ fieldDiaplayname ? item[fieldDiaplayname] : item}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

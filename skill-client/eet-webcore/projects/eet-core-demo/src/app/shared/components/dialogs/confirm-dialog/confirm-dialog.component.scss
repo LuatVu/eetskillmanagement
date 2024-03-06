@@ -1,0 +1,34 @@
+.mat-dialog-actions {
+  padding: 32px 0;
+  margin-bottom: -32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+
+  button {
+    min-width: 100px;
+  }
+}
+
+:host ::ng-deep .m-dialog {
+  margin: -32px;
+
+  .m-dialog__title {
+    color: var(--major-signal-neutral__enabled__fill__default) !important;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    i {
+      padding: 0;
+    }
+  }
+}
+:host ::ng-deep .dialog-close-button {
+  i {
+    font-size: 24px !important;
+  }
+}

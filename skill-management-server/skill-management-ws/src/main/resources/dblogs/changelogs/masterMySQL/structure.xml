@@ -1,0 +1,2432 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="TGI2HC (generated)" id="Create_Table_change_log">
+        <createTable tableName="change_log">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="table_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="record_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="VARCHAR(12)"/>
+            <column name="modified_by" type="VARCHAR(10)"/>
+            <column name="modified_date" type="timestamp"/>
+        </createTable>
+        <rollback>
+            drop table `change_log`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_change_log_details">
+        <createTable tableName="change_log_details">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="field_name" type="VARCHAR(120)"/>
+            <column name="old_value" type="TEXT"/>
+            <column name="new_value" type="TEXT"/>
+            <column name="change_log_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `change_log_details`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_access_token">
+        <createTable tableName="oauth_access_token">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication_id" type="VARCHAR(255)"/>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="client_id" type="VARCHAR(255)"/>
+            <column name="authentication" type="BLOB"/>
+            <column name="refresh_token" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            drop table `oauth_access_token`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_client_details">
+        <createTable tableName="oauth_client_details">
+            <column name="client_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="resource_ids" type="VARCHAR(255)"/>
+            <column name="client_secret" type="VARCHAR(255)"/>
+            <column name="scope" type="VARCHAR(255)"/>
+            <column name="authorized_grant_types" type="VARCHAR(255)"/>
+            <column name="web_server_redirect_uri" type="VARCHAR(255)"/>
+            <column name="authorities" type="VARCHAR(255)"/>
+            <column name="access_token_validity" type="INT"/>
+            <column name="refresh_token_validity" type="INT"/>
+            <column name="additional_information" type="VARCHAR(4096)"/>
+            <column name="autoapprove" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            drop table `oauth_client_details`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_client_token">
+        <createTable tableName="oauth_client_token">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication_id" type="VARCHAR(255)"/>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="client_id" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            drop table `oauth_client_token`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_code">
+        <createTable tableName="oauth_code">
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="authentication" type="BLOB"/>
+        </createTable>
+        <rollback>
+            drop table `oauth_code`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="Create_Table_oauth_refresh_token">
+        <createTable tableName="oauth_refresh_token">
+            <column name="token_id" type="VARCHAR(255)"/>
+            <column name="token" type="BLOB"/>
+            <column name="authentication" type="BLOB"/>
+        </createTable>
+        <rollback>
+            drop table `oauth_refresh_token`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_permission">
+        <createTable tableName="permission">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="timestamp"/>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="permission_category_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="permission_name_UNIQUE"
+                     tableName="permission" unique="true">
+            <column descending="false" name="name"/>
+        </createIndex>
+        <rollback>
+            drop table `permission`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_permission_category">
+        <createTable tableName="permission_category">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="sequence" type="TINYINT(3)"/>
+        </createTable>
+        <rollback>
+            drop table `permission_category`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_role">
+        <createTable tableName="role">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="display_name" type="VARCHAR(45)"/>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="timestamp"/>
+            <column name="modified_by" type="VARCHAR(45)"/>
+        </createTable>
+        <sql>ALTER TABLE `role`
+            ADD CONSTRAINT check_status CHECK (status =
+                                               "Active" OR status = "Inactive")
+
+        </sql>
+        <createIndex indexName="name_UNIQUE" tableName="role"
+                     unique="true">
+            <column descending="false" name="name"/>
+        </createIndex>
+        <rollback>
+            drop table `role`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_role_permission">
+        <createTable tableName="role_permission">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `role_permission`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_setting">
+        <createTable tableName="setting">
+            <column name="key" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(120)"/>
+        </createTable>
+        <rollback>
+            drop table `setting`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_user">
+        <createTable tableName="user">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" remarks="name is user-nt-id" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="display_name" type="VARCHAR(250)"/>
+            <column name="email" type="VARCHAR(120)"/>
+            <column defaultValue="Person" name="type" remarks="type enum is USER | GROUP | APPROVER"
+                    type="varchar(45)"/>
+            <column defaultValue="Active" name="status" type="varchar(45)"/>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="modified_date" type="timestamp"/>
+            <column name="first_logged_in_date" type="timestamp"/>
+            <column name="last_logged_in_date" type="timestamp"/>
+        </createTable>
+        <addUniqueConstraint columnNames="name"
+                             constraintName="UQ_USER_1" tableName="user"/>
+
+        <addUniqueConstraint columnNames="email"
+                             constraintName="UQ_USER_2" tableName="user"/>
+        <sql>ALTER TABLE `user`
+            ADD CONSTRAINT check_type CHECK (type =
+                                             "Person"
+                OR type = "Group")
+        </sql>
+        <sql>ALTER TABLE `user`
+            ADD CONSTRAINT check_status_user CHECK (status
+                                                        =
+                                                    "Active" OR status = "Inactive")
+        </sql>
+        <rollback>
+            drop table `user`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="Create_Table_user_role">
+        <createTable tableName="user_role">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `user_role`
+        </rollback>
+    </changeSet>
+
+    <!-- Create table group -->
+    <changeSet author="Nov20220211" id="Create_Table_group">
+
+        <createTable tableName="group">
+            <column name="id" type="varchar(45)">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(45)">
+            </column>
+
+            <column name="display_name" type="varchar(45)">
+            </column>
+
+            <column name="description" type="varchar(250)">
+            </column>
+
+            <column name="status" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_date" type="TIMESTAMP"/>
+
+            <column name="created_by" type="varchar(45)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="modified_date" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="modified_by" type="varchar(45)">
+            </column>
+        </createTable>
+        <addDefaultValue
+                columnDataType="varchar(45)"
+                columnName="status"
+                defaultValue="Active"
+                tableName="group"/>
+        <sql>ALTER TABLE `group`
+            ADD CONSTRAINT check_status_group CHECK
+                (status =
+                 'Active' OR status = 'Inactive')
+        </sql>
+        <rollback>
+            drop table `group`
+        </rollback>
+    </changeSet>
+
+    <!-- Create table group_role -->
+    <changeSet author="Nov20220211" id="Create_Table_group_role">
+
+
+        <createTable tableName="group_role">
+            <column name="id" type="varchar(45)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="group_id" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="role_id" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="group_id" baseTableName="group_role"
+                constraintName="fk_group" referencedColumnNames="id"
+                referencedTableName="group"/>
+
+        <addForeignKeyConstraint
+                baseColumnNames="role_id" baseTableName="group_role"
+                constraintName="fk_role" referencedColumnNames="id"
+                referencedTableName="role"/>
+        <rollback>
+            drop table `group_role`
+        </rollback>
+    </changeSet>
+
+    <!-- Create table user_group -->
+    <changeSet author="Nov20220211" id="Create_Table_user_group">
+        <createTable tableName="user_group">
+            <column name="id" type="varchar(45)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="user_id" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="group_id" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="user_id" baseTableName="user_group"
+                constraintName="fk_user_has_group_user1" onDelete="NO ACTION"
+                onUpdate="NO ACTION" referencedColumnNames="id"
+                referencedTableName="user"/>
+
+        <addForeignKeyConstraint
+                baseColumnNames="group_id" baseTableName="user_group"
+                constraintName="fk_user_has_group_group1" onDelete="NO ACTION"
+                onUpdate="NO ACTION" referencedColumnNames="id"
+                referencedTableName="group"/>
+
+        <createIndex indexName="fk_user_has_group_user1"
+                     tableName="user_group">
+            <column descending="false" name="user_id"/>
+        </createIndex>
+
+        <createIndex indexName="fk_user_has_group_group1"
+                     tableName="user_group">
+            <column descending="false" name="group_id"/>
+        </createIndex>
+        <rollback>
+            drop table `user_group`
+        </rollback>
+    </changeSet>
+
+
+    <changeSet author="TGI2HC (generated)" id="add_Index_and_ForeignKey">
+        <createIndex indexName="fk_change_log_details_change_log1_idx" tableName="change_log_details">
+            <column name="change_log_id"/>
+        </createIndex>
+        <createIndex indexName="fk_member_has_role_member1_idx" tableName="user_role">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex indexName="fk_member_has_role_role1_idx" tableName="user_role">
+            <column name="role_id"/>
+        </createIndex>
+        <createIndex indexName="fk_permission_permission_category1_idx" tableName="permission">
+            <column name="permission_category_id"/>
+        </createIndex>
+        <createIndex indexName="fk_role_has_permission_permission1_idx" tableName="role_permission">
+            <column name="permission_id"/>
+        </createIndex>
+        <createIndex indexName="fk_role_has_permission_role1_idx" tableName="role_permission">
+            <column name="role_id"/>
+        </createIndex>
+        <addForeignKeyConstraint baseColumnNames="change_log_id" baseTableName="change_log_details"
+                                 constraintName="fk_change_log_details_change_log1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="change_log"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role"
+                                 constraintName="fk_member_has_role_member1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="user"/>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role"
+                                 constraintName="fk_member_has_role_role1" deferrable="false" initiallyDeferred="false"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="role"/>
+        <addForeignKeyConstraint baseColumnNames="permission_category_id" baseTableName="permission"
+                                 constraintName="fk_permission_permission_category1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="permission_category"/>
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="role_permission"
+                                 constraintName="fk_role_has_permission_permission1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="permission"/>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_permission"
+                                 constraintName="fk_role_has_permission_role1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="role"/>
+
+    </changeSet>
+
+
+    <changeSet author="TGI2HC" id="Database_version_0.0.1">
+        <tagDatabase tag="version_0.0.1"/>
+    </changeSet>
+
+
+    <!--    <changeSet author="TGI2HC" id="Create_Table_project_type">-->
+    <!--        <createTable tableName="project_type">-->
+    <!--            <column name="id" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="false" primaryKey="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="name" type="VARCHAR(120)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="sequence" type="BIT(1)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--        </createTable>-->
+    <!--        <createIndex indexName="project_type_name_UNIQUE"-->
+    <!--                     tableName="project_type" unique="true">-->
+    <!--            <column descending="false" name="name" />-->
+    <!--        </createIndex>-->
+    <!--        <rollback>-->
+    <!--            drop table `project_type`-->
+    <!--        </rollback>-->
+    <!--    </changeSet>-->
+
+    <!--    <changeSet author="TGI2HC" id="Create_Table_project">-->
+    <!--        <createTable tableName="project">-->
+    <!--            <column name="id" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="false" primaryKey="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="name" type="VARCHAR(120)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="start_date" type="timestamp">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="end_date" type="timestamp">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="leader" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="team_size" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="challenge" type="VARCHAR(250)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="description" type="VARCHAR(500)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="status" type="VARCHAR(25)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="target_object" type="VARCHAR(250)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="project_type_id" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="stack_holder" type="VARCHAR(120)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="gb_unit" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="department" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="created_by" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="modified_by" type="VARCHAR(45)"/>-->
+    <!--            <column name="modified_date" type="timestamp"/>-->
+    <!--        </createTable>-->
+    <!--        <createIndex indexName="project_name_UNIQUE"-->
+    <!--                     tableName="project" unique="true">-->
+    <!--            <column descending="false" name="name" />-->
+    <!--        </createIndex>-->
+    <!--        <createIndex indexName="fk_project_project_type1_idx" tableName="project">-->
+    <!--            <column name="project_type_id"/>-->
+    <!--        </createIndex>-->
+    <!--        <addForeignKeyConstraint baseColumnNames="project_type_id" baseTableName="project" constraintName="fk_project_project_type1_idx" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="project_type"/>-->
+    <!--        <addDefaultValue-->
+    <!--                columnDataType="varchar(45)"-->
+    <!--                columnName="status"-->
+    <!--                defaultValue="Active"-->
+    <!--                tableName="project"/>-->
+    <!--        <sql>ALTER TABLE `project` ADD CONSTRAINT check_status_project CHECK-->
+    <!--            (status =-->
+    <!--             'Active' OR status = 'Inactive')-->
+    <!--        </sql>-->
+    <!--        <rollback>-->
+    <!--            drop table `project`-->
+    <!--        </rollback>-->
+    <!--    </changeSet>-->
+
+    <!--    <changeSet author="TGI2HC" id="Create_Table_project_role">-->
+    <!--        <createTable tableName="project_role">-->
+    <!--            <column name="id" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="false" primaryKey="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="name" type="VARCHAR(120)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="description" type="VARCHAR(250)">-->
+    <!--                <constraints nullable="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="status" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--        </createTable>-->
+    <!--        <createIndex indexName="project_role_name_UNIQUE"-->
+    <!--                     tableName="project_role" unique="true">-->
+    <!--            <column descending="false" name="name" />-->
+    <!--        </createIndex>-->
+    <!--        <addDefaultValue-->
+    <!--                columnDataType="varchar(45)"-->
+    <!--                columnName="status"-->
+    <!--                defaultValue="Active"-->
+    <!--                tableName="project_role"/>-->
+    <!--        <sql>ALTER TABLE `project_role` ADD CONSTRAINT check_status_project_role CHECK-->
+    <!--            (status =-->
+    <!--             'Active' OR status = 'Inactive')-->
+    <!--        </sql>-->
+    <!--        <rollback>-->
+    <!--            drop table `project_role`-->
+    <!--        </rollback>-->
+    <!--    </changeSet>-->
+
+    <!--    <changeSet author="TGI2HC (generated)" id="1669023821680-3">-->
+    <!--        <createTable tableName="course">-->
+    <!--            <column name="id" type="VARCHAR(45)">-->
+    <!--                <constraints nullable="false" primaryKey="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="name" type="VARCHAR(120)">-->
+    <!--                <constraints nullable="false" unique="true"/>-->
+    <!--            </column>-->
+    <!--            <column name="description" type="VARCHAR(250)"/>-->
+    <!--            <column name="course_type" type="VARCHAR(120)"/>-->
+    <!--        </createTable>-->
+    <!--    </changeSet>-->
+
+    <changeSet author="TGI2HC (generated)" id="1669024336943-1">
+        <createTable tableName="course">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column name="course_type" type="VARCHAR(120)"/>
+        </createTable>
+        <rollback>
+            drop table `course`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-2">
+        <createTable tableName="department">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="gb_unit_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `department`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-3">
+        <createTable tableName="gb_unit">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `gb_unit`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-4">
+        <createTable tableName="level">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+        </createTable>
+        <rollback>
+            drop table `level`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-5">
+        <createTable tableName="personal">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_number" type="VARCHAR(25)"/>
+            <column name="personal_code" type="VARCHAR(25)"/>
+            <column name="title" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manager" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="experienced_at_bosch" type="SMALLINT"/>
+            <column name="experienced_non_bosch" type="SMALLINT"/>
+            <column name="picture" type="BLOB"/>
+            <column name="department_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `personal`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-6">
+        <createTable tableName="personal_course">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="course_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="course_type" type="VARCHAR(50)"/>
+            <column name="start_date" type="date"/>
+            <column name="end_date" type="date"/>
+            <column name="status" type="VARCHAR(25)"/>
+            <column name="certificate" type="BLOB"/>
+            <column name="trainer" type="VARCHAR(120)"/>
+            <column name="duration" type="INT"/>
+        </createTable>
+        <rollback>
+            drop table `personal_course`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-7">
+        <createTable tableName="personal_project">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_role_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task" type="VARCHAR(120)"/>
+            <column name="additional_task" type="VARCHAR(250)"/>
+        </createTable>
+        <rollback>
+            drop table `personal_project`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-8">
+        <createTable tableName="personal_skill">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="level" type="SMALLINT"/>
+            <column defaultValueNumeric="0" name="experience" type="SMALLINT"/>
+        </createTable>
+        <rollback>
+            drop table `personal_skill`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-9">
+        <createTable tableName="project">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="date"/>
+            <column name="leader" type="VARCHAR(45)"/>
+            <column name="team_size" type="VARCHAR(45)"/>
+            <column name="challenge" type="VARCHAR(250)"/>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="status" type="VARCHAR(25)"/>
+            <column name="target_object" type="VARCHAR(250)"/>
+            <column name="project_type_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stack_holder" type="VARCHAR(120)"/>
+            <column name="gb_unit" type="VARCHAR(45)"/>
+            <column name="department" type="VARCHAR(45)"/>
+            <column name="created_by" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(45)"/>
+            <column name="modified_date" type="timestamp"/>
+        </createTable>
+        <rollback>
+            drop table `project`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-10">
+        <createTable tableName="project_role">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column defaultValue="Active" name="status" type="ENUM('Active', 'Inactive')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence" type="SMALLINT"/>
+        </createTable>
+        <rollback>
+            drop table `project_role`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-11">
+        <createTable tableName="project_type">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="sequence" type="SMALLINT"/>
+        </createTable>
+        <rollback>
+            drop table `project_type`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-12">
+        <createTable tableName="skill">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column name="sequence" type="SMALLINT"/>
+            <column defaultValue="Active" name="status" type="ENUM('Active', 'Inactive')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level_id" type="VARCHAR(45)"/>
+        </createTable>
+        <rollback>
+            drop table `skill`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-13">
+        <createTable tableName="skill_evaluation">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_level" type="SMALLINT"/>
+            <column name="target_level" type="SMALLINT"/>
+            <column name="comment" type="VARCHAR(250)"/>
+            <column name="date" type="VARCHAR(45)"/>
+            <column name="status" type="ENUM('APPROVAL_PENDING', 'APPROVED', 'REJECTED', 'CANCELLED')"/>
+        </createTable>
+        <rollback>
+            drop table `skill_evaluation`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-14">
+        <createTable tableName="training_course">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="course_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trainer" type="VARCHAR(120)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="effort" type="SMALLINT"/>
+        </createTable>
+        <rollback>
+            drop table `training_course`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC (generated)" id="1669024336943-16">
+        <createIndex indexName="fk_department_gb_unit1_idx" tableName="department">
+            <column name="gb_unit_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-17">
+        <createIndex indexName="fk_personal_department1_idx" tableName="personal">
+            <column name="department_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-18">
+        <createIndex indexName="fk_personal_has_course_course1_idx" tableName="personal_course">
+            <column name="course_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-19">
+        <createIndex indexName="fk_personal_has_course_personal1_idx" tableName="personal_course">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-20">
+        <createIndex indexName="fk_personal_has_project_personal1_idx" tableName="personal_project">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-21">
+        <createIndex indexName="fk_personal_has_project_project1_idx" tableName="personal_project">
+            <column name="project_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-22">
+        <createIndex indexName="fk_personal_has_skill_skill1_idx" tableName="personal_skill">
+            <column name="skill_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-23">
+        <createIndex indexName="fk_personal_project_project_role1_idx" tableName="personal_project">
+            <column name="project_role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-24">
+        <createIndex indexName="fk_personal_skill_personal1_idx" tableName="personal_skill">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-25">
+        <createIndex indexName="fk_project_project_type1_idx" tableName="project">
+            <column name="project_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-26">
+        <createIndex indexName="fk_skill_evaluation_personal1_idx" tableName="skill_evaluation">
+            <column name="personal_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-27">
+        <createIndex indexName="fk_skill_evaluation_skill1_idx" tableName="skill_evaluation">
+            <column name="skill_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-28">
+        <createIndex indexName="fk_skill_level1_idx" tableName="skill">
+            <column name="level_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-29">
+        <createIndex indexName="fk_training_course_course1_idx" tableName="training_course">
+            <column name="course_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-30">
+        <addForeignKeyConstraint baseColumnNames="gb_unit_id" baseTableName="department"
+                                 constraintName="fk_department_gb_unit1" deferrable="false" initiallyDeferred="false"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="gb_unit"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-31">
+        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="personal"
+                                 constraintName="fk_personal_department1" deferrable="false" initiallyDeferred="false"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="department"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-32">
+        <addForeignKeyConstraint baseColumnNames="course_id" baseTableName="personal_course"
+                                 constraintName="fk_personal_has_course_course1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="course"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-33">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="personal_course"
+                                 constraintName="fk_personal_has_course_personal1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-34">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="personal_project"
+                                 constraintName="fk_personal_has_project_personal1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-35">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="personal_project"
+                                 constraintName="fk_personal_has_project_project1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="project"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-36">
+        <addForeignKeyConstraint baseColumnNames="skill_id" baseTableName="personal_skill"
+                                 constraintName="fk_personal_has_skill_skill1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-37">
+        <addForeignKeyConstraint baseColumnNames="project_role_id" baseTableName="personal_project"
+                                 constraintName="fk_personal_project_project_role1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="project_role"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-38">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="personal_skill"
+                                 constraintName="fk_personal_skill_personal1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-39">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="personal" constraintName="fk_personal_user1"
+                                 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-40">
+        <addForeignKeyConstraint baseColumnNames="project_type_id" baseTableName="project"
+                                 constraintName="fk_project_project_type1" deferrable="false" initiallyDeferred="false"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="project_type"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-41">
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="skill_evaluation"
+                                 constraintName="fk_skill_evaluation_personal1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-42">
+        <addForeignKeyConstraint baseColumnNames="skill_id" baseTableName="skill_evaluation"
+                                 constraintName="fk_skill_evaluation_skill1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-43">
+        <addForeignKeyConstraint baseColumnNames="level_id" baseTableName="skill" constraintName="fk_skill_level1"
+                                 deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="level"/>
+    </changeSet>
+    <changeSet author="TGI2HC (generated)" id="1669024336943-44">
+        <addForeignKeyConstraint baseColumnNames="course_id" baseTableName="training_course"
+                                 constraintName="fk_training_course_course1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="course"/>
+    </changeSet>
+    <changeSet id="TGI2HC-alter-project" author="TGI2HC">
+        <addColumn tableName="project">
+            <column name="reference_link" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="TGI2HC-add-col-skillgroupid-skill" author="TGI2HC">
+        <addColumn tableName="skill">
+            <column name="skill_group_id" type="varchar(45)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="TGI2HC-add-col-team-personal" author="TGI2HC">
+        <addColumn tableName="personal">
+            <column name="team" type="varchar(225)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="TGI2HC=" id="TGI2HC-create-table-groupSkill">
+        <createTable tableName="group_skill">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `group_skill`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC" id="TGI2HC-rename-table-groupSkill">
+        <renameTable oldTableName="group_skill" newTableName="skill_group"/>
+        <rollback>
+            drop table `skill_group`
+        </rollback>
+    </changeSet>
+    <changeSet author="HungMacBao@vn.bosch.com" id="MAC9HC-add-priority">
+        <addColumn tableName="role">
+            <column name="priority" type="smallint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Hung.MacBao@vn.bosch.com" id="MAC9HC-drop-constraint-department-id-in-personal">
+        <dropNotNullConstraint tableName="personal" columnName="department_id" columnDataType="varchar(45)"/>
+    </changeSet>
+    <changeSet id="add-personal-level-mapping" author="MAC9HC">
+        <modifyDataType tableName="personal" columnName="level" newDataType="varchar(45)"/>
+        <addForeignKeyConstraint baseColumnNames="level" baseTableName="personal"
+                                 constraintName="fk_personal_level1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="level"/>
+    </changeSet>
+    <changeSet author="DUP5HC" id="DUP5HC-create-category-table">
+        <createTable tableName="category">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `category`
+        </rollback>
+    </changeSet>
+    <changeSet author="DUP5HC" id="DUP5HC-create-column-category-in-course">
+        <addColumn tableName="course">
+            <column name="category_id" type="VARCHAR(45)"/>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="course"
+                                 constraintName="fk_course_category" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="category"/>
+    </changeSet>
+    <changeSet author="DUP5HC" id="DUP5HC-add-columm-to-training-course">
+        <addColumn tableName="training_course">
+            <column name="target_audience" type="VARCHAR(45)"></column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="target_audience" baseTableName="training_course"
+                                 constraintName="fk_training_course_target_audience" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="level"/>
+        <rollback>ALTER TABLE training_course DROP COLUMN target_audience</rollback>
+    </changeSet>
+    <changeSet author="DUP5HC" id="DUP5HC-add-column-status-in-training">
+        <addColumn tableName="training_course">
+            <column defaultValue="NEW" name="status" type="ENUM('NEW', 'ON-GOING')">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <rollback>ALTER TABLE training_course DROP COLUMN status</rollback>
+    </changeSet>
+
+    <changeSet id="TGI2HC-add-col-to-skill-evaluation" author="TGI2HC">
+        <addColumn tableName="skill_evaluation">
+            <column name="approver" type="varchar(45)"/>
+            <column name="approve_date" type="date"/>
+            <column name="experience" type="SMALLINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="TGI2HC" id="TGI2HC-create-table-personal-skill-evaluation">
+        <createTable tableName="personal_skill_evaluation">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="assigned_to" type="VARCHAR(45)"/>
+            <column name="skill_evaluation_id" type="VARCHAR(45)"/>
+        </createTable>
+        <rollback>
+            drop table `personal_skill_evaluation`
+        </rollback>
+    </changeSet>
+    <changeSet id="change-col-date-type" author="TGI2HC">
+        <modifyDataType tableName="skill_evaluation" columnName="date" newDataType="date"/>
+    </changeSet>
+    <changeSet id="add-fk-skill" author="TGI2HC">
+        <addForeignKeyConstraint
+                baseColumnNames="skill_group_id" baseTableName="skill"
+                constraintName="fk_skill_group_id" referencedColumnNames="id"
+                referencedTableName="skill_group"/>
+    </changeSet>
+    <changeSet id="add-fk-personal-skill-evaluation" author="TGI2HC">
+        <addForeignKeyConstraint
+                baseColumnNames="skill_evaluation_id" baseTableName="personal_skill_evaluation"
+                constraintName="fk_skill_evaluation_id" referencedColumnNames="id"
+                referencedTableName="skill_evaluation"/>
+    </changeSet>
+    <changeSet id="add-fk-assigned_to" author="TGI2HC">
+        <addForeignKeyConstraint
+                baseColumnNames="assigned_to" baseTableName="personal_skill_evaluation"
+                constraintName="fk_assigned_to" referencedColumnNames="id"
+                referencedTableName="personal"/>
+    </changeSet>
+    <changeSet author="TGI2HC" id="Database_version_0.0.3">
+        <tagDatabase tag="version_0.0.3"/>
+    </changeSet>
+    <changeSet author="TGI2HC" id="TGI2HC-create-skill-experience-level-table">
+        <createTable tableName="skill_experience_level">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="level_id" baseTableName="skill_experience_level"
+                                 constraintName="fk_skill_experience_level_level" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="level"/>
+        <addForeignKeyConstraint baseColumnNames="skill_id" baseTableName="skill_experience_level"
+                                 constraintName="fk_skill_experience_level_skill" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill"/>
+        <rollback>
+            drop table `skill_experience_level`
+        </rollback>
+    </changeSet>
+    <changeSet author="TGI2HC" id="TGI2HC-drop-skill-level">
+        <dropForeignKeyConstraint baseTableName="skill" constraintName="fk_skill_level1"/>
+        <dropColumn tableName="skill" columnName="level_id"/>
+    </changeSet>
+    <changeSet id="drop-not-null-skill-experience-level" author="TGI2HC">
+        <dropNotNullConstraint tableName="skill_experience_level" columnName="level_id" columnDataType="VARCHAR(45)"/>
+    </changeSet>
+    <changeSet id="increase-desscription-length" author="TGI2HC">
+        <modifyDataType tableName="skill_experience_level" columnName="description" newDataType="TEXT"/>
+    </changeSet>
+    <changeSet author="TGI2HC" id="insert-level-default">
+        <insert tableName="level">
+            <column name="id" value="be9c087a-4006-4640-826f-725f956d1892"/>
+            <column name="name" value="L51"/>
+            <column name="description" value="L50"/>
+        </insert>
+        <insert tableName="level">
+            <column name="id" value="47bd0d20-a4ec-483e-af1e-ea5fb4114726"/>
+            <column name="name" value="L52"/>
+            <column name="description" value="L50"/>
+        </insert>
+        <insert tableName="level">
+            <column name="id" value="b4d6e5e3-c404-43f9-be99-79b70b449767"/>
+            <column name="name" value="L53+"/>
+            <column name="description" value="L50"/>
+        </insert>
+    </changeSet>
+    <changeSet author="TGI2HC" id="TGI2HC-create-column-skill-group-ref">
+        <addColumn tableName="skill_experience_level">
+            <column name="skill_group_id" type="VARCHAR(45)"/>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="skill_group_id" baseTableName="skill_experience_level"
+                                 constraintName="fk_skill_group_id_skill_group" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill_group"/>
+    </changeSet>
+    <changeSet id="add-gender-to-personal" author="MAC9HC">
+        <addColumn tableName="personal">
+            <column name="gender" type="char(5)">
+                <constraints checkConstraint="gender IN ('M', 'FM')" nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-location-to-personal" author="MAC9HC">
+        <addColumn tableName="personal">
+            <column name="location" type="varchar(120)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-join-date-to-personal" author="MAC9HC">
+        <addColumn tableName="personal">
+            <column name="join_date" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-constraint-M-FM-gender-personal" author="MAC9HC">
+        <sql>
+            ALTER TABLE personal
+                ADD CONSTRAINT gender_check CHECK ( gender IN ('M', 'FM', 'N/A') )
+        </sql>
+    </changeSet>
+    <changeSet id="add-default-value-gender" author="MAC9HC">
+        <addDefaultValue tableName="personal" columnName="gender" defaultValue="N/A"/>
+        <update tableName="personal">
+            <column name="gender" value="N/A"/>
+            <where>gender is null</where>
+        </update>
+    </changeSet>
+
+    <changeSet author="TGI2HC" id="insert-level-l50-default">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM level
+                WHERE name = 'L50';
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="level">
+            <column name="id" value="be9c087a-4006-4640-826f-725f956d1893"/>
+            <column name="name" value="L50"/>
+            <column name="description" value="L50"/>
+        </insert>
+    </changeSet>
+    <changeSet author="TGI2HC" id="TGI2HC-create-skill-competency-lead-table">
+        <createTable tableName="skill_competency_lead">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="skill_competency_lead"
+                                 constraintName="fk_skill_competency_lead_personal" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+        <addForeignKeyConstraint baseColumnNames="skill_id" baseTableName="skill_competency_lead"
+                                 constraintName="fk_skill_skill_competency_lead" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill"/>
+        <rollback>
+            drop table `skill_competency_lead`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="DUP5HC" id="create-table-common-task">
+        <createTable tableName="common_task">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table `common_task`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="GNL3HC" id="create-column-project-role-in-common-task">
+        <addColumn tableName="common_task">
+            <column name="project_role_id" type="VARCHAR(45)"/>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="project_role_id" baseTableName="common_task"
+                                 constraintName="fk_project_role_common_task" deferrable="false"
+                                 initiallyDeferred="false"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                 referencedTableName="project_role"/>
+    </changeSet>
+    <changeSet author="TGI2HC" id="create-table-request-evaluation">
+        <createTable tableName="request_evaluation">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="requester_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approver_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="VARCHAR(1024)"/>
+            <column name="createdDate" type="timestamp"/>
+            <column name="updatedDate" type="timestamp"/>
+            <column name="approvedDate" type="timestamp"/>
+            <column name="status" type="ENUM('APPROVAL_PENDING', 'APPROVED', 'REJECTED', 'CANCELLED')"/>
+
+        </createTable>
+        <rollback>
+            drop table `request_evaluation`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TGI2HC" id="create-table-request-evaluation-detail">
+        <createTable tableName="request_evaluation_detail">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approver_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_level" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_exp" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="VARCHAR(1024)"/>
+            <column name="createdDate" type="timestamp"/>
+            <column name="updatedDate" type="timestamp"/>
+            <column name="approvedDate" type="timestamp"/>
+            <column name="status" type="ENUM('APPROVAL_PENDING', 'APPROVED', 'REJECTED', 'CANCELLED')"/>
+
+        </createTable>
+        <rollback>
+            drop table `request_evaluation`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="DUP5HC" id="create-constraint-relationship-request-evaluation-detail">
+    <addColumn tableName="request_evaluation_detail">
+            <column name="request_evaluation_id" type="VARCHAR(45)"/>
+    </addColumn>
+    <addForeignKeyConstraint baseColumnNames="request_evaluation_id" baseTableName="request_evaluation_detail"
+                         constraintName="fk_request_evaluation_request_evaluation_id" deferrable="false" initiallyDeferred="false"
+                         onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="request_evaluation"/>
+    </changeSet>
+
+    <changeSet author="TGI2HC" id="renameColumn-request-evaluation">
+        <renameColumn
+                columnDataType="timestamp"
+                newColumnName="created_date"
+                oldColumnName="createdDate"
+                tableName="request_evaluation"/>
+        <renameColumn
+                columnDataType="timestamp"
+                newColumnName="updated_date"
+                oldColumnName="updatedDate"
+                tableName="request_evaluation"/>
+        <renameColumn
+                columnDataType="timestamp"
+                newColumnName="approved_date"
+                oldColumnName="approvedDate"
+                tableName="request_evaluation"/>
+    </changeSet>
+    <changeSet author="TGI2HC" id="renameColumn-request-evaluation-detail">
+        <renameColumn
+                columnDataType="timestamp"
+                newColumnName="created_date"
+                oldColumnName="createdDate"
+                tableName="request_evaluation_detail"/>
+        <renameColumn
+                columnDataType="timestamp"
+                newColumnName="updated_date"
+                oldColumnName="updatedDate"
+                tableName="request_evaluation_detail"/>
+        <renameColumn
+                columnDataType="timestamp"
+                newColumnName="approved_date"
+                oldColumnName="approvedDate"
+                tableName="request_evaluation_detail"/>
+    </changeSet>
+
+    <changeSet author="DUP5HC" id="remove-not-null-constraint-manager">
+    	<dropNotNullConstraint tableName="personal" columnName="manager" columnDataType ="VARCHAR(45)" />
+	</changeSet>
+
+    <changeSet author="TAY3HC" id="add-description-for-competency-lead">
+        <addColumn tableName="skill_competency_lead">
+            <column name="description" type="VARCHAR (500)"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="TAY3HC" id="change-constraint-of-personal-course">
+        <dropForeignKeyConstraint baseTableName="personal_course" constraintName="fk_personal_has_course_course1" />
+        <addForeignKeyConstraint baseColumnNames="course_id" baseTableName="personal_course"
+                                 constraintName="fk_personal_has_course_training_course1" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="training_course"/>
+    </changeSet>
+
+	<changeSet id="add-column-updated-status-table-personal" author="DUP5HC">
+	    <addColumn tableName="personal">
+            <column defaultValueBoolean = "true" name="updated" type="BOOLEAN"/>
+    </addColumn>
+	<rollback>
+        ALTER TABLE personal drop column `updated`
+    </rollback>
+	</changeSet>
+
+	<changeSet id="alter-default-value-updated-column" author="DUP5HC">
+		<dropDefaultValue tableName="personal" columnName="updated" columnDataType = "BOOLEAN" />
+		<addDefaultValue tableName="personal" columnName="updated" defaultValueBoolean = "false" />
+		<rollback>
+			ALTER TABLE personal drop column 'updated'
+		</rollback>
+	</changeSet>
+
+	<changeSet author="DUP5HC" id="DUP5HC-create-column-technology_used-in-project">
+		<addColumn tableName="project">
+			<column name="technology_used" type="VARCHAR(45)" />
+		</addColumn>
+        <rollback>ALTER TABLE project DROP COLUMN technology_used</rollback>
+	</changeSet>
+
+	<changeSet id="create-table-team" author="TAY3HC">
+	<createTable tableName="team">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+	</createTable>
+		<rollback>DROP TABLE team </rollback>
+	</changeSet>
+
+ 	<changeSet id="update-data-in-personal-team-column" author="TAY3HC">
+        <update tableName="personal">
+            <column name="team" value="9a9b1347-4acb-4a10-a9a7-696439e98642" />
+            <where> team = 'MS/EET11'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="a5ab44b4-2487-4d80-a21c-a3e5c701319f" />
+            <where> team = 'MS/EET12'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="353817f2-d28e-4579-9a21-d186f2ab1941" />
+            <where> team = 'MS/EET13'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="29bfb3e6-4c41-44d6-8489-e5aaa752d26c" />
+            <where> team = 'MS/EET14'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="f035bd21-cb93-4016-9d01-743bad73a468" />
+            <where> team = 'MS/EET21'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="14915835-65e5-452e-8d51-3377ca90cff7" />
+            <where> team = 'MS/EET22'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="9aefebb1-4831-4a44-866f-c39af7e7f91e" />
+            <where> team = 'MS/EET23'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="4ce7f28d-84e6-4590-bfa3-a574b28c8783" />
+            <where> team = 'MS/EET31'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="90659f09-636d-4e4f-8dc8-daefb0c10319" />
+            <where> team = 'MS/EET32'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="d2bea056-1af2-45ff-b41b-f72e66cb37cb" />
+            <where> team = 'MS/EET33'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="68f56c46-c1a2-41e8-b1da-0dd4873eff90" />
+            <where> team = 'MS/EET34'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="e846e35d-f8b3-4787-ac45-1c2216ed2e5a" />
+            <where> team = 'MS/EET35'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="0df4109e-70bf-4e0d-8812-2f6eb25d8eba" />
+            <where> team = 'MS/PJ-EET-PS'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="9d7f83d4-7c7a-466f-8ed1-874d4319f9bb" />
+            <where> team = 'MS/PJ-EET-MS'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="8fc19d94-daea-4401-adb3-266362324409" />
+            <where> team = 'MS/PJ-AT-PS'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="84660b87-b857-4745-8fae-11f4fa91f5e3" />
+            <where> team = 'MS/PJ-EET-TECH'</where>
+        </update>
+        <update tableName="personal">
+            <column name="team" value="6923619b-f85f-4f85-9431-78d22efb3a58" />
+            <where> team = 'MS/EET'</where>
+        </update>
+	</changeSet>
+
+    <changeSet id="Add team" author="TAY3HC">
+        <loadData tableName="team" file="dblogs/changelogs/updateData/team.csv" separator="," />
+    </changeSet>
+    <changeSet id="Add team 03-04-2023" author="TAY3HC">
+        <loadData tableName="team" file="dblogs/changelogs/updateData/team-04-03-2023.csv" separator="," />
+    </changeSet>
+
+    <changeSet id="add-constraint-personal-team" author="TAY3HC">
+        <addForeignKeyConstraint baseTableName="personal" baseColumnNames="team" constraintName="fk_personal_team"
+                                 referencedTableName="team"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+	<changeSet id="add-column-main-skill-cluster-personal" author="DUP5HC">
+		<addColumn tableName="personal">
+			<column name="main_skill_cluster" type="VARCHAR(250)" />
+		</addColumn>
+        <rollback>ALTER TABLE personal DROP COLUMN main_skill_cluster</rollback>
+	</changeSet>
+
+    <changeSet id="change-data-type-picture-and-certificate" author="TAY3HC">
+        <modifyDataType tableName="personal" columnName="picture" newDataType="MEDIUMBLOB" />
+        <modifyDataType tableName="personal_course" columnName="certificate" newDataType="MEDIUMBLOB" />
+    </changeSet>
+
+    <changeSet id="add-field-to-project-info" author="TAY3HC">
+        <addColumn tableName="project">
+            <column name="applied_blueprint" type="ENUM('Angular/Java', 'Angular/React', 'Microservice', 'RCP Application')">
+                <constraints nullable="true" />
+            </column>
+            <column name="sponsor" type="VARCHAR(255)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+        <rollback>
+            alter table project drop column applied_blueprint
+            alter table project drop column sponsor
+        </rollback>
+    </changeSet>
+
+	<changeSet id="create table department group" author="DUP5HC">
+		<createTable tableName="department_group">
+	            <column name="id" type="VARCHAR(45)">
+	                <constraints nullable="false" primaryKey="true"/>
+	            </column>
+	            <column name="name" type="VARCHAR(45)">
+	                <constraints nullable="false"/>
+	            </column>
+		</createTable>
+		<rollback>
+			`drop table department_group`
+		</rollback>
+	</changeSet>
+
+    <changeSet id="add-column-group-team" author="DUP5HC">
+		<addColumn tableName="team">
+			<column name="group_id" type="VARCHAR(45)" />
+		</addColumn>
+        <rollback>ALTER TABLE team DROP COLUMN group_id</rollback>
+    </changeSet>
+
+    <changeSet id="add-constraint-team-group" author="DUP5HC">
+        <addForeignKeyConstraint baseTableName="team" baseColumnNames="group_id" constraintName="fk_team_group"
+                                 referencedTableName="department_group"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="change-status-for-manage-request" author="TAY3HC">
+        <modifyDataType tableName="request_evaluation" columnName="status" newDataType="enum('APPROVED', 'REJECTED', 'APPROVED/REJECTED', 'APPROVAL_PENDING')" />
+    </changeSet>
+
+    <changeSet id="add-column-brief-info-personal" author="CAV5HC">
+		<addColumn tableName="personal">
+			<column name="brief_info" type="VARCHAR(500)" />
+		</addColumn>
+        <rollback>ALTER TABLE personal DROP COLUMN brief_info</rollback>
+	</changeSet>
+
+	<changeSet  author="GLO7HC"  id="dropUniqueConstraint-example">
+    	<dropUniqueConstraint
+    		constraintName="trainer"
+            tableName="training_course"
+            uniqueColumns="trainer"/>
+	</changeSet>
+
+	<changeSet  author="GLO7HC"  id="dropNotNullConstraintTrainingCourseTable">
+	    <dropNotNullConstraint
+	            columnDataType="VARCHAR(120)"
+	            columnName="trainer"
+	            tableName="training_course"/>
+	</changeSet>
+
+
+
+    <changeSet id="add column approver comment in request evaluation detail table" author="CAV5HC">
+		<addColumn tableName="request_evaluation_detail">
+			<column name="approver_comment" type="VARCHAR(500)"/>
+		</addColumn>
+        <rollback>ALTER TABLE request_evaluation_detail DROP COLUMN approver_comment</rollback>
+	</changeSet>
+
+	<changeSet  author="glo7hc"  id="updateDataTypeEnumTrainingCourse">
+	    <modifyDataType
+	            columnName="status"
+	            newDataType="ENUM('NEW', 'ON-GOING','CLOSED')"
+	            tableName="training_course"/>
+	</changeSet>
+
+	 <changeSet author="GLO7HC" id="Create_table_skill_highlight">
+        <createTable tableName="skills_highlight">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)"/>
+            <column name="personal_skill_id" type="VARCHAR(45)"/>
+        </createTable>
+        <rollback>
+            drop table `skills_highlight`
+        </rollback>
+    </changeSet>
+
+     <changeSet author="GLO7HC" id="Create_table_phase">
+        <createTable tableName="phase">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)"/>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            drop table `phase`
+        </rollback>
+    </changeSet>
+
+	<changeSet author="GLO7HC" id="Create_table_phase_project">
+        <createTable tableName="phase_project">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="phase_id" type="VARCHAR(45)"/>
+            <column name="project_id" type="VARCHAR(45)"/>
+        </createTable>
+        <rollback>
+            drop table `phase_project`
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add-column-top-poject" author="RRN5HC">
+        <addColumn tableName="project">
+            <column name="top_project" type="BOOLEAN" defaultValue="FALSE"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="GLO7HC" id="Create_table_skill_level">
+        <createTable tableName="skill_level">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="level_id" type="VARCHAR(45)"/>
+            <column name="skill_id" type="VARCHAR(45)"/>
+            <column name="skill_group_id" type="VARCHAR(45)"/>
+            <column name="level_lable" type="VARCHAR(45)"/>
+        </createTable>
+        <rollback>
+            drop table `skills_level`
+        </rollback>
+    </changeSet>
+    <changeSet id="add-column-is-mandatory" author="GLO7HC">
+        <addColumn tableName="skill">
+            <column name="is_mandatory" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-column-is-required" author="GLO7HC">
+        <addColumn tableName="skill">
+            <column name="is_required" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="CAV5HC" id="Remove_gb_unit_id_column_of_department_table">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="department" columnName="gb_unit_id"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="department" constraintName="fk_department_gb_unit1"/>
+        <dropColumn tableName="department" columnName="gb_unit_id"/>
+        <rollback>
+            <addColumn tableName="department">
+                <column name="gb_unit_id" type="VARCHAR(45)">
+                    <constraints nullable="false"/>
+                </column>
+            </addColumn>
+            <createIndex indexName="fk_department_gb_unit1_idx" tableName="department">
+                <column name="gb_unit_id"/>
+            </createIndex>
+            <addForeignKeyConstraint baseColumnNames="gb_unit_id" baseTableName="department"
+                                     constraintName="fk_department_gb_unit1" deferrable="false" initiallyDeferred="false"
+                                     onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                                     referencedTableName="gb_unit"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add-column-customer_gb-to-poject-table" author="CAV5HC">
+        <addColumn tableName="project">
+            <column name="customer_gb" type="VARCHAR(50)"/>
+        </addColumn>
+        <rollback>ALTER TABLE project DROP COLUMN customer_gb</rollback>
+    </changeSet>
+
+    <changeSet author="CAV5HC" id="modify_technology_used_column_length">
+        <modifyDataType tableName="project" columnName="technology_used" newDataType="varchar(250)"/>
+    </changeSet>
+
+    <changeSet author="CAV5HC" id="create-project_skillgroup_skill-table">
+        <createTable tableName="project_skillgroup_skill">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="project_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_group_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_project_id" tableName="project_skillgroup_skill">
+            <column name="project_id"/>
+        </createIndex>
+        <createIndex indexName="idx_skill_id" tableName="project_skillgroup_skill">
+            <column name="skill_id"/>
+        </createIndex>
+        <createIndex indexName="idx_skill_group_id" tableName="project_skillgroup_skill">
+            <column name="skill_group_id"/>
+        </createIndex>
+        <addForeignKeyConstraint baseTableName="project_skillgroup_skill"
+                                 baseColumnNames="project_id"
+                                 referencedTableName="project"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_project"/>
+        <addForeignKeyConstraint baseTableName="project_skillgroup_skill"
+                                 baseColumnNames="skill_id"
+                                 referencedTableName="skill"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_skill"/>
+        <addForeignKeyConstraint baseTableName="project_skillgroup_skill"
+                                 baseColumnNames="skill_group_id"
+                                 referencedTableName="skill_group"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_skill_group"/>
+        <rollback>
+            drop table `project_skillgroup_skill`
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add-column-es_updated-for-skill-table" author="CAV5HC">
+        <addColumn tableName="skill">
+            <column name="es_updated" type="BOOLEAN" defaultValue="FALSE"/>
+        </addColumn>
+        <rollback>ALTER TABLE skill DROP COLUMN es_updated</rollback>
+    </changeSet>
+    
+    <changeSet author="GNN7HC" id="Create_table_file_storage">
+        <createTable tableName="file_storage">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)"/>
+            <column name="extension" type="VARCHAR(120)"/>
+            <column name="size" type="INT"/>
+            <column name="uri" type="VARCHAR(120)"/>
+            <column name="token" type="VARCHAR(120)"/>
+            <column name="type" type="VARCHAR(120)"/>
+            <column name="deleted" type="BOOLEAN"/>
+        </createTable>
+        <rollback>
+            drop table `file_storage`
+        </rollback>
+    </changeSet>
+        <changeSet author="GNN7HC" id="Create_table_page_config">
+        <createTable tableName="page_config">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(120)"/>
+            <column name="status" type="VARCHAR(120)"/>
+            <column name="createdDate" type="timestamp"/>
+            <column name="createdBy" type="VARCHAR(120)"/>
+            <column name="modifiedDate" type="timestamp"/>
+            <column name="modifiedBy" type="VARCHAR(120)"/>
+            <column name="pageConfigDetailsDTOs" type="LONGTEXT"/>
+        </createTable>
+        <rollback>
+            drop table `page_config`
+        </rollback>
+    </changeSet>
+
+    <changeSet  author="RRN5HC"  id="modify-project-target-object-and-description-columns-length">
+        <modifyDataType tableName="project" columnName="target_object" newDataType="VARCHAR(1000)"/>
+        <modifyDataType tableName="project" columnName="description" newDataType="VARCHAR(1000)"/>
+    </changeSet>
+
+    <changeSet author="RRN5HC" id="create-table-warehouse-personal-data">
+        <createTable tableName="warehouse_personal_data">
+            <column name="personal_code" type="VARCHAR(25)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_number" type="VARCHAR(25)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="display_name" type="VARCHAR(120)"/>
+            <column name="email" type="VARCHAR(120)"/>
+            <column name="gender" type="VARCHAR(50)"/>
+            <column name="title" type="VARCHAR(50)"/>
+            <column name="team" type="VARCHAR(120)"/>
+            <column name="group" type="VARCHAR(120)"/>
+            <column name="department" type="VARCHAR(50)"/>
+            <column name="manager" type="VARCHAR(120)"/>
+            <column name="location" type="varchar(120)"/>
+            <column name="level" type="varchar(50)"/>
+            <column name="join_date" type="timestamp"/>
+        </createTable>
+        <rollback>
+            drop table `warehouse_personal_data`
+        </rollback>
+    </changeSet>
+    
+    	<changeSet author="VOU6HC" id="create-skill-tags-table">
+		<createTable tableName="skill_tags">
+			<column name="id" type="VARCHAR(45)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="name" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<rollback> 
+			drop table `skill_tags`
+		</rollback>
+	</changeSet>
+	
+	<changeSet author="VOU6HC" id="create-project-skill-tags-table">
+		<createTable tableName="project_skill_tags">
+			<column name="project_id" type="VARCHAR(45)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="skill_tag_id" type="VARCHAR(45)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+		</createTable>
+		        <createIndex indexName="idx_project_id" tableName="project_skill_tags">
+            <column name="project_id"/>
+        </createIndex>
+        <createIndex indexName="idx_skill_tag_id" tableName="project_skill_tags">
+            <column name="skill_tag_id"/>
+        </createIndex>
+        <addForeignKeyConstraint baseTableName="project_skill_tags"
+                                 baseColumnNames="project_id"
+                                 referencedTableName="project"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_project_skill_tag"/>
+        <addForeignKeyConstraint baseTableName="project_skill_tags"
+                                 baseColumnNames="skill_tag_id"
+                                 referencedTableName="skill_tags"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_skill_tag_project"/>
+		<rollback>
+			ALTER TABLE `project_skill_tags` DROP FOREIGN KEY fk_project_skill_tag,
+			DROP FOREIGN KEY fk_skill_tag_project;
+			drop table `project_skill_tags`
+		</rollback>
+	</changeSet>
+
+	<changeSet author="glo7hc" id="dropPrimaryKey_project_id">
+		<dropPrimaryKey tableName="project_skill_tags"/>
+	</changeSet>
+	<changeSet id="add-id-table-project-skill-tags"
+		author="GLO7HC">
+		<addColumn tableName="project_skill_tags">
+			<column name="id" type="VARCHAR(255)">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+		</addColumn>
+		<rollback>ALTER TABLE project_skill_tags DROP COLUMN id</rollback>
+	</changeSet>
+	<changeSet id="add-column-order-in-skill-tag"
+		author="GLO7HC">
+		<addColumn tableName="skill_tags">
+			<column name="tag_order" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+		</addColumn>
+		<rollback>ALTER TABLE skill_tags DROP COLUMN tag_order</rollback>
+	</changeSet>
+
+    <changeSet author="RRN5HC"  id="modify-some-project-info-length">
+        <modifyDataType tableName="project" columnName="target_object" newDataType="TEXT"/>
+        <modifyDataType tableName="project" columnName="description" newDataType="TEXT"/>
+        <modifyDataType tableName="project" columnName="technology_used" newDataType="TEXT"/>
+    </changeSet>
+
+    <changeSet author="RRN5HC"  id="modify-skill-tag-name-length">
+        <modifyDataType tableName="skill_tags" columnName="name" newDataType="VARCHAR(100)"/>
+    </changeSet>
+
+    <changeSet author="RRN5HC"  id="modify-project-leader-length">
+        <modifyDataType tableName="project" columnName="leader" newDataType="VARCHAR(250)"/>
+    </changeSet>
+	
+	<changeSet id="create table supply and demand" author="DUP5HC">
+		<createTable tableName="supply_demand">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="project_id" type="VARCHAR(45)">
+				<constraints nullable="false"/>
+            </column>
+			<column name="skill_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_cluster_id" type="VARCHAR(45)">
+				<constraints nullable="false"/>
+            </column>
+            <column name="level" type="VARCHAR(45)"/>
+            <column name="assignee" type="VARCHAR(120)"/>
+            <column name="candidate_name" type="VARCHAR(120)"/>
+            <column name="supply_type" type="VARCHAR(120)"/>
+            <column name="location" type="VARCHAR(120)"/>
+            <column name="expected_date" type="date"/>
+			<column name="status" type="VARCHAR(45)"/>
+			<column name="created_by_ntid" type="VARCHAR(45)">
+				<constraints nullable="false"/>
+			</column>
+            <column name="created_by_name" type="VARCHAR(120)"/>
+            <column name="created_date" type="timestamp"/>
+			<column name="updated_by_ntid" type="VARCHAR(45)"/>
+            <column name="updated_by_name" type="VARCHAR(120)"/>
+            <column name="updated_date" type="timestamp"/>
+            <column name="note" type="VARCHAR(500)"/>
+        </createTable>
+        <rollback>
+            drop table `supply_demand`
+        </rollback>
+	</changeSet>
+
+    <changeSet author="RRN5HC" id="create-column-line-manger-in-team">
+        <addColumn tableName="team">
+            <column name="line_manager" type="VARCHAR(45)"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="team"
+                                 baseColumnNames="line_manager"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_team_line_manager"
+                                 deferrable="false" initiallyDeferred="false"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT"/>
+        <rollback>
+            ALTER TABLE team DROP COLUMN line_manager
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="create table history supply and demand" author="DUP5HC">
+		<createTable tableName="history_supply_demand">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="item_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assignee" type="VARCHAR(120)"/>
+            <column name="candidate_name" type="VARCHAR(120)"/>
+            <column name="supply_type" type="VARCHAR(120)"/>
+			<column name="status" type="VARCHAR(45)"/>
+			<column name="updated_by_ntid" type="VARCHAR(45)">
+				<constraints nullable="false"/>
+			</column>
+            <column name="updated_date" type="timestamp"/>
+            <column name="note" type="VARCHAR(500)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="history_supply_demand"
+                         constraintName="fk_supply_demand_history_supply" deferrable="false" initiallyDeferred="false"
+                         onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
+                         referencedTableName="supply_demand"/>
+
+        <rollback>
+            drop table `history_supply_demand`
+        </rollback>
+	</changeSet>
+
+    <changeSet  author="RRN5HC"  id="updateDataTypeEnumProjectStatus">
+        <modifyDataType
+                columnName="status"
+                newDataType="ENUM('New', 'On-Going', 'Done', 'On-hold', 'Stopped')"
+                tableName="project"/>
+    </changeSet>
+
+    <changeSet id="rename and add more column history_demand" author="DUP5HC">
+		<renameColumn tableName="history_supply_demand" oldColumnName="status" newColumnName="old_status" columnDataType="VARCHAR(45)"/>
+		<addColumn tableName="history_supply_demand">
+			<column afterColumn="old_status" name = "new_status" type ="VARCHAR(45)"></column>
+		</addColumn>
+		<dropColumn tableName="history_supply_demand">
+			<column name = "assignee"/>
+			<column name = "candidate_name"/>
+			<column name = "supply_type"/>
+		</dropColumn>
+	</changeSet>
+
+    <changeSet id="update on-going project status" author="RRN5HC">
+        <modifyDataType
+                columnName="status"
+                newDataType="ENUM('New', 'On-going', 'Done', 'On-hold', 'Stopped')"
+                tableName="project"/>
+    </changeSet>
+
+    <changeSet id="add constraint table phase_project" author="RRN5HC">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="phase_project"
+                                 constraintName="fk_phase_project_project" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="project"/>
+        <addForeignKeyConstraint baseColumnNames="phase_id" baseTableName="phase_project"
+                                 constraintName="fk_phase_project_phase" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="phase"/>
+    </changeSet>
+
+    <changeSet id ="update database for supply and demand" author ="DUP5HC">
+		<addColumn tableName="supply_demand">
+			<column name ="forecast_date" type = "DATE"></column>
+			<column name ="filled_date" type = "DATE"></column>
+            <column name="allow_external" type="BOOLEAN" defaultValueBoolean = "false">
+                <constraints nullable="false"/>
+            </column>
+			<column name ="assign_user_name" type = "VARCHAR(120)"></column>
+		</addColumn>
+		<rollback>
+			alter table `supply_demand` drop column forecast_date
+			alter table `supply_demand` drop column filled_date
+			alter table `supply_demand` drop column allow_external
+			alter table `supply_demand` drop column assign_user_name
+		</rollback>
+    </changeSet>
+    <changeSet id="add-column-assign-user-ntid" author="GLO7HC">
+        <addColumn tableName="supply_demand">
+            <column name="assign_user_ntid" type="VARCHAR(45)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="GLO7HC" id="dropColumn-skill">
+		<dropColumn columnName="skill_id" tableName="supply_demand"/>
+	</changeSet>
+	<changeSet id="add-column-skill" author="GLO7HC">
+        <addColumn tableName="supply_demand">
+            <column name="skill" type="VARCHAR(120)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-column-sub-id" author="GLO7HC">
+        <addColumn tableName="supply_demand">
+            <column name="sub_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+     <changeSet id="add-updated-by-name-column-to-history-supply-demand-table" author="GLO7HC">
+        <addColumn tableName="history_supply_demand">
+            <column name="updated_by_name" type="VARCHAR(120)"/>
+        </addColumn>
+        <rollback>
+			alter table `history_supply_demand` drop column updated_by_name
+		</rollback>
+    </changeSet>
+    
+	<changeSet author="RRN5HC" id="create table skill type">
+		<createTable tableName="skill_type">
+			<column name="id" type="VARCHAR(45)">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="name" type="VARCHAR(120)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+		<rollback>
+			drop table `skill_type`
+		</rollback>
+	</changeSet>
+	
+	<changeSet author="RRN5HC" id="add column skill_type_id in skill_group table">
+		<addColumn tableName="skill_group">
+            <column name="skill_type_id" type="VARCHAR(45)"/>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="skill_type_id" baseTableName="skill_group"
+                                 constraintName="fk_skill_group_skill_type" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill_type"/>
+		<rollback>
+			Alter Table `skill_group` drop foreign key fk_skill_group_skill_type, drop column skill_type_id
+		</rollback>
+	</changeSet>
+
+    <changeSet author="RRN5HC" id="add column skill_group_id in skill_competency_lead table">
+    	<dropNotNullConstraint tableName="skill_competency_lead" columnName="skill_id" columnDataType="VARCHAR(45)"/>
+		<addColumn tableName="skill_competency_lead">
+			<column name="skill_group_id" type="VARCHAR(45)"/>
+		</addColumn>
+		<addForeignKeyConstraint baseColumnNames="skill_group_id" baseTableName="skill_competency_lead"
+						constraintName="fk_skill_competency_lead_skill_group" deferrable="false"
+						initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+						referencedColumnNames="id" referencedTableName="skill_group"/>
+		<rollback>
+			Alter Table `skill_competency_lead` drop foreign key fk_skill_competency_lead_skill_group, drop column skill_group_id
+        </rollback>
+	</changeSet>
+	
+	<changeSet author="GLO7HC" id="create-table-customer">
+		<createTable tableName="customer">
+			<column name="id" type="VARCHAR(45)">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="name" type="VARCHAR(120)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="hightlight" type="VARCHAR(500)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="corporation" type="VARCHAR(1000)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<rollback>
+			drop table `customer`
+		</rollback>
+	</changeSet>
+
+    <changeSet author="RRN5HC" id="update project status from Stopped to Closed">
+    	<modifyDataType
+                columnName="status"
+                newDataType="ENUM('New', 'On-Going', 'Done', 'On-hold', 'Stopped', 'Closed')"
+                tableName="project"/>
+		<update tableName="project" >
+    		<column name="status" value="Closed"/>
+            <where>status like 'Stopped'</where>
+		</update>
+    	<modifyDataType
+              columnName="status"
+              newDataType="ENUM('New', 'On-Going', 'Done', 'On-hold', 'Closed')"
+              tableName="project"/>
+    </changeSet>
+    
+	<changeSet author="RRN5HC" id="add columns start_date and end_date for personal_project table">
+		<addColumn tableName="personal_project">
+            <column name="start_date" type="timestamp">
+				<constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="timestamp"></column>
+        </addColumn>
+		<rollback>
+			Alter Table `personal_project` drop column start_date, drop column end_date;
+		</rollback>
+	</changeSet>
+
+	<changeSet author="VOU6HC" id="create table project scope">
+		<createTable tableName="project_scope">
+			<column name="id" type="VARCHAR(45)">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+		<rollback>
+			drop table `project_scope`
+		</rollback>
+	</changeSet>
+	
+	<changeSet id ="add columns for table project" author ="VOU6HC">
+		<addColumn tableName="project">
+			<column name="hightlight" type="VARCHAR(1000)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="problem_statement" type="TEXT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="solution" type="TEXT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="benefits" type="TEXT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="project_scope_id" type="VARCHAR(45)"/>
+		</addColumn>
+		<addForeignKeyConstraint baseColumnNames="project_scope_id" baseTableName="project"
+                                 constraintName="fk_project_project_scope" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="project_scope"/>
+		<rollback>
+			alter table `project` drop column hightlight
+			alter table `project` drop column problem_statement
+			alter table `project` drop column solution
+			alter table `project` drop column benefits
+			Alter Table `project` drop foreign key fk_project_project_scope, drop column project_scope_id
+		</rollback>
+    </changeSet>
+
+    <changeSet id="add_constraint_oauth_access_token" author="VLC1HC">
+        <delete tableName="oauth_access_token"></delete>
+        <addPrimaryKey tableName="oauth_access_token" columnNames="authentication_id" constraintName="pk_oauth_access_token"/>
+    </changeSet>
+
+    <changeSet author="RRN5HC" id="add default value for skill is_mandatory and is_required fields">
+        <addDefaultValue tableName="skill" columnName="is_mandatory" defaultValueBoolean="false" />
+        <addDefaultValue tableName="skill" columnName="is_required" defaultValueBoolean="false" />
+        <update tableName="skill" >
+            <column name="is_mandatory" valueBoolean="false"/>
+            <where>is_mandatory is null</where>
+        </update>
+        <update tableName="skill" >
+            <column name="is_required" valueBoolean="false"/>
+            <where>is_required is null</where>
+        </update>
+    </changeSet>
+
+    <changeSet author="RRN5HC" id="personal_project table remove start_date not null constraint">
+        <dropNotNullConstraint tableName="personal_project" columnName="start_date" columnDataType ="timestamp" />
+        <update tableName="personal_project">
+            <column name="start_date" value="null"/>
+        </update>
+    </changeSet>
+
+    <changeSet author="GLO7HC" id="add column customer_id in project table">
+		<addColumn tableName="project">
+            <column name="customer_id" type="VARCHAR(45)">
+            	<constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="project"
+                                 constraintName="fk_customer_project" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="customer"/>
+		<rollback>
+			Alter Table `project` drop foreign key fk_customer_project, drop column customer_id
+		</rollback>
+	</changeSet>
+
+	<changeSet author="GLO7HC" id="update contraint customer table">
+		<dropNotNullConstraint tableName="customer"
+			columnName="hightlight" columnDataType="VARCHAR(500)" />
+		<dropNotNullConstraint tableName="customer"
+			columnName="corporation" columnDataType="VARCHAR(1000)" />
+	</changeSet>
+
+    <changeSet author ="RRN5HC" id ="update constraint project table">
+        <dropNotNullConstraint tableName="project" columnName="hightlight" columnDataType="VARCHAR(1000)"/>
+        <dropNotNullConstraint tableName="project" columnName="problem_statement" columnDataType="TEXT"/>
+        <dropNotNullConstraint tableName="project" columnName="solution" columnDataType="TEXT"/>
+        <dropNotNullConstraint tableName="project" columnName="benefits" columnDataType="TEXT"/>
+    </changeSet>
+
+    <changeSet author="RRN5HC" id="update project status from On-Going to On-going">
+        <modifyDataType
+                columnName="status"
+                newDataType="ENUM('New', 'On-going', 'Done', 'On-hold', 'Stopped', 'Closed')"
+                tableName="project"/>
+    </changeSet>
+
+    <changeSet id="convert_done_to_close_and_new_onhold_to_ongoing" author="VLC1HC">
+        <update tableName="project">
+            <column name="status" value="Closed"/>
+            <where>status = 'Done'</where>
+        </update>
+        <update tableName="project">
+            <column name="status" value="On-going"/>
+            <where>status = 'New' or status = 'On-hold'</where>
+        </update>
+    </changeSet>
+
+    <changeSet author="VLC1HC" id="eliminate_new_on-hold_done">
+        <modifyDataType
+                columnName="status"
+                newDataType="ENUM('On-going', 'Stopped', 'Closed')"
+                tableName="project"/>
+    </changeSet>
+
+
+
+    <changeSet author="RRN5HC" id="create personal_skill_group">
+        <createTable tableName="personal_skill_group">
+            <column name="id" type="VARCHAR(45)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="personal_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_group_id" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_personal_id" tableName="personal_skill_group">
+            <column name="personal_id"/>
+        </createIndex>
+        <createIndex indexName="idx_skill_group_id" tableName="personal_skill_group">
+            <column name="skill_group_id"/>
+        </createIndex>
+        <addForeignKeyConstraint baseColumnNames="personal_id" baseTableName="personal_skill_group"
+                                 constraintName="fk_personal_skill_group" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="personal"/>
+
+        <addForeignKeyConstraint baseColumnNames="skill_group_id" baseTableName="personal_skill_group"
+                                 constraintName="fk_skill_group_personal" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="id" referencedTableName="skill_group"/>
+        <rollback>
+            DROP TABLE `personal_skill_group`
+        </rollback>
+    </changeSet>
+
+    <changeSet author="RRN5HC" id="add columns colour and hover_colour in project_scope table">
+        <addColumn tableName="project_scope">
+            <column name="colour" type="VARCHAR(45)"/>
+            <column name="hover_colour" type="VARCHAR(45)"/>
+        </addColumn>
+        <rollback>
+            Alter Table `project_scope` drop column colour, drop column hover_colour
+        </rollback>
+    </changeSet>
+    
+    <changeSet author="GLO7HC" id="insert-level-l54-and-l55-default">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM level
+                WHERE name in ('L54','L55');
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="level">
+            <column name="id" value="be9c087a-4006-4640-826f-725f956d1894"/>
+            <column name="name" value="L54"/>
+            <column name="description" value="L54"/>
+        </insert>
+         <insert tableName="level">
+            <column name="id" value="be9c087a-4006-4640-826f-725f956d1895"/>
+            <column name="name" value="L55"/>
+            <column name="description" value="L55"/>
+        </insert>
+    </changeSet>
+    
+     <changeSet author="GLO7HC" id="insert-level-l48">
+        <insert tableName="level">
+            <column name="id" value="be9c087a-4006-4640-826f-725f956d1896"/>
+            <column name="name" value="L48"/>
+            <column name="description" value="L48"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add column deleted in personal table" author="RRN5HC">
+        <addColumn tableName="personal">
+            <column name="deleted" type="BOOLEAN" defaultValue="FALSE"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="update data type of skill level" author="RRN5HC"  >
+        <modifyDataType tableName="personal_skill" columnName="level" newDataType="FLOAT(2,1)"/>
+        <modifyDataType tableName="request_evaluation_detail" columnName="current_level" newDataType="FLOAT(2,1)"/>
+    </changeSet>
+
+	<changeSet author="UGN8HC" id="add column is_mandatory in skill_tags table">
+        <addColumn tableName="skill_tags">
+            <column name="is_mandatory" type="BOOLEAN" defaultValue="TRUE"/>
+        </addColumn>
+        <rollback>
+            Alter Table `skill_tags` drop column is_mandatory
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

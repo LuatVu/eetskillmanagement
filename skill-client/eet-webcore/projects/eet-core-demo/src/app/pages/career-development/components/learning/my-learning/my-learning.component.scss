@@ -1,0 +1,143 @@
+:host {
+  background-color: #ffffff;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 2200px;
+  height: calc(100vh - 54px);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 15px 30px;
+  padding-top: 15px;
+  background-color: #ffffff;
+  margin: auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .page-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+    .action-group {
+      display: flex;
+      gap: 16px;
+      * {
+        align-self: center;
+      }
+    }
+  }
+
+  .search-content {
+    display: grid;
+    grid-template-columns: 250px auto;
+    gap: 16px;
+    align-items: center;
+
+    .total-items {
+      margin: 0;
+      .title {
+        font-weight: bold;
+      }
+    }
+
+    .box-search {
+      display: grid;
+      grid-template-columns: auto 200px;
+      gap: 16px;
+
+      mat-form-field {
+        padding: 0;
+      }
+    }
+  }
+
+  .table-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 250px auto;
+    box-sizing: border-box;
+    gap: 16px;
+    .no-data {
+      text-align: center;
+    }
+    .filter {
+      background-color: #ffffff;
+      padding: 20px;
+
+      .filter-tree {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &__item {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 20px;
+
+          &::before {
+            display: none;
+          }
+
+          .title {
+            font-size: 16px;
+            font-weight: bold;
+          }
+
+          .mat-checkbox-label {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            max-width: 250px;
+          }
+        }
+      }
+    }
+
+    .table {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 16px;
+
+      .card-common {
+        height: 230px;
+      }
+
+      &.table-length-minium {
+        grid-template-columns: repeat(auto-fit, minmax(290px, 350px));
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .table-content {
+    display: flex !important;
+    flex-direction: column;
+    .filter {
+      // min-height: 250px;
+    }
+  }
+}
+
+:host ::ng-deep .mat-checkbox-label {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  max-width: 250px;
+}

@@ -1,0 +1,78 @@
+<div class="SkillCompoment">
+  <div class="box-search">
+      <div class="toggle">
+        <eet-toggle id="toggle" [listData]="['Technical','Behavioral']" (toggleChange)="filterType($event)"
+        ></eet-toggle>
+      </div>
+      <div class="checkboxes">
+        <div class="a-checkbox" [ngClass]="{'hidden' : !showMainSkillClusterBox}">
+          <input type="checkbox" id="checkbox-1" name="unselected checkbox" [(ngModel)]="isFilterMainSkill"
+            (ngModelChange)="onMainSkillClusterChange($event)"/>
+          <label for="checkbox-1">{{'personal_skill.main_skill_cluster' | translate}}</label>
+        </div>
+        <div class="a-checkbox">
+          <input type="checkbox" id="checkbox-2" name="unselected checkbox" [(ngModel)]="isFilteringSkillLessThanExpected"
+            (ngModelChange)="filterLessThanExpected($event)"/>
+          <label for="checkbox-2">{{'personal_skill.skills_gap' | translate}}</label>
+        </div>
+      </div>
+
+      <mat-form-field class="search-box">
+        <mat-label>{{ "skill.title.search_bar" | translate }}</mat-label>
+        <input [(ngModel)]="searchedWord" matInput (keyup)="applyFilter()"  #input />
+        <button type="submit" class="a-text-field__icon-search" matSuffix (keyup)="applyFilter()">
+          <i class="a-icon ui-ic-search"></i>
+        </button>
+      </mat-form-field>
+      <button type="button" class="a-button a-button--primary" matTooltipClass="matTooltip"
+        matTooltip="{{'personal_information.button.skill_evaluate' | translate}}" [routerLink]="[COMPETENCY_DEVELOPMENT]"
+        *ngIf="typeUser != 'Associate'">
+        <i class="a-icon a-button__icon ui-ic-plus" title="alert-success"></i>
+        <span class="a-button__label">{{'personal_information.button.skill_evaluate' | translate}}</span>
+      </button>
+  </div>
+  <div fxLayout="row">
+    <table mat-table [dataSource]="dataSource" matSort class="table-common full-width">
+      <ng-container matColumnDef="skill">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="name">{{'personal_skill.skill' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{truncateText(element?.name)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="compentency">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="skill_group">{{'personal_skill.skill_cluster' |
+          translate}}</th>
+        <td mat-cell *matCellDef="let element">{{truncateText(element?.skill_group)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="current_level">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'personal_skill.current_level' | translate}}</th>
+        <td mat-cell *matCellDef="let element" class="table-action">
+          <div class="skill-level-list" [ngStyle]="{'color':buildColor_CurrentLevel(element)}">
+            {{element?.current_level && customParseFloat(element?.current_level).toString() || "--"}}
+            <i class="a-icon boschicon-bosch-ic-alert-info" matTooltip="{{'personal_skill.current_level' | translate}}"
+              (click)="getSkillDetail(element)"></i>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="expected_level">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'personal_skill.expected_level' | translate}}</th>
+        <td mat-cell *matCellDef="let element" class="table-action">
+          <div class="skill-level-list">
+            {{element?.expected_level && customParseFloat(element?.expected_level).toString() || "--"}}
+            <i class="a-icon boschicon-bosch-ic-alert-info" matTooltip="{{'personal_skill.expected_level' | translate}}"
+              (click)="getSkillDetail(element)"></i>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="experience">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="experience_number">{{'personal_skill.experience' |
+          translate}}</th>
+        <td mat-cell *matCellDef="let element">{{experienceMsg[element?.experience_number] || "--"}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="5">{{'personal_skill.search_null' | translate}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>

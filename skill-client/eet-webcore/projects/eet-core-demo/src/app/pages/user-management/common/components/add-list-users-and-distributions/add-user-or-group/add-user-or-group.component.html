@@ -1,0 +1,32 @@
+<div fxLayout="column" fxLayoutAlign="center" class="search-bar">
+  <mat-form-field>
+    <mat-label>{{searchTitle | translate}}</mat-label>
+    <input type="text" matInput [formControl]="searchControl" [matAutocomplete]="auto"
+      (ngModelChange)="onSearchChange()">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of optionList" [value]="option.displayName" (click)="selecteOption(option)">
+        {{option.displayName}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix fontIcon="Bosch-Ic-search" *ngIf="!isShowLoading;"></mat-icon>
+      <div class="loading-spinner-wrapper" *ngIf="isShowLoading;">
+        <div class="loading-spinner-wrapper-content">
+          <div></div>
+        </div>
+      </div>
+  </mat-form-field>
+
+  <mat-form-field class="chips-list-full-width" appearance="fill">
+    <span class="label">
+      <mat-label>{{selectedTitle | translate}}</mat-label>
+    </span>
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let item of selectedOptionList; let i = index;" (removed)="removeOption(i)">
+        {{item?.displayName}}
+        <span>
+          <mat-icon matChipRemove fontIcon="Bosch-Ic-abort"></mat-icon>
+        </span>
+      </mat-chip>
+    </mat-chip-list>
+  </mat-form-field>
+</div>

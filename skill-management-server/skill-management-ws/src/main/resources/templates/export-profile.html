@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: "BoschSans-Light";
+            font-weight: normal;
+            src: url("http://localhost:[(${port})]/skm-ws/fonts/BoschSans-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "BoschSans-Medium";
+            font-weight: normal;
+            src: url("http://localhost:[(${port})]/skm-ws/fonts/BoschSans-Medium.ttf");
+        }
+
+        @font-face {
+            font-family: "BoschSans-MediumItalic";
+            font-weight: normal;
+            src: url("http://localhost:[(${port})]/skm-ws/fonts/BoschSans-MediumItalic.ttf");
+        }
+
+        @font-face {
+            font-family: "BoschSans-RegularItalic";
+            font-weight: normal;
+            src: url("http://localhost:[(${port})]/skm-ws/fonts/BoschSans-RegularItalic.ttf");
+        }
+
+        @font-face {
+            font-family: "BoschSans-BoldItalic";
+            font-weight: normal;
+            src: url("http://localhost:[(${port})]/skm-ws/fonts/BoschSans-BoldItalic.ttf");
+        }
+
+        @font-face {
+            font-family: "BoschSans-Regular";
+            font-weight: normal;
+            src: url("http://localhost:[(${port})]/skm-ws/fonts/BoschSans-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "BoschSans-Bold";
+            font-weight: normal;
+            src: url("http://localhost:[(${port})]/skm-ws/fonts/BoschSans-Bold.ttf");
+        }
+
+        /* ROOT */
+
+        *,
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: BoschSans-Regular, BoschSans-Bold;
+        }
+
+        section {
+            margin: 15px 0;
+        }
+
+        section .section-title {
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #007bc0;
+        }
+
+        section .border-line {
+            width: 100%;
+            height: 3px;
+            background-color: #007bc0;
+        }
+
+        section .section-content {
+            padding: 10px 0;
+        }
+
+        /* TABLE */
+
+        .m-table {
+            border-collapse: collapse;
+            font-size: 14px;
+            width: 100%
+        }
+
+        .m-table td,
+        .m-table th {
+            border: 0;
+            border-bottom: .06rem;
+            border-color: #c1c1c1;
+            border-style: solid;
+            box-sizing: border-box;
+            font-weight: 400;
+            padding: 8px 0;
+        }
+
+        .m-table th {
+            font-weight: 700;
+            text-align: left;
+            font-family: BoschSans-Bold;
+            border-bottom: 2px solid #000000;
+        }
+
+        /* END TABLE */
+
+        /* END ROOT */
+
+        /* DETAIL INFO BLOCK */
+        .detail-info {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .detail-info .avatar {
+            display: inline-block;
+            width: 30%;
+            height: auto;
+            margin-right: 30px;
+            margin-top: 5px;
+        }
+
+        .detail-info .avatar-short-name {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #c1c1c1;
+            border-radius: 50%;
+            font-size: 400%;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: BoschSans-Bold;
+            background-color: [(${circleColor})];
+            color: [(${shortnameColor})];
+            margin: auto;
+        }
+
+        .detail-info .avatar img {
+            width: 200px;
+            height: auto;
+            max-height: 200px;
+        }
+
+        .detail-info .user-info {
+            width: 70%;
+        }
+
+        .detail-info .user-info .name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #007bc0;
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        .group-user-info {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .group-user-info .box {
+            margin-bottom: 10px;
+            width: 150px;
+            display: inline-block;
+        }
+
+        .group-user-info .box .label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .group-user-info .box .content {
+            font-size: 12px;
+            color: #007bc0;
+        }
+
+        /* END DETAIL INFO BLOCK */
+
+
+        /* SKILL HIGHLIGHT SECTION*/
+
+        .skill-highlight-group::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .skill-item {
+            float: left;
+            width: 50%;
+            padding: 5px;
+        }
+
+        .skill-name {
+            float: left;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .skill-level {
+            /* float: right; */
+            width: 100px;
+        }
+
+        .skill-level img {
+            width: auto;
+            height: 18px;
+        }
+
+        /* END SKILL HIGHLIGHT SECTION*/
+
+        /* SKILL SECTION*/
+
+        #skill .section-title {
+            margin-top: 30px;
+        }
+
+        .star-group {
+            display: inline-block;
+            width: 80px;
+            height: auto;
+        }
+
+        .star-group img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* END SKILL SECTION*/
+
+        /* ASSIGN PROJECT SECTION*/
+        .project-card {
+            margin-bottom: 20px;
+        }
+
+        .project-card .title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: BoschSans-Bold;
+            color: #007bc0;
+        }
+
+        .project-card .description {
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: justify;
+            font-style: italic;
+        }
+
+        .project-card .description .label {
+            font-weight: bold;
+            font-family: BoschSans-Bold;
+        }
+
+        .project-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-card .list-info {
+            margin: 0;
+            padding: 0;
+            list-style: circle;
+        }
+
+        .project-card .list-info .item {
+            display: flex;
+        }
+
+        .project-card .list-info .item p {
+            font-size: 14px;
+        }
+
+        .project-card .list-info .item .label {
+            font-size: 14px;
+            font-weight: bold;
+            font-family: BoschSans-Bold;
+            margin-right: 8px;
+        }
+
+        /* END ASSIGN PROJECT SECTION*/
+    </style>
+</head>
+
+<body>
+    <div class="detail-info">
+        <div class="avatar" th:if="${personal.getPicture() != null}">
+            <img th:src="@{'data:image/png;base64,'+${personal.getPicture()}}" alt="">
+        </div>
+
+        <div class="avatar" th:if="${personal.getPicture() == null}">
+            <div class="avatar-short-name">
+                <span th:text="${shortname}">N/a</span>
+            </div>
+        </div>
+
+
+        <div class="user-info">
+            <p class="name" th:text="${personal.getName()}"></p>
+            <div class="group-user-info">
+                <div class="box">
+                    <p class="label">NTID:</p>
+                    <p class="content" th:text=" ${#strings.isEmpty(personal.getCode)} ? '--' : ${personal.getCode()}">
+                        N/a</p>
+                </div>
+                <div class="box">
+                    <p class="label">Title:</p>
+                    <p class="content"
+                        th:text=" ${#strings.isEmpty(personal.getTitle)} ? '--' : ${personal.getTitle()}">N/a</p>
+                </div>
+                <div class="box">
+                    <p class="label">Department: </p>
+                    <p class="content"
+                        th:text=" ${#strings.isEmpty(personal.getDepartmentName)} ? '--' : ${personal.getDepartmentName()}">
+                        N/a</p>
+                </div>
+                <div class="box">
+                    <p class="label">Team: </p>
+                    <p class="content" th:text=" ${#strings.isEmpty(personal.getTeam)} ? '--' : ${personal.getTeam()}">
+                        N/a</p>
+                </div>
+                <div class="box">
+                    <p class="label">Bosch Exp: </p>
+                    <p class="content" th:text="${boschExp}">0</p>
+                </div>
+                <div class="box">
+                    <p class="label">Total Exp: </p>
+                    <p class="content" th:text="${totalExp}">0</p>
+                </div>
+                <div class="box">
+                    <p class="label">Brief Info: </p>
+                    <p class="content" th:text="${briefInfo}">N/a</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="skill-highlight">
+        <p class="section-title">Skill highlight</p>
+        <div class="border-line"></div>
+        <div class="section-content">
+            <p th:if="${personal.getTopSkills().size() == 0}">Nodata</p>
+
+            <div class="skill-highlight-group">
+                <div class="skill-item" th:each="skill : ${personal.getTopSkills()}">
+                    <p class="skill-name" th:if="${skill.getLevel() != 0}" th:text="${skill.getName()}"></p>
+                    <div class="skill-level" th:if="${skill.getLevel != '0'}">
+                        <img th:src="@{${levelPath} + '/level' + ${skill.getLevel()} + '.png'}" alt="star">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ASSIGNED-PROJECT">
+        <p class="section-title">ASSIGNED PROJECT</p>
+        <div class="border-line"></div>
+
+        <div class="section-content">
+
+            <p th:if="${projects.size() == 0}">Nodata</p>
+
+            <div class="project-card" th:each="project : ${projects}">
+                <p class="title" th:text="${project.getName()}"></p>
+                <div class="list-info">
+                    <div class="item" th:if="${project.description != null}">
+                        <div class="label">- Project description:</div>
+                        <p th:text="${project.description}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.projectType != null}">
+                        <div class="label">- Project type:</div>
+                        <p th:text="${project.projectType}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.technologyUsed != null}">
+                        <div class="label">- Technologies used:</div>
+                        <p th:text="${project.technologyUsed}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.pmName != null}">
+                        <div class="label">- Manager:</div>
+                        <p th:text="${project.pmName}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.gbUnit != null}">
+                        <div class="label">- GB:</div>
+                        <p th:text="${project.gbUnit}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.department != null}">
+                        <div class="label">- Department:</div>
+                        <p th:text="${project.department}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.roleName != null}">
+                        <div class="label">- Role:</div>
+                        <p th:text="${project.roleName}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.teamSize != null}">
+                        <div class="label">- Team size:</div>
+                        <p th:text="${project.teamSize}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.status != null}">
+                        <div class="label">- Status:</div>
+                        <p th:text="${project.status}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.referenceLink != null}">
+                        <div class="label">- ReferenceLink:</div>
+                        <p th:text="${project.referenceLink}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.challenge != null}">
+                        <div class="label">- Challenge:</div>
+                        <p th:text="${project.challenge}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.objective != null}">
+                        <div class="label">- Objective:</div>
+                        <p th:text="${project.objective}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.startDate != null}">
+                        <div class="label">- Start date:</div>
+                        <p th:text="${project.startDate}"></p>
+                    </div>
+
+                    <div class="item" th:if="${project.endDate != null}">
+                        <div class="label">- End date:</div>
+                        <p th:text="${project.endDate}"></p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section id="skill">
+        <p class="section-title">Skill</p>
+        <div class="border-line"></div>
+
+        <div class="section-content">
+
+            <p th:if="${personal.getSkills().size() == 0}">Nodata</p>
+
+            <table class="m-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Experience</th>
+                </tr>
+                <tr th:each="skill : ${personal.getSkills()}">
+                    <td th:text="${skill.getName()}"></td>
+                    <td>
+                        <div class="star-group">
+                            <img th:src="@{${levelPath} + '/level' + ${skill.getLevel()} + '.png'}" alt="star">
+                        </div>
+                    </td>
+                    <td th:switch="${skill.getExperienceNumber()}">
+                        <span th:case="0">0 Years</span>
+                        <span th:case="1">1-6 Months</span>
+                        <span th:case="2">1-12 Months</span>
+                        <span th:case="3">1-3 Years</span>
+                        <span th:case="4">3-5 Years</span>
+                        <span th:case="5">5+ Years</span>
+                        <span th:case="*">N/a</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+</body>
+
+</html>

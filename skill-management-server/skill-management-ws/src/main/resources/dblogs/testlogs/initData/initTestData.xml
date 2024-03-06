@@ -1,0 +1,116 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="init_group" author="MAC9HC">
+        <loadData tableName="group" file="dblogs/testlogs/initData/group.csv">
+            <column header="id" name="id" type="STRING"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="display_name" name="display_name" type="JAVA.LANG.STRING"/>
+            <column header="description" name="description" type="JAVA.LANG.STRING"/>
+            <column header="status" name="status" type="JAVA.LANG.STRING"/>
+            <column header="created_date" name="created_date" type="timestamp"/>
+            <column header="created_by" name="created_by" type="java.lang.String"/>
+            <column header="modified_date" name="modified_by" type="java.lang.String"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="init_user" author="MAC9HC">
+        <loadData tableName="user" file="dblogs/testlogs/initData/user.csv">
+            <column header="id" name="id" type="JAVA.LANG.STRING"/>
+            <column header="name" name="name" type="JAVA.LANG.STRING"/>
+            <column header="display_name" name="display_name"
+                    type="JAVA.LANG.STRING"/>
+            <column header="email" name="email" type="JAVA.LANG.STRING"/>
+            <column header="type" name="type" type="JAVA.LANG.STRING"/>
+            <column header="status" name="status" type="JAVA.LANG.STRING"/>
+            <column header="created_by" name="created_by" type="JAVA.LANG.STRING"/>
+            <column header="created_date" name="created_date" type="timestamp"/>
+            <column header="modified_by" name="modified_by" type="timestamp"/>
+            <column header="modified_date" name="modified_date"
+                    type="timestamp"/>
+            <column header="first_logged_in_date"
+                    name="first_logged_in_date" type="timestamp"/>
+            <column header="last_logged_in_date"
+                    name="last_logged_in_date" type="timestamp"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="init_user_group" author="MAC9HC">
+        <loadData tableName="user_group" file="dblogs/testlogs/initData/user_group.csv">
+            <column name="id" header="id" type="java.lang.String"/>
+            <column name="user_id" header="user_id" type="java.lang.String"/>
+            <column name="group_id" header="group_id" type="java.lang.String"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="init_role" author="MAC9HC">
+        <loadData tableName="role" file="dblogs/testlogs/initData/role.csv" separator=",">
+            <column header="id" name="id" type="STRING"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="display_name" name="display_name"
+                    type="STRING"/>
+            <column header="description" name="description" type="STRING"/>
+            <column header="status" name="status" type="STRING"/>
+            <column header="created_date" name="created_date" type="DATE"/>
+            <column header="created_by" name="created_by" type="STRING"/>
+            <column header="modified_date" name="modified_date"
+                    type="timestamp"/>
+            <column header="modified_by" name="modified_by" type="skip"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="init_permission_category" author="MAC9HC">
+        <loadData tableName="permission_category" file="dblogs/testlogs/initData/permission_category.csv">
+            <column header="id" name="id" type="STRING"/>
+            <column header="code" name="code" type="STRING"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="sequence" name="sequence" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="init_permission" author="MAC9HC">
+        <loadData tableName="permission" file="dblogs/changelogs/initData/permission.csv">
+            <column header="id" name="id" type="STRING"/>
+            <column header="code" name="code" type="STRING"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="description" name="description" type="STRING"/>
+            <column header="status" name="status" type="STRING"/>
+            <column header="created_date" name="created_date" type="timestamp"/>
+            <column header="created_by" name="created_by" type="STRING"/>
+            <column header="modified_date" name="modified_date"
+                    type="timestamp"/>
+            <column header="modified_by" name="modified_by" type="skip"/>
+            <column header="permission_category_id"
+                    name="permission_category_id" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="init_permission_2" author="MAC9HC">
+        <loadData tableName="permission" file="dblogs/changelogs/updateData/permission.csv">
+            <column header="id" name="id" type="STRING"/>
+            <column header="code" name="code" type="STRING"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="description" name="description" type="STRING"/>
+            <column header="status" name="status" type="STRING"/>
+            <column header="created_date" name="created_date" type="timestamp"/>
+            <column header="created_by" name="created_by" type="STRING"/>
+            <column header="modified_date" name="modified_date"
+                    type="timestamp"/>
+            <column header="modified_by" name="modified_by" type="skip"/>
+            <column header="permission_category_id"
+                    name="permission_category_id" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="init_role_permission" author="MAC9HC">
+        <loadData tableName="role_permission" file="dblogs/testlogs/initData/role_permission.csv">
+            <column header="id" name="id" type="STRING"/>
+            <column header="role_id" name="role_id" type="STRING"/>
+            <column header="permission_id" name="permission_id"
+                    type="STRING"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,37 @@
+<div class="full-space">
+    <div class="container">
+        <div class="project-role">
+            <div class="project-role-title">
+                <p>{{'system.manage_project_role.project_role' | translate}}</p>
+                <mat-icon class="add-new" fontIcon="bosch-ic-add"  (click)="addProjectRole()"></mat-icon>
+            </div>
+            <hr>
+            <div class="project-role-content">
+                <eet-common-list 
+                    [sourceList]="projectRoleList"
+                    [type]=1
+                    (onItemDeleted)="onDeleteProjectRole($event)"
+                    (onSelectItemInList)="onSelectItemInList($event)"
+                    [selectedItem]="selectedOption"
+                >
+                </eet-common-list>
+            </div>
+        </div>
+        
+        <div class="project-common-task">
+                <div class="project-common-task-title">
+                    <p>{{'system.manage_project_role.project_common_task' | translate}}</p>
+                    <mat-icon class="add-new" fontIcon="bosch-ic-add" (click)="addCommonTask(projectInfo)"></mat-icon>
+                </div>
+                <hr>
+                <div class="project-common-task-content">
+                    <eet-common-list
+                        [sourceList]="projectCommonTaskList"
+                        [type]=1 
+                        (onItemDeleted)="onDeleteCommonTask($event)" 
+                    >
+                    </eet-common-list>
+                </div>
+            </div>
+    </div>
+</div>

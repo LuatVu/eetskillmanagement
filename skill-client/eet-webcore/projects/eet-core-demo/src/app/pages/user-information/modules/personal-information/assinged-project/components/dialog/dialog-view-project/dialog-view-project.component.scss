@@ -1,0 +1,35 @@
+label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bosch-blue-55);
+}
+.long-content{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1; 
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+.list-task {
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    margin-bottom: 5px;
+    padding: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+}

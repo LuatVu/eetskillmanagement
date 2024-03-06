@@ -1,0 +1,12 @@
+.page-wrapper {
+  width: 100%;
+  height: auto;
+  .content-wrapper {
+    padding: 15px 5%;
+    height: calc(100vh - 100px);
+    overflow: auto;
+  }
+}
+.wrap{
+  padding: 18px 30px 10px;
+}

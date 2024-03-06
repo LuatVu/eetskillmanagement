@@ -1,0 +1,81 @@
+$width-toggle:15px;
+$colorChecked:#007bc0;
+.contain{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .left-label{
+    margin-right: 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+:host ::ng-deep .mat-slide-toggle  {
+  &.unchecked{
+    .mat-slide-toggle-bar{
+      background-color: #fff;
+      border: 1px solid $colorChecked;
+      .mat-slide-toggle-thumb-container{
+        transform: translateX(3px) !important;
+        .mat-slide-toggle-thumb{
+          background-color: $colorChecked;
+        }
+      }
+    }
+  }
+  &.checked{
+    .mat-slide-toggle-thumb-container{
+      transform: translateX(33px) !important;
+    }
+    .mat-slide-toggle-bar{
+      border: 1px solid $colorChecked;
+      background-color:$colorChecked !important ;
+     
+    }
+  }
+  .mat-slide-toggle-thumb-container{
+    width: $width-toggle !important;
+    height: $width-toggle !important;
+    top: unset !important;
+  }
+  .mat-slide-toggle-thumb{
+    width: $width-toggle !important;
+    height: $width-toggle !important;
+  }
+  .mat-slide-toggle-bar{
+    min-width: 55px !important;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  .mat-slide-toggle-content{
+    font-weight: 600
+  }
+}
+
+.disabled {
+  color: #9E9E9E;
+  cursor: default !important;
+}
+
+:host ::ng-deep {
+  .mat-button-toggle-group{
+    border: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    min-height: 2rem;
+    align-items: center;
+  }
+  .mat-button-toggle{
+    width: 100%;
+    background-color: #e0e0e0;
+    transition: all .3s;
+  }
+  .mat-button-toggle-checked{
+    color: #fff;
+    border-color: #007bc0;
+    background-color: #007bc0;
+  }
+}

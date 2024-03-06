@@ -1,0 +1,49 @@
+<div class="page-wrapper">
+  <p *ngIf="customerGbs && customerGbs.length===0">{{'system.no_data' | translate}}</p>
+  <div [classList]="['grid-wrapper grid-wrapper-'+customerGbToShowLength]">
+    <div class="card" *ngFor="let customerGb of customerGbs" (click)="onDetailCustomerGb(customerGb)">
+      <div class="card-header" [ngStyle]="{'background-color': customerGb.detail.gbStyle.backgroundColor}">
+        <div class="card-header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+              'top':customerGb.detail.top.top,'left':customerGb.detail.top.left}" *ngIf="customerGb.detail.top"></div>
+        <div class="card-header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+              'top':customerGb.detail.right.top,'right':customerGb.detail.right.right}"
+          *ngIf="customerGb.detail.right"></div>
+        <div class="card-header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+              'bottom':customerGb.detail.bottom.bottom,'left':customerGb.detail.bottom.left}"
+          *ngIf="customerGb.detail.bottom"></div>
+        <div class="card-header__circle" [ngStyle]="{'background-color':customerGb.detail.gbStyle.color,
+              'left':customerGb.detail.left.top,'left':customerGb.detail.left.left}" *ngIf="customerGb.detail.left">
+        </div>
+
+        <h1 class="card-title" #cardTitle [matTooltip]="isElementOverflow(cardTitle)? customerGb.name: ''">
+          {{customerGb.name}}</h1>
+      </div>
+      <div class="card-body">
+        <p class="project-number">{{customerGb.numOfProject}} {{'customer_gb.detail.projects' | translate}} -
+          {{customerGb.numOfHC}} {{'customer_gb.detail.hcs' | translate}}</p>
+
+        <div class="info">
+          <div #projectTag [ngStyle]="{'background-color': projectTag.bgColor}" (click)="onProjectTagClick($event)"
+            [value]="projectTag.projectId" matTooltip="{{'customer_gb.detail.detail_project' | translate}}"
+            class="tag project-tag" *ngFor="let projectTag of customerGb.projects">
+            {{projectTag.projectName}}
+          </div>
+        </div>
+
+        <div class="project-type-header">{{'customer_gb.detail.project_type' | translate}}:</div>
+        <div class="project-type">
+          <div 
+            (click)="onSkillTagClick($event, customerGb, info.tag)"  
+            [value]="customerGb.toolAccross"
+            [matTooltip]="isElementOverflow(skillTag)? info.tag + '(' + info.projectUsed + ')': ''"
+            *ngFor="let info of customerGb.projectSkillTagSimpleDocuments" class="tag-contain tag-brown">
+            <div class="tag-text" #skillTag>
+              {{info.tag}}
+            </div>
+            ({{info.projectUsed}})
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

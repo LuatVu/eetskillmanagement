@@ -1,0 +1,53 @@
+<div class="action-section">
+  <h5 class="title" *ngIf="typeUser == CONFIG.TYPE_USER.ASSOCIATE">{{'personal_information.associate_profile' |
+    translate}}</h5>
+  <div class="action-block">
+    <button mat-raised-button color="primary" type="button" (click)="onMakingSkillHighlight()"
+      class="bosch-ic-clickable"><i class="a-icon boschicon-bosch-ic-bright-up" title="make skill highlight"></i>
+      {{'personal_information.make_skill_highlight' |
+      translate}}</button>
+    <button mat-raised-button color="primary" *ngIf="isShowExportBtn" type="button" (click)="export()"
+      class="bosch-ic-clickable"><i class="a-icon boschicon-bosch-ic-export" title="export"></i>
+      {{'personal_information.associate_export' |
+      translate}}</button>
+    <button mat-raised-button color="primary" *ngIf="!isEditMode && (editAssociateInfoPermission || isSelfInformation())" (click)="onEdit()" type="button"
+      class="bosch-ic-clickable"><i class="a-icon boschicon-bosch-ic-edit" title="edit"></i>
+      {{'personal_information.edit' |
+      translate}}</button>
+    <button bciTertiaryButton mat-raised-button color="primary" type="button" (click)="onSave()"
+      class="bosch-ic-clickable" *ngIf="isEditMode" [disabled]="!isEditInforValid()"><i class="a-icon boschicon-bosch-ic-save" title="save"></i>
+      {{'personal_information.save' |
+      translate}}</button>
+    <button (click)="onCancel()" bciTertiaryButton mat-raised-button color="primary" type="button"
+      class="bosch-ic-clickable" *ngIf="isEditMode">
+      <i class="a-icon boschicon-bosch-ic-close" title="cancel"></i>
+      {{'personal_information.cancel' | translate}}</button>
+    <button mat-raised-button color="primary" *ngIf="currentViewAssociateMode == 'VIEW_ASSOCIATE_PROFILE'" type="button"
+      (click)="btnClickGoBack()" class="back">
+      <i class="a-icon boschicon-bosch-ic-back-menu" title="back"></i>
+      {{'personal_information.associate_back' | translate}}</button>
+  </div>
+</div>
+<eet-detail-infomation [isEditMode]="isEditMode"></eet-detail-infomation>
+<div class="personal-info">
+  <div class="tab">
+    <mat-tab-group (selectedTabChange)="onTabSwitch($event.index)">
+      <mat-tab class="" *ngFor="let tab of tabList" label="{{ (typeUser == 'Associate' ? tab.personal_name: tab.name) | translate}}">
+        <ng-template matTabContent>
+          <eet-skill [paginator]="paginator" *ngIf="currentSelectedTab === 'SKILL'" [typeUser]="typeUser"></eet-skill>
+          <eet-assinged-project [paginator]="paginator" [addboschproject]="checkBosch" [isDisable]="disabledForm" [typeUser]="typeUser"
+            *ngIf="currentSelectedTab === 'PROJECT'" [isEditMode]="isEditMode"></eet-assinged-project>
+          <!-- <eet-assinged-learning [paginator]="paginator" [isEditMode]="isEditMode" [isDisable]="disabledForm" [typeUser]="typeUser"
+            *ngIf="currentSelectedTab === 'LEARNING'">
+          </eet-assinged-learning> -->
+          <eet-historical-level [paginator]="paginator" [isEditMode]="isEditMode" [isDisable]="disabledForm" [typeUser]="typeUser"
+            *ngIf="currentSelectedTab === 'HISTORY'">
+          </eet-historical-level>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+<div fxLayout="row" class="paginator" fxLayoutAlign="center none">
+  <mat-paginator #paginator [pageSizeOptions]="paginationSize" showFirstLastButtons></mat-paginator>
+</div>

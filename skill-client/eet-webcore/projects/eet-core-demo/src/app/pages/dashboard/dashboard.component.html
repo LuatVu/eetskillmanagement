@@ -1,0 +1,52 @@
+<div class="full-space">
+  <h2 class="dashboard-title">{{'dashboard_components.title' | translate}} </h2>
+  <div class="dashboard-components">
+      <div class="col-md-6 col-lg-4 col-xl-2 component" *ngFor="let i of components">
+        <div class="info">
+          <div class="title-container">
+              <div id="" class="title" 
+              matTooltip="{{i.name | translate}}" 
+              matTooltipPosition="above" 
+              matTooltipClass="tooltip-name">
+              {{i.name | translate}}
+              </div>
+          </div>
+          <div class="description">
+              <span class="description-value" 
+              >{{i.description | translate}}</span>
+          </div>
+          <span *ngIf="i.id == 1">
+            <mat-form-field floatLabel="auto" style="width: 100%">
+              <input matInput placeholder="{{'dashboard_components.form_controls.input_field' | translate}}" />
+            </mat-form-field>
+            <mat-checkbox id="indeterminate-toggle" type="checkbox">
+              {{'dashboard_components.form_controls.check_box' | translate}}</mat-checkbox>
+          </span>
+          <section *ngIf="i.id == 4" class="button-indicators">
+            <button mat-raised-button class="btn-exp">{{'dashboard_components.button_indicators.button_1' | translate}}</button>
+            <button mat-raised-button disabled>{{'dashboard_components.button_indicators.button_2' | translate}}</button>
+          </section>
+          <div *ngIf="i.id == 5" class="modals-popups">
+            <button mat-button (click)="showLoadingScreenIndeterminateCloseable()">
+              {{'dashboard_components.modals_popups.show_modals_popups' | translate}}
+            </button>
+          </div>
+          <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="8px" *ngIf="i.id == 10">
+            <mat-card *ngFor="let color of masterBrandColors" class="color-card">
+              <div [style.background-color]="color.colorCode" class="color-container"></div>
+            </mat-card>
+          </div>
+          <div *ngIf="i.id == 11">
+            <mat-icon fontIcon="bosch-ic-atom"></mat-icon>
+            <mat-icon fontIcon="bosch-ic-car-connected"></mat-icon>
+            <mat-icon fontIcon="bosch-ic-badge-checkmark"></mat-icon>
+            <mat-icon fontIcon="bosch-ic-smartphone-app"></mat-icon>
+            <mat-icon fontIcon="bosch-ic-motorcycle-sport"></mat-icon>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="link">
+    <span>{{'dashboard_components.reference_document' | translate}}: </span>
+    <a href="https://atmo1opcondemo.de.bosch.com/WebCore/demos/core/" style="text-decoration: none;">https://atmo1opcondemo.de.bosch.com/WebCore/demos/core/</a>
+  </div>

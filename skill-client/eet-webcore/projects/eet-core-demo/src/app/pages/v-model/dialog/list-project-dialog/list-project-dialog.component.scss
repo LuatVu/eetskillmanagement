@@ -1,0 +1,29 @@
+.a-chip {
+    margin-top: 30px;
+    min-width: 154px;
+
+    >div {
+        justify-content: center;
+        width: calc(100% - 2.125rem);
+    }
+
+    .a-chip__label {
+        text-align: center;
+    }
+}
+
+.search-box {
+    width: 100%;
+
+    .mat-form-field-infix {
+        display: flex;
+        align-items: center;
+        margin-right: 16px;
+    }
+}
+.noData{
+    text-align: center;
+}
+.chip-container {
+    overflow: auto;
+}

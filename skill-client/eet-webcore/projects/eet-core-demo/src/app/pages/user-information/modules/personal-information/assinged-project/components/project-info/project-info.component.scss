@@ -1,0 +1,107 @@
+$disabled-mode: #d2d2d2;
+$enabled-mode: #ffffff;
+
+:host {
+  width: 100%;
+  padding: 15px 5%;
+}
+
+.row:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+
+  mat-label {
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+
+.date-picker {
+  display: flex;
+  align-items: center;
+  .date-input {
+    margin-top: 0;
+    padding: 12px 16px;
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: 400;
+    border-bottom: 1px solid #bfc0c2;
+  }
+
+  .toggle-calendar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+:host ::ng-deep .mat-datepicker-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .mat-button-base {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mat-button-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $enabled-mode !important;
+      border-bottom: 1px solid #bfc0c2;
+      height: 49px;
+
+      .mat-datepicker-toggle-default-icon {
+        margin-right: 0 !important;
+      }
+    }
+
+    &.mat-button-disabled {
+      .mat-button-wrapper {
+        background-color: $disabled-mode !important;
+      }
+    }
+  }
+}
+
+:host ::ng-deep textarea:disabled,
+input:disabled,
+select:disabled {
+  color: #888a8f !important;
+}
+
+:host ::ng-deep .mat-select-trigger {
+  padding: 12px 16px;
+  border-bottom: 1px solid #bfc0c2;
+  background-color: $enabled-mode;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  min-height: 49px;
+}
+
+:host ::ng-deep .chip-list-wrapper .mat-chip-list-wrapper {
+  max-height: 120px;
+  overflow: auto;
+}
+
+:host ::ng-deep textarea,
+input,
+select,
+:host ::ng-deep .chip-list-wrapper .mat-chip-list-wrapper {
+  background-color: $enabled-mode !important;
+  color: #2c2c2c !important;
+}
+
+:host ::ng-deep textarea:disabled,
+input:disabled,
+:host ::ng-deep .mat-select-disabled .mat-select-trigger,
+:host ::ng-deep .chip-diabled .mat-chip-list-wrapper {
+  background-color: $disabled-mode !important;
+}

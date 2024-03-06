@@ -1,0 +1,106 @@
+<eet-common-dialog>
+  <form action="" [formGroup]="form" dialog-content #addProjectMemberForm="ngForm"
+    (ngSubmit)="refresh(addProjectMemberForm)">
+    <div class="basic-info">
+      <mat-label>{{'projects.detail.Member_Info.Member_Add.name' | translate}}</mat-label>
+      <mat-form-field>
+        <mat-label>{{'projects.detail.Name_Search_Placeholder' | translate}}</mat-label>
+        <input type="text" matInput #input formControlName="name" [matAutocomplete]="auto"
+          (ngModelChange)="onSearchChange()" cdkFocusInitial />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" class="panel-full-width">
+          <mat-option *ngFor="let option of optionList" [value]="option.displayName"
+            (onSelectionChange)="selectOption(option)" [disabled]="!option || option.length === 0">
+            {{option.displayName}}
+          </mat-option>
+          <mat-option [disabled]="true"
+            *ngIf="(!optionList || optionList.length == 0) && isNotEmptyName(input)">{{'system.no_data' |
+            translate}}</mat-option>
+        </mat-autocomplete>
+        <div matSuffix class="associate-search-field">
+          <mat-icon fontIcon="bosch-ic-search" *ngIf="!isShowLoading">
+          </mat-icon>
+          <div class="loading-spinner-wrapper" *ngIf="isShowLoading">
+            <div class="loading-spinner-wrapper-content">
+              <div></div>
+            </div>
+          </div>
+        </div>
+
+      </mat-form-field>
+
+      <mat-label class="basic-info__role-label">{{'projects.detail.Member_Info.Member_Add.role' |
+        translate}}</mat-label>
+      <mat-form-field floatLabel="never" class="basic-info__role-dropdown">
+        <mat-select formControlName="role_id" (selectionChange)="onRoleChange($event)" panelClass="panel-full-width">
+          <mat-option *ngFor="let type of roles" [value]="type.id">
+            {{ type.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="inline">
+      <mat-label>{{'projects.detail.Member_Info.Common_Task' | translate}}</mat-label>
+      <div class="full-space">
+        <!-- Selected chip list is not completed -->
+        <eet-common-chip class="form-content full-space" typeChip="object" [isAddOnBlur]="false"
+          [originalChipList]="commonTasks" [selectedChipList]="form.controls.common_task.value" [isDisabled]="false"
+          [objectDisplayName]="'name'" [objectValueName]="'id'" (selectedChipChange)="onCommonTaskChange($event)">
+        </eet-common-chip>
+      </div>
+    </div>
+    <div class="inline">
+      <mat-label>{{'projects.detail.Member_Info.Additional_Task' | translate}}</mat-label>
+      <textarea maxlength="250" formControlName="additional_task"></textarea>
+    </div>
+    <div class="inline date">
+      <mat-label class="basic-detail__label required">{{'projects.detail.start' | translate}}</mat-label>
+      <mat-form-field floatLabel="never" class="basic-detail__field-short dateField" (click)="startDatePicker.open()">
+        <input  [matDatepickerFilter]="filterMemberStartDay" matInput [matDatepicker]="startDatePicker"
+           placeholder="DD/MM/YYYY" [readonly]="true"
+          class="date-input" formControlName="start_date" [disabled]="checkConditionToDisabledMatDatePicker()" >
+        <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single date-picker-icon"
+          matTooltip="{{ 'learning.my_learning.info.start' | translate }}" ></i>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-label class="basic-detail__label ml-100 text-center">{{'projects.detail.end' | translate}}</mat-label>
+      <mat-form-field floatLabel="never" class="basic-detail__field-short dateField" (click)="endDatePicker.open()">
+        <input  matInput [matDatepicker]="endDatePicker"
+           placeholder="DD/MM/YYYY" [readonly]="true" 
+           [matDatepickerFilter]="filterMemberEndDay"
+           [disabled]="checkConditionToDisabledMatDatePicker()"
+          class="date-input" formControlName="end_date" >
+        <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single date-picker-icon"
+          matTooltip="{{ 'learning.my_learning.info.end' | translate }}" ></i>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+  </div>
+  <div class="invalidDateMember">{{checkConditionToShowHintInvalidMemberDate()}}</div>
+    <div class="add-member-button" *ngIf="passingData?.data?.type !== 'update'">
+      <button [disabled]="!form.valid || isShowLoading || checkConditionToDisabledSaveBtnWithDate() || checkConditionToShowHintInvalidMemberDate()" mat-raised-button class="btn-exp" type="submit">
+        <mat-icon fontIcon="bosch-ic-add"> </mat-icon>
+        {{'projects.detail.Member_Add' | translate}}
+      </button>
+    </div>
+    <ng-container *ngIf="passingData?.data?.type === 'add' || passingData.data?.type === 'edit'">
+      <p>{{'projects.detail.Member_Info.Member_Add.added' | translate}}</p>
+      <eet-members-info-table [id]="passingData.data.id" [typeOfCommand]="passingData?.data?.type" [members]="members"
+        (onEditChangedMember)="reloadData($event)" [projectStartDate] ="this.passingData.data.project_startDay"  [projectEndDate]="this.passingData.data.project_endDay">
+      </eet-members-info-table >
+    </ng-container>
+  </form>
+  <ng-container dialog-action>
+    <button mat-raised-button class="btn-exp" (click)="saveData()" *ngIf="passingData.data.type === 'add'"
+      [disabled]="(listAdditionMembers.length === 0 && listRemoveMembers.length === 0) || passingData.data.members.length === 0">
+      <i class="a-icon boschicon-bosch-ic-save"></i>
+      {{'projects.detail.save' | translate}}
+    </button>
+    <button mat-raised-button class="btn-exp" (click)="saveData()" *ngIf="passingData.data.type === 'update'"
+      [disabled]="!this.form.valid || this.checkConditionToDisabledSaveBtnWithDate()">
+      <i class="a-icon boschicon-bosch-ic-save"></i>
+      {{'projects.detail.save' | translate}}
+    </button>
+  </ng-container>
+</eet-common-dialog>

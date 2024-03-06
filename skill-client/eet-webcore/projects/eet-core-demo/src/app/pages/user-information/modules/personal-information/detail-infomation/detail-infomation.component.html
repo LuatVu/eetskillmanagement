@@ -1,0 +1,148 @@
+<div class="row detail-infomation-section">
+  <div class="col-md-3">
+    <div class="user-avatar"
+      [style.background-color]="!personalInfomation?.picture ? personalInfomation.avatarbgcolor : 'unset'">
+      <div *ngIf="personalInfomation.picture" class="avatar-user" [style.background-image]="userAvatar"
+        (click)="onViewImage()"></div>
+      <p *ngIf="!personalInfomation.picture" class="short-name">{{personalInfomation.shortName }}</p>
+      <button class="upload-button" mat-icon-button (click)="openUpload()">
+        <i class="a-icon boschicon-bosch-ic-upload" title="upload"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-12">
+        <p class="user-content title">{{personalInfomation.name || '--'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.ntid' | translate}}</p>
+        <p class="user-content">{{personalInfomation.ntid || '--'}}</p>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.personal_number' | translate}}</p>
+        <p class="user-content">{{personalInfomation.personal_number || '--'}}</p>
+      </div>
+      <div class="col-xs-6 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.level' | translate}}</p>
+        <p class="user-content">{{personalInfomation.level || '--'}}</p>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.title' | translate}}</p>
+        <p class="user-content">{{personalInfomation.title || '--'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.department' | translate}}</p>
+        <p class="user-content">{{personalInfomation.department_name || '--'}}</p>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.group' | translate}}</p>
+        <p class="user-content">{{personalInfomation.group || '--'}}</p>
+      </div>
+<!--      <div class="col-xs-12 col-sm-4 col-md-4">
+        <p class="user-label">{{'personal_information.team' | translate}}</p>
+        <p class="user-content">{{personalInfomation.team || '--'}}
+        </p>
+      </div>-->
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.team' | translate}}</p>
+        <p *ngIf="!isEditMode" class="user-content">{{personalInfomation.team || '--'}}</p>
+        <div *ngIf="isEditMode">
+          <div class="form-content">
+            <eet-common-select [isMultipleChoise]="false" [isShowUnSelect]="false"
+                (onSelectedItemChange)="onTeamChange($event)"
+                [selectedData]="personalInfomation?.team_id"
+                [originalData]="editDetailInformationModel?.teamList" [nameKey]="'name'"
+                [valueKey]="'id'" [isDisabled]="personalDtoFormGroup?.disabled"></eet-common-select>
+        </div>
+      </div>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_skill.line_manager' | translate}}</p>
+        <p class="user-content">{{personalInfomation?.supervisor_name || '--'}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.total_exp' | translate}}</p>
+        <p class="user-content">{{personalInfomation?.total_exp || '0'}} {{'personal_information.years' |
+          translate}}</p>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.bosch_exp' | translate}}</p>
+        <p class="user-content">{{personalInfomation.experienced_at_bosch || '0'}} {{'personal_information.years' |
+          translate}}</p>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <p class="user-label">{{'personal_information.non_bosch_exp' | translate}}</p>
+        <p *ngIf="!isEditMode" class="user-content">{{personalInfomation.experienced_non_bosch || '0'}}
+          {{'personal_information.years' |
+          translate}}</p>
+        <p *ngIf="isEditMode">
+          <input type="number" min="0" max="99"  [(ngModel)]="personalInfomation.experienced_non_bosch"
+          [ngClass]="personalInfomationService.isExpYearValid(personalInfomation.experienced_non_bosch)?'':'invalid-field'">
+          <span class="user-content">{{'personal_information.years' |
+            translate}}</span>
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-3 col-md-3"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <p class="user-label">{{'personal_skill.main_skill_cluster' | translate}}</p>
+        <p class="user-content truncate" [matTooltip]="personalInfomation?.skill_cluster">{{personalInfomation?.skill_cluster || '--'}}</p>
+      </div>
+      <!-- <div class="col-xs-12 col-sm-4 col-md-4">
+        <p class="user-label">{{'personal_skill.line_manager' | translate}}</p>
+        <p class="user-content">{{personalInfomation?.supervisor_name || '--'}}</p>
+      </div> -->
+    </div>
+
+    <div class="row">
+      <p class="user-label">{{'personal_information.brief_info' | translate}}</p>
+    </div>
+    <div class="row mb-3">
+      <p *ngIf="!isEditMode" class="user-content">{{personalInfomation.brief_info}}</p>
+      <p *ngIf="isEditMode">
+        <textarea matInput placeholder="Ex. Please input brief info..." [(ngModel)]="personalInfomation.brief_info"
+        [ngClass]="personalInfomationService.isBriefInfoValid(personalInfomation.brief_info)?'':'invalid-field'" maxlength="250"></textarea>
+      </p>
+    </div>
+    <div class="row">
+      <p class="user-label">{{'personal_information.skill_highlight' | translate}}</p>
+      <div class="skill-highlight-list">
+        <div class="skill-highlight-item" *ngFor="let skill of personalInfomation.top_skills">
+            <p class="title">{{skill.name}}</p>
+            <div class="box-star">
+              <mat-icon svgIcon="star" *ngFor="let star of [].constructor(skill?.experience_number)"></mat-icon>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-12">
+        <p class="user-label">{{'personal_information.skill_highlight' | translate}}</p>
+
+        <div class="skill-highlight-list">
+          <div class="skill-highlight-item" *ngFor="let skill of personalInfomation.top_skills">
+            <ng-container *ngIf="skill?.current_level && skill?.current_level != 0">
+              <p class="title">{{skill.name}}</p>
+              <div class="box-star">
+                <mat-icon svgIcon="star" *ngFor="let star of [].constructor(skill?.level)"></mat-icon>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div class="upload-box">
+      <mat-label>{{'personal_information.upload_file' | translate}}:</mat-label>
+      <input type="file" accept="image/png, image/gif, image/jpeg" class="file-upload" (change)="onChange($event)"
+        #fileUpload>
+    </div>
+  </ng-container>
+  <ng-container dialog-action>
+    <button mat-raised-button color="primary" (click)="upload()" type="button" class="bosch-ic-clickable"
+      [disabled]="isDisabledUploadButton">
+      <i class="a-icon boschicon-bosch-ic-upload" title="upload"></i>
+      {{'button.upload' | translate}}</button></ng-container>
+</eet-common-dialog>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <parent>
+		<groupId>com.bosch.eet.skill.management</groupId>
+		<artifactId>skill-management-server</artifactId>
+		<version>${revision}</version>
+	</parent>
+
+	<groupId>com.bosch.eet.skill.management.usermanagement</groupId>
+	<artifactId>user-management-service</artifactId>
+	<name>user-management-service</name>
+	<description>User Management Service</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.bosch.eet.skill.management.common</groupId>
+			<artifactId>common-service</artifactId>
+			<version>${revision}</version>
+		</dependency>
+        <dependency>
+            <groupId>com.bosch.eet.skill.management.ldap</groupId>
+            <artifactId>ldap-service</artifactId>
+            <version>${revision}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>

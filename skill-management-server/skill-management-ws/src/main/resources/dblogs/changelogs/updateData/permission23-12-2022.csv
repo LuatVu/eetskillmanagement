@@ -1,0 +1,5 @@
+"id","code","name","description","status","created_date","created_by","modified_date","modified_by","permission_category_id"
+"be758604-826b-11ed-a1eb-0242ac120002","VIEW_USER_MANAGEMENT","View user management","View user management","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"be758884-826b-11ed-a1eb-0242ac120002","VIEW_DEPARTMENT_PROJECT","View department project","View department project","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"be758b2c-826b-11ed-a1eb-0242ac120002","VIEW_MANAGE_REQUEST","View manage request","View manage request","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"
+"be758c4x-826b-11ed-a1eb-0242ac120002","VIEW_SKILL_EVALUATE","View skill evaluate","View skill evaluate","Active","2022-11-14T14:57:53","sysadmin-617e-11ed-b62d-00059a3c7a00","NULL","NULL","admincb5-61d1-11ed-b4a3-00505695263f"

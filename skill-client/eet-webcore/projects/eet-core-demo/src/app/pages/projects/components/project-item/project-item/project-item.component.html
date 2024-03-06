@@ -1,0 +1,65 @@
+<div class="card" [class.non-bosch-project]="project.projectType!='Bosch'" (mouseenter)="onMouseEnter(index,$event)"
+  (mouseleave)="onMouseLeave($event)">
+  <div class="card-header" [ngStyle]="checkConditionBgColorForHeader()">
+  </div>
+  <div class="card-body" (click)="viewPortfolio(project.projectId, project.projectType)">
+    <h4 class="card-title">
+      {{ project.projectName || NOT_APPLICABLE }}
+    </h4>
+    <div class="tag-info-container">
+      <div *ngIf="project.projectType === BOSCH_TYPE" class="tag tag-brown gbUnitName flex-1 font-weight-500">
+        {{project.gbUnit || NOT_APPLICABLE}}</div>
+      <div class="tag tag-brown teamsize flex-1 font-weight-500">
+        <i class="a-icon boschicon-bosch-ic-people" title="people"></i>:
+        <span>{{ (project.teamSize)?
+          teamSizeHandle(project.teamSize) : NOT_APPLICABLE }}</span>
+      </div>
+      <div class="tag tag-brown customerGb flex-1 font-weight-500">
+        <span [matTooltip]="project.customerGB" [matTooltipShowDelay]="0" [matTooltipHideDelay]="0">{{ project.customerGB ||
+          NOT_APPLICABLE
+          }}</span>
+      </div>
+    </div>
+    <section class="list-skill-wrapper" *ngIf="project.technologyUsed; else emptySkill;">
+      <div class="list-skill">
+        <div *ngFor="let skill of project.technologyUsed" class="list-skill__item tag tag-blue" [matTooltip]="skill"
+          [matTooltipShowDelay]="0" [matTooltipHideDelay]="0">
+          {{skill}}
+        </div>
+      </div>
+    </section>
+    <div class="highlight">
+      <p class="content" [matTooltipClass]="{'tool-tip':true}" [matTooltip]="project.highlight" [matTooltipShowDelay]="0" [matTooltipHideDelay]="0">
+        {{project.highlight || NOT_APPLICABLE}}</p>
+    </div>
+    <ng-template #emptySkill>
+      <div class="skill-empty">
+        <div class="list-skill__item tag tag-blue">
+          {{NOT_APPLICABLE}}
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="card-footer">
+    <div class="project-status" [ngSwitch]="project.status">      
+      <div *ngSwitchCase="'On-going'" class="tag tag-yellow">{{ 'projects.filter.checkbox.Project_Status.ongoing'
+        | translate}}</div>
+      <div *ngSwitchCase="'Closed'" class="tag tag-green">{{ 'projects.filter.checkbox.Project_Status.closed' |
+        translate}}</div>      
+    </div>
+    <a class="more-detail" *ngIf="HAS_VIEW_PROJECT_DETAIL"
+      (click)="onDetailProject($event,project.projectId, project.projectType, 'view')">{{ 'projects.info.more_info' |
+      translate}} <i class="a-icon boschicon-bosch-ic-arrow-right"></i></a>
+  </div>
+  <a class="btn-action tag-white" *ngIf="HAS_EDIT_PROJECT || HAS_DELETE_PROJECT">
+    <i *ngIf="HAS_EDIT_PROJECT" (click)="onDetailProject($event,project.projectId, project.projectType, 'edit')"
+      class="a-icon boschicon-bosch-ic-edit small-icon" title="Edit"></i>
+    <i *ngIf="HAS_DELETE_PROJECT" (click)="deleteProject(project)" class="a-icon boschicon-bosch-ic-delete small-icon"
+      title="Delete"></i>
+  </a>
+
+
+  <!-- <div class="tag tag-white gbUnitName"> <span>{{ project.customerGB || NOT_APPLICABLE
+  }}</span></div> -->
+
+</div>

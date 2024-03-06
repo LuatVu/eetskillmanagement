@@ -1,0 +1,112 @@
+<eet-common-dialog>
+  <ng-container dialog-content>
+    <div fxLayout="row" fxLayout.mobile="column" fxLayout.sm="column" fxLayoutAlign="space-between"
+      fxLayoutAlign.sm="start">
+      <div class="form-field" fxFlex="48%">
+        <mat-label>{{ "learning.my_learning.info.name" | translate }}</mat-label>
+        <mat-form-field floatLabel="never">
+          <input matInput [(ngModel)]="name" (keyup)="onFieldChange()" required/>
+        </mat-form-field>
+      </div>
+      <div class="form-field" fxFlex="48%">
+        <mat-label>{{ "learning.my_learning.info.trainer" | translate }}</mat-label>
+        <mat-form-field floatLabel="never">
+          <input matInput [(ngModel)]="trainer"/>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayout.mobile="column" fxLayout.sm="column" fxLayoutAlign="space-between"
+      fxLayoutAlign.sm="start">
+      <div class="form-field" fxFlex="48%">
+        <mat-label>{{ "learning.my_learning.add_course.available_date" | translate }}</mat-label>
+        <mat-form-field floatLabel="never">
+          <input matInput [min]="minDate" [matDatepicker]="startDatePicker" [(ngModel)]="date" (click)="startDatePicker.open()" [readonly]="true" (dateChange)="onFieldChange()" required>
+          <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single "
+            matTooltip="{{ 'learning.my_learning.add_course.available_date' | translate }}" (click)="startDatePicker.open()"></i>
+          <mat-datepicker #startDatePicker color="primary"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-field" fxFlex="48%">
+        <mat-label>{{ "learning.my_learning.info.duration" | translate }}</mat-label>
+        <mat-form-field floatLabel="never">
+          <input matInput type="number" [(ngModel)]="duration" (keyup)="onFieldChange()" required/>
+          <mat-select matSuffix [(ngModel)]="durationUnit">
+            <mat-option value="h">{{ "learning.my_learning.duration.hour_short" | translate}}</mat-option>
+            <mat-option value="d">{{ "learning.my_learning.duration.day_short" | translate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayout.mobile="column" fxLayout.sm="column" fxLayoutAlign="space-between"
+      fxLayoutAlign.sm="start">
+      <div class="form-field" fxFlex="48%">
+        <mat-label>{{ "learning.my_learning.info.type" | translate }}</mat-label>
+        <mat-form-field floatLabel="never">
+          <mat-select [(ngModel)]="types" (selectionChange)="onFieldChange()" required>
+            <mat-option *ngFor="let type of typeList" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field" fxFlex="48%">
+        <mat-label>{{ "learning.my_learning.info.category" | translate }}</mat-label>
+        <mat-form-field floatLabel="never">
+          <mat-select [(ngModel)]="categories" (selectionChange)="onFieldChange()" required>
+            <mat-option *ngFor="let category of categoryList" [value]="category.value">
+              {{ category.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayout.mobile="column" fxLayout.sm="column" fxLayoutAlign="space-between"
+      fxLayoutAlign.sm="start">
+      <div class="form-field" fxFlex="48%">
+        <mat-label>{{ "learning.my_learning.info.audience" | translate }}</mat-label>
+        <mat-form-field floatLabel="never" >
+          <mat-select [(ngModel)]="targets" (selectionChange)="onFieldChange()" required>
+            <mat-option *ngFor="let target of targetList" [value]="target.value">{{ target.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field" fxFlex="48%">
+      </div>
+    </div>
+
+
+
+    <!-- Content -->
+    <div class="CourseInfoCompoment" fxLayoutGap="5%">
+
+      <div fxLayout="column wrap" class="project-decription">
+        <!-- Project description (Title)-->
+        <div fxLayout="row ">
+          <mat-label>{{ "learning.my_learning.info.desc" | translate }}</mat-label>
+        </div>
+        <!-- Project description (Text area)-->
+        <div fxLayout="row ">
+          <textarea [(ngModel)]="description" rows="5" cols="60" name="description" class="description"
+            placeholder="Type your description here..."></textarea>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container dialog-action>
+    <button
+    [disabled]="!isMeetRequired"
+    mat-raised-button
+    class="btn-exp"
+    (click)="onSave()"
+  >
+    <ng-container
+      ><mat-icon fontIcon="bosch-ic-save"> </mat-icon>
+      {{ "learning.command.save" | translate }}</ng-container
+    >
+  </button>
+  </ng-container>
+</eet-common-dialog>

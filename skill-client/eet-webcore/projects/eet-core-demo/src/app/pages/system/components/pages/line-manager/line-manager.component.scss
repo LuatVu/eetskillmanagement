@@ -1,0 +1,83 @@
+@mixin transition {
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s; /* Safari & Chrome */
+  -moz-transition: background-color 0.3s; /* Mozilla */
+  -ms-transition: background-color 0.3s; /* Internet Exploder */
+  -o-transition: background-color 0.3s; /* Opera */
+}
+
+.full-space {
+  width: 100%;
+  padding: 15px 30px;
+  position: relative;
+
+.header{
+  display: flex;
+  align-items: center;
+}
+.line-manager-table{
+  width: 100%;
+}
+.table-header{
+  padding-left: 8px !important;
+}
+
+.action-group{
+  display: flex;
+  gap: 14px;
+  flex: 1;
+  justify-content: end;
+  .box-search{
+    width: 300px;
+    .mat-form-field{
+      padding-bottom: 0;
+      width: 100%;
+    }
+  }
+}
+.ic-adjust{
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.7;
+  &:hover{
+    opacity: 1;
+  }
+}
+.noData{
+  text-align: center;
+  margin-top: 60px;
+}
+.line-manager-table-header {
+  tr.mat-header-row th.mat-header-cell {
+    padding: 16px 16px 16px 0;
+  }
+
+  tr.mat-row td.mat-cell {
+    padding: 8px 16px 8px 8px !important;
+    &:first-child{
+      width: 350px;
+    }
+    &:last-child{
+      width: 120px;
+    }
+  }
+  .mat-row{
+    height: 60px;
+  }
+}
+}
+
+.paginator-container{
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  left: 0;
+}
+.table-line-manager{
+  padding-bottom: 60px;
+}
+:host ::ng-deep.mat-paginator .mat-paginator-container{
+  justify-content: center;
+  margin-bottom: 0px;
+}
+

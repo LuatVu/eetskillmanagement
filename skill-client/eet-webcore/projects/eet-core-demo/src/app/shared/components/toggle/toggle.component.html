@@ -1,0 +1,9 @@
+<div class="contain">
+    <mat-button-toggle-group [disabled]="disabled" [ngClass]="{'disabled': disabled}" 
+        [(ngModel)]="checked" (ngModelChange)="onChange()">
+        <mat-button-toggle [value]="false">
+            {{truncateLabel(listData[0])}}</mat-button-toggle>
+        <mat-button-toggle [value]="true">
+            {{truncateLabel(listData[1])}}</mat-button-toggle>
+    </mat-button-toggle-group>
+</div>

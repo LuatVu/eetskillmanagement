@@ -1,0 +1,107 @@
+.full-space {
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.form-content {
+    background-color: #efeff0;
+    padding: 0 16px;
+    input[name=manager]{
+        margin-top: 0;
+    }
+}
+
+.label-content {
+    display: flex;
+    align-items: center;
+}
+.search-box{
+    display: flex;
+    align-items: center;
+    border-color: #BFC0C2;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    i{
+        margin-right: 12px;
+        cursor: pointer;
+    }
+}
+.searchInput{
+    border-bottom-width: 0;
+}
+input.searchInput[readonly] {
+    background-color: #efeff0 !important;
+  }
+.text-error {
+    color: var(--bosch-red-55);
+}
+
+.currentTeam{
+    padding: 12px 0;
+    border-bottom: none;
+}
+@keyframes loading-spinner-wrapper-content {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  .loading-spinner-wrapper-content div {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--major-signal-neutral__enabled__fill__default);
+    border-top-color: transparent;
+    border-radius: 50%;
+  }
+  .loading-spinner-wrapper-content div {
+    animation: loading-spinner-wrapper-content 1s linear infinite;
+    top: 12px;
+    left: 12px;
+  }
+  .loading-spinner-wrapper {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    overflow: hidden;
+    background: transparent;
+  
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 2;
+  }
+  .loading-spinner-wrapper-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+  }
+  .loading-spinner-wrapper-content div {
+    box-sizing: content-box;
+  }
+.associate-search-field{
+    width: 24px !important;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.h-100{
+    height: 100%;
+}
+.w-100{
+    width: 100%;
+}
+.p-0{
+    padding: 0;
+}
+.col-md{
+    &.manager{
+      height: 48px;
+    }
+  }

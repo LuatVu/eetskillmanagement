@@ -1,0 +1,180 @@
+<eet-common-dialog>
+    <form action="" [formGroup]="form" dialog-content>
+        <div class="full-space">
+            <div class="basic-detail-container">
+                <div class="basic-detail">
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.name' | translate}}</mat-label>
+                    <mat-form-field *ngIf="passingData.data.type !== 'view'">
+                        <input maxlength="120" matInput formControlName="name">
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view"
+                    [matTooltip]="isElementOverflow(name)?form.controls.name.value:''" #name>
+                    {{form.controls.name.value || '--'}}</p>
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.start' | translate}}</mat-label>
+                    <mat-form-field floatLabel="never" class="basic-detail__field date-field"
+                        *ngIf="passingData.data.type !== 'view'">
+                        <input matInput [matDatepicker]="startDatePicker" formControlName="start_date"
+                            [max]="getPreviousDate(this.form?.getRawValue()?.end_date)"
+                            [readonly]="true" class="date-input" 
+                            (click)="startDatePicker.open()">
+                        <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single"
+                            matTooltip="{{ 'learning.my_learning.info.start' | translate }}"
+                            (click)="startDatePicker.open()"></i>
+                        <mat-datepicker #startDatePicker></mat-datepicker>
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view">
+                        {{(form.controls.start_date.value | date: 'dd/MM/yyyy') || '--'}}</p>
+                    <mat-label class="basic-detail__label">{{'projects.detail.end' | translate}}</mat-label>
+                    <mat-form-field floatLabel="never" class="basic-detail__field date-field"
+                        *ngIf="passingData.data.type !== 'view'">
+                        <input matInput [matDatepicker]="endDatePicker" formControlName="end_date"
+                            [min]="getNextDate(this.form?.getRawValue()?.start_date)"
+                            [readonly]="true" class="date-input"
+                            (click)="endDatePicker.open()" [min]="this.form?.getRawValue()?.start_date">
+                        <i matSuffix class="a-icon boschicon-bosch-ic-calendar-date-single"
+                            matTooltip="{{ 'learning.my_learning.info.end' | translate }}"
+                            (click)="endDatePicker.open()"></i>
+                        <mat-datepicker #endDatePicker></mat-datepicker>
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view">
+                        {{(form.controls.end_date.value | date: 'dd/MM/yyyy') || '--'}}</p>
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.PM' | translate}}</mat-label>
+                    <mat-form-field class="basic-detail__field" *ngIf="passingData.data.type !== 'view'">
+                        <input maxlength="250" matInput #trigger="matAutocompleteTrigger" (click)="trigger.openPanel()" type="text"
+                            formControlName="pm_name" #pmName [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" class="panel-full-width"
+                            (optionSelected)="onSelectPm($event)">
+                            <mat-option *ngFor="let option of filteredManagerList | async" [value]="option.name"
+                                panelClass="panel-full-width">
+                                {{ option.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view"
+                    [matTooltip]="isElementOverflow(pm_name)?form.controls.pm_name.value:''" #pm_name>
+                        {{form.controls.pm_name.value || '--'}}</p>
+                    <mat-label class="basic-detail__label">{{'projects.detail.challenge' | translate}}</mat-label>
+                    <mat-form-field class="basic-detail__field" *ngIf="passingData.data.type !== 'view'">
+                        <input maxlength="250" matInput formControlName="challenge">
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view"
+                        [matTooltip]="form.controls.challenge.value">
+                        {{form.controls.challenge.value || '--'}}</p>
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.technology_used' | translate}}</mat-label>
+                    <mat-form-field [ngClass]="inValidFieldTechnologyUsed ? 'invalid' : ''" *ngIf="passingData.data.type !== 'view'"
+                        (mousedown)="preventDefault($event)" class="tech-used-field">
+                        <mat-chip-list #chipList>
+                            <mat-chip *ngFor="let skillTag of form.controls.skill_tags.value" (removed)="removeSkillTag(skillTag)"
+                            [matTooltip]="skillTag.name" matTooltipPosition="left">
+                                <div class="mat-chip__content">{{skillTag.name}}</div>
+                                <button matChipRemove>
+                                    <i class="a-icon ui-ic-close"></i>
+                                </button>
+                            </mat-chip>
+                            <div class="multi-select-contain"  (bciClickOutside)="skillTagClickOutSide(true)" (click)="skillTagClickOutSide(false)">
+                                <input placeholder="{{'projects.detail.search_or_add_technology' | translate}}" #skillTagInput
+                                [formControl]="skillTagSearchControl" [matAutocomplete]="skillTagAuto"
+                                [matChipInputFor]="chipList" (blur)="onBlurInput(TECHNOLOGY_USED)" [maxLength]="100"
+                                (click)="onFocusElement(skillTagInput)">
+                                <div class="drop-down" (click)="skillTagDropdownHandler()"></div>
+                            </div>
+                        </mat-chip-list>
+                        <mat-autocomplete class="panel-full-width" #skillTagAuto="matAutocomplete" (optionSelected)="selectedSkillTag($event)" #skillTagAutocomplete>
+                            <mat-option *ngFor="let skillTag of filteredSkillTagList" [value]="skillTag" 
+                            [ngClass]="isSkillTagSelected(skillTag.name)?'selected-option':''"
+                            [disabled]="isSkillTagSelected(skillTag.name)"
+                            [matTooltip]="skillTag.name" matTooltipPosition="left">
+                            {{skillTag.name}}
+                            <i class="a-icon ui-ic-checkmark" style="position:absolute;right:12px;" 
+                                *ngIf="isSkillTagSelected(skillTag.name)"></i>
+                        </mat-option>
+                            <mat-option [disabled]="true" *ngIf="!filteredSkillTagList || filteredSkillTagList.length == 0">{{'system.no_data' | translate}}</mat-option>
+                            <mat-option [disabled]="true">
+                                <button (click)="addNewSkillTag(skillTagSearchControl.value)" [disabled]="allowCreateSkillTag"
+                                    mat-raised-button class="btn-exp">{{'projects.detail.add_skill_tag' | translate}}
+                                </button>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view"
+                        [matTooltip]="skillTagAsText">
+                        {{skillTagAsText || '--'}}
+                    </p>
+                </div>
+                <div class="basic-detail">
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.role' | translate}}</mat-label>
+                    <mat-form-field class="basic-detail__field" *ngIf="passingData.data.type !== 'view'">
+                        <mat-select formControlName="role_id" panelClass="panel-full-width" (selectionChange)="onRoleChange($event)">
+                            <mat-option *ngFor=" let value of roles" [value]="value.id">{{value.name}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view">
+                        {{form.controls.role_name.value || '--'}}</p>
+
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.tasks' | translate}}</mat-label>
+                    <div class="form-column addtionalTasks">
+                        <textarea maxlength="250" *ngIf="passingData.data.type !== 'view'" formControlName="additional_tasks"
+                            [ngClass]="form.controls.additional_tasks.touched && form.controls.additional_tasks.invalid?'invalid-form-field':''">
+                        </textarea>
+                        <textarea *ngIf="passingData.data.type === 'view'" formControlName="additional_tasks" disabled
+                            class="basic-detail__description-disabled">
+                        </textarea>
+                    </div>
+
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.status' | translate}}</mat-label>
+                    <mat-form-field class="basic-detail__field" *ngIf="passingData.data.type !== 'view'">
+                        <mat-select formControlName="status" panelClass="panel-full-width" (selectionChange)="onChangeStatus($event)">
+                            <mat-option *ngFor=" let value of projectStatusList" [value]="value">{{value}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view">{{form.controls.status.value
+                        || '--'}}</p>
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.type' | translate}}</mat-label>
+                    <mat-form-field class="basic-detail__field" *ngIf="passingData.data.type !== 'view'">
+                        <input matInput formControlName="project_type">
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view">
+                        {{form.controls.project_type.value || '--'}}</p>
+
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.objective' | translate}}</mat-label>
+                    <mat-form-field class="basic-detail__field" *ngIf="passingData.data.type !== 'view'">
+                        <input  matInput formControlName="objective" [maxlength]="65535">
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view"
+                    [matTooltip]="isElementOverflow(objective)?form.controls.objective.value:''" #objective>
+                        {{form.controls.objective.value || '--'}}</p>
+
+                    <mat-label class="basic-detail__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.size' | translate}}</mat-label>
+                    <mat-form-field class="basic-detail__field" *ngIf="passingData.data.type !== 'view'">
+                        <input matInput maxLength="2" formControlName="team_size" (input)="onInputTeamSize($event)">
+                    </mat-form-field>
+                    <p *ngIf="passingData.data.type === 'view'" class="basic-detail__view">
+                        {{form.controls.team_size.value || '--'}}</p>
+                    
+                </div>
+
+            </div>
+            <div class="description-container">
+                <mat-label class="__label" [ngClass]="passingData.data.type!=='view' && 'required'">{{'projects.detail.desc' | translate}}</mat-label>
+                <textarea [maxlength]="65535" *ngIf="passingData.data.type !== 'view'" formControlName="description"
+                [ngClass]="form.controls.description.touched && form.controls.description.invalid?'invalid-form-field':''">
+                </textarea>
+                <textarea *ngIf="passingData.data.type === 'view'" formControlName="description" disabled
+                    class="basic-detail__description-disabled">
+                </textarea>
+            </div>
+        </div>
+    </form>
+    <ng-container dialog-action>
+        <button mat-raised-button class="btn-exp" *ngIf="passingData.data.type === 'edit'" [disabled]="!form.valid"
+            (click)="updateNonBoschProject()">
+            <i class="a-icon boschicon-bosch-ic-save"></i>
+            {{'projects.detail.save' | translate}}
+        </button>
+        <button mat-raised-button class="btn-exp" *ngIf="passingData.data.type === 'add'" [disabled]="!form.valid"
+            (click)="addNewNonBoschProject()">
+            <i class="a-icon boschicon-bosch-ic-save"></i>
+            {{'projects.detail.add' | translate}}
+        </button>
+    </ng-container>
+</eet-common-dialog>

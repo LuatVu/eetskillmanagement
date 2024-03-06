@@ -1,0 +1,98 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0.5vh 0 !important;
+}
+.skill-info-container {
+  margin-bottom: 20px;
+}
+textarea {
+  background-color: #efeff0;
+  border: 1px solid #bfc0c2;
+}
+
+
+.filter {
+  margin-top: 20px;
+  display: flex;
+  justify-content: start;
+  gap: 60px;
+}
+
+
+.skill-name,
+.competency {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+  input {
+    margin: 0 0 0 16px;
+  }
+}
+
+mat-label {
+  align-self: center;
+  min-width: 100px;
+  font-weight: bold;
+}
+
+.label-content {
+  display: flex;
+  align-items: center;
+}
+
+mat-chip-list.mat-chip-list .mat-chip-list-wrapper {
+  background-color: #efeff0;
+  border-width: 0px 0px 1px 0px;
+  border-color: #bfc0c2;
+  border-style: solid;
+  border-radius: 0;
+}
+
+.competency-lead .competency-lead-title .competency-lead .search-bar {
+  // margin: 1.5vh 0;
+  align-self: center;
+}
+
+@mixin transition {
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s; /* Safari & Chrome */
+  -moz-transition: background-color 0.3s; /* Mozilla */
+  -ms-transition: background-color 0.3s; /* Internet Exploder */
+  -o-transition: background-color 0.3s; /* Opera */
+}
+
+.search-box {
+  margin-top: 5%;
+}
+
+.search-bar {
+  background-color: #efeff0;
+  border-bottom: 1px solid #bfc0c2;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  mat-dialog-actions {
+    margin: 1vh 0 0 0;
+    padding: 1vh 0 0 0;
+  }
+}
+
+button {
+  @include transition;
+}
+
+.text-input {
+  margin-top: 16px;
+}
+
+.text-error {
+  color: var(--bosch-red-55);
+}
+
+.form-content {
+  background-color: #efeff0;
+  padding: 0 16px;
+}

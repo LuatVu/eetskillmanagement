@@ -1,0 +1,30 @@
+<div class="dialog-header">
+  <h3>
+    <ng-content select="[fontIcon]"></ng-content>
+    {{tittle}}
+  </h3>
+  <button class="close-button" mat-icon-button (click)="close()" data-test="modal-window-close-button">
+    <i class="bosch-ic bosch-ic-clickable bosch-ic-close"></i>
+  </button>
+</div>
+
+  <!-- --------------Content------------------- -->
+  <div class="search-bar">
+    <mat-form-field class="filter-form-field" floatLabel="always" fxFlex="grow" fxFlexFill>
+      <mat-label>{{'user_management.search' | translate}}</mat-label>
+      <input matInput [(ngModel)]="keyword" (ngModelChange)="searchKeyword()">
+      <mat-icon matSuffix fontIcon="Bosch-Ic-search"></mat-icon>
+    </mat-form-field>
+  </div>
+  <div>
+    <div class="source-list">
+      <div class="no-data-box" *ngIf="!sourceList || sourceList.length == 0">No data</div>
+      <mat-selection-list *ngFor="let item of sourceList">
+        <mat-list-item id="{{item.id}}">
+          <div class="item-content">
+            {{item?.name || item?.displayName}}
+          </div>
+        </mat-list-item>
+      </mat-selection-list>
+    </div>
+  </div>

@@ -1,0 +1,66 @@
+<div class="full-space">
+    <div class="header">
+        <mat-label></mat-label>
+        <div class="action-group">
+            <div class="box-search">
+                <mat-form-field>
+                    <mat-label>{{ "system.line_manager.search_label" | translate }}</mat-label>
+                    <input matInput #input (keyup)="applyFilter($event.target.value)" />
+                    <button type="submit" class="a-text-field__icon-search" matSuffix>
+                      <i class="a-icon ui-ic-search"></i>
+                    </button>
+                  </mat-form-field>
+            </div>
+            <button mat-raised-button class="btn-exp" (click)="addAssociate()">
+                <i class="a-icon ui-ic-plus" title="plus"></i>
+                {{ 'system.line_manager.add_new_manager' | translate }}
+            </button>
+        </div>
+    </div>
+    <div class="table-line-manager">
+        <table mat-table matSort [dataSource]="dataSource" class="line-manager-table table-common line-manager-table-header">
+            <!-- Team -->
+            <ng-container matColumnDef="team">
+                <th class="hover-test table-header" mat-header-cell *matHeaderCellDef>
+                    {{ 'system.line_manager.table_label.team' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <!-- Line Manager -->
+            <ng-container matColumnDef="line_manager">
+                <th class="hover-test" mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{ 'system.line_manager.table_label.line_manager' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.line_manager?.displayName || '--' }}</td>
+            </ng-container>
+            <!-- Action-->
+            <ng-container matColumnDef="action">
+                <th class="hover-test action" mat-header-cell *matHeaderCellDef>
+                    {{ 'system.line_manager.table_label.action' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" (click)="adjustLineManager(element)">
+                    <i class="a-icon boschicon-bosch-ic-settings-editor ic-adjust" title="settings-editor"></i>
+                </td>
+            </ng-container>
+            <ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="3" style="text-align: 'center';">
+                    {{ 'system.line_manager.no_result' | translate }}
+                  </td>
+                </tr>
+            </ng-container>
+        </table>
+    </div>
+    <div class="paginator-container">
+        <mat-paginator #paginator [pageSizeOptions]="pageSizeOption" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
+
+<ng-template #noData>
+    <div *ngIf="totalItems==0" class="noData">
+        {{ 'system.no_data' | translate }}
+    </div>
+</ng-template>

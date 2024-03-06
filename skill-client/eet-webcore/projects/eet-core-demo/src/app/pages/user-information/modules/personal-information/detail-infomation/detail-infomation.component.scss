@@ -1,0 +1,131 @@
+.detail-infomation-section {
+  padding: 10px 5%;
+}
+
+input {
+  max-width: 50px;
+  background-color: #ffffff;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.user-avatar {
+  width: 175px;
+  height: 175px;
+  border: 1px solid var(--bosch-blue-50);
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  img {
+    vertical-align: middle;
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+  }
+
+  .avatar-user {
+    width: 170px;
+    height: 170px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .short-name {
+    margin: 0;
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 5px;
+  }
+}
+
+p,
+span {
+  margin: 0;
+
+  &.user-label {
+    font-size: 14px;
+    color: #2c2c2c;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  &.user-content {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: var(--bosch-blue-50);
+    font-weight: 400;
+    &.truncate{
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    &.title {
+      font-size: 24px;
+    }
+  }
+}
+.mat-input-element { 
+  min-height: 55px;
+  padding-left: 12px;
+}
+
+.skill-highlight-list {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+
+  .skill-highlight-item {
+    max-width: 150px;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--bosch-yellow-50);
+      width: 100%;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+:host ::ng-deep .upload-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 36px !important;
+  min-width: 36px !important;
+  background-color: var(--bosch-blue-50);
+  color: #ffffff;
+
+  .mat-button-wrapper {
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      margin-right: unset !important;
+    }
+  }
+}
+.invalid-field{
+  border-bottom: 1px solid red !important;
+}
+textarea{
+  background-color: var(--bosch-gray-95);
+}

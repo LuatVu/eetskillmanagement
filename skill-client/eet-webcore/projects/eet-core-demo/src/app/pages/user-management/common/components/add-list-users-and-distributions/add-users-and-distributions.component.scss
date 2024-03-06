@@ -1,0 +1,44 @@
+@import "~@bci-web-core/common-styles/sass/bci/bosch-ic";
+.mat-dialog-actions {
+  padding: 32px 0;
+  margin-bottom: -32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.chips-list-full-width {
+  width: 100%;
+}
+.label {
+  position: absolute;
+  top: -13px;
+  left: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.section-button {
+  margin-bottom: 17px;
+  margin-top: -15px;
+}
+
+.search-icon-loading {
+  -webkit-animation:spin 0.3 linear infinite;
+    -moz-animation:spin 0.3 linear infinite;
+    animation:spin 0.3 linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  100% {
+      -webkit-transform: rotate(360deg);
+      transform:rotate(360deg);
+  }
+}
